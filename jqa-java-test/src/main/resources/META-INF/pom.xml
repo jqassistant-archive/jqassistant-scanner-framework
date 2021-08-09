@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.jqassistant.contrib.common</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.10.0</version>
+    <relativePath></relativePath>
+  </parent>
+  <groupId>org.jqassistant.contrib.plugin</groupId>
+  <artifactId>jqa-javagen-plugin</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <name>jQAssistant JavaGen Generated Plugin</name>
+  <description>A generated jQAssistant plugin for JavaGen as a PoC</description>
+  <url>http://jqassistant.org/</url>
+  <licenses>
+    <license>
+      <name>GNU General Public License, v3</name>
+      <url>http://www.gnu.org/licenses/gpl-3.0.html</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>kev007</id>
+      <name>Kevin M. Shrestha</name>
+      <email>kev_shrestha@hotmail.com</email>
+    </developer>
+    <developer>
+      <id>you!</id>
+    </developer>
+  </developers>
+</project>

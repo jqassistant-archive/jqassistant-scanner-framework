@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>antlr-to-jqassistant</module>
+    </modules>
+
+    <parent>
+        <groupId>com.buschmais.jqassistant</groupId>
+        <artifactId>jqa-uber-parent</artifactId>
+        <version>1.10.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>org.jqassistant.contrib.plugin</groupId>
+    <artifactId>jqa-scanner-framework</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>ANTLR jQAssistant Scanner Framework</name>
+    <description>A jQAssistant scanner framework to generate plugins</description>
+    <url>https://jqassistant.org/</url>
+
+    <developers>
+        <developer>
+            <id>kev007</id>
+            <name>Kevin M. Shrestha</name>
+            <email>kev_shrestha@hotmail.com</email>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License, v3</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:jqassistant-contrib/jqassistant-scanner-framework.git</connection>
+        <developerConnection>scm:git:git@github.com:jqassistant-contrib/jqassistant-scanner-framework.git</developerConnection>
+        <url>https://github.com/jqassistant-contrib/jqassistant-scanner-framework</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <antlr4.visitor>true</antlr4.visitor>
+        <antlr4.listener>true</antlr4.listener>
+        <asciidoctor.toplevelid>jqa-scanner-framework</asciidoctor.toplevelid>
+
+        <com.buschmais.xo.version>1.2.0</com.buschmais.xo.version>
+        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.buschmais.xo</groupId>
+                <artifactId>xo.api</artifactId>
+                <version>${com.buschmais.xo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${org.mapstruct.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+</project>
