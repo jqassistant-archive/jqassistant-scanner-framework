@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("EnhancedForStatement")
 public interface EnhancedForStatement extends JavaGen {
@@ -34,9 +34,9 @@ public interface EnhancedForStatement extends JavaGen {
     // unhandled TerminalAST token: 'for'
     // unhandled TerminalAST token: '('
     @Relation("HAS_VARIABLE_MODIFIER")
-    List<VariableModifier> getVariableModifiers();
+    List<VariableModifier> getVariableModifier();
 
-    void setVariableModifiers(List<VariableModifier> setVariableModifiers);
+    void setVariableModifier(List<VariableModifier> setVariableModifier);
 
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();

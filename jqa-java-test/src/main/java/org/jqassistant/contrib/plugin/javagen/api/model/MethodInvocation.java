@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -6,7 +6,6 @@ import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import java.util.List;
 
 /**
  * Generated from AST:
@@ -31,7 +30,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("MethodInvocation")
 public interface MethodInvocation extends JavaGen {
@@ -42,17 +41,32 @@ public interface MethodInvocation extends JavaGen {
     void setMethodName(MethodName methodName);
 
     // unhandled TerminalAST token: '('
-    // optional: argumentList
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: '.'
-    // optional: typeArguments
-    // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     @Relation("HAS_ARGUMENT_LIST")
-    List<ArgumentList> getArgumentLists();
+    ArgumentList getArgumentList();
 
-    void setArgumentLists(List<ArgumentList> setArgumentLists);
+    void setArgumentList(ArgumentList argumentList);
 
+    // unhandled TerminalAST token: ')'
+    @Relation("HAS_TYPE_NAME")
+    TypeName getTypeName();
+
+    void setTypeName(TypeName typeName);
+
+    // unhandled TerminalAST token: '.'
+    // optional: ?
+    @Relation("HAS_TYPE_ARGUMENTS")
+    TypeArguments getTypeArguments();
+
+    void setTypeArguments(TypeArguments typeArguments);
+
+    @Relation("HAS_IDENTIFIER")
+    TerminalNodeStrings getIdentifier();
+
+    void setIdentifier(TerminalNodeStrings identifier);
+
+    // unhandled TerminalAST token: '('
+    // optional: ?
     // unhandled TerminalAST token: ')'
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
@@ -60,45 +74,30 @@ public interface MethodInvocation extends JavaGen {
     void setExpressionName(ExpressionName expressionName);
 
     // unhandled TerminalAST token: '.'
-    // optional: typeArguments
-    @Relation("HAS_TYPE_ARGUMENTS")
-    List<TypeArguments> getTypeArgumentss();
-
-    void setTypeArgumentss(List<TypeArguments> setTypeArgumentss);
-
-    @Relation("HAS_IDENTIFIER")
-    List<TerminalNodeStrings> getIdentifiers();
-
-    void setIdentifiers(List<TerminalNodeStrings> setIdentifiers);
-
+    // optional: ?
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     // unhandled TerminalAST token: ')'
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
     void setPrimary(Primary primary);
-
     // unhandled TerminalAST token: '.'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '.'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     // unhandled TerminalAST token: ')'
-    @Relation("HAS_TYPE_NAME")
-    List<TypeName> getTypeNames();
-
-    void setTypeNames(List<TypeName> setTypeNames);
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '.'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     // unhandled TerminalAST token: ')'
 }

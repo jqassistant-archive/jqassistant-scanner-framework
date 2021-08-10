@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -28,7 +28,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("CastExpression")
 public interface CastExpression extends JavaGen {
@@ -46,10 +46,15 @@ public interface CastExpression extends JavaGen {
     void setUnaryExpression(UnaryExpression unaryExpression);
 
     // unhandled TerminalAST token: '('
-    @Relation("HAS_ADDITIONAL_BOUND")
-    List<AdditionalBound> getAdditionalBounds();
+    @Relation("HAS_REFERENCE_TYPE")
+    ReferenceType getReferenceType();
 
-    void setAdditionalBounds(List<AdditionalBound> setAdditionalBounds);
+    void setReferenceType(ReferenceType referenceType);
+
+    @Relation("HAS_ADDITIONAL_BOUND")
+    List<AdditionalBound> getAdditionalBound();
+
+    void setAdditionalBound(List<AdditionalBound> setAdditionalBound);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
@@ -58,11 +63,6 @@ public interface CastExpression extends JavaGen {
     void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus unaryExpressionNotPlusMinus);
 
     // unhandled TerminalAST token: '('
-    @Relation("HAS_REFERENCE_TYPE")
-    List<ReferenceType> getReferenceTypes();
-
-    void setReferenceTypes(List<ReferenceType> setReferenceTypes);
-
     // unhandled TerminalAST token: ')'
     @Relation("HAS_LAMBDA_EXPRESSION")
     LambdaExpression getLambdaExpression();

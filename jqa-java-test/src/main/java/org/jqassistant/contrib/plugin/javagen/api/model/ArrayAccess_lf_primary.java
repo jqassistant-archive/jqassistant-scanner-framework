@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("ArrayAccess_lf_primary")
 public interface ArrayAccess_lf_primary extends JavaGen {
@@ -42,16 +42,14 @@ public interface ArrayAccess_lf_primary extends JavaGen {
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LF_PRIMARY_LF_ARRAY_ACCESS_LF_PRIMARY")
-    List<PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary> getPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primarys();
+    List<PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary> getPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary();
 
-    void setPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primarys(List<PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary> setPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primarys);
+    void setPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary(List<PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary> setPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary);
 
     // unhandled TerminalAST token: '['
-    // unhandled StarBlockAST: '['
     @Relation("HAS_EXPRESSION")
-    List<Expression> getExpressions();
+    List<Expression> getExpression();
 
-    void setExpressions(List<Expression> setExpressions);
+    void setExpression(List<Expression> setExpression);
     // unhandled TerminalAST token: ']'
-    // unhandled StarBlockAST: ']'
 }

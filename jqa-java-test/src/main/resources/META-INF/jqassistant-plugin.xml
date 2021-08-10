@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <jqassistant-plugin xmlns="http://schema.jqassistant.org/plugin/v1.10" name="JavaGen" id="jqa.plugin.generated.javagen">
     <description>
-		Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+		Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 		Provides a generated scanner for JavaGen.
 	</description>

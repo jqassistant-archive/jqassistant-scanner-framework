@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JavaGenScannerPluginTestIT extends AbstractPluginIT {
 
     @Test
-    @TestStore(type = TestStore.Type.REMOTE)
+//    @TestStore(type = TestStore.Type.REMOTE)
     public void scanJavaGenFile() {
         store.beginTransaction();
         File testFile = new File(getClassesDirectory(JavaGenScannerPluginTestIT.class), "/JavaGenFileScannerPlugin.java");

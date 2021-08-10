@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,15 +26,14 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("ElementValuePairList")
 public interface ElementValuePairList extends JavaGen {
 
     // unhandled TerminalAST token: ','
-    // unhandled StarBlockAST: ','
     @Relation("HAS_ELEMENT_VALUE_PAIR")
-    List<ElementValuePair> getElementValuePairs();
+    List<ElementValuePair> getElementValuePair();
 
-    void setElementValuePairs(List<ElementValuePair> setElementValuePairs);
+    void setElementValuePair(List<ElementValuePair> setElementValuePair);
 }

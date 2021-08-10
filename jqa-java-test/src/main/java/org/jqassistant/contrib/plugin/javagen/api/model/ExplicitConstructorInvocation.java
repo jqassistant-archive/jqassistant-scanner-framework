@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -6,7 +6,6 @@ import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import java.util.List;
 
 /**
  * Generated from AST:
@@ -29,31 +28,31 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("ExplicitConstructorInvocation")
 public interface ExplicitConstructorInvocation extends JavaGen {
 
-    // optional: typeArguments
+    // optional: ?
+    @Relation("HAS_TYPE_ARGUMENTS")
+    TypeArguments getTypeArguments();
+
+    void setTypeArguments(TypeArguments typeArguments);
+
     // unhandled TerminalAST token: 'this'
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
+    @Relation("HAS_ARGUMENT_LIST")
+    ArgumentList getArgumentList();
+
+    void setArgumentList(ArgumentList argumentList);
+
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: ';'
-    // optional: typeArguments
-    @Relation("HAS_TYPE_ARGUMENTS")
-    List<TypeArguments> getTypeArgumentss();
-
-    void setTypeArgumentss(List<TypeArguments> setTypeArgumentss);
-
+    // optional: ?
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '('
-    // optional: argumentList
-    @Relation("HAS_ARGUMENT_LIST")
-    List<ArgumentList> getArgumentLists();
-
-    void setArgumentLists(List<ArgumentList> setArgumentLists);
-
+    // optional: ?
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: ';'
     @Relation("HAS_EXPRESSION_NAME")
@@ -62,10 +61,10 @@ public interface ExplicitConstructorInvocation extends JavaGen {
     void setExpressionName(ExpressionName expressionName);
 
     // unhandled TerminalAST token: '.'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: ';'
     @Relation("HAS_PRIMARY")
@@ -73,10 +72,10 @@ public interface ExplicitConstructorInvocation extends JavaGen {
 
     void setPrimary(Primary primary);
     // unhandled TerminalAST token: '.'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: ';'
 }

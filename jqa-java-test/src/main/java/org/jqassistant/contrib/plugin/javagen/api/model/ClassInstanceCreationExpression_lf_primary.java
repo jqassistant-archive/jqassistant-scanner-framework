@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,44 +26,44 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("ClassInstanceCreationExpression_lf_primary")
 public interface ClassInstanceCreationExpression_lf_primary extends JavaGen {
 
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'new'
-    // optional: typeArguments
+    // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
     void setTypeArguments(TypeArguments typeArguments);
 
     @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotations();
+    List<Annotation> getAnnotation();
 
-    void setAnnotations(List<Annotation> setAnnotations);
+    void setAnnotation(List<Annotation> setAnnotation);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings identifier);
 
-    // optional: typeArgumentsOrDiamond
+    // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS_OR_DIAMOND")
     TypeArgumentsOrDiamond getTypeArgumentsOrDiamond();
 
     void setTypeArgumentsOrDiamond(TypeArgumentsOrDiamond typeArgumentsOrDiamond);
 
     // unhandled TerminalAST token: '('
-    // optional: argumentList
+    // optional: ?
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
     void setArgumentList(ArgumentList argumentList);
 
     // unhandled TerminalAST token: ')'
-    // optional: classBody
+    // optional: ?
     @Relation("HAS_CLASS_BODY")
     ClassBody getClassBody();
 

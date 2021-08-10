@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -31,7 +31,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("PostfixExpression")
 public interface PostfixExpression extends JavaGen {
@@ -47,7 +47,12 @@ public interface PostfixExpression extends JavaGen {
     void setExpressionName(ExpressionName expressionName);
 
     @Relation("HAS_POST_INCREMENT_EXPRESSION_LF_POSTFIX_EXPRESSION")
-    List<PostIncrementExpression_lf_postfixExpression> getPostIncrementExpression_lf_postfixExpressions();
+    List<PostIncrementExpression_lf_postfixExpression> getPostIncrementExpression_lf_postfixExpression();
 
-    void setPostIncrementExpression_lf_postfixExpressions(List<PostIncrementExpression_lf_postfixExpression> setPostIncrementExpression_lf_postfixExpressions);
+    void setPostIncrementExpression_lf_postfixExpression(List<PostIncrementExpression_lf_postfixExpression> setPostIncrementExpression_lf_postfixExpression);
+
+    @Relation("HAS_POST_DECREMENT_EXPRESSION_LF_POSTFIX_EXPRESSION")
+    List<PostDecrementExpression_lf_postfixExpression> getPostDecrementExpression_lf_postfixExpression();
+
+    void setPostDecrementExpression_lf_postfixExpression(List<PostDecrementExpression_lf_postfixExpression> setPostDecrementExpression_lf_postfixExpression);
 }

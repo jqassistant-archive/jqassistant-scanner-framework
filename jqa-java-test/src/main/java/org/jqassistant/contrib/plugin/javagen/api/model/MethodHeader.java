@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -27,35 +27,35 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("MethodHeader")
 public interface MethodHeader extends JavaGen {
 
-    // optional: throws_
+    @Relation("HAS_RESULT")
+    Result getResult();
+
+    void setResult(Result result);
+
+    @Relation("HAS_METHOD_DECLARATOR")
+    MethodDeclarator getMethodDeclarator();
+
+    void setMethodDeclarator(MethodDeclarator methodDeclarator);
+
+    // optional: ?
+    @Relation("HAS_THROWS_")
+    Throws_ getThrows_();
+
+    void setThrows_(Throws_ throws_);
+
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
     void setTypeParameters(TypeParameters typeParameters);
 
     @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotations();
+    List<Annotation> getAnnotation();
 
-    void setAnnotations(List<Annotation> setAnnotations);
-
-    @Relation("HAS_RESULT")
-    List<Result> getResults();
-
-    void setResults(List<Result> setResults);
-
-    @Relation("HAS_METHOD_DECLARATOR")
-    List<MethodDeclarator> getMethodDeclarators();
-
-    void setMethodDeclarators(List<MethodDeclarator> setMethodDeclarators);
-
-    // optional: throws_
-    @Relation("HAS_THROWS_")
-    List<Throws_> getThrows_s();
-
-    void setThrows_s(List<Throws_> setThrows_s);
+    void setAnnotation(List<Annotation> setAnnotation);
+    // optional: ?
 }

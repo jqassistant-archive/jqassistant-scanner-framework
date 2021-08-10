@@ -5,6 +5,7 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
@@ -100,7 +101,7 @@ public class MapperGenerator {
         NodeList<ClassOrInterfaceType> typeBound = new NodeList<>(new ClassOrInterfaceType().setName(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME));
 
         MethodDeclaration createDescriptorMethod = classDeclaration
-                .addMethod("createDescriptor", Modifier.Keyword.PUBLIC)
+                .addMethod("createDescriptor", Modifier.Keyword.PUBLIC, Modifier.Keyword.STATIC)
                 .setType("T")
                 .setTypeParameters(new NodeList<>(new TypeParameter("T", typeBound)));
 
@@ -129,12 +130,14 @@ public class MapperGenerator {
 
         compilationUnit.addImport(Main.modelPackage + "." + modelName);
         compilationUnit.addImport(Main.antlrPackage + "." + Main.parserName + "Parser");
+        compilationUnit.addImport("org.mapstruct.factory.Mappers");
 
         String name = getMapperName(modelName);
         String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name);
         addGeneratedAnnotation(classDeclaration);
+        addStaticInstance(classDeclaration, name);
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
         mapperConfigAnnotation.addPair("config", "MapperConfiguration.class");
@@ -150,9 +153,19 @@ public class MapperGenerator {
         return Collections.singletonMap(nameUpperCamel, compilationUnit);
     }
 
+    private void addStaticInstance(ClassOrInterfaceDeclaration classDeclaration, String name) {
+        FieldDeclaration fieldDeclaration = classDeclaration
+                .addField(name, "INSTANCE")
+                .addModifier(Modifier.Keyword.PUBLIC)
+                .addModifier(Modifier.Keyword.STATIC);
+        fieldDeclaration.getVariable(0).setInitializer("Mappers.getMapper(" + name + ".class)");
+    }
+
     private Map<String,? extends CompilationUnit> generateTerminalNodeMapper() {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
+
+        compilationUnit.addImport("org.mapstruct.factory.Mappers");
 
         String modelName = ApiModelGenerator.TERMINAL_NODE;
         String name = getMapperName(modelName);
@@ -163,6 +176,7 @@ public class MapperGenerator {
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name);
         addGeneratedAnnotation(classDeclaration);
+        addStaticInstance(classDeclaration, name);
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
         mapperConfigAnnotation.addPair("config", "MapperConfiguration.class");

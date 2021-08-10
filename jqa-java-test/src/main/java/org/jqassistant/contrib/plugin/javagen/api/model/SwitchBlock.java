@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,20 +26,20 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("SwitchBlock")
 public interface SwitchBlock extends JavaGen {
 
     // unhandled TerminalAST token: '{'
     @Relation("HAS_SWITCH_BLOCK_STATEMENT_GROUP")
-    List<SwitchBlockStatementGroup> getSwitchBlockStatementGroups();
+    List<SwitchBlockStatementGroup> getSwitchBlockStatementGroup();
 
-    void setSwitchBlockStatementGroups(List<SwitchBlockStatementGroup> setSwitchBlockStatementGroups);
+    void setSwitchBlockStatementGroup(List<SwitchBlockStatementGroup> setSwitchBlockStatementGroup);
 
     @Relation("HAS_SWITCH_LABEL")
-    List<SwitchLabel> getSwitchLabels();
+    List<SwitchLabel> getSwitchLabel();
 
-    void setSwitchLabels(List<SwitchLabel> setSwitchLabels);
+    void setSwitchLabel(List<SwitchLabel> setSwitchLabel);
     // unhandled TerminalAST token: '}'
 }

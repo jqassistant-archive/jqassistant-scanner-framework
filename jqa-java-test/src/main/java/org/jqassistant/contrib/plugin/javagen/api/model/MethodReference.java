@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -6,7 +6,6 @@ import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import java.util.List;
 
 /**
  * Generated from AST:
@@ -32,7 +31,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("MethodReference")
 public interface MethodReference extends JavaGen {
@@ -43,34 +42,34 @@ public interface MethodReference extends JavaGen {
     void setExpressionName(ExpressionName expressionName);
 
     // unhandled TerminalAST token: '::'
-    // optional: typeArguments
+    // optional: ?
+    @Relation("HAS_TYPE_ARGUMENTS")
+    TypeArguments getTypeArguments();
+
+    void setTypeArguments(TypeArguments typeArguments);
+
+    @Relation("HAS_IDENTIFIER")
+    TerminalNodeStrings getIdentifier();
+
+    void setIdentifier(TerminalNodeStrings identifier);
+
     @Relation("HAS_REFERENCE_TYPE")
     ReferenceType getReferenceType();
 
     void setReferenceType(ReferenceType referenceType);
 
     // unhandled TerminalAST token: '::'
-    // optional: typeArguments
-    @Relation("HAS_TYPE_ARGUMENTS")
-    List<TypeArguments> getTypeArgumentss();
-
-    void setTypeArgumentss(List<TypeArguments> setTypeArgumentss);
-
-    @Relation("HAS_IDENTIFIER")
-    List<TerminalNodeStrings> getIdentifiers();
-
-    void setIdentifiers(List<TerminalNodeStrings> setIdentifiers);
-
+    // optional: ?
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
     void setPrimary(Primary primary);
 
     // unhandled TerminalAST token: '::'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '::'
-    // optional: typeArguments
+    // optional: ?
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
@@ -79,14 +78,14 @@ public interface MethodReference extends JavaGen {
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '::'
-    // optional: typeArguments
+    // optional: ?
     @Relation("HAS_CLASS_TYPE")
     ClassType getClassType();
 
     void setClassType(ClassType classType);
 
     // unhandled TerminalAST token: '::'
-    // optional: typeArguments
+    // optional: ?
     // unhandled TerminalAST token: 'new'
     @Relation("HAS_ARRAY_TYPE")
     ArrayType getArrayType();

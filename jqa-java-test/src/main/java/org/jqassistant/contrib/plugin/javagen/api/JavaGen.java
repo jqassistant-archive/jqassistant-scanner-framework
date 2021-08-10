@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:32 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:54 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api;
 
@@ -9,7 +9,7 @@ import com.buschmais.xo.neo4j.api.annotation.Label;
 
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.BaseDescriptorGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:54 CEST 2021"
 )
 @Abstract()
 @Label("JavaGen")

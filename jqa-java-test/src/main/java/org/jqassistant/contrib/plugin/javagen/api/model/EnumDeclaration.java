@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,15 +26,15 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("EnumDeclaration")
 public interface EnumDeclaration extends JavaGen {
 
     @Relation("HAS_CLASS_MODIFIER")
-    List<ClassModifier> getClassModifiers();
+    List<ClassModifier> getClassModifier();
 
-    void setClassModifiers(List<ClassModifier> setClassModifiers);
+    void setClassModifier(List<ClassModifier> setClassModifier);
 
     // unhandled TerminalAST token: 'enum'
     @Relation("HAS_IDENTIFIER")
@@ -42,7 +42,7 @@ public interface EnumDeclaration extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings identifier);
 
-    // optional: superinterfaces
+    // optional: ?
     @Relation("HAS_SUPERINTERFACES")
     Superinterfaces getSuperinterfaces();
 

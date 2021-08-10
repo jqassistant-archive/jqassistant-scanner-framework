@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("ClassOrInterfaceType")
 public interface ClassOrInterfaceType extends JavaGen {
@@ -45,7 +45,12 @@ public interface ClassOrInterfaceType extends JavaGen {
     void setInterfaceType_lfno_classOrInterfaceType(InterfaceType_lfno_classOrInterfaceType interfaceType_lfno_classOrInterfaceType);
 
     @Relation("HAS_CLASS_TYPE_LF_CLASS_OR_INTERFACE_TYPE")
-    List<ClassType_lf_classOrInterfaceType> getClassType_lf_classOrInterfaceTypes();
+    List<ClassType_lf_classOrInterfaceType> getClassType_lf_classOrInterfaceType();
 
-    void setClassType_lf_classOrInterfaceTypes(List<ClassType_lf_classOrInterfaceType> setClassType_lf_classOrInterfaceTypes);
+    void setClassType_lf_classOrInterfaceType(List<ClassType_lf_classOrInterfaceType> setClassType_lf_classOrInterfaceType);
+
+    @Relation("HAS_INTERFACE_TYPE_LF_CLASS_OR_INTERFACE_TYPE")
+    List<InterfaceType_lf_classOrInterfaceType> getInterfaceType_lf_classOrInterfaceType();
+
+    void setInterfaceType_lf_classOrInterfaceType(List<InterfaceType_lf_classOrInterfaceType> setInterfaceType_lf_classOrInterfaceType);
 }

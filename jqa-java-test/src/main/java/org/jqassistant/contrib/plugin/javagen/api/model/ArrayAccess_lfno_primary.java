@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -30,7 +30,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("ArrayAccess_lfno_primary")
 public interface ArrayAccess_lfno_primary extends JavaGen {
@@ -48,18 +48,16 @@ public interface ArrayAccess_lfno_primary extends JavaGen {
     void setPrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary(PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary);
 
     // unhandled TerminalAST token: '['
-    @Relation("HAS_EXPRESSION")
-    List<Expression> getExpressions();
-
-    void setExpressions(List<Expression> setExpressions);
-
     // unhandled TerminalAST token: ']'
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LFNO_PRIMARY_LF_ARRAY_ACCESS_LFNO_PRIMARY")
-    List<PrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary> getPrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primarys();
+    List<PrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary> getPrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary();
 
-    void setPrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primarys(List<PrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary> setPrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primarys);
+    void setPrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary(List<PrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary> setPrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary);
+
     // unhandled TerminalAST token: '['
-    // unhandled StarBlockAST: '['
+    @Relation("HAS_EXPRESSION")
+    List<Expression> getExpression();
+
+    void setExpression(List<Expression> setExpression);
     // unhandled TerminalAST token: ']'
-    // unhandled StarBlockAST: ']'
 }

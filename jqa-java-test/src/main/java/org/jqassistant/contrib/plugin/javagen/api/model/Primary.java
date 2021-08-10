@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -30,7 +30,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("Primary")
 public interface Primary extends JavaGen {
@@ -46,7 +46,7 @@ public interface Primary extends JavaGen {
     void setArrayCreationExpression(ArrayCreationExpression arrayCreationExpression);
 
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LF_PRIMARY")
-    List<PrimaryNoNewArray_lf_primary> getPrimaryNoNewArray_lf_primarys();
+    List<PrimaryNoNewArray_lf_primary> getPrimaryNoNewArray_lf_primary();
 
-    void setPrimaryNoNewArray_lf_primarys(List<PrimaryNoNewArray_lf_primary> setPrimaryNoNewArray_lf_primarys);
+    void setPrimaryNoNewArray_lf_primary(List<PrimaryNoNewArray_lf_primary> setPrimaryNoNewArray_lf_primary);
 }

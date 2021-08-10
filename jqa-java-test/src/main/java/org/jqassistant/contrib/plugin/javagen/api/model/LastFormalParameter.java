@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -27,15 +27,15 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("LastFormalParameter")
 public interface LastFormalParameter extends JavaGen {
 
     @Relation("HAS_VARIABLE_MODIFIER")
-    List<VariableModifier> getVariableModifiers();
+    List<VariableModifier> getVariableModifier();
 
-    void setVariableModifiers(List<VariableModifier> setVariableModifiers);
+    void setVariableModifier(List<VariableModifier> setVariableModifier);
 
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
@@ -43,9 +43,9 @@ public interface LastFormalParameter extends JavaGen {
     void setUnannType(UnannType unannType);
 
     @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotations();
+    List<Annotation> getAnnotation();
 
-    void setAnnotations(List<Annotation> setAnnotations);
+    void setAnnotation(List<Annotation> setAnnotation);
 
     // unhandled TerminalAST token: '...'
     @Relation("HAS_VARIABLE_DECLARATOR_ID")

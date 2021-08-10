@@ -14,9 +14,9 @@ import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Lexer;
 import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser;
 import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 import org.jqassistant.contrib.plugin.javagen.api.JavaGenFileDescriptor;
+import org.jqassistant.contrib.plugin.javagen.api.model.CompilationUnit;
 import org.jqassistant.contrib.plugin.javagen.api.scanner.JavaGenScope;
 import org.jqassistant.contrib.plugin.javagen.util.mapper.CompilationUnitMapper;
-import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +27,6 @@ import java.util.Date;
 @Requires(FileDescriptor.class)
 public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, JavaGen> {
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaGenFileScannerPlugin.class);
-    private final CompilationUnitMapper compilationUnitMapper = Mappers.getMapper(CompilationUnitMapper.class);
 
     @Override
     public boolean accepts(FileResource item, String path, Scope scope) {
@@ -52,7 +51,8 @@ public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource
 
         LOGGER.info(new Date() + " - Starting Mapper for compilationUnitContext");
 
-        fileDescriptor.setCompilationUnit(compilationUnitMapper.map(scannerContext, compilationUnitContext));
+        CompilationUnit compilationUnit = CompilationUnitMapper.INSTANCE.map(scannerContext, compilationUnitContext);
+        fileDescriptor.setCompilationUnit(compilationUnit);
 
 //        LOGGER.info(new Date() + " - Starting Walker");
 //        ParseTreeWalker.DEFAULT.walk(new Java8SourceWalker(scannerContext), compilationUnitContext);

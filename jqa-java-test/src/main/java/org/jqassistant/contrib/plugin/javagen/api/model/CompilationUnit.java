@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,26 +26,26 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("CompilationUnit")
 public interface CompilationUnit extends JavaGen {
 
-    // optional: packageDeclaration
+    // optional: ?
     @Relation("HAS_PACKAGE_DECLARATION")
     PackageDeclaration getPackageDeclaration();
 
     void setPackageDeclaration(PackageDeclaration packageDeclaration);
 
     @Relation("HAS_IMPORT_DECLARATION")
-    List<ImportDeclaration> getImportDeclarations();
+    List<ImportDeclaration> getImportDeclaration();
 
-    void setImportDeclarations(List<ImportDeclaration> setImportDeclarations);
+    void setImportDeclaration(List<ImportDeclaration> setImportDeclaration);
 
     @Relation("HAS_TYPE_DECLARATION")
-    List<TypeDeclaration> getTypeDeclarations();
+    List<TypeDeclaration> getTypeDeclaration();
 
-    void setTypeDeclarations(List<TypeDeclaration> setTypeDeclarations);
+    void setTypeDeclaration(List<TypeDeclaration> setTypeDeclaration);
 
     @Relation("HAS_E_O_F")
     TerminalNodeStrings getEOF();

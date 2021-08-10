@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,23 +26,23 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("UnannClassType_lf_unannClassOrInterfaceType")
 public interface UnannClassType_lf_unannClassOrInterfaceType extends JavaGen {
 
     // unhandled TerminalAST token: '.'
     @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotations();
+    List<Annotation> getAnnotation();
 
-    void setAnnotations(List<Annotation> setAnnotations);
+    void setAnnotation(List<Annotation> setAnnotation);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings identifier);
 
-    // optional: typeArguments
+    // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 

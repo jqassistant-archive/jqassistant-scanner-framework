@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,15 +26,15 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:32 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("InterfaceMethodDeclaration")
 public interface InterfaceMethodDeclaration extends JavaGen {
 
     @Relation("HAS_INTERFACE_METHOD_MODIFIER")
-    List<InterfaceMethodModifier> getInterfaceMethodModifiers();
+    List<InterfaceMethodModifier> getInterfaceMethodModifier();
 
-    void setInterfaceMethodModifiers(List<InterfaceMethodModifier> setInterfaceMethodModifiers);
+    void setInterfaceMethodModifier(List<InterfaceMethodModifier> setInterfaceMethodModifier);
 
     @Relation("HAS_METHOD_HEADER")
     MethodHeader getMethodHeader();

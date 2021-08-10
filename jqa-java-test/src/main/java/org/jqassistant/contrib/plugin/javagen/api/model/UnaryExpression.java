@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Mon Aug 09 23:50:33 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -6,7 +6,6 @@ import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import java.util.List;
 
 /**
  * Generated from AST:
@@ -30,7 +29,7 @@ import java.util.List;
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Mon Aug 09 23:50:33 CEST 2021"
+	date = "Tue Aug 10 01:27:55 CEST 2021"
 )
 @Label("UnaryExpression")
 public interface UnaryExpression extends JavaGen {
@@ -46,12 +45,12 @@ public interface UnaryExpression extends JavaGen {
     void setPreDecrementExpression(PreDecrementExpression preDecrementExpression);
 
     // unhandled TerminalAST token: '+'
-    // unhandled TerminalAST token: '-'
     @Relation("HAS_UNARY_EXPRESSION")
-    List<UnaryExpression> getUnaryExpressions();
+    UnaryExpression getUnaryExpression();
 
-    void setUnaryExpressions(List<UnaryExpression> setUnaryExpressions);
+    void setUnaryExpression(UnaryExpression unaryExpression);
 
+    // unhandled TerminalAST token: '-'
     @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
     UnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus();
 
