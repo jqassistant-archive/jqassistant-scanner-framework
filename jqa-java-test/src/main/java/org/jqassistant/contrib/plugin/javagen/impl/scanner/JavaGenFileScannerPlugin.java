@@ -51,6 +51,7 @@ public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource
 
         LOGGER.info(new Date() + " - Starting Mapper for compilationUnitContext");
 
+//        CompilationUnit compilationUnit = CompilationUnitMapper.INSTANCE.map(scannerContext, compilationUnitContext, new CycleAvoidingMappingContext());
         CompilationUnit compilationUnit = CompilationUnitMapper.INSTANCE.map(scannerContext, compilationUnitContext);
         fileDescriptor.setCompilationUnit(compilationUnit);
 

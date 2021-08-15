@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,9 +26,7 @@ import java.util.List;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassTypeMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ClassType")
 public interface ClassType extends JavaGen {
 
@@ -52,6 +50,11 @@ public interface ClassType extends JavaGen {
     ClassOrInterfaceType getClassOrInterfaceType();
 
     void setClassOrInterfaceType(ClassOrInterfaceType classOrInterfaceType);
+
     // unhandled TerminalAST token: '.'
     // optional: ?
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

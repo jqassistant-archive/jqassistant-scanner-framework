@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -24,9 +24,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.Throws_Mapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("Throws_")
 public interface Throws_ extends JavaGen {
 
@@ -35,4 +33,9 @@ public interface Throws_ extends JavaGen {
     ExceptionTypeList getExceptionTypeList();
 
     void setExceptionTypeList(ExceptionTypeList exceptionTypeList);
+
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

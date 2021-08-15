@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -24,9 +24,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannClassType_lfno_unannClassOrInterfaceTypeMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("UnannClassType_lfno_unannClassOrInterfaceType")
 public interface UnannClassType_lfno_unannClassOrInterfaceType extends JavaGen {
 
@@ -40,4 +38,9 @@ public interface UnannClassType_lfno_unannClassOrInterfaceType extends JavaGen {
     TypeArguments getTypeArguments();
 
     void setTypeArguments(TypeArguments typeArguments);
+
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

@@ -6,11 +6,10 @@ import com.buschmais.xo.api.annotation.Abstract;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.google.common.base.CaseFormat;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 
-import javax.annotation.Generated;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -29,12 +28,6 @@ public class BaseDescriptorGenerator {
     public BaseDescriptorGenerator(String packageName, String entryNode) {
         this.packageName = packageName;
         this.entryNode = entryNode;
-    }
-
-    private void addGeneratedAnnotation(ClassOrInterfaceDeclaration declaration) {
-        NormalAnnotationExpr metadataAnnotation = declaration.addAndGetAnnotation(Generated.class);
-        metadataAnnotation.addPair("\n\tvalue", QUOTES + this.getClass().getName() + QUOTES);
-        metadataAnnotation.addPair("\n\tdate", QUOTES + new Date() + QUOTES + "\n");
     }
 
     public Map<String, CompilationUnit> generate() {
@@ -63,7 +56,7 @@ public class BaseDescriptorGenerator {
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(name)
                 .addExtendedType(Descriptor.class);
-        addGeneratedAnnotation(interfaceDeclaration);
+        TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addAnnotation(Abstract.class);
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
 
@@ -86,7 +79,7 @@ public class BaseDescriptorGenerator {
                 .addInterface(name)
                 .addExtendedType(BASE_DESCRIPTOR_NAME)
                 .addExtendedType(FileDescriptor.class);
-        addGeneratedAnnotation(interfaceDeclaration);
+        TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
 
         ApiModelGenerator.createGetterAndSetter(interfaceDeclaration, entryNode, entryNode);

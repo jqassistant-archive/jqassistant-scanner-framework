@@ -162,10 +162,10 @@ public class Java8SourceWalker extends Java8ParserBaseListener {
 //        Mappers.getMapper(ExpressionNameMapper.class).map(scannerContext, ctx);
 //    }
 //
-    @Override
-    public void enterMethodName(Java8Parser.MethodNameContext ctx) {
-        Mappers.getMapper(MethodNameMapper.class).map(scannerContext, ctx);
-    }
+//    @Override
+//    public void enterMethodName(Java8Parser.MethodNameContext ctx) {
+//        Mappers.getMapper(MethodNameMapper.class).map(scannerContext, ctx);
+//    }
 //
 //    @Override
 //    public void enterAmbiguousName(Java8Parser.AmbiguousNameContext ctx) {

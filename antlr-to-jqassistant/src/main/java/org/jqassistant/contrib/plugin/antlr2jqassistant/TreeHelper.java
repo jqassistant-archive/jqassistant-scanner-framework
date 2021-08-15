@@ -1,15 +1,26 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant;
 
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.comments.Comment;
 import com.github.javaparser.ast.comments.JavadocComment;
+import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.google.common.base.CaseFormat;
 import org.antlr.runtime.tree.Tree;
 import org.antlr.v4.tool.ast.*;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MapperGenerator;
 
+import javax.annotation.Generated;
 import java.util.List;
 
 public class TreeHelper {
+    public final static String QUOTES = "\"";
+
+    public static void addGeneratedAnnotation(ClassOrInterfaceDeclaration declaration, String source) {
+        NormalAnnotationExpr metadataAnnotation = declaration.addAndGetAnnotation(Generated.class);
+        metadataAnnotation.addPair("\n\tvalue", QUOTES + source + QUOTES);
+//        metadataAnnotation.addPair("\n\tdate", QUOTES + new Date() + QUOTES + "\n");
+    }
+
     public static GrammarRootAST getRoot(Tree ast) {
         if (ast.getParent() == null) {
             if (ast instanceof GrammarRootAST) {

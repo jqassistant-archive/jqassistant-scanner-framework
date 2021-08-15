@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -27,9 +27,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ShiftExpressionMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ShiftExpression")
 public interface ShiftExpression extends JavaGen {
 
@@ -42,6 +40,7 @@ public interface ShiftExpression extends JavaGen {
     ShiftExpression getShiftExpression();
 
     void setShiftExpression(ShiftExpression shiftExpression);
+
     // unhandled TerminalAST token: '<'
     // unhandled TerminalAST token: '<'
     // unhandled TerminalAST token: '>'
@@ -49,4 +48,8 @@ public interface ShiftExpression extends JavaGen {
     // unhandled TerminalAST token: '>'
     // unhandled TerminalAST token: '>'
     // unhandled TerminalAST token: '>'
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

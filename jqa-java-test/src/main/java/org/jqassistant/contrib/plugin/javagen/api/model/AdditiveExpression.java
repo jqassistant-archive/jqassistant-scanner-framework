@@ -1,12 +1,11 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-
-import javax.annotation.Generated;
 
 /**
  * Generated from AST:
@@ -27,9 +26,7 @@ import javax.annotation.Generated;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AdditiveExpressionMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator",
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("AdditiveExpression")
 public interface AdditiveExpression extends JavaGen {
 
@@ -42,6 +39,11 @@ public interface AdditiveExpression extends JavaGen {
     AdditiveExpression getAdditiveExpression();
 
     void setAdditiveExpression(AdditiveExpression additiveExpression);
+
     // unhandled TerminalAST token: '+'
     // unhandled TerminalAST token: '-'
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

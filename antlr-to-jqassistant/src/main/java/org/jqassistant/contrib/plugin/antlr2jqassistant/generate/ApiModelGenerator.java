@@ -7,13 +7,11 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.comments.LineComment;
-import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.google.common.base.CaseFormat;
 import org.antlr.v4.tool.ast.*;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 
-import javax.annotation.Generated;
 import java.beans.Introspector;
 import java.util.*;
 
@@ -22,7 +20,7 @@ public class ApiModelGenerator {
     public final static String GET = "get";
     public final static String SET = "set";
     public final static String HAS = "HAS_";
-    public final static String TERMINAL_NODE = "TerminalNodeStrings";
+    public final static String TERMINAL_NODE_CLASS = "TerminalNodeStrings";
 
     private final String packageName;
     private final BaseDescriptorGenerator baseDescriptorGenerator;
@@ -34,16 +32,10 @@ public class ApiModelGenerator {
         this.baseDescriptorGenerator = baseDescriptorGenerator;
     }
 
-    private void addGeneratedAnnotation(ClassOrInterfaceDeclaration declaration) {
-        NormalAnnotationExpr metadataAnnotation = declaration.addAndGetAnnotation(Generated.class);
-        metadataAnnotation.addPair("\n\tvalue", QUOTES + this.getClass().getName() + QUOTES);
-        metadataAnnotation.addPair("\n\tdate", QUOTES + new Date() + QUOTES + "\n");
-    }
-
     public Map<String, CompilationUnit> generateFromRules(GrammarAST ast) {
         System.out.println(new Date() + " Starting Api Model Generation");
         Map<String, CompilationUnit> interfaces = new TreeMap<>();
-        interfaces.put(TERMINAL_NODE, getTerminalNode());
+        interfaces.put(TERMINAL_NODE_CLASS, getTerminalNode());
 
         List<RuleAST> ruleAsts = (List<RuleAST>) ast.getChildren();
 
@@ -64,7 +56,7 @@ public class ApiModelGenerator {
         compilationUnit.setPackageDeclaration(packageName);
         compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
-        String name = TERMINAL_NODE;
+        String name = TERMINAL_NODE_CLASS;
         String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
         String nameString = QUOTES + nameUpperCamel + QUOTES;
 
@@ -73,7 +65,7 @@ public class ApiModelGenerator {
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(nameUpperCamel)
                 .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
-        addGeneratedAnnotation(interfaceDeclaration);
+        TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
 
         createGetterAndSetter(interfaceDeclaration, "Text");
@@ -83,7 +75,7 @@ public class ApiModelGenerator {
         createGetterAndSetter(interfaceDeclaration, "TokenIndex");
         createGetterAndSetter(interfaceDeclaration, "StartIndex");
         createGetterAndSetter(interfaceDeclaration, "StopIndex");
-        createGetterAndSetter(interfaceDeclaration, "InputStream");
+//        createGetterAndSetter(interfaceDeclaration, "InputStream");
 
         return compilationUnit;
     }
@@ -102,13 +94,15 @@ public class ApiModelGenerator {
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(nameUpperCamel)
                 .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
-        addGeneratedAnnotation(interfaceDeclaration);
+        TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
 
         List<GrammarAST> children = (List<GrammarAST>) ast.getChildren();
         BlockAST blockAST = (BlockAST) children.get(1);
 
         handleAst(interfaceDeclaration, blockAST, false);
+
+        createGetterAndSetter(interfaceDeclaration, "Text");
 
         return Collections.singletonMap(nameUpperCamel, compilationUnit);
     }
@@ -172,7 +166,6 @@ public class ApiModelGenerator {
         addMethodDeclaration(interfaceDeclaration, name, isList);
     }
 
-
     public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, BlockAST ast, boolean isList) {
         handleChildren(interfaceDeclaration, ast, isList);
     }
@@ -181,36 +174,11 @@ public class ApiModelGenerator {
         handleChildren(interfaceDeclaration, ast, true);
     }
 
-
     public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, StarBlockAST ast, boolean isList) {
         handleChildren(interfaceDeclaration, ast, true);
-
-//        List<GrammarAST> ruleRefs = TreeHelper.findChildren(ast);
-//        if (ruleRefs == null) {
-//            System.out.println("ruleRef not found!" + ast.toStringTree());
-//            return;
-//        }
-//        for (GrammarAST ruleRef : ruleRefs) {
-//            if (ruleRef instanceof TerminalAST) {
-//                handleAst(interfaceDeclaration, (TerminalAST) ruleRef, true);
-//            }
-//
-//            String name = ruleRef.getText();
-//            if (name.length() < 4) {
-//                interfaceDeclaration.addOrphanComment(new LineComment("unhandled StarBlockAST: " + name));
-//            } else {
-//                handleGenericAst(interfaceDeclaration, ruleRef, true);
-////                addMethodDeclaration(interfaceDeclaration, name, true);
-//            }
-//        }
     }
 
     public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, OptionalBlockAST ast, boolean isList) {
-//        GrammarAST ruleRef = TreeHelper.getRuleRefAst(ast);
-//        if (ruleRef instanceof TerminalAST) {
-//            handleAst(interfaceDeclaration, (TerminalAST) ruleRef, isList);
-//            return;
-//        }
         interfaceDeclaration.addOrphanComment(new LineComment("optional: " + ast.getText()));
         handleChildren(interfaceDeclaration, ast, isList);
     }
@@ -219,7 +187,7 @@ public class ApiModelGenerator {
         String name = ast.getText();
 
         if (Character.isUpperCase((name.charAt(0)))) {  // Take a chance!
-            addMethodDeclaration(interfaceDeclaration, name, TERMINAL_NODE, isList);
+            addMethodDeclaration(interfaceDeclaration, name, TERMINAL_NODE_CLASS, isList);
         } else {
             interfaceDeclaration.addOrphanComment(new LineComment("unhandled TerminalAST token: " + name));
         }

@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -26,9 +26,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannArrayTypeMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("UnannArrayType")
 public interface UnannArrayType extends JavaGen {
 
@@ -51,4 +49,9 @@ public interface UnannArrayType extends JavaGen {
     UnannTypeVariable getUnannTypeVariable();
 
     void setUnannTypeVariable(UnannTypeVariable unannTypeVariable);
+
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

@@ -44,7 +44,7 @@ public class FileOperations {
                 .append("Generated from ")
                 .append(Paths.get("").toAbsolutePath()).append("/")
                 .append(Main.source)
-                .append(" at ").append(new Date())
+//                .append(" at ").append(new Date())
                 .append("\n\n")
                 .toString();
     }

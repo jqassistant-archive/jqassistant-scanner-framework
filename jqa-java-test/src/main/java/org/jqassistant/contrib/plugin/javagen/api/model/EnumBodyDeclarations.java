@@ -1,12 +1,11 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-
-import javax.annotation.Generated;
 import java.util.List;
 
 /**
@@ -26,9 +25,7 @@ import java.util.List;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnumBodyDeclarationsMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator",
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("EnumBodyDeclarations")
 public interface EnumBodyDeclarations extends JavaGen {
 
@@ -37,4 +34,9 @@ public interface EnumBodyDeclarations extends JavaGen {
     List<ClassBodyDeclaration> getClassBodyDeclaration();
 
     void setClassBodyDeclaration(List<ClassBodyDeclaration> setClassBodyDeclaration);
+
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

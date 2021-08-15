@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -24,9 +24,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.InterfaceType_lf_classOrInterfaceTypeMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("InterfaceType_lf_classOrInterfaceType")
 public interface InterfaceType_lf_classOrInterfaceType extends JavaGen {
 
@@ -34,4 +32,9 @@ public interface InterfaceType_lf_classOrInterfaceType extends JavaGen {
     ClassType_lf_classOrInterfaceType getClassType_lf_classOrInterfaceType();
 
     void setClassType_lf_classOrInterfaceType(ClassType_lf_classOrInterfaceType classType_lf_classOrInterfaceType);
+
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

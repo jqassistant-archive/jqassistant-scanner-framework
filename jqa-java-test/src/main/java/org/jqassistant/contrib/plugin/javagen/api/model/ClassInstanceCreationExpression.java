@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -27,9 +27,7 @@ import java.util.List;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassInstanceCreationExpressionMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ClassInstanceCreationExpression")
 public interface ClassInstanceCreationExpression extends JavaGen {
 
@@ -88,6 +86,7 @@ public interface ClassInstanceCreationExpression extends JavaGen {
     Primary getPrimary();
 
     void setPrimary(Primary primary);
+
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'new'
     // optional: ?
@@ -96,4 +95,8 @@ public interface ClassInstanceCreationExpression extends JavaGen {
     // optional: ?
     // unhandled TerminalAST token: ')'
     // optional: ?
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

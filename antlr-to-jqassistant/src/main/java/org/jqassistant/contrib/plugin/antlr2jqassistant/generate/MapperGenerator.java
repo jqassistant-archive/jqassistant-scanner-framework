@@ -17,12 +17,12 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;
 import org.mapstruct.MapperConfig;
 import org.mapstruct.TargetType;
 
-import javax.annotation.Generated;
 import java.util.*;
 
 public class MapperGenerator {
@@ -36,12 +36,6 @@ public class MapperGenerator {
     public MapperGenerator(String packageName, BaseDescriptorGenerator baseDescriptorGenerator) {
         this.packageName = packageName;
         this.baseDescriptorGenerator = baseDescriptorGenerator;
-    }
-
-    private void addGeneratedAnnotation(ClassOrInterfaceDeclaration declaration) {
-        NormalAnnotationExpr metadataAnnotation = declaration.addAndGetAnnotation(Generated.class);
-        metadataAnnotation.addPair("\n\tvalue", QUOTES + this.getClass().getName() + QUOTES);
-        metadataAnnotation.addPair("\n\tdate", QUOTES + new Date() + QUOTES + "\n");
     }
 
     public static String getMapperName(String modelName) {
@@ -74,7 +68,7 @@ public class MapperGenerator {
         String name = "MapperConfiguration";
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass(name);
-        addGeneratedAnnotation(classDeclaration);
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(MapperConfig.class);
 //        mapperConfigAnnotation.addPair("\n\tnullValuePropertyMappingStrategy", "NullValuePropertyMappingStrategy.IGNORE");
@@ -105,7 +99,7 @@ public class MapperGenerator {
                 .setType("T")
                 .setTypeParameters(new NodeList<>(new TypeParameter("T", typeBound)));
 
-        addGeneratedAnnotation(classDeclaration);
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
 
         createDescriptorMethod
                 .addAndGetParameter(ScannerContext.class, "scannerContext")
@@ -131,12 +125,13 @@ public class MapperGenerator {
         compilationUnit.addImport(Main.modelPackage + "." + modelName);
         compilationUnit.addImport(Main.antlrPackage + "." + Main.parserName + "Parser");
         compilationUnit.addImport("org.mapstruct.factory.Mappers");
+//        compilationUnit.addImport("org.jqassistant.contrib.plugin.javagen.util.CycleAvoidingMappingContext");
 
         String name = getMapperName(modelName);
         String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name);
-        addGeneratedAnnotation(classDeclaration);
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
         addStaticInstance(classDeclaration, name);
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
@@ -149,6 +144,9 @@ public class MapperGenerator {
                 .addAnnotation(Context.class);
         mapMethodDeclaration
                 .addParameter(Main.parserName + "Parser." + modelName + "Context", "parserContext");
+//        mapMethodDeclaration
+//                .addAndGetParameter("CycleAvoidingMappingContext", "mappingContext")
+//                .addAnnotation(Context.class);
 
         return Collections.singletonMap(nameUpperCamel, compilationUnit);
     }
@@ -167,7 +165,7 @@ public class MapperGenerator {
 
         compilationUnit.addImport("org.mapstruct.factory.Mappers");
 
-        String modelName = ApiModelGenerator.TERMINAL_NODE;
+        String modelName = ApiModelGenerator.TERMINAL_NODE_CLASS;
         String name = getMapperName(modelName);
         String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
 
@@ -175,7 +173,7 @@ public class MapperGenerator {
         compilationUnit.addImport(Main.modelPackage + "." + modelName);
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name);
-        addGeneratedAnnotation(classDeclaration);
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
         addStaticInstance(classDeclaration, name);
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);

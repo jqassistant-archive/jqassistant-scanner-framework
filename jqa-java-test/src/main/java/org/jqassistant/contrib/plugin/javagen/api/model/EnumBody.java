@@ -1,11 +1,11 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import com.buschmais.xo.neo4j.api.annotation.Label;
 import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-
 import javax.annotation.Generated;
+import com.buschmais.xo.neo4j.api.annotation.Label;
+import com.buschmais.xo.neo4j.api.annotation.Relation;
 
 /**
  * Generated from AST:
@@ -24,25 +24,28 @@ import javax.annotation.Generated;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnumBodyMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator",
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("EnumBody")
 public interface EnumBody extends JavaGen {
 
     // unhandled TerminalAST token: '{'
     // optional: ?
-//    @Relation("HAS_ENUM_CONSTANT_LIST")
-//    EnumConstantList getEnumConstantList();
-//
-//    void setEnumConstantList(EnumConstantList enumConstantList);
+    @Relation("HAS_ENUM_CONSTANT_LIST")
+    EnumConstantList getEnumConstantList();
+
+    void setEnumConstantList(EnumConstantList enumConstantList);
 
     // optional: ?
     // unhandled TerminalAST token: ','
     // optional: ?
-//    @Relation("HAS_ENUM_BODY_DECLARATIONS")
-//    EnumBodyDeclarations getEnumBodyDeclarations();
-//
-//    void setEnumBodyDeclarations(EnumBodyDeclarations enumBodyDeclarations);
+    @Relation("HAS_ENUM_BODY_DECLARATIONS")
+    EnumBodyDeclarations getEnumBodyDeclarations();
+
+    void setEnumBodyDeclarations(EnumBodyDeclarations enumBodyDeclarations);
+
     // unhandled TerminalAST token: '}'
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }

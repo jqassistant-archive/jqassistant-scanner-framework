@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/ at Tue Aug 10 01:27:55 CEST 2021
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
@@ -28,9 +28,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimaryNoNewArray_lf_primaryMapper
  */
 @Generated(
-	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator", 
-	date = "Tue Aug 10 01:27:55 CEST 2021"
-)
+	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("PrimaryNoNewArray_lf_primary")
 public interface PrimaryNoNewArray_lf_primary extends JavaGen {
 
@@ -58,4 +56,9 @@ public interface PrimaryNoNewArray_lf_primary extends JavaGen {
     MethodReference_lf_primary getMethodReference_lf_primary();
 
     void setMethodReference_lf_primary(MethodReference_lf_primary methodReference_lf_primary);
+
+    @Relation("HAS_TEXT")
+    String getText();
+
+    void setText(String text);
 }
