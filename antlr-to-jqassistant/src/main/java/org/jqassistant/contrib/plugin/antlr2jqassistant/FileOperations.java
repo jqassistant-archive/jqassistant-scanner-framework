@@ -49,11 +49,10 @@ public class FileOperations {
                 .toString();
     }
 
-    static void writeToFile(Map<String, CompilationUnit> stringCompilationUnitMap) {
-        String fileName = "Model.java";
+    static void writeToFile(String fileName, String destinationPackage, Map<String, CompilationUnit> stringCompilationUnitMap) {
 
         try {
-            File file = new File(Main.destination + "gen/" + Main.id.toLowerCase() + "/" + fileName);
+            File file = new File(Main.destination + "src/main/java/" + destinationPackage.replace(".", "/") + "/" + fileName);
             if (file.getParentFile().mkdirs()) {
                 System.out.println("Created new directories");
             }

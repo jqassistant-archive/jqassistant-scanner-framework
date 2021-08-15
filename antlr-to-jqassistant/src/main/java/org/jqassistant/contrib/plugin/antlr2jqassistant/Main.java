@@ -53,9 +53,13 @@ public class Main {
         ApiModelGenerator apiModelGenerator = new ApiModelGenerator(modelPackage, baseDescriptorGenerator);
         Map<String, CompilationUnit> apiModelCompilationUnitMap = apiModelGenerator.generateFromRules(rulesAst);
         FileOperations.writeToFiles(id, modelPackage, apiModelCompilationUnitMap);
-//        FileOperations.writeToFile(apiModelCompilationUnitMap);
+//        FileOperations.writeToFile("Model.java", modelPackage, apiModelCompilationUnitMap);
 
         MapperGenerator mapperGenerator = new MapperGenerator(mapperPackage, baseDescriptorGenerator);
+
+        Map<String, CompilationUnit> singleMapperCompilationUnitMap = mapperGenerator.generateSingleMapperFromApiModel(apiModelCompilationUnitMap);
+        FileOperations.writeToFile("MainMapper.java", mapperPackage, singleMapperCompilationUnitMap);
+
         Map<String, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generateFromApiModel(apiModelCompilationUnitMap);
         FileOperations.writeToFiles(id, mapperPackage, mapperCompilationUnitMap);
 

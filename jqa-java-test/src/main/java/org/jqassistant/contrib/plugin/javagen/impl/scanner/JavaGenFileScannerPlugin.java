@@ -16,7 +16,7 @@ import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 import org.jqassistant.contrib.plugin.javagen.api.JavaGenFileDescriptor;
 import org.jqassistant.contrib.plugin.javagen.api.model.CompilationUnit;
 import org.jqassistant.contrib.plugin.javagen.api.scanner.JavaGenScope;
-import org.jqassistant.contrib.plugin.javagen.util.mapper.CompilationUnitMapper;
+import org.jqassistant.contrib.plugin.javagen.util.mapper.MainMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,12 +51,8 @@ public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource
 
         LOGGER.info(new Date() + " - Starting Mapper for compilationUnitContext");
 
-//        CompilationUnit compilationUnit = CompilationUnitMapper.INSTANCE.map(scannerContext, compilationUnitContext, new CycleAvoidingMappingContext());
-        CompilationUnit compilationUnit = CompilationUnitMapper.INSTANCE.map(scannerContext, compilationUnitContext);
+        CompilationUnit compilationUnit = MainMapper.INSTANCE.map(scannerContext, compilationUnitContext);
         fileDescriptor.setCompilationUnit(compilationUnit);
-
-//        LOGGER.info(new Date() + " - Starting Walker");
-//        ParseTreeWalker.DEFAULT.walk(new Java8SourceWalker(scannerContext), compilationUnitContext);
 
         LOGGER.info(new Date() + " - Done");
         return fileDescriptor;

@@ -57,6 +57,71 @@ public class MapperGenerator {
         return mapperCompilationUnitMap;
     }
 
+    public Map<String, CompilationUnit> generateSingleMapperFromApiModel(Map<String, CompilationUnit> apiModelCompilationUnitMap) {
+        System.out.println(new Date() + " Starting Single Mapper Generation");
+
+        CompilationUnit compilationUnit = new CompilationUnit();
+        compilationUnit.setPackageDeclaration(packageName);
+
+        compilationUnit.addImport(Main.antlrPackage + "." + Main.parserName + "Parser");
+        compilationUnit.addImport("org.mapstruct.factory.Mappers");
+
+        String name = getMapperName("Main");
+        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
+
+        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name);
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
+        addStaticInstance(classDeclaration, name);
+
+        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
+        mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
+
+        for (Map.Entry<String, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
+            String modelName = entry.getKey();
+            if (!modelName.equals(ApiModelGenerator.TERMINAL_NODE_CLASS)) {
+                compilationUnit.addImport(Main.modelPackage + "." + modelName);
+                MethodDeclaration mapMethodDeclaration = classDeclaration.addMethod("map").removeBody();
+                mapMethodDeclaration.setType(modelName);
+                mapMethodDeclaration
+                        .addAndGetParameter(ScannerContext.class, "scannerContext")
+                        .addAnnotation(Context.class);
+                mapMethodDeclaration
+                        .addParameter(Main.parserName + "Parser." + modelName + "Context", "parserContext");
+            }
+        }
+
+        MethodDeclaration mapMethodDeclaration = classDeclaration
+                .addMethod("map")
+                .setDefault(true)
+                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
+        mapMethodDeclaration.addAndGetParameter(ScannerContext.class, "scannerContext")
+                .addAnnotation(Context.class);
+        mapMethodDeclaration
+                .addParameter(TerminalNode.class, "terminalNode");
+
+        mapMethodDeclaration.setBody(new BlockStmt().addStatement(
+                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
+        ));
+
+        MethodDeclaration mapMethodDeclaration2 = classDeclaration
+                .addMethod("map")
+                .removeBody()
+                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
+        mapMethodDeclaration2.addAndGetParameter(ScannerContext.class, "scannerContext")
+                .addAnnotation(Context.class);
+        mapMethodDeclaration2
+                .addParameter(Token.class, "symbol");
+
+        classDeclaration
+                .addMethod("map")
+                .removeBody()
+                .setType(String.class)
+                .addParameter(CharStream.class, "value");
+
+        System.out.println(new Date() + " Generation Done!");
+        return Collections.singletonMap(nameUpperCamel, compilationUnit);
+    }
+
     private Map<String, CompilationUnit> generateMapperConfig(Map<String, CompilationUnit> mapperCompilationUnitMap) {
         Map<String, CompilationUnit> classes = new HashMap<>();
 
@@ -189,7 +254,7 @@ public class MapperGenerator {
                 .addParameter(TerminalNode.class, "terminalNode");
 
         mapMethodDeclaration.setBody(new BlockStmt().addStatement(
-                new ReturnStmt("map(scannerContext, terminalNode.getSymbol())")
+                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
         ));
 
         MethodDeclaration mapMethodDeclaration2 = classDeclaration

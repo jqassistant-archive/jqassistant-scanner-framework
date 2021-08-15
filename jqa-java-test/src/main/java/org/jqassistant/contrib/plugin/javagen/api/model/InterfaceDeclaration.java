@@ -29,15 +29,15 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("InterfaceDeclaration")
 public interface InterfaceDeclaration extends JavaGen {
 
-//    @Relation("HAS_NORMAL_INTERFACE_DECLARATION")
-//    NormalInterfaceDeclaration getNormalInterfaceDeclaration();
-//
-//    void setNormalInterfaceDeclaration(NormalInterfaceDeclaration normalInterfaceDeclaration);
-//
-//    @Relation("HAS_ANNOTATION_TYPE_DECLARATION")
-//    AnnotationTypeDeclaration getAnnotationTypeDeclaration();
-//
-//    void setAnnotationTypeDeclaration(AnnotationTypeDeclaration annotationTypeDeclaration);
+    @Relation("HAS_NORMAL_INTERFACE_DECLARATION")
+    NormalInterfaceDeclaration getNormalInterfaceDeclaration();
+
+    void setNormalInterfaceDeclaration(NormalInterfaceDeclaration normalInterfaceDeclaration);
+
+    @Relation("HAS_ANNOTATION_TYPE_DECLARATION")
+    AnnotationTypeDeclaration getAnnotationTypeDeclaration();
+
+    void setAnnotationTypeDeclaration(AnnotationTypeDeclaration annotationTypeDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();

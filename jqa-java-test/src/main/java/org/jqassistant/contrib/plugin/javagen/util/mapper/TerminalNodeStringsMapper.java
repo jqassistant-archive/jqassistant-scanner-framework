@@ -20,7 +20,7 @@ public interface TerminalNodeStringsMapper {
     public static TerminalNodeStringsMapper INSTANCE = Mappers.getMapper(TerminalNodeStringsMapper.class);
 
     default TerminalNodeStrings map(@Context() ScannerContext scannerContext, TerminalNode terminalNode) {
-        return map(scannerContext, terminalNode.getSymbol());
+        return map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol());
     }
 
     TerminalNodeStrings map(@Context() ScannerContext scannerContext, Token symbol);

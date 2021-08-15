@@ -29,15 +29,15 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ClassDeclaration")
 public interface ClassDeclaration extends JavaGen {
 
-//    @Relation("HAS_NORMAL_CLASS_DECLARATION")
-//    NormalClassDeclaration getNormalClassDeclaration();
-//
-//    void setNormalClassDeclaration(NormalClassDeclaration normalClassDeclaration);
-//
-//    @Relation("HAS_ENUM_DECLARATION")
-//    EnumDeclaration getEnumDeclaration();
-//
-//    void setEnumDeclaration(EnumDeclaration enumDeclaration);
+    @Relation("HAS_NORMAL_CLASS_DECLARATION")
+    NormalClassDeclaration getNormalClassDeclaration();
+
+    void setNormalClassDeclaration(NormalClassDeclaration normalClassDeclaration);
+
+    @Relation("HAS_ENUM_DECLARATION")
+    EnumDeclaration getEnumDeclaration();
+
+    void setEnumDeclaration(EnumDeclaration enumDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();

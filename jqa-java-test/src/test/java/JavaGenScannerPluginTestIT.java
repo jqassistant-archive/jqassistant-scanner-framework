@@ -11,13 +11,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class JavaGenScannerPluginTestIT extends AbstractPluginIT {
 
+//    static String file = "/helloworld.java";
+//    static String file = "/Java8Parser.java";
+    static String file = "/JavaGenFileScannerPlugin.java";
+
     @Test
     @TestStore(type = TestStore.Type.REMOTE)
     public void scanJavaGenFile() {
         store.beginTransaction();
-        File testFile = new File(getClassesDirectory(JavaGenScannerPluginTestIT.class), "/helloworld.java");
+        File testFile = new File(getClassesDirectory(JavaGenScannerPluginTestIT.class), file);
 
-        Descriptor descriptor = getScanner().scan(testFile, "/helloworld.java", DefaultScope.NONE);
+        Descriptor descriptor = getScanner().scan(testFile, file, DefaultScope.NONE);
         assertThat(descriptor).isInstanceOf(JavaGenFileDescriptor.class);
 
         store.commitTransaction();

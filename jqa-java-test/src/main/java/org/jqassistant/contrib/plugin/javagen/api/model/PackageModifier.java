@@ -28,10 +28,10 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("PackageModifier")
 public interface PackageModifier extends JavaGen {
 
-//    @Relation("HAS_ANNOTATION")
-//    Annotation getAnnotation();
-//
-//    void setAnnotation(Annotation annotation);
+    @Relation("HAS_ANNOTATION")
+    Annotation getAnnotation();
+
+    void setAnnotation(Annotation annotation);
 
     @Relation("HAS_TEXT")
     String getText();
