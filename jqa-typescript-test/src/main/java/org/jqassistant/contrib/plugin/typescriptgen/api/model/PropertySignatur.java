@@ -49,7 +49,7 @@ public interface PropertySignatur extends TypeScriptGen {
 
     // optional: ?
     // unhandled TerminalAST token: '=>'
-    @Relation("HAS_TYPE_")
+    @Relation("HAS_TYPE")
     Type_ getType_();
 
     void setType_(Type_ setType_);

@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface TypeAnnotation extends TypeScriptGen {
 
     // unhandled TerminalAST token: ':'
-    @Relation("HAS_TYPE_")
+    @Relation("HAS_TYPE")
     Type_ getType_();
 
     void setType_(Type_ setType_);

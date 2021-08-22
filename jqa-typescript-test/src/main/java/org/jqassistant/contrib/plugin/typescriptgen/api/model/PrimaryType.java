@@ -37,7 +37,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface PrimaryType extends TypeScriptGen {
 
     // unhandled TerminalAST token: '('
-    @Relation("HAS_TYPE_")
+    @Relation("HAS_TYPE")
     Type_ getType_();
 
     void setType_(Type_ setType_);
@@ -79,7 +79,7 @@ public interface PrimaryType extends TypeScriptGen {
     void setTypeQuery(TypeQuery setTypeQuery);
 
     @Relation("HAS_THIS")
-    TerminalNodeStrings getThisDescriptor();
+    TerminalNodeStrings getThis();
 
     void setThis(TerminalNodeStrings setThis);
 

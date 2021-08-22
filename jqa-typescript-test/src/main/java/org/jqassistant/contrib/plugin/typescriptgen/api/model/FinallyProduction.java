@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface FinallyProduction extends TypeScriptGen {
 
     @Relation("HAS_FINALLY")
-    TerminalNodeStrings getFinallyDescriptor();
+    TerminalNodeStrings getFinally();
 
     void setFinally(TerminalNodeStrings setFinally);
 

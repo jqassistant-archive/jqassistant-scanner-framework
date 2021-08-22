@@ -78,17 +78,17 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface Keyword extends TypeScriptGen {
 
     @Relation("HAS_BREAK")
-    TerminalNodeStrings getBreakDescriptor();
+    TerminalNodeStrings getBreak();
 
     void setBreak(TerminalNodeStrings setBreak);
 
     @Relation("HAS_DO")
-    TerminalNodeStrings getDoDescriptor();
+    TerminalNodeStrings getDo();
 
     void setDo(TerminalNodeStrings setDo);
 
     @Relation("HAS_INSTANCEOF")
-    TerminalNodeStrings getInstanceofDescriptor();
+    TerminalNodeStrings getInstanceof();
 
     void setInstanceof(TerminalNodeStrings setInstanceof);
 
@@ -98,17 +98,17 @@ public interface Keyword extends TypeScriptGen {
     void setTypeof(TerminalNodeStrings setTypeof);
 
     @Relation("HAS_CASE")
-    TerminalNodeStrings getCaseDescriptor();
+    TerminalNodeStrings getCase();
 
     void setCase(TerminalNodeStrings setCase);
 
     @Relation("HAS_ELSE")
-    TerminalNodeStrings getElseDescriptor();
+    TerminalNodeStrings getElse();
 
     void setElse(TerminalNodeStrings setElse);
 
     @Relation("HAS_NEW")
-    TerminalNodeStrings getNewDescriptor();
+    TerminalNodeStrings getNew();
 
     void setNew(TerminalNodeStrings setNew);
 
@@ -118,42 +118,42 @@ public interface Keyword extends TypeScriptGen {
     void setVar(TerminalNodeStrings setVar);
 
     @Relation("HAS_CATCH")
-    TerminalNodeStrings getCatchDescriptor();
+    TerminalNodeStrings getCatch();
 
     void setCatch(TerminalNodeStrings setCatch);
 
     @Relation("HAS_FINALLY")
-    TerminalNodeStrings getFinallyDescriptor();
+    TerminalNodeStrings getFinally();
 
     void setFinally(TerminalNodeStrings setFinally);
 
     @Relation("HAS_RETURN")
-    TerminalNodeStrings getReturnDescriptor();
+    TerminalNodeStrings getReturn();
 
     void setReturn(TerminalNodeStrings setReturn);
 
     @Relation("HAS_VOID")
-    TerminalNodeStrings getVoidDescriptor();
+    TerminalNodeStrings getVoid();
 
     void setVoid(TerminalNodeStrings setVoid);
 
     @Relation("HAS_CONTINUE")
-    TerminalNodeStrings getContinueDescriptor();
+    TerminalNodeStrings getContinue();
 
     void setContinue(TerminalNodeStrings setContinue);
 
     @Relation("HAS_FOR")
-    TerminalNodeStrings getForDescriptor();
+    TerminalNodeStrings getFor();
 
     void setFor(TerminalNodeStrings setFor);
 
     @Relation("HAS_SWITCH")
-    TerminalNodeStrings getSwitchDescriptor();
+    TerminalNodeStrings getSwitch();
 
     void setSwitch(TerminalNodeStrings setSwitch);
 
     @Relation("HAS_WHILE")
-    TerminalNodeStrings getWhileDescriptor();
+    TerminalNodeStrings getWhile();
 
     void setWhile(TerminalNodeStrings setWhile);
 
@@ -162,13 +162,13 @@ public interface Keyword extends TypeScriptGen {
 
     void setDebugger(TerminalNodeStrings setDebugger);
 
-    @Relation("HAS_FUNCTION_")
+    @Relation("HAS_FUNCTION")
     TerminalNodeStrings getFunction_();
 
     void setFunction_(TerminalNodeStrings setFunction_);
 
     @Relation("HAS_THIS")
-    TerminalNodeStrings getThisDescriptor();
+    TerminalNodeStrings getThis();
 
     void setThis(TerminalNodeStrings setThis);
 
@@ -178,17 +178,17 @@ public interface Keyword extends TypeScriptGen {
     void setWith(TerminalNodeStrings setWith);
 
     @Relation("HAS_DEFAULT")
-    TerminalNodeStrings getDefaultDescriptor();
+    TerminalNodeStrings getDefault();
 
     void setDefault(TerminalNodeStrings setDefault);
 
     @Relation("HAS_IF")
-    TerminalNodeStrings getIfDescriptor();
+    TerminalNodeStrings getIf();
 
     void setIf(TerminalNodeStrings setIf);
 
     @Relation("HAS_THROW")
-    TerminalNodeStrings getThrowDescriptor();
+    TerminalNodeStrings getThrow();
 
     void setThrow(TerminalNodeStrings setThrow);
 
@@ -203,7 +203,7 @@ public interface Keyword extends TypeScriptGen {
     void setIn(TerminalNodeStrings setIn);
 
     @Relation("HAS_TRY")
-    TerminalNodeStrings getTryDescriptor();
+    TerminalNodeStrings getTry();
 
     void setTry(TerminalNodeStrings setTry);
 
@@ -223,27 +223,27 @@ public interface Keyword extends TypeScriptGen {
     void setFrom(TerminalNodeStrings setFrom);
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClassDescriptor();
+    TerminalNodeStrings getClazz();
 
-    void setClass(TerminalNodeStrings setClass);
+    void setClazz(TerminalNodeStrings setClazz);
 
     @Relation("HAS_ENUM")
-    TerminalNodeStrings getEnumDescriptor();
+    TerminalNodeStrings getEnum();
 
     void setEnum(TerminalNodeStrings setEnum);
 
     @Relation("HAS_EXTENDS")
-    TerminalNodeStrings getExtendsDescriptor();
+    TerminalNodeStrings getExtends();
 
     void setExtends(TerminalNodeStrings setExtends);
 
     @Relation("HAS_SUPER")
-    TerminalNodeStrings getSuperDescriptor();
+    TerminalNodeStrings getSuper();
 
     void setSuper(TerminalNodeStrings setSuper);
 
     @Relation("HAS_CONST")
-    TerminalNodeStrings getConstDescriptor();
+    TerminalNodeStrings getConst();
 
     void setConst(TerminalNodeStrings setConst);
 
@@ -253,12 +253,12 @@ public interface Keyword extends TypeScriptGen {
     void setExport(TerminalNodeStrings setExport);
 
     @Relation("HAS_IMPORT")
-    TerminalNodeStrings getImportDescriptor();
+    TerminalNodeStrings getImport();
 
     void setImport(TerminalNodeStrings setImport);
 
     @Relation("HAS_IMPLEMENTS")
-    TerminalNodeStrings getImplementsDescriptor();
+    TerminalNodeStrings getImplements();
 
     void setImplements(TerminalNodeStrings setImplements);
 
@@ -268,32 +268,32 @@ public interface Keyword extends TypeScriptGen {
     void setLet(TerminalNodeStrings setLet);
 
     @Relation("HAS_PRIVATE")
-    TerminalNodeStrings getPrivateDescriptor();
+    TerminalNodeStrings getPrivate();
 
     void setPrivate(TerminalNodeStrings setPrivate);
 
     @Relation("HAS_PUBLIC")
-    TerminalNodeStrings getPublicDescriptor();
+    TerminalNodeStrings getPublic();
 
     void setPublic(TerminalNodeStrings setPublic);
 
     @Relation("HAS_INTERFACE")
-    TerminalNodeStrings getInterfaceDescriptor();
+    TerminalNodeStrings getInterface();
 
     void setInterface(TerminalNodeStrings setInterface);
 
     @Relation("HAS_PACKAGE")
-    TerminalNodeStrings getPackageDescriptor();
+    TerminalNodeStrings getPackage();
 
     void setPackage(TerminalNodeStrings setPackage);
 
     @Relation("HAS_PROTECTED")
-    TerminalNodeStrings getProtectedDescriptor();
+    TerminalNodeStrings getProtected();
 
     void setProtected(TerminalNodeStrings setProtected);
 
     @Relation("HAS_STATIC")
-    TerminalNodeStrings getStaticDescriptor();
+    TerminalNodeStrings getStatic();
 
     void setStatic(TerminalNodeStrings setStatic);
 

@@ -44,7 +44,7 @@ public interface ConstructorType extends TypeScriptGen {
 
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: '=>'
-    @Relation("HAS_TYPE_")
+    @Relation("HAS_TYPE")
     Type_ getType_();
 
     void setType_(Type_ setType_);

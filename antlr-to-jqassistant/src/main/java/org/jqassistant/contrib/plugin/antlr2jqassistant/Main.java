@@ -51,26 +51,26 @@ public class Main {
         GrammarAST rulesAst = scannerGenerator.getRulesAst();
 
         BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(apiPackage, entryNode);
-        Map<String, CompilationUnit> baseDescriptors = baseDescriptorGenerator.generate();
+        Map<AstName, CompilationUnit> baseDescriptors = baseDescriptorGenerator.generate();
         FileOperations.writeToFiles(id, apiPackage, baseDescriptors);
 
         ApiModelGenerator apiModelGenerator = new ApiModelGenerator(modelPackage, baseDescriptorGenerator);
-        Map<String, CompilationUnit> apiModelCompilationUnitMap = apiModelGenerator.generateFromRules(rulesAst);
+        Map<AstName, CompilationUnit> apiModelCompilationUnitMap = apiModelGenerator.generateFromRules(rulesAst);
         FileOperations.writeToFiles(id, modelPackage, apiModelCompilationUnitMap);
 //        FileOperations.writeToFile("Model.java", modelPackage, apiModelCompilationUnitMap);
 
         MapperGenerator mapperGenerator = new MapperGenerator(mapperPackage, baseDescriptorGenerator);
 
-        Map<String, CompilationUnit> singleMapperCompilationUnitMap = mapperGenerator.generateSingleMapperFromApiModel(apiModelCompilationUnitMap);
+        Map<AstName, CompilationUnit> singleMapperCompilationUnitMap = mapperGenerator.generateSingleMapperFromApiModel(apiModelCompilationUnitMap);
         FileOperations.writeToFile("MainMapper.java", mapperPackage, singleMapperCompilationUnitMap);
 
-        Map<String, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generateFromApiModel(apiModelCompilationUnitMap);
+        Map<AstName, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generateFromApiModel(apiModelCompilationUnitMap);
         FileOperations.writeToFiles(id, mapperPackage, mapperCompilationUnitMap);
 
-        Map<String, CompilationUnit> allModels = new LinkedHashMap<>();
+        Map<AstName, CompilationUnit> allModels = new LinkedHashMap<>();
         allModels.putAll(baseDescriptors);
         allModels.putAll(apiModelCompilationUnitMap);
-        JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(id, allModels);
+        JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(new AstName(id), allModels);
         FileOperations.writeToFile(jqassistantPlugin);
 
         Model mavenProject = MavenProjectGenerator.generateMavenProject(id);

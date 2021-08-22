@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface CatchProduction extends TypeScriptGen {
 
     @Relation("HAS_CATCH")
-    TerminalNodeStrings getCatchDescriptor();
+    TerminalNodeStrings getCatch();
 
     void setCatch(TerminalNodeStrings setCatch);
 

@@ -40,7 +40,7 @@ public interface YieldStatement extends TypeScriptGen {
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

@@ -21,24 +21,24 @@ public class BaseDescriptorGenerator {
     public final String HAS = "HAS_";
 
     public final String packageName;
-    private final String entryNode;
+    private final AstName entryNode;
     public String BASE_DESCRIPTOR_NAME = "Descriptor";
     public String BASE_FILE_DESCRIPTOR_NAME = "FileDescriptor";
 
     public BaseDescriptorGenerator(String packageName, String entryNode) {
         this.packageName = packageName;
-        this.entryNode = entryNode;
+        this.entryNode = new AstName(entryNode);
     }
 
-    public Map<String, CompilationUnit> generate() {
+    public Map<AstName, CompilationUnit> generate() {
         System.out.println(new Date() + " Starting Base Descriptor Model Generation");
-        Map<String, CompilationUnit> interfaces = new TreeMap<>();
+        Map<AstName, CompilationUnit> interfaces = new TreeMap<>();
 
         CompilationUnit baseDescriptor = getBaseDescriptor();
-        interfaces.put(BASE_DESCRIPTOR_NAME, baseDescriptor);
+        interfaces.put(new AstName(BASE_DESCRIPTOR_NAME), baseDescriptor);
 
         CompilationUnit baseFileDescriptor = getBaseFileDescriptor();
-        interfaces.put(BASE_FILE_DESCRIPTOR_NAME, baseFileDescriptor);
+        interfaces.put(new AstName(BASE_FILE_DESCRIPTOR_NAME), baseFileDescriptor);
 
         System.out.println(new Date() + " Generation Done!");
         return interfaces;
@@ -68,7 +68,7 @@ public class BaseDescriptorGenerator {
         compilationUnit.setPackageDeclaration(packageName);
 
         compilationUnit.addImport(BASE_DESCRIPTOR_NAME);
-        compilationUnit.addImport(Main.modelPackage + "." + entryNode);
+        compilationUnit.addImport(Main.modelPackage + "." + entryNode.getName());
 
         String name = Main.id + BASE_FILE_DESCRIPTOR_NAME;
         BASE_FILE_DESCRIPTOR_NAME = name;
@@ -82,7 +82,7 @@ public class BaseDescriptorGenerator {
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
 
-        ApiModelGenerator.createGetterAndSetter(interfaceDeclaration, entryNode, entryNode);
+        ApiModelGenerator.createGetterAndSetter(interfaceDeclaration, entryNode, entryNode.getName());
 
 
         return compilationUnit;

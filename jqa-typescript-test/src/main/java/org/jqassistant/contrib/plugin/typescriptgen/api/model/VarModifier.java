@@ -41,7 +41,7 @@ public interface VarModifier extends TypeScriptGen {
     void setLet(TerminalNodeStrings setLet);
 
     @Relation("HAS_CONST")
-    TerminalNodeStrings getConstDescriptor();
+    TerminalNodeStrings getConst();
 
     void setConst(TerminalNodeStrings setConst);
 

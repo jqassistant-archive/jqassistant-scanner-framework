@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface TryStatement extends TypeScriptGen {
 
     @Relation("HAS_TRY")
-    TerminalNodeStrings getTryDescriptor();
+    TerminalNodeStrings getTry();
 
     void setTry(TerminalNodeStrings setTry);
 

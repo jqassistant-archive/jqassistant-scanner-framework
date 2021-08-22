@@ -36,7 +36,7 @@ import java.util.List;
 public interface IterationStatement extends TypeScriptGen {
 
     @Relation("HAS_DO")
-    TerminalNodeStrings getDoDescriptor();
+    TerminalNodeStrings getDo();
 
     void setDo(TerminalNodeStrings setDo);
 
@@ -46,7 +46,7 @@ public interface IterationStatement extends TypeScriptGen {
     void setStatement(Statement setStatement);
 
     @Relation("HAS_WHILE")
-    TerminalNodeStrings getWhileDescriptor();
+    TerminalNodeStrings getWhile();
 
     void setWhile(TerminalNodeStrings setWhile);
 
@@ -57,11 +57,11 @@ public interface IterationStatement extends TypeScriptGen {
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
     // unhandled TerminalAST token: ')'
-    // unhandled ast: eos
+    // unhandled ast: Eos
     // unhandled TerminalAST token: '('
     // unhandled TerminalAST token: ')'
     @Relation("HAS_FOR")
-    TerminalNodeStrings getForDescriptor();
+    TerminalNodeStrings getFor();
 
     void setFor(TerminalNodeStrings setFor);
 

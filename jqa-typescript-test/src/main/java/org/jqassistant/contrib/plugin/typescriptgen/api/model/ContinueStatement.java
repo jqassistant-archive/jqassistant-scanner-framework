@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ContinueStatement extends TypeScriptGen {
 
     @Relation("HAS_CONTINUE")
-    TerminalNodeStrings getContinueDescriptor();
+    TerminalNodeStrings getContinue();
 
     void setContinue(TerminalNodeStrings setContinue);
 
@@ -40,7 +40,7 @@ public interface ContinueStatement extends TypeScriptGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

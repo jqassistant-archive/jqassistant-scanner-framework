@@ -7,6 +7,8 @@ import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
 
+import java.util.List;
+
 /**
  * Generated from AST:
  * <pre>
@@ -31,9 +33,9 @@ public interface CaseBlock extends TypeScriptGen {
     // unhandled TerminalAST token: '{'
     // optional: ?
     @Relation("HAS_CASE_CLAUSES")
-    CaseClauses getCaseClauses();
+    List<CaseClauses> getCaseClauses();
 
-    void setCaseClauses(CaseClauses setCaseClauses);
+    void setCaseClauses(List<CaseClauses> setCaseClauses);
 
     // optional: ?
     @Relation("HAS_DEFAULT_CLAUSE")

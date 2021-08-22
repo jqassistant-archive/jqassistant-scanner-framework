@@ -28,7 +28,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("FunctionDeclaration")
 public interface FunctionDeclaration extends TypeScriptGen {
 
-    @Relation("HAS_FUNCTION_")
+    @Relation("HAS_FUNCTION")
     TerminalNodeStrings getFunction_();
 
     void setFunction_(TerminalNodeStrings setFunction_);

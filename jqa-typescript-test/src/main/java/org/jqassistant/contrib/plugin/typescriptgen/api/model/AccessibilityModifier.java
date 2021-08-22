@@ -31,17 +31,17 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface AccessibilityModifier extends TypeScriptGen {
 
     @Relation("HAS_PUBLIC")
-    TerminalNodeStrings getPublicDescriptor();
+    TerminalNodeStrings getPublic();
 
     void setPublic(TerminalNodeStrings setPublic);
 
     @Relation("HAS_PRIVATE")
-    TerminalNodeStrings getPrivateDescriptor();
+    TerminalNodeStrings getPrivate();
 
     void setPrivate(TerminalNodeStrings setPrivate);
 
     @Relation("HAS_PROTECTED")
-    TerminalNodeStrings getProtectedDescriptor();
+    TerminalNodeStrings getProtected();
 
     void setProtected(TerminalNodeStrings setProtected);
 

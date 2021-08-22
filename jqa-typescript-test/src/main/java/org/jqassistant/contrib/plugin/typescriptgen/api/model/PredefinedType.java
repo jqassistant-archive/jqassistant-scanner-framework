@@ -44,7 +44,7 @@ public interface PredefinedType extends TypeScriptGen {
     void setNumber(TerminalNodeStrings setNumber);
 
     @Relation("HAS_BOOLEAN")
-    TerminalNodeStrings getBooleanDescriptor();
+    TerminalNodeStrings getBoolean();
 
     void setBoolean(TerminalNodeStrings setBoolean);
 
@@ -59,7 +59,7 @@ public interface PredefinedType extends TypeScriptGen {
     void setSymbol(TerminalNodeStrings setSymbol);
 
     @Relation("HAS_VOID")
-    TerminalNodeStrings getVoidDescriptor();
+    TerminalNodeStrings getVoid();
 
     void setVoid(TerminalNodeStrings setVoid);
 

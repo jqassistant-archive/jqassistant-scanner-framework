@@ -28,7 +28,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("TypeArgument")
 public interface TypeArgument extends TypeScriptGen {
 
-    @Relation("HAS_TYPE_")
+    @Relation("HAS_TYPE")
     Type_ getType_();
 
     void setType_(Type_ setType_);

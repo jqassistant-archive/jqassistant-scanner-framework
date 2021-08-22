@@ -3,6 +3,7 @@ package org.jqassistant.contrib.plugin.antlr2jqassistant;
 import com.github.javaparser.ast.CompilationUnit;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.AstName;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
 
 import javax.xml.bind.JAXBContext;
@@ -16,9 +17,9 @@ import java.util.Date;
 import java.util.Map;
 
 public class FileOperations {
-    static void writeToFiles(String name, String destinationPackage, Map<String, CompilationUnit> stringCompilationUnitMap) {
-        for (Map.Entry<String, CompilationUnit> entry : stringCompilationUnitMap.entrySet()) {
-            String s = entry.getKey();
+    static void writeToFiles(String name, String destinationPackage, Map<AstName, CompilationUnit> compilationUnitMap) {
+        for (Map.Entry<AstName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
+            AstName s = entry.getKey();
             CompilationUnit compilationUnit = entry.getValue();
 
             try {
@@ -35,7 +36,7 @@ public class FileOperations {
                 e.printStackTrace();
             }
         }
-        System.out.println(new Date() + " Successfully wrote stringCompilationUnitMap to " + stringCompilationUnitMap.size() + " files in package " + destinationPackage);
+        System.out.println(new Date() + " Successfully wrote compilationUnitMap to " + compilationUnitMap.size() + " files in package " + destinationPackage);
     }
 
     private static String getComment(String name) {
@@ -49,7 +50,7 @@ public class FileOperations {
                 .toString();
     }
 
-    static void writeToFile(String fileName, String destinationPackage, Map<String, CompilationUnit> stringCompilationUnitMap) {
+    static void writeToFile(String fileName, String destinationPackage, Map<AstName, CompilationUnit> compilationUnitMap) {
 
         try {
             File file = new File(Main.destination + "src/main/java/" + destinationPackage.replace(".", "/") + "/" + fileName);
@@ -59,14 +60,14 @@ public class FileOperations {
             FileWriter myWriter = new FileWriter(file);
             myWriter.write("//" + getComment(""));
 
-            for (Map.Entry<String, CompilationUnit> entry : stringCompilationUnitMap.entrySet()) {
-                String s = entry.getKey();
+            for (Map.Entry<AstName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
+                AstName s = entry.getKey();
                 CompilationUnit compilationUnit = entry.getValue();
                 myWriter.write("\n\n//" + s + ".java\n");
                 myWriter.write(compilationUnit.toString());
             }
             myWriter.close();
-            System.out.println(new Date() + " Successfully wrote stringCompilationUnitMap to a single file: " + file);
+            System.out.println(new Date() + " Successfully wrote compilationUnitMap to a single file: " + file);
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface BreakStatement extends TypeScriptGen {
 
     @Relation("HAS_BREAK")
-    TerminalNodeStrings getBreakDescriptor();
+    TerminalNodeStrings getBreak();
 
     void setBreak(TerminalNodeStrings setBreak);
 
@@ -40,7 +40,7 @@ public interface BreakStatement extends TypeScriptGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

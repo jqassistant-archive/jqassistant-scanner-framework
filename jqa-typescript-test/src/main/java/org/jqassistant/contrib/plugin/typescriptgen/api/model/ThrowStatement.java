@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ThrowStatement extends TypeScriptGen {
 
     @Relation("HAS_THROW")
-    TerminalNodeStrings getThrowDescriptor();
+    TerminalNodeStrings getThrow();
 
     void setThrow(TerminalNodeStrings setThrow);
 
@@ -39,7 +39,7 @@ public interface ThrowStatement extends TypeScriptGen {
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

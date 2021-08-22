@@ -30,14 +30,14 @@ public interface ClassDeclaration extends TypeScriptGen {
 
     // optional: ?
     @Relation("HAS_ABSTRACT")
-    TerminalNodeStrings getAbstractDescriptor();
+    TerminalNodeStrings getAbstract();
 
     void setAbstract(TerminalNodeStrings setAbstract);
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClassDescriptor();
+    TerminalNodeStrings getClazz();
 
-    void setClass(TerminalNodeStrings setClass);
+    void setClazz(TerminalNodeStrings setClazz);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();

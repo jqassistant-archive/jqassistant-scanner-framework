@@ -59,7 +59,7 @@ public interface FromBlock extends TypeScriptGen {
 
     void setStringLiteral(TerminalNodeStrings setStringLiteral);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

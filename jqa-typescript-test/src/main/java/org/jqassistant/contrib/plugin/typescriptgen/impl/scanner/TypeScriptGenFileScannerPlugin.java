@@ -1,4 +1,4 @@
-package org.jqassistant.contrib.plugin.typescriptgen.scanner;
+package org.jqassistant.contrib.plugin.typescriptgen.impl.scanner;
 
 import com.buschmais.jqassistant.core.scanner.api.Scanner;
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
@@ -45,10 +45,10 @@ public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileRe
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         final TypeScriptParser parser = new TypeScriptParser(tokenStream);
 
-        LOGGER.info(new Date() + " - getting CompilationUnitContext");
+        LOGGER.info(new Date() + " - getting Parser Context");
         TypeScriptParser.ProgramContext context = parser.program(); //TODO: find root node and how it was determined
 
-        LOGGER.info(new Date() + " - Starting Mapper for compilationUnitContext");
+        LOGGER.info(new Date() + " - Starting Mapper for Parser Context");
 
         Program rootDescriptor = MainMapper.INSTANCE.map(scannerContext, context);
         fileDescriptor.setProgram(rootDescriptor);

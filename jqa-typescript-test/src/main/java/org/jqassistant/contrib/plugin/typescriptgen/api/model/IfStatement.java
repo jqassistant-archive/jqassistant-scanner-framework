@@ -7,6 +7,8 @@ import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
 
+import java.util.List;
+
 /**
  * Generated from AST:
  * <pre>
@@ -29,7 +31,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface IfStatement extends TypeScriptGen {
 
     @Relation("HAS_IF")
-    TerminalNodeStrings getIfDescriptor();
+    TerminalNodeStrings getIf();
 
     void setIf(TerminalNodeStrings setIf);
 
@@ -41,13 +43,13 @@ public interface IfStatement extends TypeScriptGen {
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_STATEMENT")
-    Statement getStatement();
+    List<Statement> getStatement();
 
-    void setStatement(Statement setStatement);
+    void setStatement(List<Statement> setStatement);
 
     // optional: ?
     @Relation("HAS_ELSE")
-    TerminalNodeStrings getElseDescriptor();
+    TerminalNodeStrings getElse();
 
     void setElse(TerminalNodeStrings setElse);
 

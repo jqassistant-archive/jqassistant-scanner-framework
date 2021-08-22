@@ -7,6 +7,8 @@ import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
 
+import java.util.List;
+
 /**
  * Generated from AST:
  * <pre>
@@ -51,9 +53,9 @@ public interface VariableDeclaration extends TypeScriptGen {
 
     // optional: ?
     @Relation("HAS_SINGLE_EXPRESSION")
-    SingleExpression getSingleExpression();
+    List<SingleExpression> getSingleExpression();
 
-    void setSingleExpression(SingleExpression setSingleExpression);
+    void setSingleExpression(List<SingleExpression> setSingleExpression);
 
     // optional: ?
     // unhandled TerminalAST token: '='

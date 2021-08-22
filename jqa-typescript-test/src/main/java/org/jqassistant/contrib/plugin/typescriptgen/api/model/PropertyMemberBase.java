@@ -42,7 +42,7 @@ public interface PropertyMemberBase extends TypeScriptGen {
 
     // optional: ?
     @Relation("HAS_STATIC")
-    TerminalNodeStrings getStaticDescriptor();
+    TerminalNodeStrings getStatic();
 
     void setStatic(TerminalNodeStrings setStatic);
 

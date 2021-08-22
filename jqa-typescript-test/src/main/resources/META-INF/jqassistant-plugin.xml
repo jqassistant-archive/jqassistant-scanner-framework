@@ -154,9 +154,6 @@
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.WithStatement</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.YieldStatement</class>
     </model>
-    <scope>
-        <class>org.jqassistant.contrib.plugin.typescriptgen.api.scanner.TypeScriptGenScope</class>
-    </scope>
     <scanner>
         <class>org.jqassistant.contrib.plugin.typescriptgen.impl.scanner.TypeScriptGenFileScannerPlugin</class>
     </scanner>

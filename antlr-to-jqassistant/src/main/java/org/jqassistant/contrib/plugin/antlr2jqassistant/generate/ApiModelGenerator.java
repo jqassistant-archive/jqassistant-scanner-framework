@@ -7,19 +7,13 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.comments.LineComment;
-import com.google.common.base.CaseFormat;
 import org.antlr.v4.tool.ast.*;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 
-import javax.lang.model.SourceVersion;
 import java.util.*;
 
 public class ApiModelGenerator {
-    public final static String QUOTES = "\"";
-    public final static String GET = "get";
-    public final static String SET = "set";
-    public final static String HAS = "HAS_";
     public final static String TERMINAL_NODE_CLASS = "TerminalNodeStrings";
 
     private final String packageName;
@@ -32,10 +26,9 @@ public class ApiModelGenerator {
         this.baseDescriptorGenerator = baseDescriptorGenerator;
     }
 
-    public Map<String, CompilationUnit> generateFromRules(GrammarAST ast) {
+    public Map<AstName, CompilationUnit> generateFromRules(GrammarAST ast) {
         System.out.println(new Date() + " Starting Api Model Generation");
-        Map<String, CompilationUnit> interfaces = new TreeMap<>();
-        interfaces.put(TERMINAL_NODE_CLASS, getTerminalNode());
+        Map<AstName, CompilationUnit> interfaces = new TreeMap<>(getTerminalNode());
 
         List<RuleAST> ruleAsts = (List<RuleAST>) ast.getChildren();
 
@@ -51,60 +44,57 @@ public class ApiModelGenerator {
         return interfaces;
     }
 
-    private CompilationUnit getTerminalNode() {
+    private Map<AstName, CompilationUnit> getTerminalNode() {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
         compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
-        String name = TERMINAL_NODE_CLASS;
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        String nameString = QUOTES + nameUpperCamel + QUOTES;
+        AstName name = new AstName(TERMINAL_NODE_CLASS);
 
-        compilationUnit.addOrphanComment(new JavadocComment("@see org.antlr.v4.runtime.tree.TerminalNode\n" + "@see " + Main.mapperPackage + "." + MapperGenerator.getMapperName(name)));
+        compilationUnit.addOrphanComment(new JavadocComment("@see org.antlr.v4.runtime.tree.TerminalNode\n" + "@see " + Main.mapperPackage + "." + MapperGenerator.getMapperName(name.getName())));
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
-                .addInterface(nameUpperCamel)
+                .addInterface(name.getName())
                 .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
-        interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
+        interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.withQuotes());
 
-        createGetterAndSetter(interfaceDeclaration, "Text");
-        createGetterAndSetter(interfaceDeclaration, "Type");
-        createGetterAndSetter(interfaceDeclaration, "Line");
-        createGetterAndSetter(interfaceDeclaration, "CharPositionInLine");
-        createGetterAndSetter(interfaceDeclaration, "TokenIndex");
-        createGetterAndSetter(interfaceDeclaration, "StartIndex");
-        createGetterAndSetter(interfaceDeclaration, "StopIndex");
-//        createGetterAndSetter(interfaceDeclaration, "InputStream");
+        createGetterAndSetter(interfaceDeclaration, new AstName("Text"));
+        createGetterAndSetter(interfaceDeclaration, new AstName("Type"));
+        createGetterAndSetter(interfaceDeclaration, new AstName("Line"));
+        createGetterAndSetter(interfaceDeclaration, new AstName("CharPositionInLine"));
+        createGetterAndSetter(interfaceDeclaration, new AstName("TokenIndex"));
+        createGetterAndSetter(interfaceDeclaration, new AstName("StartIndex"));
+        createGetterAndSetter(interfaceDeclaration, new AstName("StopIndex"));
 
-        return compilationUnit;
+        Map<AstName, CompilationUnit> map = new TreeMap<>();
+        map.put(name, compilationUnit);
+        return map;
     }
 
-    public Map<String, CompilationUnit> generateInterface(RuleAST ast) {
+    public Map<AstName, CompilationUnit> generateInterface(RuleAST ast) {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
         compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
         compilationUnit.addOrphanComment(TreeHelper.generateComment(ast));
 
-        String name = ast.getRuleName();
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        String nameString = QUOTES + nameUpperCamel + QUOTES;
+        AstName name = new AstName(ast);
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
-                .addInterface(nameUpperCamel)
+                .addInterface(name.getName())
                 .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
-        interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
+        interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.withQuotes());
 
         List<GrammarAST> children = (List<GrammarAST>) ast.getChildren();
         BlockAST blockAST = (BlockAST) children.get(1);
 
         handleAst(interfaceDeclaration, blockAST, false);
 
-        createGetterAndSetter(interfaceDeclaration, "Text");
+        createGetterAndSetter(interfaceDeclaration, new AstName("Text"));
 
-        return Collections.singletonMap(nameUpperCamel, compilationUnit);
+        return Collections.singletonMap(name, compilationUnit);
     }
 
     private void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, GrammarAST ast, boolean isList) {
@@ -156,12 +146,12 @@ public class ApiModelGenerator {
     }
 
     public void handleGenericAst(ClassOrInterfaceDeclaration interfaceDeclaration, GrammarAST ast, boolean isList) {
-        String name = ast.getText();
-        if (name.length() < 4) {
+        AstName name = new AstName(ast);
+        if (name.getName().length() < 4) {
             interfaceDeclaration.addOrphanComment(new LineComment("unhandled ast: " + name));
             return;
         }
-        if (name.toLowerCase().contains("epsilon")) {
+        if (name.getName().toLowerCase().contains("epsilon")) {
             interfaceDeclaration.addOrphanComment(new LineComment("Avoided Token: " + name));
             return;
         }
@@ -186,9 +176,9 @@ public class ApiModelGenerator {
     }
 
     public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, TerminalAST ast, boolean isList) {
-        String name = ast.getText();
+        AstName name = new AstName(ast);
 
-        if (Character.isUpperCase((name.charAt(0)))) {  // Take a chance!
+        if (Character.isUpperCase((name.getName().charAt(0)))) {  // Take a chance!
             addMethodDeclaration(interfaceDeclaration, name, TERMINAL_NODE_CLASS, isList);
         } else {
             interfaceDeclaration.addOrphanComment(new LineComment("unhandled TerminalAST token: " + name));
@@ -204,12 +194,11 @@ public class ApiModelGenerator {
 //        handleChildren(interfaceDeclaration, ast, isList);
     }
 
-    private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, String name, boolean isList) {
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        addMethodDeclaration(interfaceDeclaration, name, nameUpperCamel, isList);
+    private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, boolean isList) {
+        addMethodDeclaration(interfaceDeclaration, name, name.getName(), isList);
     }
 
-    private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, String name, String type, boolean isList) {
+    private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type, boolean isList) {
         if (isDuplicateEvenAfterMitigation(interfaceDeclaration, name, type, isList)) return;
 
         if (isList) {
@@ -219,12 +208,12 @@ public class ApiModelGenerator {
         }
     }
 
-    private boolean isDuplicateEvenAfterMitigation(ClassOrInterfaceDeclaration interfaceDeclaration, String name, String type, boolean shouldBeList) {
+    private boolean isDuplicateEvenAfterMitigation(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type, boolean shouldBeList) {
         Map<String, Boolean> handledTypes = interfaceHandledTypes.getOrDefault(interfaceDeclaration.getNameAsString(), new HashMap<>());
-        Boolean isList = handledTypes.get(name);
+        Boolean isList = handledTypes.get(name.getName());
 
         if (isList == null) {
-            handledTypes.put(name, shouldBeList);
+            handledTypes.put(name.getName(), shouldBeList);
             interfaceHandledTypes.put(interfaceDeclaration.getNameAsString(), handledTypes);
             return false;
         }
@@ -237,7 +226,7 @@ public class ApiModelGenerator {
         if (shouldBeList) {
             removeMethodByName(interfaceDeclaration, name);
 
-            handledTypes.put(name, true);
+            handledTypes.put(name.getName(), true);
             interfaceHandledTypes.put(interfaceDeclaration.getNameAsString(), handledTypes);
             return false;
         }
@@ -247,58 +236,39 @@ public class ApiModelGenerator {
         return true;
     }
 
-    private void removeMethodByName(ClassOrInterfaceDeclaration interfaceDeclaration, String name) {
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        List<MethodDeclaration> getters = interfaceDeclaration.getMethodsByName(getGetterName(nameUpperCamel, false));
-        List<MethodDeclaration> setters = interfaceDeclaration.getMethodsByName(getSetterName(nameUpperCamel, false));
+    private void removeMethodByName(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name) {
+        List<MethodDeclaration> getters = interfaceDeclaration.getMethodsByName(name.getGetterName());
+        List<MethodDeclaration> setters = interfaceDeclaration.getMethodsByName(name.getSetterName());
 
         getters.forEach(interfaceDeclaration::remove);
         setters.forEach(interfaceDeclaration::remove);
     }
 
-    public static String getGetterName(String nameUpperCamel, boolean isList) {
-//        return GET + nameUpperCamel + (isList ? "s" : ""); // ANTLR doesn't seem to follow JavaBeans naming-conventions, be careful
-        return GET + (isReserved(nameUpperCamel) ? nameUpperCamel + "Descriptor" : nameUpperCamel);
-    }
-
-    public static String getSetterName(String nameUpperCamel, boolean isList) {
-//        return SET + nameUpperCamel + (isList ? "s" : ""); // ANTLR doesn't seem to follow JavaBeans naming-conventions, be careful
-        return SET + nameUpperCamel;
-    }
-
-    private static Boolean isReserved(String word) {
-        return SourceVersion.isKeyword(word) || SourceVersion.isKeyword(word.toLowerCase());
-    }
-
-    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, String name) {
+    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name) {
         createGetterAndSetter(interfaceDeclaration, name, "String");
     }
 
-    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, String name, String type) {
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        String nameUpperUnderscore = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, name);
+    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type) {
 
-        interfaceDeclaration.addMethod(getGetterName(nameUpperCamel, false))
+        interfaceDeclaration.addMethod(name.getGetterName())
                 .removeBody()
                 .setType(type)
-                .addSingleMemberAnnotation(Relation.class, QUOTES + HAS + nameUpperUnderscore + QUOTES);
-        interfaceDeclaration.addMethod(getSetterName(nameUpperCamel, false))
+                .addSingleMemberAnnotation(Relation.class, name.getRelationNameWithQuotes());
+        interfaceDeclaration.addMethod(name.getSetterName())
                 .removeBody()
-                .addParameter(type, getSetterName(nameUpperCamel, false));
+                .addParameter(type, name.getSetterName());
     }
 
-    public static void createListGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, String name, String type) {
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        String nameUpperUnderscore = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, name);
+    public static void createListGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type) {
 
-        interfaceDeclaration.addMethod(getGetterName(nameUpperCamel, true))
+        interfaceDeclaration.addMethod(name.getGetterName())
                 .removeBody()
                 .setType("List<" + type + ">")
-                .addSingleMemberAnnotation(Relation.class, QUOTES + HAS + nameUpperUnderscore + QUOTES)
+                .addSingleMemberAnnotation(Relation.class, name.getRelationNameWithQuotes())
                 .tryAddImportToParentCompilationUnit(List.class);
-        interfaceDeclaration.addMethod(getSetterName(nameUpperCamel, true))
+        interfaceDeclaration.addMethod(name.getSetterName())
                 .removeBody()
-                .addParameter("List<" + type + ">", getSetterName(nameUpperCamel, true));
+                .addParameter("List<" + type + ">", name.getSetterName());
     }
 
 }

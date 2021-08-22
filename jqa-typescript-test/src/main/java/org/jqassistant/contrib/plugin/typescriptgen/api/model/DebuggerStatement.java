@@ -33,7 +33,7 @@ public interface DebuggerStatement extends TypeScriptGen {
 
     void setDebugger(TerminalNodeStrings setDebugger);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

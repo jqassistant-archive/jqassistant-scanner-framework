@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ImplementsClause extends TypeScriptGen {
 
     @Relation("HAS_IMPLEMENTS")
-    TerminalNodeStrings getImplementsDescriptor();
+    TerminalNodeStrings getImplements();
 
     void setImplements(TerminalNodeStrings setImplements);
 

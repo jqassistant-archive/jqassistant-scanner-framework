@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface CaseClause extends TypeScriptGen {
 
     @Relation("HAS_CASE")
-    TerminalNodeStrings getCaseDescriptor();
+    TerminalNodeStrings getCase();
 
     void setCase(TerminalNodeStrings setCase);
 

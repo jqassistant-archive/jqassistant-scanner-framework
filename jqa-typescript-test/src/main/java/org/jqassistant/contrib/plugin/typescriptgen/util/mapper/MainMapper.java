@@ -5,21 +5,21 @@
 //MainMapper.java
 package org.jqassistant.contrib.plugin.typescriptgen.util.mapper;
 
+import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser;
 import org.jqassistant.contrib.plugin.typescriptgen.api.model.*;
-import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
-import javax.annotation.Generated;
-import org.mapstruct.Mapper;
-import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
 import org.mapstruct.Context;
-import org.antlr.v4.runtime.tree.TerminalNode;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.CharStream;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
+
+import javax.annotation.Generated;
 
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MapperGenerator")
-@Mapper(uses = DescriptorFactory.class, unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(uses = DescriptorFactory.class)
 public interface MainMapper {
 
     public static MainMapper INSTANCE = Mappers.getMapper(MainMapper.class);

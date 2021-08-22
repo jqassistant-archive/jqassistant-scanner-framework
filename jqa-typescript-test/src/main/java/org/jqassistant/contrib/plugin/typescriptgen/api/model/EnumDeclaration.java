@@ -30,12 +30,12 @@ public interface EnumDeclaration extends TypeScriptGen {
 
     // optional: ?
     @Relation("HAS_CONST")
-    TerminalNodeStrings getConstDescriptor();
+    TerminalNodeStrings getConst();
 
     void setConst(TerminalNodeStrings setConst);
 
     @Relation("HAS_ENUM")
-    TerminalNodeStrings getEnumDescriptor();
+    TerminalNodeStrings getEnum();
 
     void setEnum(TerminalNodeStrings setEnum);
 

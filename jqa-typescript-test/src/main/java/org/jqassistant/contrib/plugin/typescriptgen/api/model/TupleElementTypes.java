@@ -30,7 +30,7 @@ import java.util.List;
 public interface TupleElementTypes extends TypeScriptGen {
 
     // unhandled TerminalAST token: ','
-    @Relation("HAS_TYPE_")
+    @Relation("HAS_TYPE")
     List<Type_> getType_();
 
     void setType_(List<Type_> setType_);

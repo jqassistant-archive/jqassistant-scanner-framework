@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ReturnStatement extends TypeScriptGen {
 
     @Relation("HAS_RETURN")
-    TerminalNodeStrings getReturnDescriptor();
+    TerminalNodeStrings getReturn();
 
     void setReturn(TerminalNodeStrings setReturn);
 
@@ -40,7 +40,7 @@ public interface ReturnStatement extends TypeScriptGen {
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

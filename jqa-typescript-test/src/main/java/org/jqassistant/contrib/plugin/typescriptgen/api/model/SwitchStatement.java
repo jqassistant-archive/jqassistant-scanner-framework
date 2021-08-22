@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface SwitchStatement extends TypeScriptGen {
 
     @Relation("HAS_SWITCH")
-    TerminalNodeStrings getSwitchDescriptor();
+    TerminalNodeStrings getSwitch();
 
     void setSwitch(TerminalNodeStrings setSwitch);
 

@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ImportStatement extends TypeScriptGen {
 
     @Relation("HAS_IMPORT")
-    TerminalNodeStrings getImportDescriptor();
+    TerminalNodeStrings getImport();
 
     void setImport(TerminalNodeStrings setImport);
 

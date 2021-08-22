@@ -41,7 +41,7 @@ public interface InterfaceDeclaration extends TypeScriptGen {
     void setDeclare(TerminalNodeStrings setDeclare);
 
     @Relation("HAS_INTERFACE")
-    TerminalNodeStrings getInterfaceDescriptor();
+    TerminalNodeStrings getInterface();
 
     void setInterface(TerminalNodeStrings setInterface);
 

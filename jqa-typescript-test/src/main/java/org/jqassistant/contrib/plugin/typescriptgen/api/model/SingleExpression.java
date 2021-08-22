@@ -88,9 +88,9 @@ public interface SingleExpression extends TypeScriptGen {
     void setArrowFunctionDeclaration(ArrowFunctionDeclaration setArrowFunctionDeclaration);
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClassDescriptor();
+    TerminalNodeStrings getClazz();
 
-    void setClass(TerminalNodeStrings setClass);
+    void setClazz(TerminalNodeStrings setClazz);
 
     // optional: ?
     @Relation("HAS_IDENTIFIER")
@@ -123,7 +123,7 @@ public interface SingleExpression extends TypeScriptGen {
     void setNestedTypeGeneric(NestedTypeGeneric setNestedTypeGeneric);
 
     @Relation("HAS_NEW")
-    TerminalNodeStrings getNewDescriptor();
+    TerminalNodeStrings getNew();
 
     void setNew(TerminalNodeStrings setNew);
 
@@ -149,7 +149,7 @@ public interface SingleExpression extends TypeScriptGen {
     void setDelete(TerminalNodeStrings setDelete);
 
     @Relation("HAS_VOID")
-    TerminalNodeStrings getVoidDescriptor();
+    TerminalNodeStrings getVoid();
 
     void setVoid(TerminalNodeStrings setVoid);
 
@@ -182,7 +182,7 @@ public interface SingleExpression extends TypeScriptGen {
     // unhandled TerminalAST token: '<='
     // unhandled TerminalAST token: '>='
     @Relation("HAS_INSTANCEOF")
-    TerminalNodeStrings getInstanceofDescriptor();
+    TerminalNodeStrings getInstanceof();
 
     void setInstanceof(TerminalNodeStrings setInstanceof);
 
@@ -234,13 +234,13 @@ public interface SingleExpression extends TypeScriptGen {
     void setYieldStatement(YieldStatement setYieldStatement);
 
     @Relation("HAS_THIS")
-    TerminalNodeStrings getThisDescriptor();
+    TerminalNodeStrings getThis();
 
     void setThis(TerminalNodeStrings setThis);
 
     // optional: ?
     @Relation("HAS_SUPER")
-    TerminalNodeStrings getSuperDescriptor();
+    TerminalNodeStrings getSuper();
 
     void setSuper(TerminalNodeStrings setSuper);
 

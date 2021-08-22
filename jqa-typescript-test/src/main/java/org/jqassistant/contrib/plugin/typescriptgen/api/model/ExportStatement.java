@@ -35,7 +35,7 @@ public interface ExportStatement extends TypeScriptGen {
 
     // optional: ?
     @Relation("HAS_DEFAULT")
-    TerminalNodeStrings getDefaultDescriptor();
+    TerminalNodeStrings getDefault();
 
     void setDefault(TerminalNodeStrings setDefault);
 

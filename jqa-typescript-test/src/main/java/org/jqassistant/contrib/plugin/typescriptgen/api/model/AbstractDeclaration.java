@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface AbstractDeclaration extends TypeScriptGen {
 
     @Relation("HAS_ABSTRACT")
-    TerminalNodeStrings getAbstractDescriptor();
+    TerminalNodeStrings getAbstract();
 
     void setAbstract(TerminalNodeStrings setAbstract);
 
@@ -48,7 +48,7 @@ public interface AbstractDeclaration extends TypeScriptGen {
 
     void setVariableStatement(VariableStatement setVariableStatement);
 
-    // unhandled ast: eos
+    // unhandled ast: Eos
     @Relation("HAS_TEXT")
     String getText();
 

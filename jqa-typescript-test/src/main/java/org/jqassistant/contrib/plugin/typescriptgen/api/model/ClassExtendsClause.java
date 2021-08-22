@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ClassExtendsClause extends TypeScriptGen {
 
     @Relation("HAS_EXTENDS")
-    TerminalNodeStrings getExtendsDescriptor();
+    TerminalNodeStrings getExtends();
 
     void setExtends(TerminalNodeStrings setExtends);
 

@@ -29,7 +29,7 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface DefaultClause extends TypeScriptGen {
 
     @Relation("HAS_DEFAULT")
-    TerminalNodeStrings getDefaultDescriptor();
+    TerminalNodeStrings getDefault();
 
     void setDefault(TerminalNodeStrings setDefault);
 

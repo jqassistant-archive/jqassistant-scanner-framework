@@ -14,27 +14,27 @@ import java.util.stream.Collectors;
 public class JqassistantPluginGenerator {
 
 
-    public static JqassistantPlugin generatePlugin(String name, Map<String, CompilationUnit> stringCompilationUnitMap) {
+    public static JqassistantPlugin generatePlugin(AstName name, Map<AstName, CompilationUnit> compilationUnitMap) {
         JqassistantPlugin jqassistantPlugin = new JqassistantPlugin();
 
-        jqassistantPlugin.setName(name);
+        jqassistantPlugin.setName(name.getName());
         jqassistantPlugin.setId("jqa.plugin.generated." + name.toLowerCase());
         jqassistantPlugin.setDescription("Provides a generated scanner for " + name + ".");
-        jqassistantPlugin.setModel(generateModel(stringCompilationUnitMap));
-        jqassistantPlugin.setScope(generateScope(name, stringCompilationUnitMap));
-        jqassistantPlugin.setScanner(generateScanner(name, stringCompilationUnitMap));
+        jqassistantPlugin.setModel(generateModel(compilationUnitMap));
+//        jqassistantPlugin.setScope(generateScope(name, compilationUnitMap));
+        jqassistantPlugin.setScanner(generateScanner(name, compilationUnitMap));
 
         return jqassistantPlugin;
     }
 
-    private static ClassListType generateScope(String name, Map<String, CompilationUnit> stringCompilationUnitMap) {
+    private static ClassListType generateScope(String name, Map<String, CompilationUnit> compilationUnitMap) {
         ClassListType classListType = new ClassListType();
         List<String> clazz = classListType.getClazz();
         clazz.add("org.jqassistant.contrib.plugin." + name.toLowerCase() + ".api.scanner." + name + "Scope");
         return classListType;
     }
 
-    private static IdClassListType generateScanner(String name, Map<String, CompilationUnit> stringCompilationUnitMap) {
+    private static IdClassListType generateScanner(AstName name, Map<AstName, CompilationUnit> compilationUnitMap) {
         IdClassListType idClassListType = new IdClassListType();
         List<IdClassType> clazz = idClassListType.getClazz();
 
@@ -45,11 +45,11 @@ public class JqassistantPluginGenerator {
         return idClassListType;
     }
 
-    private static ClassListType generateModel(Map<String, CompilationUnit> stringCompilationUnitMap) {
+    private static ClassListType generateModel(Map<AstName, CompilationUnit> compilationUnitMap) {
         ClassListType classListType = new ClassListType();
         List<String> clazz = classListType.getClazz();
 
-        clazz.addAll(stringCompilationUnitMap.entrySet()
+        clazz.addAll(compilationUnitMap.entrySet()
                 .stream()
                 .map(stringCompilationUnitEntry ->
                         stringCompilationUnitEntry.getValue().getPackageDeclaration().orElseThrow().getName().asString() + "." + stringCompilationUnitEntry.getKey())
