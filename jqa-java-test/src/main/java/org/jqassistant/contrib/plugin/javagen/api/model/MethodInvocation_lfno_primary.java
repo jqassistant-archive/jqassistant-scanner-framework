@@ -35,32 +35,32 @@ public interface MethodInvocation_lfno_primary extends JavaGen {
     @Relation("HAS_METHOD_NAME")
     MethodName getMethodName();
 
-    void setMethodName(MethodName methodName);
+    void setMethodName(MethodName setMethodName);
 
     // unhandled TerminalAST token: '('
     // optional: ?
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
-    void setArgumentList(ArgumentList argumentList);
+    void setArgumentList(ArgumentList setArgumentList);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '.'
     // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: '('
     // optional: ?
@@ -68,7 +68,7 @@ public interface MethodInvocation_lfno_primary extends JavaGen {
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
-    void setExpressionName(ExpressionName expressionName);
+    void setExpressionName(ExpressionName setExpressionName);
 
     // unhandled TerminalAST token: '.'
     // optional: ?
@@ -91,5 +91,5 @@ public interface MethodInvocation_lfno_primary extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -39,5 +39,5 @@ public interface AnnotationTypeBody extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

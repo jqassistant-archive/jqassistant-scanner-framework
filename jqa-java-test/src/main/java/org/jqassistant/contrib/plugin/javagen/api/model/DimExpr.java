@@ -38,11 +38,11 @@ public interface DimExpr extends JavaGen {
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ']'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

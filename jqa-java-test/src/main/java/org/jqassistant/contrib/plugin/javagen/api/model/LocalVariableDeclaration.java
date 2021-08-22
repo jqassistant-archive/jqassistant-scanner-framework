@@ -37,15 +37,15 @@ public interface LocalVariableDeclaration extends JavaGen {
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
 
-    void setUnannType(UnannType unannType);
+    void setUnannType(UnannType setUnannType);
 
     @Relation("HAS_VARIABLE_DECLARATOR_LIST")
     VariableDeclaratorList getVariableDeclaratorList();
 
-    void setVariableDeclaratorList(VariableDeclaratorList variableDeclaratorList);
+    void setVariableDeclaratorList(VariableDeclaratorList setVariableDeclaratorList);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

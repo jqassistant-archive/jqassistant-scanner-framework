@@ -32,19 +32,19 @@ public interface DoStatement extends JavaGen {
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 
-    void setStatement(Statement statement);
+    void setStatement(Statement setStatement);
 
     // unhandled TerminalAST token: 'while'
     // unhandled TerminalAST token: '('
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

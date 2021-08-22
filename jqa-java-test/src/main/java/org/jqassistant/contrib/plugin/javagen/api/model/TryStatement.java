@@ -34,27 +34,27 @@ public interface TryStatement extends JavaGen {
     @Relation("HAS_BLOCK")
     Block getBlock();
 
-    void setBlock(Block block);
+    void setBlock(Block setBlock);
 
     @Relation("HAS_CATCHES")
     Catches getCatches();
 
-    void setCatches(Catches catches);
+    void setCatches(Catches setCatches);
 
     // unhandled TerminalAST token: 'try'
     // optional: ?
-    @Relation("HAS_FINALLY_")
+    @Relation("HAS_FINALLY")
     Finally_ getFinally_();
 
-    void setFinally_(Finally_ finally_);
+    void setFinally_(Finally_ setFinally_);
 
     @Relation("HAS_TRY_WITH_RESOURCES_STATEMENT")
     TryWithResourcesStatement getTryWithResourcesStatement();
 
-    void setTryWithResourcesStatement(TryWithResourcesStatement tryWithResourcesStatement);
+    void setTryWithResourcesStatement(TryWithResourcesStatement setTryWithResourcesStatement);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

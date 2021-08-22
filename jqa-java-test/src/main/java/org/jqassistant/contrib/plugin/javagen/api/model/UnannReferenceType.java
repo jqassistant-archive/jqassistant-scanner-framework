@@ -33,20 +33,20 @@ public interface UnannReferenceType extends JavaGen {
     @Relation("HAS_UNANN_CLASS_OR_INTERFACE_TYPE")
     UnannClassOrInterfaceType getUnannClassOrInterfaceType();
 
-    void setUnannClassOrInterfaceType(UnannClassOrInterfaceType unannClassOrInterfaceType);
+    void setUnannClassOrInterfaceType(UnannClassOrInterfaceType setUnannClassOrInterfaceType);
 
     @Relation("HAS_UNANN_TYPE_VARIABLE")
     UnannTypeVariable getUnannTypeVariable();
 
-    void setUnannTypeVariable(UnannTypeVariable unannTypeVariable);
+    void setUnannTypeVariable(UnannTypeVariable setUnannTypeVariable);
 
     @Relation("HAS_UNANN_ARRAY_TYPE")
     UnannArrayType getUnannArrayType();
 
-    void setUnannArrayType(UnannArrayType unannArrayType);
+    void setUnannArrayType(UnannArrayType setUnannArrayType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

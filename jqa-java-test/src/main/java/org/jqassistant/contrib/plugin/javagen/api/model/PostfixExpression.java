@@ -37,12 +37,12 @@ public interface PostfixExpression extends JavaGen {
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
-    void setPrimary(Primary primary);
+    void setPrimary(Primary setPrimary);
 
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
-    void setExpressionName(ExpressionName expressionName);
+    void setExpressionName(ExpressionName setExpressionName);
 
     @Relation("HAS_POST_INCREMENT_EXPRESSION_LF_POSTFIX_EXPRESSION")
     List<PostIncrementExpression_lf_postfixExpression> getPostIncrementExpression_lf_postfixExpression();
@@ -57,5 +57,5 @@ public interface PostfixExpression extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

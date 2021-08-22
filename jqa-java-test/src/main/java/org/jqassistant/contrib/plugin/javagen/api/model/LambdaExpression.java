@@ -31,16 +31,16 @@ public interface LambdaExpression extends JavaGen {
     @Relation("HAS_LAMBDA_PARAMETERS")
     LambdaParameters getLambdaParameters();
 
-    void setLambdaParameters(LambdaParameters lambdaParameters);
+    void setLambdaParameters(LambdaParameters setLambdaParameters);
 
     // unhandled TerminalAST token: '->'
     @Relation("HAS_LAMBDA_BODY")
     LambdaBody getLambdaBody();
 
-    void setLambdaBody(LambdaBody lambdaBody);
+    void setLambdaBody(LambdaBody setLambdaBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

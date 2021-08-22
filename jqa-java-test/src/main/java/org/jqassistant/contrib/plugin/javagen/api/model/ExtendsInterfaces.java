@@ -32,10 +32,10 @@ public interface ExtendsInterfaces extends JavaGen {
     @Relation("HAS_INTERFACE_TYPE_LIST")
     InterfaceTypeList getInterfaceTypeList();
 
-    void setInterfaceTypeList(InterfaceTypeList interfaceTypeList);
+    void setInterfaceTypeList(InterfaceTypeList setInterfaceTypeList);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

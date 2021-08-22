@@ -33,17 +33,17 @@ public interface ConstructorBody extends JavaGen {
     @Relation("HAS_EXPLICIT_CONSTRUCTOR_INVOCATION")
     ExplicitConstructorInvocation getExplicitConstructorInvocation();
 
-    void setExplicitConstructorInvocation(ExplicitConstructorInvocation explicitConstructorInvocation);
+    void setExplicitConstructorInvocation(ExplicitConstructorInvocation setExplicitConstructorInvocation);
 
     // optional: ?
     @Relation("HAS_BLOCK_STATEMENTS")
     BlockStatements getBlockStatements();
 
-    void setBlockStatements(BlockStatements blockStatements);
+    void setBlockStatements(BlockStatements setBlockStatements);
 
     // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

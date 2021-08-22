@@ -32,15 +32,15 @@ public interface Expression extends JavaGen {
     @Relation("HAS_LAMBDA_EXPRESSION")
     LambdaExpression getLambdaExpression();
 
-    void setLambdaExpression(LambdaExpression lambdaExpression);
+    void setLambdaExpression(LambdaExpression setLambdaExpression);
 
     @Relation("HAS_ASSIGNMENT_EXPRESSION")
     AssignmentExpression getAssignmentExpression();
 
-    void setAssignmentExpression(AssignmentExpression assignmentExpression);
+    void setAssignmentExpression(AssignmentExpression setAssignmentExpression);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -38,11 +38,11 @@ public interface PackageDeclaration extends JavaGen {
     @Relation("HAS_PACKAGE_NAME")
     PackageName getPackageName();
 
-    void setPackageName(PackageName packageName);
+    void setPackageName(PackageName setPackageName);
 
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -39,10 +39,10 @@ public interface Wildcard extends JavaGen {
     @Relation("HAS_WILDCARD_BOUNDS")
     WildcardBounds getWildcardBounds();
 
-    void setWildcardBounds(WildcardBounds wildcardBounds);
+    void setWildcardBounds(WildcardBounds setWildcardBounds);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

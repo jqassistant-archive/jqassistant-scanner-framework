@@ -33,20 +33,20 @@ public interface ElementValue extends JavaGen {
     @Relation("HAS_CONDITIONAL_EXPRESSION")
     ConditionalExpression getConditionalExpression();
 
-    void setConditionalExpression(ConditionalExpression conditionalExpression);
+    void setConditionalExpression(ConditionalExpression setConditionalExpression);
 
     @Relation("HAS_ELEMENT_VALUE_ARRAY_INITIALIZER")
     ElementValueArrayInitializer getElementValueArrayInitializer();
 
-    void setElementValueArrayInitializer(ElementValueArrayInitializer elementValueArrayInitializer);
+    void setElementValueArrayInitializer(ElementValueArrayInitializer setElementValueArrayInitializer);
 
     @Relation("HAS_ANNOTATION")
     Annotation getAnnotation();
 
-    void setAnnotation(Annotation annotation);
+    void setAnnotation(Annotation setAnnotation);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

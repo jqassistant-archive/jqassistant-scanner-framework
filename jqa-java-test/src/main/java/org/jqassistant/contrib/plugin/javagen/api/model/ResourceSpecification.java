@@ -32,7 +32,7 @@ public interface ResourceSpecification extends JavaGen {
     @Relation("HAS_RESOURCE_LIST")
     ResourceList getResourceList();
 
-    void setResourceList(ResourceList resourceList);
+    void setResourceList(ResourceList setResourceList);
 
     // optional: ?
     // unhandled TerminalAST token: ';'
@@ -40,5 +40,5 @@ public interface ResourceSpecification extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

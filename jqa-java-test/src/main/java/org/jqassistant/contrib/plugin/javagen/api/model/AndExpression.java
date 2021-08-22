@@ -32,16 +32,16 @@ public interface AndExpression extends JavaGen {
     @Relation("HAS_EQUALITY_EXPRESSION")
     EqualityExpression getEqualityExpression();
 
-    void setEqualityExpression(EqualityExpression equalityExpression);
+    void setEqualityExpression(EqualityExpression setEqualityExpression);
 
     @Relation("HAS_AND_EXPRESSION")
     AndExpression getAndExpression();
 
-    void setAndExpression(AndExpression andExpression);
+    void setAndExpression(AndExpression setAndExpression);
 
     // unhandled TerminalAST token: '&'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

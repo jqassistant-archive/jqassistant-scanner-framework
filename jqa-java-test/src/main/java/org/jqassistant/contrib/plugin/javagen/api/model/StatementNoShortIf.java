@@ -35,30 +35,30 @@ public interface StatementNoShortIf extends JavaGen {
     @Relation("HAS_STATEMENT_WITHOUT_TRAILING_SUBSTATEMENT")
     StatementWithoutTrailingSubstatement getStatementWithoutTrailingSubstatement();
 
-    void setStatementWithoutTrailingSubstatement(StatementWithoutTrailingSubstatement statementWithoutTrailingSubstatement);
+    void setStatementWithoutTrailingSubstatement(StatementWithoutTrailingSubstatement setStatementWithoutTrailingSubstatement);
 
     @Relation("HAS_LABELED_STATEMENT_NO_SHORT_IF")
     LabeledStatementNoShortIf getLabeledStatementNoShortIf();
 
-    void setLabeledStatementNoShortIf(LabeledStatementNoShortIf labeledStatementNoShortIf);
+    void setLabeledStatementNoShortIf(LabeledStatementNoShortIf setLabeledStatementNoShortIf);
 
     @Relation("HAS_IF_THEN_ELSE_STATEMENT_NO_SHORT_IF")
     IfThenElseStatementNoShortIf getIfThenElseStatementNoShortIf();
 
-    void setIfThenElseStatementNoShortIf(IfThenElseStatementNoShortIf ifThenElseStatementNoShortIf);
+    void setIfThenElseStatementNoShortIf(IfThenElseStatementNoShortIf setIfThenElseStatementNoShortIf);
 
     @Relation("HAS_WHILE_STATEMENT_NO_SHORT_IF")
     WhileStatementNoShortIf getWhileStatementNoShortIf();
 
-    void setWhileStatementNoShortIf(WhileStatementNoShortIf whileStatementNoShortIf);
+    void setWhileStatementNoShortIf(WhileStatementNoShortIf setWhileStatementNoShortIf);
 
     @Relation("HAS_FOR_STATEMENT_NO_SHORT_IF")
     ForStatementNoShortIf getForStatementNoShortIf();
 
-    void setForStatementNoShortIf(ForStatementNoShortIf forStatementNoShortIf);
+    void setForStatementNoShortIf(ForStatementNoShortIf setForStatementNoShortIf);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

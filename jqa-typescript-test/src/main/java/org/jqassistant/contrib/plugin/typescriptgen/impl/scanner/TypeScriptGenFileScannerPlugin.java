@@ -16,16 +16,11 @@ import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
 import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGenFileDescriptor;
 import org.jqassistant.contrib.plugin.typescriptgen.api.model.Program;
 import org.jqassistant.contrib.plugin.typescriptgen.util.mapper.MainMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
 
 @Requires(FileDescriptor.class)
 public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, TypeScriptGen> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TypeScriptGenFileScannerPlugin.class);
 
     @Override
     public boolean accepts(FileResource item, String path, Scope scope) {
@@ -34,26 +29,17 @@ public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileRe
 
     @Override
     public TypeScriptGenFileDescriptor scan(FileResource item, String path, Scope scope, Scanner scanner) throws IOException {
-        LOGGER.info(new Date() + " - Running TypeScriptGenFileScannerPlugin");
-
         final ScannerContext scannerContext = scanner.getContext();
         Store store = scannerContext.getStore();
         TypeScriptGenFileDescriptor fileDescriptor = store.addDescriptorType(scannerContext.getCurrentDescriptor(), TypeScriptGenFileDescriptor.class);
 
-        final InputStream inputStream = item.createStream();
-        final TypeScriptLexer lexer = new TypeScriptLexer(CharStreams.fromStream(inputStream));
-        final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final TypeScriptParser parser = new TypeScriptParser(tokenStream);
+        final TypeScriptLexer lexer = new TypeScriptLexer(CharStreams.fromStream(item.createStream()));
+        final TypeScriptParser parser = new TypeScriptParser(new CommonTokenStream(lexer));
 
-        LOGGER.info(new Date() + " - getting Parser Context");
         TypeScriptParser.ProgramContext context = parser.program(); //TODO: find root node and how it was determined
-
-        LOGGER.info(new Date() + " - Starting Mapper for Parser Context");
-
         Program rootDescriptor = MainMapper.INSTANCE.map(scannerContext, context);
         fileDescriptor.setProgram(rootDescriptor);
 
-        LOGGER.info(new Date() + " - Done");
         return fileDescriptor;
     }
 }

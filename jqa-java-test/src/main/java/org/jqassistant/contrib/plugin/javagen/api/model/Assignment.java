@@ -31,20 +31,20 @@ public interface Assignment extends JavaGen {
     @Relation("HAS_LEFT_HAND_SIDE")
     LeftHandSide getLeftHandSide();
 
-    void setLeftHandSide(LeftHandSide leftHandSide);
+    void setLeftHandSide(LeftHandSide setLeftHandSide);
 
     @Relation("HAS_ASSIGNMENT_OPERATOR")
     AssignmentOperator getAssignmentOperator();
 
-    void setAssignmentOperator(AssignmentOperator assignmentOperator);
+    void setAssignmentOperator(AssignmentOperator setAssignmentOperator);
 
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -39,27 +39,27 @@ public interface EnhancedForStatementNoShortIf extends JavaGen {
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
 
-    void setUnannType(UnannType unannType);
+    void setUnannType(UnannType setUnannType);
 
     @Relation("HAS_VARIABLE_DECLARATOR_ID")
     VariableDeclaratorId getVariableDeclaratorId();
 
-    void setVariableDeclaratorId(VariableDeclaratorId variableDeclaratorId);
+    void setVariableDeclaratorId(VariableDeclaratorId setVariableDeclaratorId);
 
     // unhandled TerminalAST token: ':'
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_STATEMENT_NO_SHORT_IF")
     StatementNoShortIf getStatementNoShortIf();
 
-    void setStatementNoShortIf(StatementNoShortIf statementNoShortIf);
+    void setStatementNoShortIf(StatementNoShortIf setStatementNoShortIf);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -38,21 +38,21 @@ public interface EnumDeclaration extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     @Relation("HAS_SUPERINTERFACES")
     Superinterfaces getSuperinterfaces();
 
-    void setSuperinterfaces(Superinterfaces superinterfaces);
+    void setSuperinterfaces(Superinterfaces setSuperinterfaces);
 
     @Relation("HAS_ENUM_BODY")
     EnumBody getEnumBody();
 
-    void setEnumBody(EnumBody enumBody);
+    void setEnumBody(EnumBody setEnumBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

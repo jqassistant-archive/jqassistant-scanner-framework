@@ -38,33 +38,33 @@ public interface NormalClassDeclaration extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
-    void setTypeParameters(TypeParameters typeParameters);
+    void setTypeParameters(TypeParameters setTypeParameters);
 
     // optional: ?
     @Relation("HAS_SUPERCLASS")
     Superclass getSuperclass();
 
-    void setSuperclass(Superclass superclass);
+    void setSuperclass(Superclass setSuperclass);
 
     // optional: ?
     @Relation("HAS_SUPERINTERFACES")
     Superinterfaces getSuperinterfaces();
 
-    void setSuperinterfaces(Superinterfaces superinterfaces);
+    void setSuperinterfaces(Superinterfaces setSuperinterfaces);
 
     @Relation("HAS_CLASS_BODY")
     ClassBody getClassBody();
 
-    void setClassBody(ClassBody classBody);
+    void setClassBody(ClassBody setClassBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

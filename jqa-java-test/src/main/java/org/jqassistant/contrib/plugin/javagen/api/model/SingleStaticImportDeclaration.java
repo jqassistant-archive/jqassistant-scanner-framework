@@ -33,17 +33,17 @@ public interface SingleStaticImportDeclaration extends JavaGen {
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '.'
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

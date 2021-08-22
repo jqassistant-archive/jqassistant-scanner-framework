@@ -38,23 +38,23 @@ public interface ClassType extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     @Relation("HAS_CLASS_OR_INTERFACE_TYPE")
     ClassOrInterfaceType getClassOrInterfaceType();
 
-    void setClassOrInterfaceType(ClassOrInterfaceType classOrInterfaceType);
+    void setClassOrInterfaceType(ClassOrInterfaceType setClassOrInterfaceType);
 
     // unhandled TerminalAST token: '.'
     // optional: ?
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

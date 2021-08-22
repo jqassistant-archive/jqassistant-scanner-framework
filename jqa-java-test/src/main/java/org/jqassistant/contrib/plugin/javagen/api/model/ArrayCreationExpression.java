@@ -35,35 +35,35 @@ public interface ArrayCreationExpression extends JavaGen {
     @Relation("HAS_PRIMITIVE_TYPE")
     PrimitiveType getPrimitiveType();
 
-    void setPrimitiveType(PrimitiveType primitiveType);
+    void setPrimitiveType(PrimitiveType setPrimitiveType);
 
     @Relation("HAS_DIM_EXPRS")
     DimExprs getDimExprs();
 
-    void setDimExprs(DimExprs dimExprs);
+    void setDimExprs(DimExprs setDimExprs);
 
     // optional: ?
     @Relation("HAS_DIMS")
     Dims getDims();
 
-    void setDims(Dims dims);
+    void setDims(Dims setDims);
 
     // unhandled TerminalAST token: 'new'
     @Relation("HAS_CLASS_OR_INTERFACE_TYPE")
     ClassOrInterfaceType getClassOrInterfaceType();
 
-    void setClassOrInterfaceType(ClassOrInterfaceType classOrInterfaceType);
+    void setClassOrInterfaceType(ClassOrInterfaceType setClassOrInterfaceType);
 
     // optional: ?
     // unhandled TerminalAST token: 'new'
     @Relation("HAS_ARRAY_INITIALIZER")
     ArrayInitializer getArrayInitializer();
 
-    void setArrayInitializer(ArrayInitializer arrayInitializer);
+    void setArrayInitializer(ArrayInitializer setArrayInitializer);
 
     // unhandled TerminalAST token: 'new'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

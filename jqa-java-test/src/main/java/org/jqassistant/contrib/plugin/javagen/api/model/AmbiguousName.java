@@ -32,16 +32,16 @@ public interface AmbiguousName extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     @Relation("HAS_AMBIGUOUS_NAME")
     AmbiguousName getAmbiguousName();
 
-    void setAmbiguousName(AmbiguousName ambiguousName);
+    void setAmbiguousName(AmbiguousName setAmbiguousName);
 
     // unhandled TerminalAST token: '.'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

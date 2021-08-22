@@ -32,23 +32,23 @@ public interface ConstructorDeclarator extends JavaGen {
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
-    void setTypeParameters(TypeParameters typeParameters);
+    void setTypeParameters(TypeParameters setTypeParameters);
 
     @Relation("HAS_SIMPLE_TYPE_NAME")
     SimpleTypeName getSimpleTypeName();
 
-    void setSimpleTypeName(SimpleTypeName simpleTypeName);
+    void setSimpleTypeName(SimpleTypeName setSimpleTypeName);
 
     // unhandled TerminalAST token: '('
     // optional: ?
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 
-    void setFormalParameterList(FormalParameterList formalParameterList);
+    void setFormalParameterList(FormalParameterList setFormalParameterList);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -32,10 +32,10 @@ public interface Throws_ extends JavaGen {
     @Relation("HAS_EXCEPTION_TYPE_LIST")
     ExceptionTypeList getExceptionTypeList();
 
-    void setExceptionTypeList(ExceptionTypeList exceptionTypeList);
+    void setExceptionTypeList(ExceptionTypeList setExceptionTypeList);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

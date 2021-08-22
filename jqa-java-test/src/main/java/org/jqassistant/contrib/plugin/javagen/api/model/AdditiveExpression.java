@@ -33,17 +33,17 @@ public interface AdditiveExpression extends JavaGen {
     @Relation("HAS_MULTIPLICATIVE_EXPRESSION")
     MultiplicativeExpression getMultiplicativeExpression();
 
-    void setMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression);
+    void setMultiplicativeExpression(MultiplicativeExpression setMultiplicativeExpression);
 
     @Relation("HAS_ADDITIVE_EXPRESSION")
     AdditiveExpression getAdditiveExpression();
 
-    void setAdditiveExpression(AdditiveExpression additiveExpression);
+    void setAdditiveExpression(AdditiveExpression setAdditiveExpression);
 
     // unhandled TerminalAST token: '+'
     // unhandled TerminalAST token: '-'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

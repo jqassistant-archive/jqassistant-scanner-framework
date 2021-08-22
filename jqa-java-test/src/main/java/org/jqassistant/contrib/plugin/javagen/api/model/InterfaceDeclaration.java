@@ -32,15 +32,15 @@ public interface InterfaceDeclaration extends JavaGen {
     @Relation("HAS_NORMAL_INTERFACE_DECLARATION")
     NormalInterfaceDeclaration getNormalInterfaceDeclaration();
 
-    void setNormalInterfaceDeclaration(NormalInterfaceDeclaration normalInterfaceDeclaration);
+    void setNormalInterfaceDeclaration(NormalInterfaceDeclaration setNormalInterfaceDeclaration);
 
     @Relation("HAS_ANNOTATION_TYPE_DECLARATION")
     AnnotationTypeDeclaration getAnnotationTypeDeclaration();
 
-    void setAnnotationTypeDeclaration(AnnotationTypeDeclaration annotationTypeDeclaration);
+    void setAnnotationTypeDeclaration(AnnotationTypeDeclaration setAnnotationTypeDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

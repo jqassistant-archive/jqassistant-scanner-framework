@@ -32,11 +32,11 @@ public interface TypeArguments extends JavaGen {
     @Relation("HAS_TYPE_ARGUMENT_LIST")
     TypeArgumentList getTypeArgumentList();
 
-    void setTypeArgumentList(TypeArgumentList typeArgumentList);
+    void setTypeArgumentList(TypeArgumentList setTypeArgumentList);
 
     // unhandled TerminalAST token: '>'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

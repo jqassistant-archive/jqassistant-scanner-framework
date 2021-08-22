@@ -37,15 +37,15 @@ public interface FormalParameter extends JavaGen {
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
 
-    void setUnannType(UnannType unannType);
+    void setUnannType(UnannType setUnannType);
 
     @Relation("HAS_VARIABLE_DECLARATOR_ID")
     VariableDeclaratorId getVariableDeclaratorId();
 
-    void setVariableDeclaratorId(VariableDeclaratorId variableDeclaratorId);
+    void setVariableDeclaratorId(VariableDeclaratorId setVariableDeclaratorId);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

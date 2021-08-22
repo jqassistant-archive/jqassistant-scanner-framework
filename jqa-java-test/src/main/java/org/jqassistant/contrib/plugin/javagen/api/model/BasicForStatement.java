@@ -34,30 +34,30 @@ public interface BasicForStatement extends JavaGen {
     @Relation("HAS_FOR_INIT")
     ForInit getForInit();
 
-    void setForInit(ForInit forInit);
+    void setForInit(ForInit setForInit);
 
     // unhandled TerminalAST token: ';'
     // optional: ?
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ';'
     // optional: ?
     @Relation("HAS_FOR_UPDATE")
     ForUpdate getForUpdate();
 
-    void setForUpdate(ForUpdate forUpdate);
+    void setForUpdate(ForUpdate setForUpdate);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 
-    void setStatement(Statement statement);
+    void setStatement(Statement setStatement);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

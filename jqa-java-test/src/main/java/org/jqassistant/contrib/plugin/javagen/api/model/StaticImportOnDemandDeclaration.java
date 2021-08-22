@@ -33,7 +33,7 @@ public interface StaticImportOnDemandDeclaration extends JavaGen {
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: '*'
@@ -41,5 +41,5 @@ public interface StaticImportOnDemandDeclaration extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

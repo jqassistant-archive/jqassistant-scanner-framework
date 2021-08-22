@@ -37,15 +37,15 @@ public interface CatchFormalParameter extends JavaGen {
     @Relation("HAS_CATCH_TYPE")
     CatchType getCatchType();
 
-    void setCatchType(CatchType catchType);
+    void setCatchType(CatchType setCatchType);
 
     @Relation("HAS_VARIABLE_DECLARATOR_ID")
     VariableDeclaratorId getVariableDeclaratorId();
 
-    void setVariableDeclaratorId(VariableDeclaratorId variableDeclaratorId);
+    void setVariableDeclaratorId(VariableDeclaratorId setVariableDeclaratorId);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

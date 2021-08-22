@@ -32,27 +32,27 @@ public interface TryWithResourcesStatement extends JavaGen {
     @Relation("HAS_RESOURCE_SPECIFICATION")
     ResourceSpecification getResourceSpecification();
 
-    void setResourceSpecification(ResourceSpecification resourceSpecification);
+    void setResourceSpecification(ResourceSpecification setResourceSpecification);
 
     @Relation("HAS_BLOCK")
     Block getBlock();
 
-    void setBlock(Block block);
+    void setBlock(Block setBlock);
 
     // optional: ?
     @Relation("HAS_CATCHES")
     Catches getCatches();
 
-    void setCatches(Catches catches);
+    void setCatches(Catches setCatches);
 
     // optional: ?
-    @Relation("HAS_FINALLY_")
+    @Relation("HAS_FINALLY")
     Finally_ getFinally_();
 
-    void setFinally_(Finally_ finally_);
+    void setFinally_(Finally_ setFinally_);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

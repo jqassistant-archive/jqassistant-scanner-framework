@@ -33,12 +33,12 @@ public interface AnnotationTypeElementModifier extends JavaGen {
     @Relation("HAS_ANNOTATION")
     Annotation getAnnotation();
 
-    void setAnnotation(Annotation annotation);
+    void setAnnotation(Annotation setAnnotation);
 
     // unhandled TerminalAST token: 'public'
     // unhandled TerminalAST token: 'abstract'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

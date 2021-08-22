@@ -246,9 +246,6 @@
         <class>org.jqassistant.contrib.plugin.javagen.api.model.Wildcard</class>
         <class>org.jqassistant.contrib.plugin.javagen.api.model.WildcardBounds</class>
     </model>
-    <scope>
-        <class>org.jqassistant.contrib.plugin.javagen.api.scanner.JavaGenScope</class>
-    </scope>
     <scanner>
         <class>org.jqassistant.contrib.plugin.javagen.impl.scanner.JavaGenFileScannerPlugin</class>
     </scanner>

@@ -35,7 +35,7 @@ public interface ExplicitConstructorInvocation extends JavaGen {
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     // unhandled TerminalAST token: 'this'
     // unhandled TerminalAST token: '('
@@ -43,7 +43,7 @@ public interface ExplicitConstructorInvocation extends JavaGen {
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
-    void setArgumentList(ArgumentList argumentList);
+    void setArgumentList(ArgumentList setArgumentList);
 
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: ';'
@@ -56,7 +56,7 @@ public interface ExplicitConstructorInvocation extends JavaGen {
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
-    void setExpressionName(ExpressionName expressionName);
+    void setExpressionName(ExpressionName setExpressionName);
 
     // unhandled TerminalAST token: '.'
     // optional: ?
@@ -68,7 +68,7 @@ public interface ExplicitConstructorInvocation extends JavaGen {
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
-    void setPrimary(Primary primary);
+    void setPrimary(Primary setPrimary);
 
     // unhandled TerminalAST token: '.'
     // optional: ?
@@ -80,5 +80,5 @@ public interface ExplicitConstructorInvocation extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

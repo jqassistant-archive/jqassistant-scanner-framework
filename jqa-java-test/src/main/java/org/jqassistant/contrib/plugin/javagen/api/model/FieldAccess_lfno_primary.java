@@ -34,12 +34,12 @@ public interface FieldAccess_lfno_primary extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'super'
@@ -47,5 +47,5 @@ public interface FieldAccess_lfno_primary extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

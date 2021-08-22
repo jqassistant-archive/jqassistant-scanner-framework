@@ -33,11 +33,11 @@ public interface WildcardBounds extends JavaGen {
     @Relation("HAS_REFERENCE_TYPE")
     ReferenceType getReferenceType();
 
-    void setReferenceType(ReferenceType referenceType);
+    void setReferenceType(ReferenceType setReferenceType);
 
     // unhandled TerminalAST token: 'super'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

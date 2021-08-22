@@ -19,7 +19,7 @@ public class Main {
 //    public static final String parserName = "Java8";
 //    public static final String source = "antlr-to-jqassistant/";
 //    public static final String destination = "jqa-java-test/";
-//    public final static String entryNode = "CompilationUnit"; //TODO: HOW CAN THIS BE DYNAMICALLY DETERMINED?!?!?!
+//    public final static String entryNode = "CompilationUnit"; //TODO: Consider finding "unused" parser rules that contain EOF
 
     public static final String id = "TypeScriptGen";
     public static final String parserName = "TypeScript";

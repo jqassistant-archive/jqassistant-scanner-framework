@@ -31,11 +31,11 @@ public interface ExpressionStatement extends JavaGen {
     @Relation("HAS_STATEMENT_EXPRESSION")
     StatementExpression getStatementExpression();
 
-    void setStatementExpression(StatementExpression statementExpression);
+    void setStatementExpression(StatementExpression setStatementExpression);
 
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -33,23 +33,23 @@ public interface MethodHeader extends JavaGen {
     @Relation("HAS_RESULT")
     Result getResult();
 
-    void setResult(Result result);
+    void setResult(Result setResult);
 
     @Relation("HAS_METHOD_DECLARATOR")
     MethodDeclarator getMethodDeclarator();
 
-    void setMethodDeclarator(MethodDeclarator methodDeclarator);
+    void setMethodDeclarator(MethodDeclarator setMethodDeclarator);
 
     // optional: ?
-    @Relation("HAS_THROWS_")
+    @Relation("HAS_THROWS")
     Throws_ getThrows_();
 
-    void setThrows_(Throws_ throws_);
+    void setThrows_(Throws_ setThrows_);
 
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
-    void setTypeParameters(TypeParameters typeParameters);
+    void setTypeParameters(TypeParameters setTypeParameters);
 
     @Relation("HAS_ANNOTATION")
     List<Annotation> getAnnotation();
@@ -60,5 +60,5 @@ public interface MethodHeader extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -31,11 +31,11 @@ public interface PostIncrementExpression extends JavaGen {
     @Relation("HAS_POSTFIX_EXPRESSION")
     PostfixExpression getPostfixExpression();
 
-    void setPostfixExpression(PostfixExpression postfixExpression);
+    void setPostfixExpression(PostfixExpression setPostfixExpression);
 
     // unhandled TerminalAST token: '++'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

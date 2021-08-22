@@ -35,30 +35,30 @@ public interface PrimaryNoNewArray_lf_primary extends JavaGen {
     @Relation("HAS_CLASS_INSTANCE_CREATION_EXPRESSION_LF_PRIMARY")
     ClassInstanceCreationExpression_lf_primary getClassInstanceCreationExpression_lf_primary();
 
-    void setClassInstanceCreationExpression_lf_primary(ClassInstanceCreationExpression_lf_primary classInstanceCreationExpression_lf_primary);
+    void setClassInstanceCreationExpression_lf_primary(ClassInstanceCreationExpression_lf_primary setClassInstanceCreationExpression_lf_primary);
 
     @Relation("HAS_FIELD_ACCESS_LF_PRIMARY")
     FieldAccess_lf_primary getFieldAccess_lf_primary();
 
-    void setFieldAccess_lf_primary(FieldAccess_lf_primary fieldAccess_lf_primary);
+    void setFieldAccess_lf_primary(FieldAccess_lf_primary setFieldAccess_lf_primary);
 
     @Relation("HAS_ARRAY_ACCESS_LF_PRIMARY")
     ArrayAccess_lf_primary getArrayAccess_lf_primary();
 
-    void setArrayAccess_lf_primary(ArrayAccess_lf_primary arrayAccess_lf_primary);
+    void setArrayAccess_lf_primary(ArrayAccess_lf_primary setArrayAccess_lf_primary);
 
     @Relation("HAS_METHOD_INVOCATION_LF_PRIMARY")
     MethodInvocation_lf_primary getMethodInvocation_lf_primary();
 
-    void setMethodInvocation_lf_primary(MethodInvocation_lf_primary methodInvocation_lf_primary);
+    void setMethodInvocation_lf_primary(MethodInvocation_lf_primary setMethodInvocation_lf_primary);
 
     @Relation("HAS_METHOD_REFERENCE_LF_PRIMARY")
     MethodReference_lf_primary getMethodReference_lf_primary();
 
-    void setMethodReference_lf_primary(MethodReference_lf_primary methodReference_lf_primary);
+    void setMethodReference_lf_primary(MethodReference_lf_primary setMethodReference_lf_primary);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

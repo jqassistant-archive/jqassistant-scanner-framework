@@ -34,25 +34,25 @@ public interface ClassBodyDeclaration extends JavaGen {
     @Relation("HAS_CLASS_MEMBER_DECLARATION")
     ClassMemberDeclaration getClassMemberDeclaration();
 
-    void setClassMemberDeclaration(ClassMemberDeclaration classMemberDeclaration);
+    void setClassMemberDeclaration(ClassMemberDeclaration setClassMemberDeclaration);
 
     @Relation("HAS_INSTANCE_INITIALIZER")
     InstanceInitializer getInstanceInitializer();
 
-    void setInstanceInitializer(InstanceInitializer instanceInitializer);
+    void setInstanceInitializer(InstanceInitializer setInstanceInitializer);
 
     @Relation("HAS_STATIC_INITIALIZER")
     StaticInitializer getStaticInitializer();
 
-    void setStaticInitializer(StaticInitializer staticInitializer);
+    void setStaticInitializer(StaticInitializer setStaticInitializer);
 
     @Relation("HAS_CONSTRUCTOR_DECLARATION")
     ConstructorDeclaration getConstructorDeclaration();
 
-    void setConstructorDeclaration(ConstructorDeclaration constructorDeclaration);
+    void setConstructorDeclaration(ConstructorDeclaration setConstructorDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

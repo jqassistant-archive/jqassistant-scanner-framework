@@ -33,16 +33,16 @@ public interface SwitchStatement extends JavaGen {
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_SWITCH_BLOCK")
     SwitchBlock getSwitchBlock();
 
-    void setSwitchBlock(SwitchBlock switchBlock);
+    void setSwitchBlock(SwitchBlock setSwitchBlock);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

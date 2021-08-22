@@ -32,10 +32,10 @@ public interface MarkerAnnotation extends JavaGen {
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

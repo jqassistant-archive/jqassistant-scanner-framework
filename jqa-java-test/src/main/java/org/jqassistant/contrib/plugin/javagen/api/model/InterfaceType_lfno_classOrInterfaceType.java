@@ -31,10 +31,10 @@ public interface InterfaceType_lfno_classOrInterfaceType extends JavaGen {
     @Relation("HAS_CLASS_TYPE_LFNO_CLASS_OR_INTERFACE_TYPE")
     ClassType_lfno_classOrInterfaceType getClassType_lfno_classOrInterfaceType();
 
-    void setClassType_lfno_classOrInterfaceType(ClassType_lfno_classOrInterfaceType classType_lfno_classOrInterfaceType);
+    void setClassType_lfno_classOrInterfaceType(ClassType_lfno_classOrInterfaceType setClassType_lfno_classOrInterfaceType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

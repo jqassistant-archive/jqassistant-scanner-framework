@@ -37,12 +37,12 @@ public interface AnnotationTypeElementDeclaration extends JavaGen {
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
 
-    void setUnannType(UnannType unannType);
+    void setUnannType(UnannType setUnannType);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: '('
     // unhandled TerminalAST token: ')'
@@ -50,17 +50,17 @@ public interface AnnotationTypeElementDeclaration extends JavaGen {
     @Relation("HAS_DIMS")
     Dims getDims();
 
-    void setDims(Dims dims);
+    void setDims(Dims setDims);
 
     // optional: ?
     @Relation("HAS_DEFAULT_VALUE")
     DefaultValue getDefaultValue();
 
-    void setDefaultValue(DefaultValue defaultValue);
+    void setDefaultValue(DefaultValue setDefaultValue);
 
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -33,20 +33,20 @@ public interface FieldAccess extends JavaGen {
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
-    void setPrimary(Primary primary);
+    void setPrimary(Primary setPrimary);
 
     // unhandled TerminalAST token: '.'
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: 'super'
     // unhandled TerminalAST token: '.'
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'super'
@@ -54,5 +54,5 @@ public interface FieldAccess extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -41,12 +41,12 @@ public interface PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary ex
     @Relation("HAS_LITERAL")
     Literal getLiteral();
 
-    void setLiteral(Literal literal);
+    void setLiteral(Literal setLiteral);
 
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
@@ -55,7 +55,7 @@ public interface PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary ex
     @Relation("HAS_UNANN_PRIMITIVE_TYPE")
     UnannPrimitiveType getUnannPrimitiveType();
 
-    void setUnannPrimitiveType(UnannPrimitiveType unannPrimitiveType);
+    void setUnannPrimitiveType(UnannPrimitiveType setUnannPrimitiveType);
 
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
@@ -71,31 +71,31 @@ public interface PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary ex
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_CLASS_INSTANCE_CREATION_EXPRESSION_LFNO_PRIMARY")
     ClassInstanceCreationExpression_lfno_primary getClassInstanceCreationExpression_lfno_primary();
 
-    void setClassInstanceCreationExpression_lfno_primary(ClassInstanceCreationExpression_lfno_primary classInstanceCreationExpression_lfno_primary);
+    void setClassInstanceCreationExpression_lfno_primary(ClassInstanceCreationExpression_lfno_primary setClassInstanceCreationExpression_lfno_primary);
 
     @Relation("HAS_FIELD_ACCESS_LFNO_PRIMARY")
     FieldAccess_lfno_primary getFieldAccess_lfno_primary();
 
-    void setFieldAccess_lfno_primary(FieldAccess_lfno_primary fieldAccess_lfno_primary);
+    void setFieldAccess_lfno_primary(FieldAccess_lfno_primary setFieldAccess_lfno_primary);
 
     @Relation("HAS_METHOD_INVOCATION_LFNO_PRIMARY")
     MethodInvocation_lfno_primary getMethodInvocation_lfno_primary();
 
-    void setMethodInvocation_lfno_primary(MethodInvocation_lfno_primary methodInvocation_lfno_primary);
+    void setMethodInvocation_lfno_primary(MethodInvocation_lfno_primary setMethodInvocation_lfno_primary);
 
     @Relation("HAS_METHOD_REFERENCE_LFNO_PRIMARY")
     MethodReference_lfno_primary getMethodReference_lfno_primary();
 
-    void setMethodReference_lfno_primary(MethodReference_lfno_primary methodReference_lfno_primary);
+    void setMethodReference_lfno_primary(MethodReference_lfno_primary setMethodReference_lfno_primary);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

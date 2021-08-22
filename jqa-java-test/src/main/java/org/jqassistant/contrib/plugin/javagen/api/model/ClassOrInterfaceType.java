@@ -35,12 +35,12 @@ public interface ClassOrInterfaceType extends JavaGen {
     @Relation("HAS_CLASS_TYPE_LFNO_CLASS_OR_INTERFACE_TYPE")
     ClassType_lfno_classOrInterfaceType getClassType_lfno_classOrInterfaceType();
 
-    void setClassType_lfno_classOrInterfaceType(ClassType_lfno_classOrInterfaceType classType_lfno_classOrInterfaceType);
+    void setClassType_lfno_classOrInterfaceType(ClassType_lfno_classOrInterfaceType setClassType_lfno_classOrInterfaceType);
 
     @Relation("HAS_INTERFACE_TYPE_LFNO_CLASS_OR_INTERFACE_TYPE")
     InterfaceType_lfno_classOrInterfaceType getInterfaceType_lfno_classOrInterfaceType();
 
-    void setInterfaceType_lfno_classOrInterfaceType(InterfaceType_lfno_classOrInterfaceType interfaceType_lfno_classOrInterfaceType);
+    void setInterfaceType_lfno_classOrInterfaceType(InterfaceType_lfno_classOrInterfaceType setInterfaceType_lfno_classOrInterfaceType);
 
     @Relation("HAS_CLASS_TYPE_LF_CLASS_OR_INTERFACE_TYPE")
     List<ClassType_lf_classOrInterfaceType> getClassType_lf_classOrInterfaceType();
@@ -55,5 +55,5 @@ public interface ClassOrInterfaceType extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

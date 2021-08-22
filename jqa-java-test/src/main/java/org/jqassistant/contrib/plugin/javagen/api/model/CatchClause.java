@@ -33,16 +33,16 @@ public interface CatchClause extends JavaGen {
     @Relation("HAS_CATCH_FORMAL_PARAMETER")
     CatchFormalParameter getCatchFormalParameter();
 
-    void setCatchFormalParameter(CatchFormalParameter catchFormalParameter);
+    void setCatchFormalParameter(CatchFormalParameter setCatchFormalParameter);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_BLOCK")
     Block getBlock();
 
-    void setBlock(Block block);
+    void setBlock(Block setBlock);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

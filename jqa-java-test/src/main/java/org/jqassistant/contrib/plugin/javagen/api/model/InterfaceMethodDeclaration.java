@@ -37,15 +37,15 @@ public interface InterfaceMethodDeclaration extends JavaGen {
     @Relation("HAS_METHOD_HEADER")
     MethodHeader getMethodHeader();
 
-    void setMethodHeader(MethodHeader methodHeader);
+    void setMethodHeader(MethodHeader setMethodHeader);
 
     @Relation("HAS_METHOD_BODY")
     MethodBody getMethodBody();
 
-    void setMethodBody(MethodBody methodBody);
+    void setMethodBody(MethodBody setMethodBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

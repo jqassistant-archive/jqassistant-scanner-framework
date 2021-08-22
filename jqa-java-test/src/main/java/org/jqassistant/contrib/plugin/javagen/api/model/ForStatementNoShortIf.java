@@ -32,15 +32,15 @@ public interface ForStatementNoShortIf extends JavaGen {
     @Relation("HAS_BASIC_FOR_STATEMENT_NO_SHORT_IF")
     BasicForStatementNoShortIf getBasicForStatementNoShortIf();
 
-    void setBasicForStatementNoShortIf(BasicForStatementNoShortIf basicForStatementNoShortIf);
+    void setBasicForStatementNoShortIf(BasicForStatementNoShortIf setBasicForStatementNoShortIf);
 
     @Relation("HAS_ENHANCED_FOR_STATEMENT_NO_SHORT_IF")
     EnhancedForStatementNoShortIf getEnhancedForStatementNoShortIf();
 
-    void setEnhancedForStatementNoShortIf(EnhancedForStatementNoShortIf enhancedForStatementNoShortIf);
+    void setEnhancedForStatementNoShortIf(EnhancedForStatementNoShortIf setEnhancedForStatementNoShortIf);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

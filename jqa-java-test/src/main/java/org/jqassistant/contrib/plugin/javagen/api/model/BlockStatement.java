@@ -33,20 +33,20 @@ public interface BlockStatement extends JavaGen {
     @Relation("HAS_LOCAL_VARIABLE_DECLARATION_STATEMENT")
     LocalVariableDeclarationStatement getLocalVariableDeclarationStatement();
 
-    void setLocalVariableDeclarationStatement(LocalVariableDeclarationStatement localVariableDeclarationStatement);
+    void setLocalVariableDeclarationStatement(LocalVariableDeclarationStatement setLocalVariableDeclarationStatement);
 
     @Relation("HAS_CLASS_DECLARATION")
     ClassDeclaration getClassDeclaration();
 
-    void setClassDeclaration(ClassDeclaration classDeclaration);
+    void setClassDeclaration(ClassDeclaration setClassDeclaration);
 
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 
-    void setStatement(Statement statement);
+    void setStatement(Statement setStatement);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -32,15 +32,15 @@ public interface VariableInitializer extends JavaGen {
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     @Relation("HAS_ARRAY_INITIALIZER")
     ArrayInitializer getArrayInitializer();
 
-    void setArrayInitializer(ArrayInitializer arrayInitializer);
+    void setArrayInitializer(ArrayInitializer setArrayInitializer);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

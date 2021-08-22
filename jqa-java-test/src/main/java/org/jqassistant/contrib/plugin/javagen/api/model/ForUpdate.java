@@ -31,10 +31,10 @@ public interface ForUpdate extends JavaGen {
     @Relation("HAS_STATEMENT_EXPRESSION_LIST")
     StatementExpressionList getStatementExpressionList();
 
-    void setStatementExpressionList(StatementExpressionList statementExpressionList);
+    void setStatementExpressionList(StatementExpressionList setStatementExpressionList);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

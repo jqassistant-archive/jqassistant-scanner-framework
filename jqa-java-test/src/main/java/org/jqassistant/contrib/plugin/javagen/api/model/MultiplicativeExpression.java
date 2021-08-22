@@ -34,12 +34,12 @@ public interface MultiplicativeExpression extends JavaGen {
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
-    void setUnaryExpression(UnaryExpression unaryExpression);
+    void setUnaryExpression(UnaryExpression setUnaryExpression);
 
     @Relation("HAS_MULTIPLICATIVE_EXPRESSION")
     MultiplicativeExpression getMultiplicativeExpression();
 
-    void setMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression);
+    void setMultiplicativeExpression(MultiplicativeExpression setMultiplicativeExpression);
 
     // unhandled TerminalAST token: '*'
     // unhandled TerminalAST token: '/'
@@ -47,5 +47,5 @@ public interface MultiplicativeExpression extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

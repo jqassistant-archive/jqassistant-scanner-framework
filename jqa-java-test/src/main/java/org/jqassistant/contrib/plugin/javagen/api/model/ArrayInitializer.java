@@ -33,7 +33,7 @@ public interface ArrayInitializer extends JavaGen {
     @Relation("HAS_VARIABLE_INITIALIZER_LIST")
     VariableInitializerList getVariableInitializerList();
 
-    void setVariableInitializerList(VariableInitializerList variableInitializerList);
+    void setVariableInitializerList(VariableInitializerList setVariableInitializerList);
 
     // optional: ?
     // unhandled TerminalAST token: ','
@@ -41,5 +41,5 @@ public interface ArrayInitializer extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

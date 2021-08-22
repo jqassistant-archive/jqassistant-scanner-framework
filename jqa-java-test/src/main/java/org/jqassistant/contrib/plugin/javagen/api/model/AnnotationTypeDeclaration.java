@@ -39,15 +39,15 @@ public interface AnnotationTypeDeclaration extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     @Relation("HAS_ANNOTATION_TYPE_BODY")
     AnnotationTypeBody getAnnotationTypeBody();
 
-    void setAnnotationTypeBody(AnnotationTypeBody annotationTypeBody);
+    void setAnnotationTypeBody(AnnotationTypeBody setAnnotationTypeBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

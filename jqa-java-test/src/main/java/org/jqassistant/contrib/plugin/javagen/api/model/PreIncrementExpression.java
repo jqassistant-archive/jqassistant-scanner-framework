@@ -32,10 +32,10 @@ public interface PreIncrementExpression extends JavaGen {
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
-    void setUnaryExpression(UnaryExpression unaryExpression);
+    void setUnaryExpression(UnaryExpression setUnaryExpression);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

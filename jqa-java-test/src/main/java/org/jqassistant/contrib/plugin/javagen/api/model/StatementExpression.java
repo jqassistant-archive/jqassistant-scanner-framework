@@ -37,40 +37,40 @@ public interface StatementExpression extends JavaGen {
     @Relation("HAS_ASSIGNMENT")
     Assignment getAssignment();
 
-    void setAssignment(Assignment assignment);
+    void setAssignment(Assignment setAssignment);
 
     @Relation("HAS_PRE_INCREMENT_EXPRESSION")
     PreIncrementExpression getPreIncrementExpression();
 
-    void setPreIncrementExpression(PreIncrementExpression preIncrementExpression);
+    void setPreIncrementExpression(PreIncrementExpression setPreIncrementExpression);
 
     @Relation("HAS_PRE_DECREMENT_EXPRESSION")
     PreDecrementExpression getPreDecrementExpression();
 
-    void setPreDecrementExpression(PreDecrementExpression preDecrementExpression);
+    void setPreDecrementExpression(PreDecrementExpression setPreDecrementExpression);
 
     @Relation("HAS_POST_INCREMENT_EXPRESSION")
     PostIncrementExpression getPostIncrementExpression();
 
-    void setPostIncrementExpression(PostIncrementExpression postIncrementExpression);
+    void setPostIncrementExpression(PostIncrementExpression setPostIncrementExpression);
 
     @Relation("HAS_POST_DECREMENT_EXPRESSION")
     PostDecrementExpression getPostDecrementExpression();
 
-    void setPostDecrementExpression(PostDecrementExpression postDecrementExpression);
+    void setPostDecrementExpression(PostDecrementExpression setPostDecrementExpression);
 
     @Relation("HAS_METHOD_INVOCATION")
     MethodInvocation getMethodInvocation();
 
-    void setMethodInvocation(MethodInvocation methodInvocation);
+    void setMethodInvocation(MethodInvocation setMethodInvocation);
 
     @Relation("HAS_CLASS_INSTANCE_CREATION_EXPRESSION")
     ClassInstanceCreationExpression getClassInstanceCreationExpression();
 
-    void setClassInstanceCreationExpression(ClassInstanceCreationExpression classInstanceCreationExpression);
+    void setClassInstanceCreationExpression(ClassInstanceCreationExpression setClassInstanceCreationExpression);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

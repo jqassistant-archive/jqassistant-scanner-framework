@@ -35,19 +35,19 @@ public interface CastExpression extends JavaGen {
     @Relation("HAS_PRIMITIVE_TYPE")
     PrimitiveType getPrimitiveType();
 
-    void setPrimitiveType(PrimitiveType primitiveType);
+    void setPrimitiveType(PrimitiveType setPrimitiveType);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
-    void setUnaryExpression(UnaryExpression unaryExpression);
+    void setUnaryExpression(UnaryExpression setUnaryExpression);
 
     // unhandled TerminalAST token: '('
     @Relation("HAS_REFERENCE_TYPE")
     ReferenceType getReferenceType();
 
-    void setReferenceType(ReferenceType referenceType);
+    void setReferenceType(ReferenceType setReferenceType);
 
     @Relation("HAS_ADDITIONAL_BOUND")
     List<AdditionalBound> getAdditionalBound();
@@ -58,17 +58,17 @@ public interface CastExpression extends JavaGen {
     @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
     UnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus();
 
-    void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus unaryExpressionNotPlusMinus);
+    void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus setUnaryExpressionNotPlusMinus);
 
     // unhandled TerminalAST token: '('
     // unhandled TerminalAST token: ')'
     @Relation("HAS_LAMBDA_EXPRESSION")
     LambdaExpression getLambdaExpression();
 
-    void setLambdaExpression(LambdaExpression lambdaExpression);
+    void setLambdaExpression(LambdaExpression setLambdaExpression);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

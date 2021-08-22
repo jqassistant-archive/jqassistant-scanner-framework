@@ -33,7 +33,7 @@ public interface EnumBody extends JavaGen {
     @Relation("HAS_ENUM_CONSTANT_LIST")
     EnumConstantList getEnumConstantList();
 
-    void setEnumConstantList(EnumConstantList enumConstantList);
+    void setEnumConstantList(EnumConstantList setEnumConstantList);
 
     // optional: ?
     // unhandled TerminalAST token: ','
@@ -41,11 +41,11 @@ public interface EnumBody extends JavaGen {
     @Relation("HAS_ENUM_BODY_DECLARATIONS")
     EnumBodyDeclarations getEnumBodyDeclarations();
 
-    void setEnumBodyDeclarations(EnumBodyDeclarations enumBodyDeclarations);
+    void setEnumBodyDeclarations(EnumBodyDeclarations setEnumBodyDeclarations);
 
     // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

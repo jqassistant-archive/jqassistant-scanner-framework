@@ -32,15 +32,15 @@ public interface ClassDeclaration extends JavaGen {
     @Relation("HAS_NORMAL_CLASS_DECLARATION")
     NormalClassDeclaration getNormalClassDeclaration();
 
-    void setNormalClassDeclaration(NormalClassDeclaration normalClassDeclaration);
+    void setNormalClassDeclaration(NormalClassDeclaration setNormalClassDeclaration);
 
     @Relation("HAS_ENUM_DECLARATION")
     EnumDeclaration getEnumDeclaration();
 
-    void setEnumDeclaration(EnumDeclaration enumDeclaration);
+    void setEnumDeclaration(EnumDeclaration setEnumDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

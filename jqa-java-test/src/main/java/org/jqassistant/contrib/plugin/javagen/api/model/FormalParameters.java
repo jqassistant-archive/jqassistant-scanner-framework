@@ -39,11 +39,11 @@ public interface FormalParameters extends JavaGen {
     @Relation("HAS_RECEIVER_PARAMETER")
     ReceiverParameter getReceiverParameter();
 
-    void setReceiverParameter(ReceiverParameter receiverParameter);
+    void setReceiverParameter(ReceiverParameter setReceiverParameter);
 
     // unhandled TerminalAST token: ','
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -31,17 +31,17 @@ public interface VariableDeclarator extends JavaGen {
     @Relation("HAS_VARIABLE_DECLARATOR_ID")
     VariableDeclaratorId getVariableDeclaratorId();
 
-    void setVariableDeclaratorId(VariableDeclaratorId variableDeclaratorId);
+    void setVariableDeclaratorId(VariableDeclaratorId setVariableDeclaratorId);
 
     // optional: ?
     // unhandled TerminalAST token: '='
     @Relation("HAS_VARIABLE_INITIALIZER")
     VariableInitializer getVariableInitializer();
 
-    void setVariableInitializer(VariableInitializer variableInitializer);
+    void setVariableInitializer(VariableInitializer setVariableInitializer);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

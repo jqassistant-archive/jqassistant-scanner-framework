@@ -34,12 +34,12 @@ public interface ShiftExpression extends JavaGen {
     @Relation("HAS_ADDITIVE_EXPRESSION")
     AdditiveExpression getAdditiveExpression();
 
-    void setAdditiveExpression(AdditiveExpression additiveExpression);
+    void setAdditiveExpression(AdditiveExpression setAdditiveExpression);
 
     @Relation("HAS_SHIFT_EXPRESSION")
     ShiftExpression getShiftExpression();
 
-    void setShiftExpression(ShiftExpression shiftExpression);
+    void setShiftExpression(ShiftExpression setShiftExpression);
 
     // unhandled TerminalAST token: '<'
     // unhandled TerminalAST token: '<'
@@ -51,5 +51,5 @@ public interface ShiftExpression extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -32,15 +32,15 @@ public interface ForStatement extends JavaGen {
     @Relation("HAS_BASIC_FOR_STATEMENT")
     BasicForStatement getBasicForStatement();
 
-    void setBasicForStatement(BasicForStatement basicForStatement);
+    void setBasicForStatement(BasicForStatement setBasicForStatement);
 
     @Relation("HAS_ENHANCED_FOR_STATEMENT")
     EnhancedForStatement getEnhancedForStatement();
 
-    void setEnhancedForStatement(EnhancedForStatement enhancedForStatement);
+    void setEnhancedForStatement(EnhancedForStatement setEnhancedForStatement);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

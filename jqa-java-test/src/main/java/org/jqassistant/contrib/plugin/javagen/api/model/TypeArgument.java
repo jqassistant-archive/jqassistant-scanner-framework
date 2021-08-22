@@ -32,15 +32,15 @@ public interface TypeArgument extends JavaGen {
     @Relation("HAS_REFERENCE_TYPE")
     ReferenceType getReferenceType();
 
-    void setReferenceType(ReferenceType referenceType);
+    void setReferenceType(ReferenceType setReferenceType);
 
     @Relation("HAS_WILDCARD")
     Wildcard getWildcard();
 
-    void setWildcard(Wildcard wildcard);
+    void setWildcard(Wildcard setWildcard);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

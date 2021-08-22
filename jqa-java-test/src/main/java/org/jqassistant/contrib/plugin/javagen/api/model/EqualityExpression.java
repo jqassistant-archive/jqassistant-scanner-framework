@@ -33,17 +33,17 @@ public interface EqualityExpression extends JavaGen {
     @Relation("HAS_RELATIONAL_EXPRESSION")
     RelationalExpression getRelationalExpression();
 
-    void setRelationalExpression(RelationalExpression relationalExpression);
+    void setRelationalExpression(RelationalExpression setRelationalExpression);
 
     @Relation("HAS_EQUALITY_EXPRESSION")
     EqualityExpression getEqualityExpression();
 
-    void setEqualityExpression(EqualityExpression equalityExpression);
+    void setEqualityExpression(EqualityExpression setEqualityExpression);
 
     // unhandled TerminalAST token: '=='
     // unhandled TerminalAST token: '!='
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -32,16 +32,16 @@ public interface InclusiveOrExpression extends JavaGen {
     @Relation("HAS_EXCLUSIVE_OR_EXPRESSION")
     ExclusiveOrExpression getExclusiveOrExpression();
 
-    void setExclusiveOrExpression(ExclusiveOrExpression exclusiveOrExpression);
+    void setExclusiveOrExpression(ExclusiveOrExpression setExclusiveOrExpression);
 
     @Relation("HAS_INCLUSIVE_OR_EXPRESSION")
     InclusiveOrExpression getInclusiveOrExpression();
 
-    void setInclusiveOrExpression(InclusiveOrExpression inclusiveOrExpression);
+    void setInclusiveOrExpression(InclusiveOrExpression setInclusiveOrExpression);
 
     // unhandled TerminalAST token: '|'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

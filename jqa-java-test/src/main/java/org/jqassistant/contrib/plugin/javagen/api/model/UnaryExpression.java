@@ -35,27 +35,27 @@ public interface UnaryExpression extends JavaGen {
     @Relation("HAS_PRE_INCREMENT_EXPRESSION")
     PreIncrementExpression getPreIncrementExpression();
 
-    void setPreIncrementExpression(PreIncrementExpression preIncrementExpression);
+    void setPreIncrementExpression(PreIncrementExpression setPreIncrementExpression);
 
     @Relation("HAS_PRE_DECREMENT_EXPRESSION")
     PreDecrementExpression getPreDecrementExpression();
 
-    void setPreDecrementExpression(PreDecrementExpression preDecrementExpression);
+    void setPreDecrementExpression(PreDecrementExpression setPreDecrementExpression);
 
     // unhandled TerminalAST token: '+'
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
-    void setUnaryExpression(UnaryExpression unaryExpression);
+    void setUnaryExpression(UnaryExpression setUnaryExpression);
 
     // unhandled TerminalAST token: '-'
     @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
     UnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus();
 
-    void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus unaryExpressionNotPlusMinus);
+    void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus setUnaryExpressionNotPlusMinus);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

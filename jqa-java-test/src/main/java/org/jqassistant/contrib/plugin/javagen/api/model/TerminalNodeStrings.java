@@ -19,35 +19,35 @@ public interface TerminalNodeStrings extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 
     @Relation("HAS_TYPE")
     String getType();
 
-    void setType(String type);
+    void setType(String setType);
 
     @Relation("HAS_LINE")
     String getLine();
 
-    void setLine(String line);
+    void setLine(String setLine);
 
     @Relation("HAS_CHAR_POSITION_IN_LINE")
     String getCharPositionInLine();
 
-    void setCharPositionInLine(String charPositionInLine);
+    void setCharPositionInLine(String setCharPositionInLine);
 
     @Relation("HAS_TOKEN_INDEX")
     String getTokenIndex();
 
-    void setTokenIndex(String tokenIndex);
+    void setTokenIndex(String setTokenIndex);
 
     @Relation("HAS_START_INDEX")
     String getStartIndex();
 
-    void setStartIndex(String startIndex);
+    void setStartIndex(String setStartIndex);
 
     @Relation("HAS_STOP_INDEX")
     String getStopIndex();
 
-    void setStopIndex(String stopIndex);
+    void setStopIndex(String setStopIndex);
 }

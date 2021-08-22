@@ -38,16 +38,16 @@ public interface UnannClassType_lf_unannClassOrInterfaceType extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

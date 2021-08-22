@@ -33,16 +33,16 @@ public interface TypeDeclaration extends JavaGen {
     @Relation("HAS_CLASS_DECLARATION")
     ClassDeclaration getClassDeclaration();
 
-    void setClassDeclaration(ClassDeclaration classDeclaration);
+    void setClassDeclaration(ClassDeclaration setClassDeclaration);
 
     @Relation("HAS_INTERFACE_DECLARATION")
     InterfaceDeclaration getInterfaceDeclaration();
 
-    void setInterfaceDeclaration(InterfaceDeclaration interfaceDeclaration);
+    void setInterfaceDeclaration(InterfaceDeclaration setInterfaceDeclaration);
 
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

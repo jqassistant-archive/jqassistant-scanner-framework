@@ -36,12 +36,12 @@ public interface Primary extends JavaGen {
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LFNO_PRIMARY")
     PrimaryNoNewArray_lfno_primary getPrimaryNoNewArray_lfno_primary();
 
-    void setPrimaryNoNewArray_lfno_primary(PrimaryNoNewArray_lfno_primary primaryNoNewArray_lfno_primary);
+    void setPrimaryNoNewArray_lfno_primary(PrimaryNoNewArray_lfno_primary setPrimaryNoNewArray_lfno_primary);
 
     @Relation("HAS_ARRAY_CREATION_EXPRESSION")
     ArrayCreationExpression getArrayCreationExpression();
 
-    void setArrayCreationExpression(ArrayCreationExpression arrayCreationExpression);
+    void setArrayCreationExpression(ArrayCreationExpression setArrayCreationExpression);
 
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LF_PRIMARY")
     List<PrimaryNoNewArray_lf_primary> getPrimaryNoNewArray_lf_primary();
@@ -51,5 +51,5 @@ public interface Primary extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

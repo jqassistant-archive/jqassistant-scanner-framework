@@ -41,12 +41,12 @@ public interface PrimaryNoNewArray extends JavaGen {
     @Relation("HAS_LITERAL")
     Literal getLiteral();
 
-    void setLiteral(Literal literal);
+    void setLiteral(Literal setLiteral);
 
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
@@ -62,36 +62,36 @@ public interface PrimaryNoNewArray extends JavaGen {
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_CLASS_INSTANCE_CREATION_EXPRESSION")
     ClassInstanceCreationExpression getClassInstanceCreationExpression();
 
-    void setClassInstanceCreationExpression(ClassInstanceCreationExpression classInstanceCreationExpression);
+    void setClassInstanceCreationExpression(ClassInstanceCreationExpression setClassInstanceCreationExpression);
 
     @Relation("HAS_FIELD_ACCESS")
     FieldAccess getFieldAccess();
 
-    void setFieldAccess(FieldAccess fieldAccess);
+    void setFieldAccess(FieldAccess setFieldAccess);
 
     @Relation("HAS_ARRAY_ACCESS")
     ArrayAccess getArrayAccess();
 
-    void setArrayAccess(ArrayAccess arrayAccess);
+    void setArrayAccess(ArrayAccess setArrayAccess);
 
     @Relation("HAS_METHOD_INVOCATION")
     MethodInvocation getMethodInvocation();
 
-    void setMethodInvocation(MethodInvocation methodInvocation);
+    void setMethodInvocation(MethodInvocation setMethodInvocation);
 
     @Relation("HAS_METHOD_REFERENCE")
     MethodReference getMethodReference();
 
-    void setMethodReference(MethodReference methodReference);
+    void setMethodReference(MethodReference setMethodReference);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

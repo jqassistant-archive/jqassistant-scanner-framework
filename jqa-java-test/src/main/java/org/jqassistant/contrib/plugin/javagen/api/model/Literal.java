@@ -36,35 +36,35 @@ public interface Literal extends JavaGen {
     @Relation("HAS_INTEGER_LITERAL")
     TerminalNodeStrings getIntegerLiteral();
 
-    void setIntegerLiteral(TerminalNodeStrings integerLiteral);
+    void setIntegerLiteral(TerminalNodeStrings setIntegerLiteral);
 
     @Relation("HAS_FLOATING_POINT_LITERAL")
     TerminalNodeStrings getFloatingPointLiteral();
 
-    void setFloatingPointLiteral(TerminalNodeStrings floatingPointLiteral);
+    void setFloatingPointLiteral(TerminalNodeStrings setFloatingPointLiteral);
 
     @Relation("HAS_BOOLEAN_LITERAL")
     TerminalNodeStrings getBooleanLiteral();
 
-    void setBooleanLiteral(TerminalNodeStrings booleanLiteral);
+    void setBooleanLiteral(TerminalNodeStrings setBooleanLiteral);
 
     @Relation("HAS_CHARACTER_LITERAL")
     TerminalNodeStrings getCharacterLiteral();
 
-    void setCharacterLiteral(TerminalNodeStrings characterLiteral);
+    void setCharacterLiteral(TerminalNodeStrings setCharacterLiteral);
 
     @Relation("HAS_STRING_LITERAL")
     TerminalNodeStrings getStringLiteral();
 
-    void setStringLiteral(TerminalNodeStrings stringLiteral);
+    void setStringLiteral(TerminalNodeStrings setStringLiteral);
 
     @Relation("HAS_NULL_LITERAL")
     TerminalNodeStrings getNullLiteral();
 
-    void setNullLiteral(TerminalNodeStrings nullLiteral);
+    void setNullLiteral(TerminalNodeStrings setNullLiteral);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

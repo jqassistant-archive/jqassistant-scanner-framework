@@ -37,31 +37,31 @@ public interface MethodReference extends JavaGen {
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
-    void setExpressionName(ExpressionName expressionName);
+    void setExpressionName(ExpressionName setExpressionName);
 
     // unhandled TerminalAST token: '::'
     // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     @Relation("HAS_REFERENCE_TYPE")
     ReferenceType getReferenceType();
 
-    void setReferenceType(ReferenceType referenceType);
+    void setReferenceType(ReferenceType setReferenceType);
 
     // unhandled TerminalAST token: '::'
     // optional: ?
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
-    void setPrimary(Primary primary);
+    void setPrimary(Primary setPrimary);
 
     // unhandled TerminalAST token: '::'
     // optional: ?
@@ -71,7 +71,7 @@ public interface MethodReference extends JavaGen {
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
-    void setTypeName(TypeName typeName);
+    void setTypeName(TypeName setTypeName);
 
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: 'super'
@@ -80,7 +80,7 @@ public interface MethodReference extends JavaGen {
     @Relation("HAS_CLASS_TYPE")
     ClassType getClassType();
 
-    void setClassType(ClassType classType);
+    void setClassType(ClassType setClassType);
 
     // unhandled TerminalAST token: '::'
     // optional: ?
@@ -88,12 +88,12 @@ public interface MethodReference extends JavaGen {
     @Relation("HAS_ARRAY_TYPE")
     ArrayType getArrayType();
 
-    void setArrayType(ArrayType arrayType);
+    void setArrayType(ArrayType setArrayType);
 
     // unhandled TerminalAST token: '::'
     // unhandled TerminalAST token: 'new'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

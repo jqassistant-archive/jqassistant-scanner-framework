@@ -28,10 +28,10 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("PrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary")
 public interface PrimaryNoNewArray_lfno_primary_lf_arrayAccess_lfno_primary extends JavaGen {
 
-    // unhandled AST type: 83false
+    // unhandled AST type: 83 - list: false : EPSILON
     // Avoided Token: EPSILON
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

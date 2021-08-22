@@ -32,10 +32,10 @@ public interface AdditionalBound extends JavaGen {
     @Relation("HAS_INTERFACE_TYPE")
     InterfaceType getInterfaceType();
 
-    void setInterfaceType(InterfaceType interfaceType);
+    void setInterfaceType(InterfaceType setInterfaceType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

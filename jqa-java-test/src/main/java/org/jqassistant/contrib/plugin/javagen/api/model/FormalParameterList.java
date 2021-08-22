@@ -33,21 +33,21 @@ public interface FormalParameterList extends JavaGen {
     @Relation("HAS_RECEIVER_PARAMETER")
     ReceiverParameter getReceiverParameter();
 
-    void setReceiverParameter(ReceiverParameter receiverParameter);
+    void setReceiverParameter(ReceiverParameter setReceiverParameter);
 
     @Relation("HAS_FORMAL_PARAMETERS")
     FormalParameters getFormalParameters();
 
-    void setFormalParameters(FormalParameters formalParameters);
+    void setFormalParameters(FormalParameters setFormalParameters);
 
     // unhandled TerminalAST token: ','
     @Relation("HAS_LAST_FORMAL_PARAMETER")
     LastFormalParameter getLastFormalParameter();
 
-    void setLastFormalParameter(LastFormalParameter lastFormalParameter);
+    void setLastFormalParameter(LastFormalParameter setLastFormalParameter);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

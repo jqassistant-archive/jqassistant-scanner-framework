@@ -33,16 +33,16 @@ public interface SynchronizedStatement extends JavaGen {
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
-    void setExpression(Expression expression);
+    void setExpression(Expression setExpression);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_BLOCK")
     Block getBlock();
 
-    void setBlock(Block block);
+    void setBlock(Block setBlock);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -38,11 +38,11 @@ public interface PrimitiveType extends JavaGen {
     @Relation("HAS_NUMERIC_TYPE")
     NumericType getNumericType();
 
-    void setNumericType(NumericType numericType);
+    void setNumericType(NumericType setNumericType);
 
     // unhandled TerminalAST token: 'boolean'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

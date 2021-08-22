@@ -33,7 +33,7 @@ public interface CompilationUnit extends JavaGen {
     @Relation("HAS_PACKAGE_DECLARATION")
     PackageDeclaration getPackageDeclaration();
 
-    void setPackageDeclaration(PackageDeclaration packageDeclaration);
+    void setPackageDeclaration(PackageDeclaration setPackageDeclaration);
 
     @Relation("HAS_IMPORT_DECLARATION")
     List<ImportDeclaration> getImportDeclaration();
@@ -48,10 +48,10 @@ public interface CompilationUnit extends JavaGen {
     @Relation("HAS_E_O_F")
     TerminalNodeStrings getEOF();
 
-    void setEOF(TerminalNodeStrings EOF);
+    void setEOF(TerminalNodeStrings setEOF);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

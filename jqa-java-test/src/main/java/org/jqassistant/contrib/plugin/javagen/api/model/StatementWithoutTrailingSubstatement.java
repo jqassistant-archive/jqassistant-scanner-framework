@@ -42,65 +42,65 @@ public interface StatementWithoutTrailingSubstatement extends JavaGen {
     @Relation("HAS_BLOCK")
     Block getBlock();
 
-    void setBlock(Block block);
+    void setBlock(Block setBlock);
 
     @Relation("HAS_EMPTY_STATEMENT")
     EmptyStatement getEmptyStatement();
 
-    void setEmptyStatement(EmptyStatement emptyStatement);
+    void setEmptyStatement(EmptyStatement setEmptyStatement);
 
     @Relation("HAS_EXPRESSION_STATEMENT")
     ExpressionStatement getExpressionStatement();
 
-    void setExpressionStatement(ExpressionStatement expressionStatement);
+    void setExpressionStatement(ExpressionStatement setExpressionStatement);
 
     @Relation("HAS_ASSERT_STATEMENT")
     AssertStatement getAssertStatement();
 
-    void setAssertStatement(AssertStatement assertStatement);
+    void setAssertStatement(AssertStatement setAssertStatement);
 
     @Relation("HAS_SWITCH_STATEMENT")
     SwitchStatement getSwitchStatement();
 
-    void setSwitchStatement(SwitchStatement switchStatement);
+    void setSwitchStatement(SwitchStatement setSwitchStatement);
 
     @Relation("HAS_DO_STATEMENT")
     DoStatement getDoStatement();
 
-    void setDoStatement(DoStatement doStatement);
+    void setDoStatement(DoStatement setDoStatement);
 
     @Relation("HAS_BREAK_STATEMENT")
     BreakStatement getBreakStatement();
 
-    void setBreakStatement(BreakStatement breakStatement);
+    void setBreakStatement(BreakStatement setBreakStatement);
 
     @Relation("HAS_CONTINUE_STATEMENT")
     ContinueStatement getContinueStatement();
 
-    void setContinueStatement(ContinueStatement continueStatement);
+    void setContinueStatement(ContinueStatement setContinueStatement);
 
     @Relation("HAS_RETURN_STATEMENT")
     ReturnStatement getReturnStatement();
 
-    void setReturnStatement(ReturnStatement returnStatement);
+    void setReturnStatement(ReturnStatement setReturnStatement);
 
     @Relation("HAS_SYNCHRONIZED_STATEMENT")
     SynchronizedStatement getSynchronizedStatement();
 
-    void setSynchronizedStatement(SynchronizedStatement synchronizedStatement);
+    void setSynchronizedStatement(SynchronizedStatement setSynchronizedStatement);
 
     @Relation("HAS_THROW_STATEMENT")
     ThrowStatement getThrowStatement();
 
-    void setThrowStatement(ThrowStatement throwStatement);
+    void setThrowStatement(ThrowStatement setThrowStatement);
 
     @Relation("HAS_TRY_STATEMENT")
     TryStatement getTryStatement();
 
-    void setTryStatement(TryStatement tryStatement);
+    void setTryStatement(TryStatement setTryStatement);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

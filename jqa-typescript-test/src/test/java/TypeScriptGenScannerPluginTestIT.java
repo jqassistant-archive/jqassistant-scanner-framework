@@ -12,7 +12,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TypeScriptGenScannerPluginTestIT extends AbstractPluginIT {
 
 //    static String file = "/big.ts";
-    static String file = "/AbstractClass.ts";
+//    static String file = "/AbstractClass.ts";
+    static String file = "/Module.ts";
 
     @Test
     @TestStore(type = TestStore.Type.REMOTE)

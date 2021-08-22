@@ -32,11 +32,11 @@ public interface TypeParameters extends JavaGen {
     @Relation("HAS_TYPE_PARAMETER_LIST")
     TypeParameterList getTypeParameterList();
 
-    void setTypeParameterList(TypeParameterList typeParameterList);
+    void setTypeParameterList(TypeParameterList setTypeParameterList);
 
     // unhandled TerminalAST token: '>'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

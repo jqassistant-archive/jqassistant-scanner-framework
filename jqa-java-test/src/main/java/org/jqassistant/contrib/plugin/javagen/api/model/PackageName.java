@@ -32,16 +32,16 @@ public interface PackageName extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     @Relation("HAS_PACKAGE_NAME")
     PackageName getPackageName();
 
-    void setPackageName(PackageName packageName);
+    void setPackageName(PackageName setPackageName);
 
     // unhandled TerminalAST token: '.'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

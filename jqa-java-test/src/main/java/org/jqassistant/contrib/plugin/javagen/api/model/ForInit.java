@@ -32,15 +32,15 @@ public interface ForInit extends JavaGen {
     @Relation("HAS_STATEMENT_EXPRESSION_LIST")
     StatementExpressionList getStatementExpressionList();
 
-    void setStatementExpressionList(StatementExpressionList statementExpressionList);
+    void setStatementExpressionList(StatementExpressionList setStatementExpressionList);
 
     @Relation("HAS_LOCAL_VARIABLE_DECLARATION")
     LocalVariableDeclaration getLocalVariableDeclaration();
 
-    void setLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration);
+    void setLocalVariableDeclaration(LocalVariableDeclaration setLocalVariableDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -8,6 +8,7 @@ package org.jqassistant.contrib.plugin.javagen.util.mapper;
 import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser;
 import org.jqassistant.contrib.plugin.javagen.api.model.*;
 import org.mapstruct.factory.Mappers;
+import org.mapstruct.NullValueCheckStrategy;
 import javax.annotation.Generated;
 import org.mapstruct.Mapper;
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
@@ -18,7 +19,7 @@ import org.antlr.v4.runtime.CharStream;
 
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MapperGenerator")
-@Mapper(uses = DescriptorFactory.class)
+@Mapper(uses = DescriptorFactory.class, nullValueCheckStrategy = NullValueCheckStrategy.ON_IMPLICIT_CONVERSION)
 public interface MainMapper {
 
     public static MainMapper INSTANCE = Mappers.getMapper(MainMapper.class);

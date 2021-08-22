@@ -32,15 +32,15 @@ public interface AssignmentExpression extends JavaGen {
     @Relation("HAS_CONDITIONAL_EXPRESSION")
     ConditionalExpression getConditionalExpression();
 
-    void setConditionalExpression(ConditionalExpression conditionalExpression);
+    void setConditionalExpression(ConditionalExpression setConditionalExpression);
 
     @Relation("HAS_ASSIGNMENT")
     Assignment getAssignment();
 
-    void setAssignment(Assignment assignment);
+    void setAssignment(Assignment setAssignment);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

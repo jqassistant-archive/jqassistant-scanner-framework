@@ -32,15 +32,15 @@ public interface ExceptionType extends JavaGen {
     @Relation("HAS_CLASS_TYPE")
     ClassType getClassType();
 
-    void setClassType(ClassType classType);
+    void setClassType(ClassType setClassType);
 
     @Relation("HAS_TYPE_VARIABLE")
     TypeVariable getTypeVariable();
 
-    void setTypeVariable(TypeVariable typeVariable);
+    void setTypeVariable(TypeVariable setTypeVariable);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -32,15 +32,15 @@ public interface UnannType extends JavaGen {
     @Relation("HAS_UNANN_PRIMITIVE_TYPE")
     UnannPrimitiveType getUnannPrimitiveType();
 
-    void setUnannPrimitiveType(UnannPrimitiveType unannPrimitiveType);
+    void setUnannPrimitiveType(UnannPrimitiveType setUnannPrimitiveType);
 
     @Relation("HAS_UNANN_REFERENCE_TYPE")
     UnannReferenceType getUnannReferenceType();
 
-    void setUnannReferenceType(UnannReferenceType unannReferenceType);
+    void setUnannReferenceType(UnannReferenceType setUnannReferenceType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

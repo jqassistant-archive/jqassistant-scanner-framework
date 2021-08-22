@@ -33,25 +33,25 @@ public interface LambdaParameters extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: '('
     // optional: ?
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 
-    void setFormalParameterList(FormalParameterList formalParameterList);
+    void setFormalParameterList(FormalParameterList setFormalParameterList);
 
     // unhandled TerminalAST token: ')'
     // unhandled TerminalAST token: '('
     @Relation("HAS_INFERRED_FORMAL_PARAMETER_LIST")
     InferredFormalParameterList getInferredFormalParameterList();
 
-    void setInferredFormalParameterList(InferredFormalParameterList inferredFormalParameterList);
+    void setInferredFormalParameterList(InferredFormalParameterList setInferredFormalParameterList);
 
     // unhandled TerminalAST token: ')'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

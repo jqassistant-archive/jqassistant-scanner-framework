@@ -34,14 +34,14 @@ public interface SwitchLabel extends JavaGen {
     @Relation("HAS_CONSTANT_EXPRESSION")
     ConstantExpression getConstantExpression();
 
-    void setConstantExpression(ConstantExpression constantExpression);
+    void setConstantExpression(ConstantExpression setConstantExpression);
 
     // unhandled TerminalAST token: ':'
     // unhandled TerminalAST token: 'case'
     @Relation("HAS_ENUM_CONSTANT_NAME")
     EnumConstantName getEnumConstantName();
 
-    void setEnumConstantName(EnumConstantName enumConstantName);
+    void setEnumConstantName(EnumConstantName setEnumConstantName);
 
     // unhandled TerminalAST token: ':'
     // unhandled TerminalAST token: 'default'
@@ -49,5 +49,5 @@ public interface SwitchLabel extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

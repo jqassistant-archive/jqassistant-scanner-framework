@@ -31,24 +31,24 @@ public interface MethodDeclarator extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: '('
     // optional: ?
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 
-    void setFormalParameterList(FormalParameterList formalParameterList);
+    void setFormalParameterList(FormalParameterList setFormalParameterList);
 
     // unhandled TerminalAST token: ')'
     // optional: ?
     @Relation("HAS_DIMS")
     Dims getDims();
 
-    void setDims(Dims dims);
+    void setDims(Dims setDims);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

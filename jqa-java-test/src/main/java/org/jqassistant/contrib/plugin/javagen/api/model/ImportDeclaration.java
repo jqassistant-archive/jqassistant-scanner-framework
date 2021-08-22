@@ -34,25 +34,25 @@ public interface ImportDeclaration extends JavaGen {
     @Relation("HAS_SINGLE_TYPE_IMPORT_DECLARATION")
     SingleTypeImportDeclaration getSingleTypeImportDeclaration();
 
-    void setSingleTypeImportDeclaration(SingleTypeImportDeclaration singleTypeImportDeclaration);
+    void setSingleTypeImportDeclaration(SingleTypeImportDeclaration setSingleTypeImportDeclaration);
 
     @Relation("HAS_TYPE_IMPORT_ON_DEMAND_DECLARATION")
     TypeImportOnDemandDeclaration getTypeImportOnDemandDeclaration();
 
-    void setTypeImportOnDemandDeclaration(TypeImportOnDemandDeclaration typeImportOnDemandDeclaration);
+    void setTypeImportOnDemandDeclaration(TypeImportOnDemandDeclaration setTypeImportOnDemandDeclaration);
 
     @Relation("HAS_SINGLE_STATIC_IMPORT_DECLARATION")
     SingleStaticImportDeclaration getSingleStaticImportDeclaration();
 
-    void setSingleStaticImportDeclaration(SingleStaticImportDeclaration singleStaticImportDeclaration);
+    void setSingleStaticImportDeclaration(SingleStaticImportDeclaration setSingleStaticImportDeclaration);
 
     @Relation("HAS_STATIC_IMPORT_ON_DEMAND_DECLARATION")
     StaticImportOnDemandDeclaration getStaticImportOnDemandDeclaration();
 
-    void setStaticImportOnDemandDeclaration(StaticImportOnDemandDeclaration staticImportOnDemandDeclaration);
+    void setStaticImportOnDemandDeclaration(StaticImportOnDemandDeclaration setStaticImportOnDemandDeclaration);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

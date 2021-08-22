@@ -31,10 +31,10 @@ public interface UnannInterfaceType_lf_unannClassOrInterfaceType extends JavaGen
     @Relation("HAS_UNANN_CLASS_TYPE_LF_UNANN_CLASS_OR_INTERFACE_TYPE")
     UnannClassType_lf_unannClassOrInterfaceType getUnannClassType_lf_unannClassOrInterfaceType();
 
-    void setUnannClassType_lf_unannClassOrInterfaceType(UnannClassType_lf_unannClassOrInterfaceType unannClassType_lf_unannClassOrInterfaceType);
+    void setUnannClassType_lf_unannClassOrInterfaceType(UnannClassType_lf_unannClassOrInterfaceType setUnannClassType_lf_unannClassOrInterfaceType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

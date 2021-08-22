@@ -32,10 +32,10 @@ public interface Superclass extends JavaGen {
     @Relation("HAS_CLASS_TYPE")
     ClassType getClassType();
 
-    void setClassType(ClassType classType);
+    void setClassType(ClassType setClassType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

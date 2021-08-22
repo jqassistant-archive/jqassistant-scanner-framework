@@ -34,22 +34,22 @@ public interface UnaryExpressionNotPlusMinus extends JavaGen {
     @Relation("HAS_POSTFIX_EXPRESSION")
     PostfixExpression getPostfixExpression();
 
-    void setPostfixExpression(PostfixExpression postfixExpression);
+    void setPostfixExpression(PostfixExpression setPostfixExpression);
 
     // unhandled TerminalAST token: '~'
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
-    void setUnaryExpression(UnaryExpression unaryExpression);
+    void setUnaryExpression(UnaryExpression setUnaryExpression);
 
     // unhandled TerminalAST token: '!'
     @Relation("HAS_CAST_EXPRESSION")
     CastExpression getCastExpression();
 
-    void setCastExpression(CastExpression castExpression);
+    void setCastExpression(CastExpression setCastExpression);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

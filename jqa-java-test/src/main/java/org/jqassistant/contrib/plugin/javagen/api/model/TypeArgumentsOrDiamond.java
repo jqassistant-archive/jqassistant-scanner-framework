@@ -32,12 +32,12 @@ public interface TypeArgumentsOrDiamond extends JavaGen {
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     // unhandled TerminalAST token: '<'
     // unhandled TerminalAST token: '>'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

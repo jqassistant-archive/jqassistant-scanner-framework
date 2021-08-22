@@ -17,10 +17,8 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
-import org.mapstruct.Context;
-import org.mapstruct.Mapper;
-import org.mapstruct.MapperConfig;
-import org.mapstruct.TargetType;
+import org.mapstruct.*;
+import org.mapstruct.factory.Mappers;
 
 import java.util.*;
 
@@ -63,7 +61,8 @@ public class MapperGenerator {
         compilationUnit.setPackageDeclaration(packageName);
 
         compilationUnit.addImport(Main.antlrPackage + "." + Main.parserName + "Parser");
-        compilationUnit.addImport("org.mapstruct.factory.Mappers");
+        compilationUnit.addImport(Mappers.class);
+        compilationUnit.addImport(NullValueCheckStrategy.class);
 
         AstName mainMapper = getMapperName("Main");
 
@@ -73,6 +72,7 @@ public class MapperGenerator {
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
         mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
+        mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
 
         for (Map.Entry<AstName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
             AstName modelName = entry.getKey();

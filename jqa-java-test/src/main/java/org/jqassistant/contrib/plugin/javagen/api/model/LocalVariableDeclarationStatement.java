@@ -31,11 +31,11 @@ public interface LocalVariableDeclarationStatement extends JavaGen {
     @Relation("HAS_LOCAL_VARIABLE_DECLARATION")
     LocalVariableDeclaration getLocalVariableDeclaration();
 
-    void setLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration);
+    void setLocalVariableDeclaration(LocalVariableDeclaration setLocalVariableDeclaration);
 
     // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

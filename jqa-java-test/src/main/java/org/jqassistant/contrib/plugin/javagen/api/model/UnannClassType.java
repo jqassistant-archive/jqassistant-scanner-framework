@@ -33,18 +33,18 @@ public interface UnannClassType extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
-    void setTypeArguments(TypeArguments typeArguments);
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     @Relation("HAS_UNANN_CLASS_OR_INTERFACE_TYPE")
     UnannClassOrInterfaceType getUnannClassOrInterfaceType();
 
-    void setUnannClassOrInterfaceType(UnannClassOrInterfaceType unannClassOrInterfaceType);
+    void setUnannClassOrInterfaceType(UnannClassOrInterfaceType setUnannClassOrInterfaceType);
 
     // unhandled TerminalAST token: '.'
     @Relation("HAS_ANNOTATION")
@@ -56,5 +56,5 @@ public interface UnannClassType extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

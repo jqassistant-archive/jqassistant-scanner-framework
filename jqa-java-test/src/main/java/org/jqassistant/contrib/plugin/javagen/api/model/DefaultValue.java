@@ -32,10 +32,10 @@ public interface DefaultValue extends JavaGen {
     @Relation("HAS_ELEMENT_VALUE")
     ElementValue getElementValue();
 
-    void setElementValue(ElementValue elementValue);
+    void setElementValue(ElementValue setElementValue);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

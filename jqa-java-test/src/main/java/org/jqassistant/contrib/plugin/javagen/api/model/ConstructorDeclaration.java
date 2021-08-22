@@ -37,21 +37,21 @@ public interface ConstructorDeclaration extends JavaGen {
     @Relation("HAS_CONSTRUCTOR_DECLARATOR")
     ConstructorDeclarator getConstructorDeclarator();
 
-    void setConstructorDeclarator(ConstructorDeclarator constructorDeclarator);
+    void setConstructorDeclarator(ConstructorDeclarator setConstructorDeclarator);
 
     // optional: ?
-    @Relation("HAS_THROWS_")
+    @Relation("HAS_THROWS")
     Throws_ getThrows_();
 
-    void setThrows_(Throws_ throws_);
+    void setThrows_(Throws_ setThrows_);
 
     @Relation("HAS_CONSTRUCTOR_BODY")
     ConstructorBody getConstructorBody();
 
-    void setConstructorBody(ConstructorBody constructorBody);
+    void setConstructorBody(ConstructorBody setConstructorBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

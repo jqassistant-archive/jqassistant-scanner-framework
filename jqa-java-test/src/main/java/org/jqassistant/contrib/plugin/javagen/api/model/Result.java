@@ -32,11 +32,11 @@ public interface Result extends JavaGen {
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
 
-    void setUnannType(UnannType unannType);
+    void setUnannType(UnannType setUnannType);
 
     // unhandled TerminalAST token: 'void'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -38,27 +38,27 @@ public interface NormalInterfaceDeclaration extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
-    void setTypeParameters(TypeParameters typeParameters);
+    void setTypeParameters(TypeParameters setTypeParameters);
 
     // optional: ?
     @Relation("HAS_EXTENDS_INTERFACES")
     ExtendsInterfaces getExtendsInterfaces();
 
-    void setExtendsInterfaces(ExtendsInterfaces extendsInterfaces);
+    void setExtendsInterfaces(ExtendsInterfaces setExtendsInterfaces);
 
     @Relation("HAS_INTERFACE_BODY")
     InterfaceBody getInterfaceBody();
 
-    void setInterfaceBody(InterfaceBody interfaceBody);
+    void setInterfaceBody(InterfaceBody setInterfaceBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

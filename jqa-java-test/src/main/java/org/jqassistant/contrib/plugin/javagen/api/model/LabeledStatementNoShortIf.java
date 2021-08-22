@@ -31,16 +31,16 @@ public interface LabeledStatementNoShortIf extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // unhandled TerminalAST token: ':'
     @Relation("HAS_STATEMENT_NO_SHORT_IF")
     StatementNoShortIf getStatementNoShortIf();
 
-    void setStatementNoShortIf(StatementNoShortIf statementNoShortIf);
+    void setStatementNoShortIf(StatementNoShortIf setStatementNoShortIf);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

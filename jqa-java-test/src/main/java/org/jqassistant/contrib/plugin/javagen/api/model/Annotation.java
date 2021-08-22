@@ -33,20 +33,20 @@ public interface Annotation extends JavaGen {
     @Relation("HAS_NORMAL_ANNOTATION")
     NormalAnnotation getNormalAnnotation();
 
-    void setNormalAnnotation(NormalAnnotation normalAnnotation);
+    void setNormalAnnotation(NormalAnnotation setNormalAnnotation);
 
     @Relation("HAS_MARKER_ANNOTATION")
     MarkerAnnotation getMarkerAnnotation();
 
-    void setMarkerAnnotation(MarkerAnnotation markerAnnotation);
+    void setMarkerAnnotation(MarkerAnnotation setMarkerAnnotation);
 
     @Relation("HAS_SINGLE_ELEMENT_ANNOTATION")
     SingleElementAnnotation getSingleElementAnnotation();
 
-    void setSingleElementAnnotation(SingleElementAnnotation singleElementAnnotation);
+    void setSingleElementAnnotation(SingleElementAnnotation setSingleElementAnnotation);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

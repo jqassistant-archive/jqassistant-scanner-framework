@@ -33,20 +33,20 @@ public interface ReferenceType extends JavaGen {
     @Relation("HAS_CLASS_OR_INTERFACE_TYPE")
     ClassOrInterfaceType getClassOrInterfaceType();
 
-    void setClassOrInterfaceType(ClassOrInterfaceType classOrInterfaceType);
+    void setClassOrInterfaceType(ClassOrInterfaceType setClassOrInterfaceType);
 
     @Relation("HAS_TYPE_VARIABLE")
     TypeVariable getTypeVariable();
 
-    void setTypeVariable(TypeVariable typeVariable);
+    void setTypeVariable(TypeVariable setTypeVariable);
 
     @Relation("HAS_ARRAY_TYPE")
     ArrayType getArrayType();
 
-    void setArrayType(ArrayType arrayType);
+    void setArrayType(ArrayType setArrayType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

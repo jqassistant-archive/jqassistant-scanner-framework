@@ -35,7 +35,7 @@ public interface ArrayAccess_lf_primary extends JavaGen {
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LF_PRIMARY_LFNO_ARRAY_ACCESS_LF_PRIMARY")
     PrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary getPrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary();
 
-    void setPrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary(PrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary primaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary);
+    void setPrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary(PrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary setPrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary);
 
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
@@ -54,5 +54,5 @@ public interface ArrayAccess_lf_primary extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

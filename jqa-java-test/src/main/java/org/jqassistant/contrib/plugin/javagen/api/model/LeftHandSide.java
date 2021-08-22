@@ -33,20 +33,20 @@ public interface LeftHandSide extends JavaGen {
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
-    void setExpressionName(ExpressionName expressionName);
+    void setExpressionName(ExpressionName setExpressionName);
 
     @Relation("HAS_FIELD_ACCESS")
     FieldAccess getFieldAccess();
 
-    void setFieldAccess(FieldAccess fieldAccess);
+    void setFieldAccess(FieldAccess setFieldAccess);
 
     @Relation("HAS_ARRAY_ACCESS")
     ArrayAccess getArrayAccess();
 
-    void setArrayAccess(ArrayAccess arrayAccess);
+    void setArrayAccess(ArrayAccess setArrayAccess);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -31,15 +31,15 @@ public interface SwitchBlockStatementGroup extends JavaGen {
     @Relation("HAS_SWITCH_LABELS")
     SwitchLabels getSwitchLabels();
 
-    void setSwitchLabels(SwitchLabels switchLabels);
+    void setSwitchLabels(SwitchLabels setSwitchLabels);
 
     @Relation("HAS_BLOCK_STATEMENTS")
     BlockStatements getBlockStatements();
 
-    void setBlockStatements(BlockStatements blockStatements);
+    void setBlockStatements(BlockStatements setBlockStatements);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

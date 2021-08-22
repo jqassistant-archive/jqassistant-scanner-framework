@@ -37,12 +37,12 @@ public interface UnannClassOrInterfaceType extends JavaGen {
     @Relation("HAS_UNANN_CLASS_TYPE_LFNO_UNANN_CLASS_OR_INTERFACE_TYPE")
     UnannClassType_lfno_unannClassOrInterfaceType getUnannClassType_lfno_unannClassOrInterfaceType();
 
-    void setUnannClassType_lfno_unannClassOrInterfaceType(UnannClassType_lfno_unannClassOrInterfaceType unannClassType_lfno_unannClassOrInterfaceType);
+    void setUnannClassType_lfno_unannClassOrInterfaceType(UnannClassType_lfno_unannClassOrInterfaceType setUnannClassType_lfno_unannClassOrInterfaceType);
 
     @Relation("HAS_UNANN_INTERFACE_TYPE_LFNO_UNANN_CLASS_OR_INTERFACE_TYPE")
     UnannInterfaceType_lfno_unannClassOrInterfaceType getUnannInterfaceType_lfno_unannClassOrInterfaceType();
 
-    void setUnannInterfaceType_lfno_unannClassOrInterfaceType(UnannInterfaceType_lfno_unannClassOrInterfaceType unannInterfaceType_lfno_unannClassOrInterfaceType);
+    void setUnannInterfaceType_lfno_unannClassOrInterfaceType(UnannInterfaceType_lfno_unannClassOrInterfaceType setUnannInterfaceType_lfno_unannClassOrInterfaceType);
 
     @Relation("HAS_UNANN_CLASS_TYPE_LF_UNANN_CLASS_OR_INTERFACE_TYPE")
     List<UnannClassType_lf_unannClassOrInterfaceType> getUnannClassType_lf_unannClassOrInterfaceType();
@@ -57,5 +57,5 @@ public interface UnannClassOrInterfaceType extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

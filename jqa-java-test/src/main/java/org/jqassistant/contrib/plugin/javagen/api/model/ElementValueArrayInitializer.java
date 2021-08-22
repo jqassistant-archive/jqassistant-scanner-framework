@@ -33,7 +33,7 @@ public interface ElementValueArrayInitializer extends JavaGen {
     @Relation("HAS_ELEMENT_VALUE_LIST")
     ElementValueList getElementValueList();
 
-    void setElementValueList(ElementValueList elementValueList);
+    void setElementValueList(ElementValueList setElementValueList);
 
     // optional: ?
     // unhandled TerminalAST token: ','
@@ -41,5 +41,5 @@ public interface ElementValueArrayInitializer extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

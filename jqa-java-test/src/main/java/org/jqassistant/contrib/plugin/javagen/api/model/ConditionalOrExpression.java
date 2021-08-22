@@ -32,16 +32,16 @@ public interface ConditionalOrExpression extends JavaGen {
     @Relation("HAS_CONDITIONAL_AND_EXPRESSION")
     ConditionalAndExpression getConditionalAndExpression();
 
-    void setConditionalAndExpression(ConditionalAndExpression conditionalAndExpression);
+    void setConditionalAndExpression(ConditionalAndExpression setConditionalAndExpression);
 
     @Relation("HAS_CONDITIONAL_OR_EXPRESSION")
     ConditionalOrExpression getConditionalOrExpression();
 
-    void setConditionalOrExpression(ConditionalOrExpression conditionalOrExpression);
+    void setConditionalOrExpression(ConditionalOrExpression setConditionalOrExpression);
 
     // unhandled TerminalAST token: '||'
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

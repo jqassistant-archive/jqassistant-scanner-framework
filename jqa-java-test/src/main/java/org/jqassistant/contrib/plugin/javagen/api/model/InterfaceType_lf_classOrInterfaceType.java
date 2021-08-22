@@ -31,10 +31,10 @@ public interface InterfaceType_lf_classOrInterfaceType extends JavaGen {
     @Relation("HAS_CLASS_TYPE_LF_CLASS_OR_INTERFACE_TYPE")
     ClassType_lf_classOrInterfaceType getClassType_lf_classOrInterfaceType();
 
-    void setClassType_lf_classOrInterfaceType(ClassType_lf_classOrInterfaceType classType_lf_classOrInterfaceType);
+    void setClassType_lf_classOrInterfaceType(ClassType_lf_classOrInterfaceType setClassType_lf_classOrInterfaceType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

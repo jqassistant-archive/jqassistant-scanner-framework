@@ -31,10 +31,10 @@ public interface UnannInterfaceType extends JavaGen {
     @Relation("HAS_UNANN_CLASS_TYPE")
     UnannClassType getUnannClassType();
 
-    void setUnannClassType(UnannClassType unannClassType);
+    void setUnannClassType(UnannClassType setUnannClassType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

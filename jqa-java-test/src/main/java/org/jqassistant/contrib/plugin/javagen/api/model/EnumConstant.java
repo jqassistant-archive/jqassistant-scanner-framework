@@ -37,7 +37,7 @@ public interface EnumConstant extends JavaGen {
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
-    void setIdentifier(TerminalNodeStrings identifier);
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     // optional: ?
     // unhandled TerminalAST token: '('
@@ -45,17 +45,17 @@ public interface EnumConstant extends JavaGen {
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
-    void setArgumentList(ArgumentList argumentList);
+    void setArgumentList(ArgumentList setArgumentList);
 
     // unhandled TerminalAST token: ')'
     // optional: ?
     @Relation("HAS_CLASS_BODY")
     ClassBody getClassBody();
 
-    void setClassBody(ClassBody classBody);
+    void setClassBody(ClassBody setClassBody);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

@@ -32,15 +32,15 @@ public interface NumericType extends JavaGen {
     @Relation("HAS_INTEGRAL_TYPE")
     IntegralType getIntegralType();
 
-    void setIntegralType(IntegralType integralType);
+    void setIntegralType(IntegralType setIntegralType);
 
     @Relation("HAS_FLOATING_POINT_TYPE")
     FloatingPointType getFloatingPointType();
 
-    void setFloatingPointType(FloatingPointType floatingPointType);
+    void setFloatingPointType(FloatingPointType setFloatingPointType);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

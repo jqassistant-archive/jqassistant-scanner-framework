@@ -16,5 +16,5 @@ public interface JavaGenFileDescriptor extends JavaGen, FileDescriptor {
     @Relation("HAS_COMPILATION_UNIT")
     CompilationUnit getCompilationUnit();
 
-    void setCompilationUnit(CompilationUnit compilationUnit);
+    void setCompilationUnit(CompilationUnit setCompilationUnit);
 }

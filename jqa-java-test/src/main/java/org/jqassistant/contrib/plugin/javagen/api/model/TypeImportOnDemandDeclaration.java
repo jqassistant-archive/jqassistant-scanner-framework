@@ -32,7 +32,7 @@ public interface TypeImportOnDemandDeclaration extends JavaGen {
     @Relation("HAS_PACKAGE_OR_TYPE_NAME")
     PackageOrTypeName getPackageOrTypeName();
 
-    void setPackageOrTypeName(PackageOrTypeName packageOrTypeName);
+    void setPackageOrTypeName(PackageOrTypeName setPackageOrTypeName);
 
     // unhandled TerminalAST token: '.'
     // unhandled TerminalAST token: '*'
@@ -40,5 +40,5 @@ public interface TypeImportOnDemandDeclaration extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

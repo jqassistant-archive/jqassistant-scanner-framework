@@ -36,35 +36,35 @@ public interface Statement extends JavaGen {
     @Relation("HAS_STATEMENT_WITHOUT_TRAILING_SUBSTATEMENT")
     StatementWithoutTrailingSubstatement getStatementWithoutTrailingSubstatement();
 
-    void setStatementWithoutTrailingSubstatement(StatementWithoutTrailingSubstatement statementWithoutTrailingSubstatement);
+    void setStatementWithoutTrailingSubstatement(StatementWithoutTrailingSubstatement setStatementWithoutTrailingSubstatement);
 
     @Relation("HAS_LABELED_STATEMENT")
     LabeledStatement getLabeledStatement();
 
-    void setLabeledStatement(LabeledStatement labeledStatement);
+    void setLabeledStatement(LabeledStatement setLabeledStatement);
 
     @Relation("HAS_IF_THEN_STATEMENT")
     IfThenStatement getIfThenStatement();
 
-    void setIfThenStatement(IfThenStatement ifThenStatement);
+    void setIfThenStatement(IfThenStatement setIfThenStatement);
 
     @Relation("HAS_IF_THEN_ELSE_STATEMENT")
     IfThenElseStatement getIfThenElseStatement();
 
-    void setIfThenElseStatement(IfThenElseStatement ifThenElseStatement);
+    void setIfThenElseStatement(IfThenElseStatement setIfThenElseStatement);
 
     @Relation("HAS_WHILE_STATEMENT")
     WhileStatement getWhileStatement();
 
-    void setWhileStatement(WhileStatement whileStatement);
+    void setWhileStatement(WhileStatement setWhileStatement);
 
     @Relation("HAS_FOR_STATEMENT")
     ForStatement getForStatement();
 
-    void setForStatement(ForStatement forStatement);
+    void setForStatement(ForStatement setForStatement);
 
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

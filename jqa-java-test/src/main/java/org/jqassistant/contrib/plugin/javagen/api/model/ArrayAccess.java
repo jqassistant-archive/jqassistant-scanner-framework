@@ -36,14 +36,14 @@ public interface ArrayAccess extends JavaGen {
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
-    void setExpressionName(ExpressionName expressionName);
+    void setExpressionName(ExpressionName setExpressionName);
 
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
     @Relation("HAS_PRIMARY_NO_NEW_ARRAY_LFNO_ARRAY_ACCESS")
     PrimaryNoNewArray_lfno_arrayAccess getPrimaryNoNewArray_lfno_arrayAccess();
 
-    void setPrimaryNoNewArray_lfno_arrayAccess(PrimaryNoNewArray_lfno_arrayAccess primaryNoNewArray_lfno_arrayAccess);
+    void setPrimaryNoNewArray_lfno_arrayAccess(PrimaryNoNewArray_lfno_arrayAccess setPrimaryNoNewArray_lfno_arrayAccess);
 
     // unhandled TerminalAST token: '['
     // unhandled TerminalAST token: ']'
@@ -62,5 +62,5 @@ public interface ArrayAccess extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }

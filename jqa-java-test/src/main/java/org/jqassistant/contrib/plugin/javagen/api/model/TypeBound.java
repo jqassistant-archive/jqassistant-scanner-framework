@@ -34,13 +34,13 @@ public interface TypeBound extends JavaGen {
     @Relation("HAS_TYPE_VARIABLE")
     TypeVariable getTypeVariable();
 
-    void setTypeVariable(TypeVariable typeVariable);
+    void setTypeVariable(TypeVariable setTypeVariable);
 
     // unhandled TerminalAST token: 'extends'
     @Relation("HAS_CLASS_OR_INTERFACE_TYPE")
     ClassOrInterfaceType getClassOrInterfaceType();
 
-    void setClassOrInterfaceType(ClassOrInterfaceType classOrInterfaceType);
+    void setClassOrInterfaceType(ClassOrInterfaceType setClassOrInterfaceType);
 
     @Relation("HAS_ADDITIONAL_BOUND")
     List<AdditionalBound> getAdditionalBound();
@@ -50,5 +50,5 @@ public interface TypeBound extends JavaGen {
     @Relation("HAS_TEXT")
     String getText();
 
-    void setText(String text);
+    void setText(String setText);
 }
