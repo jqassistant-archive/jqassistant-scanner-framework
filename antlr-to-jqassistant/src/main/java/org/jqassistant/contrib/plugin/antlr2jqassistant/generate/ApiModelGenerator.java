@@ -12,7 +12,7 @@ import org.antlr.v4.tool.ast.*;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 
-import java.beans.Introspector;
+import javax.lang.model.SourceVersion;
 import java.util.*;
 
 public class ApiModelGenerator {
@@ -122,10 +122,12 @@ public class ApiModelGenerator {
             handleAst(interfaceDeclaration, (StarBlockAST) ast, isList);
         } else if (ast instanceof AltAST) {
             handleAst(interfaceDeclaration, (AltAST) ast, isList);
+        } else if (ast instanceof PredAST) {
+            handleAst(interfaceDeclaration, (PredAST) ast, isList);
         } else if (ast instanceof RuleRefAST) {
             handleGenericAst(interfaceDeclaration, ast, isList);
         } else {
-            interfaceDeclaration.addOrphanComment(new LineComment("unhandled AST type: " + ast.getType() + isList));
+            interfaceDeclaration.addOrphanComment(new LineComment("unhandled AST type: " + ast.getType() + " - list: " + isList + " : " + ast.getText()));
             handleGenericAst(interfaceDeclaration, ast, isList);
         }
     }
@@ -197,6 +199,11 @@ public class ApiModelGenerator {
         handleChildren(interfaceDeclaration, ast, isList);
     }
 
+    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, PredAST ast, boolean isList) {
+        interfaceDeclaration.addOrphanComment(new LineComment("unhandled AST type: " + ast.getType() + " - list: " + isList + " : " + ast.getText()));
+//        handleChildren(interfaceDeclaration, ast, isList);
+    }
+
     private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, String name, boolean isList) {
         String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
         addMethodDeclaration(interfaceDeclaration, name, nameUpperCamel, isList);
@@ -251,12 +258,16 @@ public class ApiModelGenerator {
 
     public static String getGetterName(String nameUpperCamel, boolean isList) {
 //        return GET + nameUpperCamel + (isList ? "s" : ""); // ANTLR doesn't seem to follow JavaBeans naming-conventions, be careful
-        return GET + nameUpperCamel;
+        return GET + (isReserved(nameUpperCamel) ? nameUpperCamel + "Descriptor" : nameUpperCamel);
     }
 
     public static String getSetterName(String nameUpperCamel, boolean isList) {
 //        return SET + nameUpperCamel + (isList ? "s" : ""); // ANTLR doesn't seem to follow JavaBeans naming-conventions, be careful
         return SET + nameUpperCamel;
+    }
+
+    private static Boolean isReserved(String word) {
+        return SourceVersion.isKeyword(word) || SourceVersion.isKeyword(word.toLowerCase());
     }
 
     public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, String name) {
@@ -273,7 +284,7 @@ public class ApiModelGenerator {
                 .addSingleMemberAnnotation(Relation.class, QUOTES + HAS + nameUpperUnderscore + QUOTES);
         interfaceDeclaration.addMethod(getSetterName(nameUpperCamel, false))
                 .removeBody()
-                .addParameter(type, Introspector.decapitalize(name));
+                .addParameter(type, getSetterName(nameUpperCamel, false));
     }
 
     public static void createListGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, String name, String type) {

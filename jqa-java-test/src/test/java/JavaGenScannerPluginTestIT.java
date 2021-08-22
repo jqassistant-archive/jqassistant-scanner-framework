@@ -12,8 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class JavaGenScannerPluginTestIT extends AbstractPluginIT {
 
 //    static String file = "/helloworld.java";
-//    static String file = "/Java8Parser.java";
-    static String file = "/JavaGenFileScannerPlugin.java";
+//    static String file = "/example.java";
+//    static String file = "/AllInOne7.java";
+    static String file = "/AllInOne8.java";
 
     @Test
     @TestStore(type = TestStore.Type.REMOTE)

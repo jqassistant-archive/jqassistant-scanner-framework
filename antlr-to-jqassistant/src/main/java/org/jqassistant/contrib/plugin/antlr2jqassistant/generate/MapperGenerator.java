@@ -46,12 +46,12 @@ public class MapperGenerator {
         System.out.println(new Date() + " Starting Mapper Generation");
         Map<String, CompilationUnit> mapperCompilationUnitMap = new TreeMap<>();
 
-        for (Map.Entry<String, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
-            mapperCompilationUnitMap.putAll(generateModelToContextMapper(entry.getKey(), entry.getValue()));
-        }
-        mapperCompilationUnitMap.putAll(generateTerminalNodeMapper());
+//        for (Map.Entry<String, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
+//            mapperCompilationUnitMap.putAll(generateModelToContextMapper(entry.getKey(), entry.getValue()));
+//        }
         mapperCompilationUnitMap.putAll(generateDescriptorFactory());
-        mapperCompilationUnitMap.putAll(generateMapperConfig(mapperCompilationUnitMap));
+//        mapperCompilationUnitMap.putAll(generateTerminalNodeMapper());
+//        mapperCompilationUnitMap.putAll(generateMapperConfig(mapperCompilationUnitMap));
 
         System.out.println(new Date() + " Generation Done!");
         return mapperCompilationUnitMap;

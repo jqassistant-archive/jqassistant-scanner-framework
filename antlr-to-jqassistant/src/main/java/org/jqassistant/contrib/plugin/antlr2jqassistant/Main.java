@@ -15,6 +15,17 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Main {
+//    public static final String id = "JavaGen";
+//    public static final String parserName = "Java8";
+//    public static final String source = "antlr-to-jqassistant/";
+//    public static final String destination = "jqa-java-test/";
+//    public final static String entryNode = "CompilationUnit"; //TODO: HOW CAN THIS BE DYNAMICALLY DETERMINED?!?!?!
+
+    public static final String id = "TypeScriptGen";
+    public static final String parserName = "TypeScript";
+    public static final String source = "antlr-to-jqassistant/";
+    public static final String destination = "jqa-typescript-test/";
+    public final static String entryNode = "Program";
 
     public static void main(String[] args) {
         try {
@@ -23,19 +34,12 @@ public class Main {
             e.printStackTrace();
         }
     }
-    public static final String id = "JavaGen";
-    public static final String parserName = "Java8";
-
-    public static final String source = "antlr-to-jqassistant/";
-    public static final String destination = "jqa-java-test/";
 
     public static final String rootPackage = "org.jqassistant.contrib.plugin." + id.toLowerCase();
     public static final String antlrPackage = rootPackage + ".antlr4";
     public static final String apiPackage = rootPackage + ".api";
     public static final String modelPackage = apiPackage + ".model";
     public static final String mapperPackage = rootPackage + ".util.mapper";
-
-    public final static String entryNode = "CompilationUnit"; //TODO: HOW CAN THIS BE DYNAMICALLY DETERMINED?!?!?!
 
     public static File[] files = {
             new File(source + "src/main/resources/" + parserName + "Lexer.g4"),
