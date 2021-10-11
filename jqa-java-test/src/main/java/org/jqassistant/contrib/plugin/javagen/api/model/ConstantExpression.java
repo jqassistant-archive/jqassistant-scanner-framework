@@ -2,25 +2,47 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE constantExpression (BLOCK (ALT expression)))
+ * public static class ConstantExpressionContext extends ParserRuleContext {
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public ConstantExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_constantExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterConstantExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitConstantExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * constantExpression
- * 	:	expression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4227-4233
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#constantExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ConstantExpressionMapper
  */
 @Generated(

@@ -2,26 +2,60 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeParameterList (BLOCK (ALT typeParameter (* (BLOCK (ALT ',' typeParameter))))))
+ * public static class TypeParameterListContext extends ParserRuleContext {
+ *
+ *     public List<TypeParameterContext> typeParameter() {
+ *         return getRuleContexts(TypeParameterContext.class);
+ *     }
+ *
+ *     public TypeParameterContext typeParameter(int i) {
+ *         return getRuleContext(TypeParameterContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> Comma() {
+ *         return getTokens(TypeScriptParser.Comma);
+ *     }
+ *
+ *     public TerminalNode Comma(int i) {
+ *         return getToken(TypeScriptParser.Comma, i);
+ *     }
+ *
+ *     public TypeParameterListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeParameterList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterTypeParameterList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitTypeParameterList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeParameterList
- *     : typeParameter (',' typeParameter)*
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:66-79
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#typeParameterList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.TypeParameterListMapper
  */
 @Generated(
@@ -29,11 +63,15 @@ import java.util.List;
 @Label("TypeParameterList")
 public interface TypeParameterList extends TypeScriptGen {
 
-    // unhandled TerminalAST token: ','
     @Relation("HAS_TYPE_PARAMETER")
     List<TypeParameter> getTypeParameter();
 
     void setTypeParameter(List<TypeParameter> setTypeParameter);
+
+    @Relation("HAS_COMMA")
+    List<TerminalNodeStrings> getComma();
+
+    void setComma(List<TerminalNodeStrings> setComma);
 
     @Relation("HAS_TEXT")
     String getText();

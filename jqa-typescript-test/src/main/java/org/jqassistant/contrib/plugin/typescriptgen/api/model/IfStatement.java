@@ -2,27 +2,72 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
 
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE ifStatement (BLOCK (ALT If '(' expressionSequence ')' statement (? (BLOCK (ALT Else statement))))))
+ * public static class IfStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode If() {
+ *         return getToken(TypeScriptParser.If, 0);
+ *     }
+ *
+ *     public TerminalNode OpenParen() {
+ *         return getToken(TypeScriptParser.OpenParen, 0);
+ *     }
+ *
+ *     public ExpressionSequenceContext expressionSequence() {
+ *         return getRuleContext(ExpressionSequenceContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode CloseParen() {
+ *         return getToken(TypeScriptParser.CloseParen, 0);
+ *     }
+ *
+ *     public List<StatementContext> statement() {
+ *         return getRuleContexts(StatementContext.class);
+ *     }
+ *
+ *     public StatementContext statement(int i) {
+ *         return getRuleContext(StatementContext.class, i);
+ *     }
+ *
+ *     public TerminalNode Else() {
+ *         return getToken(TypeScriptParser.Else, 0);
+ *     }
+ *
+ *     public IfStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_ifStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterIfStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitIfStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * ifStatement
- *     : If '(' expressionSequence ')' statement (Else statement)?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1525-1546
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#ifStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.IfStatementMapper
  */
 @Generated(
@@ -35,19 +80,26 @@ public interface IfStatement extends TypeScriptGen {
 
     void setIf(TerminalNodeStrings setIf);
 
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_OPEN_PAREN")
+    TerminalNodeStrings getOpenParen();
+
+    void setOpenParen(TerminalNodeStrings setOpenParen);
+
     @Relation("HAS_EXPRESSION_SEQUENCE")
     ExpressionSequence getExpressionSequence();
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_CLOSE_PAREN")
+    TerminalNodeStrings getCloseParen();
+
+    void setCloseParen(TerminalNodeStrings setCloseParen);
+
     @Relation("HAS_STATEMENT")
     List<Statement> getStatement();
 
     void setStatement(List<Statement> setStatement);
 
-    // optional: ?
     @Relation("HAS_ELSE")
     TerminalNodeStrings getElse();
 

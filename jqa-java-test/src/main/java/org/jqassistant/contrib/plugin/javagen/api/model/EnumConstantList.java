@@ -2,26 +2,60 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE enumConstantList (BLOCK (ALT enumConstant (* (BLOCK (ALT ',' enumConstant))))))
+ * public static class EnumConstantListContext extends ParserRuleContext {
+ *
+ *     public List<EnumConstantContext> enumConstant() {
+ *         return getRuleContexts(EnumConstantContext.class);
+ *     }
+ *
+ *     public EnumConstantContext enumConstant(int i) {
+ *         return getRuleContext(EnumConstantContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> COMMA() {
+ *         return getTokens(Java8Parser.COMMA);
+ *     }
+ *
+ *     public TerminalNode COMMA(int i) {
+ *         return getToken(Java8Parser.COMMA, i);
+ *     }
+ *
+ *     public EnumConstantListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_enumConstantList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterEnumConstantList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitEnumConstantList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * enumConstantList
- * 	:	enumConstant (',' enumConstant)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1606-1619
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#enumConstantList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnumConstantListMapper
  */
 @Generated(
@@ -29,11 +63,15 @@ import java.util.List;
 @Label("EnumConstantList")
 public interface EnumConstantList extends JavaGen {
 
-    // unhandled TerminalAST token: ','
     @Relation("HAS_ENUM_CONSTANT")
     List<EnumConstant> getEnumConstant();
 
     void setEnumConstant(List<EnumConstant> setEnumConstant);
+
+    @Relation("HAS_C_O_M_M_A")
+    List<TerminalNodeStrings> getCOMMA();
+
+    void setCOMMA(List<TerminalNodeStrings> setCOMMA);
 
     @Relation("HAS_TEXT")
     String getText();

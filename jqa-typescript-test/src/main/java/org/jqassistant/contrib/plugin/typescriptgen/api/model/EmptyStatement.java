@@ -2,25 +2,47 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE emptyStatement (BLOCK (ALT SemiColon)))
+ * public static class EmptyStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode SemiColon() {
+ *         return getToken(TypeScriptParser.SemiColon, 0);
+ *     }
+ *
+ *     public EmptyStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_emptyStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterEmptyStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitEmptyStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * emptyStatement
- *     : SemiColon
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1504-1510
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#emptyStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.EmptyStatementMapper
  */
 @Generated(

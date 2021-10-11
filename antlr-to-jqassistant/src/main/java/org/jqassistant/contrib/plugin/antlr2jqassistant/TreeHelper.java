@@ -6,10 +6,14 @@ import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.google.common.base.CaseFormat;
 import org.antlr.runtime.tree.Tree;
-import org.antlr.v4.tool.ast.*;
+import org.antlr.v4.tool.ast.GrammarAST;
+import org.antlr.v4.tool.ast.GrammarRootAST;
+import org.antlr.v4.tool.ast.RuleRefAST;
+import org.antlr.v4.tool.ast.TerminalAST;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MapperGenerator;
 
 import javax.annotation.Generated;
+import java.io.File;
 import java.util.List;
 
 public class TreeHelper {
@@ -71,55 +75,24 @@ public class TreeHelper {
         return null;
     }
 
-    public static Comment generateComment(RuleAST ast) {
-        String name = ast.getRuleName();
+    public static Comment generateComment(ClassOrInterfaceDeclaration clazz) {
+        String name = clazz.getNameAsString();
         String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
 
         StringBuilder comment = new StringBuilder()
-                .append("\nGenerated from AST:")
+                .append("\nGenerated from Parser:")
                 .append("\n<pre>\n")
-                .append(ast.toStringTree())
+                .append(clazz.toString())
                 .append("\n</pre>\n")
-                .append("\n\n");
-
-        GrammarRootAST root = getRoot(ast);
-        if (root == null) {
-            return new JavadocComment(comment.toString());
+                .append("\n\n")
+                .append("Source Grammar(s): ")
+                .append("\n");
+        for (File file: Main.files) {
+            comment.append("@see ").append(file.toString()).append("\n");
         }
-        return new JavadocComment(comment
-                .append("\n<pre>\n")
-                .append(root.tokenStream.toString(ast.getTokenStartIndex(), ast.getTokenStopIndex()))
-                .append("\n</pre>\n")
-                .append("\n")
-                .append("Source Grammar: ")
-                .append("<a href=\"../").append(root.fileName).append(".g4\">") //TODO: replace link
-                .append(root.fileName).append(".g4").append("</a>")
-                .append(":")
-                .append(ast.getTokenStartIndex()).append("-").append(ast.getTokenStopIndex()).append("\n")
-//                .append("Generated Parser: ").append("{@link ").append(root.fileName).append("#").append(ast.getRuleName()).append("()} ").append("\n")
-                .append("@see ").append(Main.antlrPackage).append(".").append(root.fileName).append("#").append(name).append("()")
-                .append("\n")
-                .append("@see ").append(Main.mapperPackage).append(".").append(MapperGenerator.getMapperName(nameUpperCamel))
-                .toString());
+        comment.append("@see ").append(Main.mapperPackage).append(".").append(MapperGenerator.getMapperName(nameUpperCamel));
+
+        return new JavadocComment(comment.toString());
     }
 
-//    public static <T extends GrammarAST> T getFirstChildOfInstance(GrammarAST ast, Class<T> clazz) {
-//        List<GrammarAST> children = (List<GrammarAST>) ast.getChildren();
-//        if (children == null) {
-//            return (clazz) ast;
-//        }
-//
-//        for (GrammarAST child : children) {
-//            if (child != null && child instanceof T) {
-//                return (clazz) child;
-//            }
-//
-//            T ruleRefAst = getFirstChildOfInstance(child, clazz);
-//            if (ruleRefAst != null) {
-//                return ruleRefAst;
-//            }
-//        }
-//
-//        return null;
-//    }
 }

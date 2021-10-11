@@ -2,25 +2,67 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE propertySignatur (BLOCK (ALT (? (BLOCK (ALT ReadOnly))) propertyName (? (BLOCK (ALT '?'))) (? (BLOCK (ALT typeAnnotation))) (? (BLOCK (ALT '=>' type_))))))
+ * public static class PropertySignaturContext extends ParserRuleContext {
+ *
+ *     public PropertyNameContext propertyName() {
+ *         return getRuleContext(PropertyNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode ReadOnly() {
+ *         return getToken(TypeScriptParser.ReadOnly, 0);
+ *     }
+ *
+ *     public TerminalNode QuestionMark() {
+ *         return getToken(TypeScriptParser.QuestionMark, 0);
+ *     }
+ *
+ *     public TypeAnnotationContext typeAnnotation() {
+ *         return getRuleContext(TypeAnnotationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode ARROW() {
+ *         return getToken(TypeScriptParser.ARROW, 0);
+ *     }
+ *
+ *     public Type_Context type_() {
+ *         return getRuleContext(Type_Context.class, 0);
+ *     }
+ *
+ *     public PropertySignaturContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_propertySignatur;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterPropertySignatur(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitPropertySignatur(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * propertySignatur
- *     : ReadOnly? propertyName '?'? typeAnnotation? ('=>' type_)?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:592-614
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#propertySignatur()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.PropertySignaturMapper
  */
 @Generated(
@@ -28,27 +70,31 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("PropertySignatur")
 public interface PropertySignatur extends TypeScriptGen {
 
-    // optional: ?
-    @Relation("HAS_READ_ONLY")
-    TerminalNodeStrings getReadOnly();
-
-    void setReadOnly(TerminalNodeStrings setReadOnly);
-
     @Relation("HAS_PROPERTY_NAME")
     PropertyName getPropertyName();
 
     void setPropertyName(PropertyName setPropertyName);
 
-    // optional: ?
-    // unhandled TerminalAST token: '?'
-    // optional: ?
+    @Relation("HAS_READ_ONLY")
+    TerminalNodeStrings getReadOnly();
+
+    void setReadOnly(TerminalNodeStrings setReadOnly);
+
+    @Relation("HAS_QUESTION_MARK")
+    TerminalNodeStrings getQuestionMark();
+
+    void setQuestionMark(TerminalNodeStrings setQuestionMark);
+
     @Relation("HAS_TYPE_ANNOTATION")
     TypeAnnotation getTypeAnnotation();
 
     void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
 
-    // optional: ?
-    // unhandled TerminalAST token: '=>'
+    @Relation("HAS_A_R_R_O_W")
+    TerminalNodeStrings getARROW();
+
+    void setARROW(TerminalNodeStrings setARROW);
+
     @Relation("HAS_TYPE")
     Type_ getType_();
 

@@ -2,35 +2,116 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
+import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary (BLOCK (ALT literal) (ALT typeName (* (BLOCK (ALT '[' ']'))) '.' 'class') (ALT unannPrimitiveType (* (BLOCK (ALT '[' ']'))) '.' 'class') (ALT 'void' '.' 'class') (ALT 'this') (ALT typeName '.' 'this') (ALT '(' expression ')') (ALT classInstanceCreationExpression_lfno_primary) (ALT fieldAccess_lfno_primary) (ALT methodInvocation_lfno_primary) (ALT methodReference_lfno_primary)))
+ * public static class PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primaryContext extends ParserRuleContext {
+ *
+ *     public LiteralContext literal() {
+ *         return getRuleContext(LiteralContext.class, 0);
+ *     }
+ *
+ *     public TypeNameContext typeName() {
+ *         return getRuleContext(TypeNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public TerminalNode CLASS() {
+ *         return getToken(Java8Parser.CLASS, 0);
+ *     }
+ *
+ *     public List<TerminalNode> LBRACK() {
+ *         return getTokens(Java8Parser.LBRACK);
+ *     }
+ *
+ *     public TerminalNode LBRACK(int i) {
+ *         return getToken(Java8Parser.LBRACK, i);
+ *     }
+ *
+ *     public List<TerminalNode> RBRACK() {
+ *         return getTokens(Java8Parser.RBRACK);
+ *     }
+ *
+ *     public TerminalNode RBRACK(int i) {
+ *         return getToken(Java8Parser.RBRACK, i);
+ *     }
+ *
+ *     public UnannPrimitiveTypeContext unannPrimitiveType() {
+ *         return getRuleContext(UnannPrimitiveTypeContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode VOID() {
+ *         return getToken(Java8Parser.VOID, 0);
+ *     }
+ *
+ *     public TerminalNode THIS() {
+ *         return getToken(Java8Parser.THIS, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public ClassInstanceCreationExpression_lfno_primaryContext classInstanceCreationExpression_lfno_primary() {
+ *         return getRuleContext(ClassInstanceCreationExpression_lfno_primaryContext.class, 0);
+ *     }
+ *
+ *     public FieldAccess_lfno_primaryContext fieldAccess_lfno_primary() {
+ *         return getRuleContext(FieldAccess_lfno_primaryContext.class, 0);
+ *     }
+ *
+ *     public MethodInvocation_lfno_primaryContext methodInvocation_lfno_primary() {
+ *         return getRuleContext(MethodInvocation_lfno_primaryContext.class, 0);
+ *     }
+ *
+ *     public MethodReference_lfno_primaryContext methodReference_lfno_primary() {
+ *         return getRuleContext(MethodReference_lfno_primaryContext.class, 0);
+ *     }
+ *
+ *     public PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primaryContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterPrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitPrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary
- * 	:	literal
- * 	|	typeName ('[' ']')* '.' 'class'
- * 	|	unannPrimitiveType ('[' ']')* '.' 'class'
- * 	|	'void' '.' 'class'
- * 	|	'this'
- * 	|	typeName '.' 'this'
- * 	|	'(' expression ')'
- * 	|	classInstanceCreationExpression_lfno_primary
- * 	|	fieldAccess_lfno_primary
- * 	|	methodInvocation_lfno_primary
- * 	|	methodReference_lfno_primary
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:3283-3363
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#primaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primaryMapper
  */
 @Generated(
@@ -48,32 +129,56 @@ public interface PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary ex
 
     void setTypeName(TypeName setTypeName);
 
-    // unhandled TerminalAST token: '['
-    // unhandled TerminalAST token: ']'
-    // unhandled TerminalAST token: '.'
-    // unhandled TerminalAST token: 'class'
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
+
+    void setDOT(TerminalNodeStrings setDOT);
+
+    @Relation("HAS_C_L_A_S_S")
+    TerminalNodeStrings getClazz();
+
+    void setClazz(TerminalNodeStrings setClazz);
+
+    @Relation("HAS_L_B_R_A_C_K")
+    List<TerminalNodeStrings> getLBRACK();
+
+    void setLBRACK(List<TerminalNodeStrings> setLBRACK);
+
+    @Relation("HAS_R_B_R_A_C_K")
+    List<TerminalNodeStrings> getRBRACK();
+
+    void setRBRACK(List<TerminalNodeStrings> setRBRACK);
+
     @Relation("HAS_UNANN_PRIMITIVE_TYPE")
     UnannPrimitiveType getUnannPrimitiveType();
 
     void setUnannPrimitiveType(UnannPrimitiveType setUnannPrimitiveType);
 
-    // unhandled TerminalAST token: '['
-    // unhandled TerminalAST token: ']'
-    // unhandled TerminalAST token: '.'
-    // unhandled TerminalAST token: 'class'
-    // unhandled TerminalAST token: 'void'
-    // unhandled TerminalAST token: '.'
-    // unhandled TerminalAST token: 'class'
-    // unhandled TerminalAST token: 'this'
-    // unhandled TerminalAST token: '.'
-    // unhandled TerminalAST token: 'this'
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_V_O_I_D")
+    TerminalNodeStrings getVOID();
+
+    void setVOID(TerminalNodeStrings setVOID);
+
+    @Relation("HAS_T_H_I_S")
+    TerminalNodeStrings getTHIS();
+
+    void setTHIS(TerminalNodeStrings setTHIS);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_CLASS_INSTANCE_CREATION_EXPRESSION_LFNO_PRIMARY")
     ClassInstanceCreationExpression_lfno_primary getClassInstanceCreationExpression_lfno_primary();
 

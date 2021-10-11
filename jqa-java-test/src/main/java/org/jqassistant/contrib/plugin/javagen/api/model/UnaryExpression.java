@@ -2,29 +2,67 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE unaryExpression (BLOCK (ALT preIncrementExpression) (ALT preDecrementExpression) (ALT '+' unaryExpression) (ALT '-' unaryExpression) (ALT unaryExpressionNotPlusMinus)))
+ * public static class UnaryExpressionContext extends ParserRuleContext {
+ *
+ *     public PreIncrementExpressionContext preIncrementExpression() {
+ *         return getRuleContext(PreIncrementExpressionContext.class, 0);
+ *     }
+ *
+ *     public PreDecrementExpressionContext preDecrementExpression() {
+ *         return getRuleContext(PreDecrementExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode ADD() {
+ *         return getToken(Java8Parser.ADD, 0);
+ *     }
+ *
+ *     public UnaryExpressionContext unaryExpression() {
+ *         return getRuleContext(UnaryExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SUB() {
+ *         return getToken(Java8Parser.SUB, 0);
+ *     }
+ *
+ *     public UnaryExpressionNotPlusMinusContext unaryExpressionNotPlusMinus() {
+ *         return getRuleContext(UnaryExpressionNotPlusMinusContext.class, 0);
+ *     }
+ *
+ *     public UnaryExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_unaryExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterUnaryExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitUnaryExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * unaryExpression
- * 	:	preIncrementExpression
- * 	|	preDecrementExpression
- * 	|	'+' unaryExpression
- * 	|	'-' unaryExpression
- * 	|	unaryExpressionNotPlusMinus
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4671-4697
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#unaryExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnaryExpressionMapper
  */
 @Generated(
@@ -42,13 +80,21 @@ public interface UnaryExpression extends JavaGen {
 
     void setPreDecrementExpression(PreDecrementExpression setPreDecrementExpression);
 
-    // unhandled TerminalAST token: '+'
+    @Relation("HAS_A_D_D")
+    TerminalNodeStrings getADD();
+
+    void setADD(TerminalNodeStrings setADD);
+
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
     void setUnaryExpression(UnaryExpression setUnaryExpression);
 
-    // unhandled TerminalAST token: '-'
+    @Relation("HAS_S_U_B")
+    TerminalNodeStrings getSUB();
+
+    void setSUB(TerminalNodeStrings setSUB);
+
     @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
     UnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus();
 

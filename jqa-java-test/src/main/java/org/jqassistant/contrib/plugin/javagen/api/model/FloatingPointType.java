@@ -2,26 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE floatingPointType (BLOCK (ALT 'float') (ALT 'double')))
+ * public static class FloatingPointTypeContext extends ParserRuleContext {
+ *
+ *     public TerminalNode FLOAT() {
+ *         return getToken(Java8Parser.FLOAT, 0);
+ *     }
+ *
+ *     public TerminalNode DOUBLE() {
+ *         return getToken(Java8Parser.DOUBLE, 0);
+ *     }
+ *
+ *     public FloatingPointTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_floatingPointType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterFloatingPointType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitFloatingPointType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * floatingPointType
- * 	:	'float'
- * 	|	'double'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:106-116
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#floatingPointType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.FloatingPointTypeMapper
  */
 @Generated(
@@ -29,8 +54,16 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("FloatingPointType")
 public interface FloatingPointType extends JavaGen {
 
-    // unhandled TerminalAST token: 'float'
-    // unhandled TerminalAST token: 'double'
+    @Relation("HAS_F_L_O_A_T")
+    TerminalNodeStrings getFLOAT();
+
+    void setFLOAT(TerminalNodeStrings setFLOAT);
+
+    @Relation("HAS_D_O_U_B_L_E")
+    TerminalNodeStrings getDOUBLE();
+
+    void setDOUBLE(TerminalNodeStrings setDOUBLE);
+
     @Relation("HAS_TEXT")
     String getText();
 

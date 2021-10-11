@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeBody (BLOCK (ALT typeMemberList (? (BLOCK (ALT SemiColon) (ALT ','))))))
+ * public static class TypeBodyContext extends ParserRuleContext {
+ *
+ *     public TypeMemberListContext typeMemberList() {
+ *         return getRuleContext(TypeMemberListContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SemiColon() {
+ *         return getToken(TypeScriptParser.SemiColon, 0);
+ *     }
+ *
+ *     public TerminalNode Comma() {
+ *         return getToken(TypeScriptParser.Comma, 0);
+ *     }
+ *
+ *     public TypeBodyContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeBody;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterTypeBody(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitTypeBody(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeBody
- *     : typeMemberList (SemiColon | ',')?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:411-426
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#typeBody()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.TypeBodyMapper
  */
 @Generated(
@@ -33,13 +63,16 @@ public interface TypeBody extends TypeScriptGen {
 
     void setTypeMemberList(TypeMemberList setTypeMemberList);
 
-    // optional: ?
     @Relation("HAS_SEMI_COLON")
     TerminalNodeStrings getSemiColon();
 
     void setSemiColon(TerminalNodeStrings setSemiColon);
 
-    // unhandled TerminalAST token: ','
+    @Relation("HAS_COMMA")
+    TerminalNodeStrings getComma();
+
+    void setComma(TerminalNodeStrings setComma);
+
     @Relation("HAS_TEXT")
     String getText();
 

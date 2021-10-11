@@ -2,29 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE classMemberDeclaration (BLOCK (ALT fieldDeclaration) (ALT methodDeclaration) (ALT classDeclaration) (ALT interfaceDeclaration) (ALT ';')))
+ * public static class ClassMemberDeclarationContext extends ParserRuleContext {
+ *
+ *     public FieldDeclarationContext fieldDeclaration() {
+ *         return getRuleContext(FieldDeclarationContext.class, 0);
+ *     }
+ *
+ *     public MethodDeclarationContext methodDeclaration() {
+ *         return getRuleContext(MethodDeclarationContext.class, 0);
+ *     }
+ *
+ *     public ClassDeclarationContext classDeclaration() {
+ *         return getRuleContext(ClassDeclarationContext.class, 0);
+ *     }
+ *
+ *     public InterfaceDeclarationContext interfaceDeclaration() {
+ *         return getRuleContext(InterfaceDeclarationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public ClassMemberDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_classMemberDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterClassMemberDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitClassMemberDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * classMemberDeclaration
- * 	:	fieldDeclaration
- * 	|	methodDeclaration
- * 	|	classDeclaration
- * 	|	interfaceDeclaration
- * 	|	';'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:820-842
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#classMemberDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassMemberDeclarationMapper
  */
 @Generated(
@@ -52,7 +86,11 @@ public interface ClassMemberDeclaration extends JavaGen {
 
     void setInterfaceDeclaration(InterfaceDeclaration setInterfaceDeclaration);
 
-    // unhandled TerminalAST token: ';'
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
     @Relation("HAS_TEXT")
     String getText();
 

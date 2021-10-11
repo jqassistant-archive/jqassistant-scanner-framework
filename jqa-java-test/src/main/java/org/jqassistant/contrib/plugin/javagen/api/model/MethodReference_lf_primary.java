@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE methodReference_lf_primary (BLOCK (ALT '::' (? (BLOCK (ALT typeArguments))) Identifier)))
+ * public static class MethodReference_lf_primaryContext extends ParserRuleContext {
+ *
+ *     public TerminalNode COLONCOLON() {
+ *         return getToken(Java8Parser.COLONCOLON, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public MethodReference_lf_primaryContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_methodReference_lf_primary;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterMethodReference_lf_primary(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitMethodReference_lf_primary(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * methodReference_lf_primary
- * 	:	'::' typeArguments? Identifier
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4071-4082
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#methodReference_lf_primary()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodReference_lf_primaryMapper
  */
 @Generated(
@@ -28,17 +58,20 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("MethodReference_lf_primary")
 public interface MethodReference_lf_primary extends JavaGen {
 
-    // unhandled TerminalAST token: '::'
-    // optional: ?
-    @Relation("HAS_TYPE_ARGUMENTS")
-    TypeArguments getTypeArguments();
+    @Relation("HAS_C_O_L_O_N_C_O_L_O_N")
+    TerminalNodeStrings getCOLONCOLON();
 
-    void setTypeArguments(TypeArguments setTypeArguments);
+    void setCOLONCOLON(TerminalNodeStrings setCOLONCOLON);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
+
+    @Relation("HAS_TYPE_ARGUMENTS")
+    TypeArguments getTypeArguments();
+
+    void setTypeArguments(TypeArguments setTypeArguments);
 
     @Relation("HAS_TEXT")
     String getText();

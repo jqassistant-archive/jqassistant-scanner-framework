@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE tryWithResourcesStatement (BLOCK (ALT 'try' resourceSpecification block (? (BLOCK (ALT catches))) (? (BLOCK (ALT finally_))))))
+ * public static class TryWithResourcesStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode TRY() {
+ *         return getToken(Java8Parser.TRY, 0);
+ *     }
+ *
+ *     public ResourceSpecificationContext resourceSpecification() {
+ *         return getRuleContext(ResourceSpecificationContext.class, 0);
+ *     }
+ *
+ *     public BlockContext block() {
+ *         return getRuleContext(BlockContext.class, 0);
+ *     }
+ *
+ *     public CatchesContext catches() {
+ *         return getRuleContext(CatchesContext.class, 0);
+ *     }
+ *
+ *     public Finally_Context finally_() {
+ *         return getRuleContext(Finally_Context.class, 0);
+ *     }
+ *
+ *     public TryWithResourcesStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_tryWithResourcesStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterTryWithResourcesStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitTryWithResourcesStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * tryWithResourcesStatement
- * 	:	'try' resourceSpecification block catches? finally_?
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2907-2923
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#tryWithResourcesStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TryWithResourcesStatementMapper
  */
 @Generated(
@@ -28,7 +66,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("TryWithResourcesStatement")
 public interface TryWithResourcesStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'try'
+    @Relation("HAS_T_R_Y")
+    TerminalNodeStrings getTRY();
+
+    void setTRY(TerminalNodeStrings setTRY);
+
     @Relation("HAS_RESOURCE_SPECIFICATION")
     ResourceSpecification getResourceSpecification();
 
@@ -39,13 +81,11 @@ public interface TryWithResourcesStatement extends JavaGen {
 
     void setBlock(Block setBlock);
 
-    // optional: ?
     @Relation("HAS_CATCHES")
     Catches getCatches();
 
     void setCatches(Catches setCatches);
 
-    // optional: ?
     @Relation("HAS_FINALLY")
     Finally_ getFinally_();
 

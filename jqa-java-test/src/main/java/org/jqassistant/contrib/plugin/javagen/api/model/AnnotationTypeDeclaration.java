@@ -2,26 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE annotationTypeDeclaration (BLOCK (ALT (* (BLOCK (ALT interfaceModifier))) '@' 'interface' Identifier annotationTypeBody)))
+ * public static class AnnotationTypeDeclarationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode AT() {
+ *         return getToken(Java8Parser.AT, 0);
+ *     }
+ *
+ *     public TerminalNode INTERFACE() {
+ *         return getToken(Java8Parser.INTERFACE, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public AnnotationTypeBodyContext annotationTypeBody() {
+ *         return getRuleContext(AnnotationTypeBodyContext.class, 0);
+ *     }
+ *
+ *     public List<InterfaceModifierContext> interfaceModifier() {
+ *         return getRuleContexts(InterfaceModifierContext.class);
+ *     }
+ *
+ *     public InterfaceModifierContext interfaceModifier(int i) {
+ *         return getRuleContext(InterfaceModifierContext.class, i);
+ *     }
+ *
+ *     public AnnotationTypeDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_annotationTypeDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterAnnotationTypeDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitAnnotationTypeDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * annotationTypeDeclaration
- * 	:	interfaceModifier* '@' 'interface' Identifier annotationTypeBody
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1854-1869
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#annotationTypeDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AnnotationTypeDeclarationMapper
  */
 @Generated(
@@ -29,13 +71,16 @@ import java.util.List;
 @Label("AnnotationTypeDeclaration")
 public interface AnnotationTypeDeclaration extends JavaGen {
 
-    @Relation("HAS_INTERFACE_MODIFIER")
-    List<InterfaceModifier> getInterfaceModifier();
+    @Relation("HAS_A_T")
+    TerminalNodeStrings getAT();
 
-    void setInterfaceModifier(List<InterfaceModifier> setInterfaceModifier);
+    void setAT(TerminalNodeStrings setAT);
 
-    // unhandled TerminalAST token: '@'
-    // unhandled TerminalAST token: 'interface'
+    @Relation("HAS_I_N_T_E_R_F_A_C_E")
+    TerminalNodeStrings getINTERFACE();
+
+    void setINTERFACE(TerminalNodeStrings setINTERFACE);
+
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
@@ -45,6 +90,11 @@ public interface AnnotationTypeDeclaration extends JavaGen {
     AnnotationTypeBody getAnnotationTypeBody();
 
     void setAnnotationTypeBody(AnnotationTypeBody setAnnotationTypeBody);
+
+    @Relation("HAS_INTERFACE_MODIFIER")
+    List<InterfaceModifier> getInterfaceModifier();
+
+    void setInterfaceModifier(List<InterfaceModifier> setInterfaceModifier);
 
     @Relation("HAS_TEXT")
     String getText();

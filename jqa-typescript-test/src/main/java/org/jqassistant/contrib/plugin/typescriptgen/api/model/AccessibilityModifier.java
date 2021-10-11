@@ -2,27 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE accessibilityModifier (BLOCK (ALT Public) (ALT Private) (ALT Protected)))
+ * public static class AccessibilityModifierContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Public() {
+ *         return getToken(TypeScriptParser.Public, 0);
+ *     }
+ *
+ *     public TerminalNode Private() {
+ *         return getToken(TypeScriptParser.Private, 0);
+ *     }
+ *
+ *     public TerminalNode Protected() {
+ *         return getToken(TypeScriptParser.Protected, 0);
+ *     }
+ *
+ *     public AccessibilityModifierContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_accessibilityModifier;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterAccessibilityModifier(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitAccessibilityModifier(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * accessibilityModifier
- *     : Public
- *     | Private
- *     | Protected
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:759-773
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#accessibilityModifier()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.AccessibilityModifierMapper
  */
 @Generated(

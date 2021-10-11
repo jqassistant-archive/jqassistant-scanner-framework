@@ -280,13 +280,17 @@ normalClassDeclaration
 
 classModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+	|	visibilityModifier
 	|	'abstract'
 	|	'static'
 	|	'final'
 	|	'strictfp'
+	;
+
+visibilityModifier
+	:	'public'
+	|	'protected'
+	|	'private'
 	;
 
 typeParameters
@@ -334,9 +338,7 @@ fieldDeclaration
 
 fieldModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	|	'static'
 	|	'final'
 	|	'transient'
@@ -359,6 +361,12 @@ variableInitializer
 	:	expression
 	|	arrayInitializer
 	;
+
+type
+    : interfaceType
+    | unannType
+    | unannTypeinterfaceType
+    ;
 
 unannType
 	:	unannPrimitiveType
@@ -426,9 +434,7 @@ methodDeclaration
 
 methodModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	|	'abstract'
 	|	'static'
 	|	'final'
@@ -512,9 +518,7 @@ constructorDeclaration
 
 constructorModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	;
 
 constructorDeclarator
@@ -575,9 +579,7 @@ normalInterfaceDeclaration
 
 interfaceModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	|	'abstract'
 	|	'static'
 	|	'strictfp'
@@ -600,7 +602,7 @@ interfaceMemberDeclaration
 	;
 
 constantDeclaration
-	:	constantModifier* unannType variableDeclaratorList ';'
+	:	constantModifier* type variableDeclaratorList ';'
 	;
 
 constantModifier

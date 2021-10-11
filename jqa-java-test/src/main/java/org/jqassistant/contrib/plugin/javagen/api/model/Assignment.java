@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE assignment (BLOCK (ALT leftHandSide assignmentOperator expression)))
+ * public static class AssignmentContext extends ParserRuleContext {
+ *
+ *     public LeftHandSideContext leftHandSide() {
+ *         return getRuleContext(LeftHandSideContext.class, 0);
+ *     }
+ *
+ *     public AssignmentOperatorContext assignmentOperator() {
+ *         return getRuleContext(AssignmentOperatorContext.class, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public AssignmentContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_assignment;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterAssignment(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitAssignment(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * assignment
- * 	:	leftHandSide assignmentOperator expression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4323-4333
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#assignment()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AssignmentMapper
  */
 @Generated(

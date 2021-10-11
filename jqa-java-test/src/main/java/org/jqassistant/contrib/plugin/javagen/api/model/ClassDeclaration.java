@@ -2,26 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE classDeclaration (BLOCK (ALT normalClassDeclaration) (ALT enumDeclaration)))
+ * public static class ClassDeclarationContext extends ParserRuleContext {
+ *
+ *     public NormalClassDeclarationContext normalClassDeclaration() {
+ *         return getRuleContext(NormalClassDeclarationContext.class, 0);
+ *     }
+ *
+ *     public EnumDeclarationContext enumDeclaration() {
+ *         return getRuleContext(EnumDeclarationContext.class, 0);
+ *     }
+ *
+ *     public ClassDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_classDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterClassDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitClassDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * classDeclaration
- * 	:	normalClassDeclaration
- * 	|	enumDeclaration
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:653-663
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#classDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassDeclarationMapper
  */
 @Generated(

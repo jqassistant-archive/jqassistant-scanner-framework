@@ -2,26 +2,60 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE resourceList (BLOCK (ALT resource (* (BLOCK (ALT ';' resource))))))
+ * public static class ResourceListContext extends ParserRuleContext {
+ *
+ *     public List<ResourceContext> resource() {
+ *         return getRuleContexts(ResourceContext.class);
+ *     }
+ *
+ *     public ResourceContext resource(int i) {
+ *         return getRuleContext(ResourceContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> SEMI() {
+ *         return getTokens(Java8Parser.SEMI);
+ *     }
+ *
+ *     public TerminalNode SEMI(int i) {
+ *         return getToken(Java8Parser.SEMI, i);
+ *     }
+ *
+ *     public ResourceListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_resourceList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterResourceList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitResourceList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * resourceList
- * 	:	resource (';' resource)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2940-2953
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#resourceList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ResourceListMapper
  */
 @Generated(
@@ -29,11 +63,15 @@ import java.util.List;
 @Label("ResourceList")
 public interface ResourceList extends JavaGen {
 
-    // unhandled TerminalAST token: ';'
     @Relation("HAS_RESOURCE")
     List<Resource> getResource();
 
     void setResource(List<Resource> setResource);
+
+    @Relation("HAS_S_E_M_I")
+    List<TerminalNodeStrings> getSEMI();
+
+    void setSEMI(List<TerminalNodeStrings> setSEMI);
 
     @Relation("HAS_TEXT")
     String getText();

@@ -2,26 +2,59 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE arrowFunctionParameters (BLOCK (ALT Identifier) (ALT '(' (? (BLOCK (ALT formalParameterList))) ')')))
+ * public static class ArrowFunctionParametersContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode OpenParen() {
+ *         return getToken(TypeScriptParser.OpenParen, 0);
+ *     }
+ *
+ *     public TerminalNode CloseParen() {
+ *         return getToken(TypeScriptParser.CloseParen, 0);
+ *     }
+ *
+ *     public FormalParameterListContext formalParameterList() {
+ *         return getRuleContext(FormalParameterListContext.class, 0);
+ *     }
+ *
+ *     public ArrowFunctionParametersContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_arrowFunctionParameters;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterArrowFunctionParameters(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitArrowFunctionParameters(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * arrowFunctionParameters
- *     : Identifier
- *     | '(' formalParameterList? ')'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:3361-3376
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#arrowFunctionParameters()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ArrowFunctionParametersMapper
  */
 @Generated(
@@ -34,14 +67,21 @@ public interface ArrowFunctionParameters extends TypeScriptGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '('
-    // optional: ?
+    @Relation("HAS_OPEN_PAREN")
+    TerminalNodeStrings getOpenParen();
+
+    void setOpenParen(TerminalNodeStrings setOpenParen);
+
+    @Relation("HAS_CLOSE_PAREN")
+    TerminalNodeStrings getCloseParen();
+
+    void setCloseParen(TerminalNodeStrings setCloseParen);
+
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 
     void setFormalParameterList(FormalParameterList setFormalParameterList);
 
-    // unhandled TerminalAST token: ')'
     @Relation("HAS_TEXT")
     String getText();
 

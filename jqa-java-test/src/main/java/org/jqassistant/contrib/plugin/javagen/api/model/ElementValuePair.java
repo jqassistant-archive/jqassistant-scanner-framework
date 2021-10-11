@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE elementValuePair (BLOCK (ALT Identifier '=' elementValue)))
+ * public static class ElementValuePairContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode ASSIGN() {
+ *         return getToken(Java8Parser.ASSIGN, 0);
+ *     }
+ *
+ *     public ElementValueContext elementValue() {
+ *         return getRuleContext(ElementValueContext.class, 0);
+ *     }
+ *
+ *     public ElementValuePairContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_elementValuePair;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterElementValuePair(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitElementValuePair(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * elementValuePair
- * 	:	Identifier '=' elementValue
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2007-2017
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#elementValuePair()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ElementValuePairMapper
  */
 @Generated(
@@ -33,7 +63,11 @@ public interface ElementValuePair extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '='
+    @Relation("HAS_A_S_S_I_G_N")
+    TerminalNodeStrings getASSIGN();
+
+    void setASSIGN(TerminalNodeStrings setASSIGN);
+
     @Relation("HAS_ELEMENT_VALUE")
     ElementValue getElementValue();
 

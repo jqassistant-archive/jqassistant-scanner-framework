@@ -2,27 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE additiveExpression (BLOCK (ALT multiplicativeExpression) (ALT additiveExpression '+' multiplicativeExpression) (ALT additiveExpression '-' multiplicativeExpression)))
+ * public static class AdditiveExpressionContext extends ParserRuleContext {
+ *
+ *     public MultiplicativeExpressionContext multiplicativeExpression() {
+ *         return getRuleContext(MultiplicativeExpressionContext.class, 0);
+ *     }
+ *
+ *     public AdditiveExpressionContext additiveExpression() {
+ *         return getRuleContext(AdditiveExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode ADD() {
+ *         return getToken(Java8Parser.ADD, 0);
+ *     }
+ *
+ *     public TerminalNode SUB() {
+ *         return getToken(Java8Parser.SUB, 0);
+ *     }
+ *
+ *     public AdditiveExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_additiveExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterAdditiveExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitAdditiveExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * additiveExpression
- * 	:	multiplicativeExpression
- * 	|	additiveExpression '+' multiplicativeExpression
- * 	|	additiveExpression '-' multiplicativeExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4615-4637
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#additiveExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AdditiveExpressionMapper
  */
 @Generated(
@@ -40,8 +72,16 @@ public interface AdditiveExpression extends JavaGen {
 
     void setAdditiveExpression(AdditiveExpression setAdditiveExpression);
 
-    // unhandled TerminalAST token: '+'
-    // unhandled TerminalAST token: '-'
+    @Relation("HAS_A_D_D")
+    TerminalNodeStrings getADD();
+
+    void setADD(TerminalNodeStrings setADD);
+
+    @Relation("HAS_S_U_B")
+    TerminalNodeStrings getSUB();
+
+    void setSUB(TerminalNodeStrings setSUB);
+
     @Relation("HAS_TEXT")
     String getText();
 

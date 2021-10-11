@@ -2,28 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE importDeclaration (BLOCK (ALT singleTypeImportDeclaration) (ALT typeImportOnDemandDeclaration) (ALT singleStaticImportDeclaration) (ALT staticImportOnDemandDeclaration)))
+ * public static class ImportDeclarationContext extends ParserRuleContext {
+ *
+ *     public SingleTypeImportDeclarationContext singleTypeImportDeclaration() {
+ *         return getRuleContext(SingleTypeImportDeclarationContext.class, 0);
+ *     }
+ *
+ *     public TypeImportOnDemandDeclarationContext typeImportOnDemandDeclaration() {
+ *         return getRuleContext(TypeImportOnDemandDeclarationContext.class, 0);
+ *     }
+ *
+ *     public SingleStaticImportDeclarationContext singleStaticImportDeclaration() {
+ *         return getRuleContext(SingleStaticImportDeclarationContext.class, 0);
+ *     }
+ *
+ *     public StaticImportOnDemandDeclarationContext staticImportOnDemandDeclaration() {
+ *         return getRuleContext(StaticImportOnDemandDeclarationContext.class, 0);
+ *     }
+ *
+ *     public ImportDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_importDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterImportDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitImportDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * importDeclaration
- * 	:	singleTypeImportDeclaration
- * 	|	typeImportOnDemandDeclaration
- * 	|	singleStaticImportDeclaration
- * 	|	staticImportOnDemandDeclaration
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:551-569
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#importDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ImportDeclarationMapper
  */
 @Generated(

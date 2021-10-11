@@ -2,31 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE unannClassOrInterfaceType (BLOCK (ALT (BLOCK (ALT unannClassType_lfno_unannClassOrInterfaceType) (ALT unannInterfaceType_lfno_unannClassOrInterfaceType)) (* (BLOCK (ALT unannClassType_lf_unannClassOrInterfaceType) (ALT unannInterfaceType_lf_unannClassOrInterfaceType))))))
+ * public static class UnannClassOrInterfaceTypeContext extends ParserRuleContext {
+ *
+ *     public UnannClassType_lfno_unannClassOrInterfaceTypeContext unannClassType_lfno_unannClassOrInterfaceType() {
+ *         return getRuleContext(UnannClassType_lfno_unannClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public UnannInterfaceType_lfno_unannClassOrInterfaceTypeContext unannInterfaceType_lfno_unannClassOrInterfaceType() {
+ *         return getRuleContext(UnannInterfaceType_lfno_unannClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public List<UnannClassType_lf_unannClassOrInterfaceTypeContext> unannClassType_lf_unannClassOrInterfaceType() {
+ *         return getRuleContexts(UnannClassType_lf_unannClassOrInterfaceTypeContext.class);
+ *     }
+ *
+ *     public UnannClassType_lf_unannClassOrInterfaceTypeContext unannClassType_lf_unannClassOrInterfaceType(int i) {
+ *         return getRuleContext(UnannClassType_lf_unannClassOrInterfaceTypeContext.class, i);
+ *     }
+ *
+ *     public List<UnannInterfaceType_lf_unannClassOrInterfaceTypeContext> unannInterfaceType_lf_unannClassOrInterfaceType() {
+ *         return getRuleContexts(UnannInterfaceType_lf_unannClassOrInterfaceTypeContext.class);
+ *     }
+ *
+ *     public UnannInterfaceType_lf_unannClassOrInterfaceTypeContext unannInterfaceType_lf_unannClassOrInterfaceType(int i) {
+ *         return getRuleContext(UnannInterfaceType_lf_unannClassOrInterfaceTypeContext.class, i);
+ *     }
+ *
+ *     public UnannClassOrInterfaceTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_unannClassOrInterfaceType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterUnannClassOrInterfaceType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitUnannClassOrInterfaceType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * unannClassOrInterfaceType
- * 	:	(	unannClassType_lfno_unannClassOrInterfaceType
- * 		|	unannInterfaceType_lfno_unannClassOrInterfaceType
- * 		)
- * 		(	unannClassType_lf_unannClassOrInterfaceType
- * 		|	unannInterfaceType_lf_unannClassOrInterfaceType
- * 		)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:988-1013
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#unannClassOrInterfaceType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannClassOrInterfaceTypeMapper
  */
 @Generated(

@@ -103,11 +103,9 @@ referenceType
 	;
 
 classOrInterfaceType
-	:	(	classType_lfno_classOrInterfaceType
-		|	interfaceType_lfno_classOrInterfaceType
+	:	(	classType_lfno_classOrInterfaceType |	interfaceType_lfno_classOrInterfaceType
 		)
-		(	classType_lf_classOrInterfaceType
-		|	interfaceType_lf_classOrInterfaceType
+		(	classType_lf_classOrInterfaceType |	interfaceType_lf_classOrInterfaceType
 		)*
 	;
 
@@ -282,13 +280,17 @@ normalClassDeclaration
 
 classModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+	|	visibilityModifier
 	|	'abstract'
 	|	'static'
 	|	'final'
 	|	'strictfp'
+	;
+
+visibilityModifier
+	:	'public'
+	|	'protected'
+	|	'private'
 	;
 
 typeParameters
@@ -336,9 +338,7 @@ fieldDeclaration
 
 fieldModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	|	'static'
 	|	'final'
 	|	'transient'
@@ -428,9 +428,7 @@ methodDeclaration
 
 methodModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	|	'abstract'
 	|	'static'
 	|	'final'
@@ -514,9 +512,7 @@ constructorDeclaration
 
 constructorModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	;
 
 constructorDeclarator
@@ -577,9 +573,7 @@ normalInterfaceDeclaration
 
 interfaceModifier
 	:	annotation
-	|	'public'
-	|	'protected'
-	|	'private'
+    |	visibilityModifier
 	|	'abstract'
 	|	'static'
 	|	'strictfp'

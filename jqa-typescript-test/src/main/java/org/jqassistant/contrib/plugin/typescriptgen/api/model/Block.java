@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE block (BLOCK (ALT '{' (? (BLOCK (ALT statementList))) '}')))
+ * public static class BlockContext extends ParserRuleContext {
+ *
+ *     public TerminalNode OpenBrace() {
+ *         return getToken(TypeScriptParser.OpenBrace, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBrace() {
+ *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     }
+ *
+ *     public StatementListContext statementList() {
+ *         return getRuleContext(StatementListContext.class, 0);
+ *     }
+ *
+ *     public BlockContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_block;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterBlock(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitBlock(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * block
- *     : '{' statementList? '}'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1278-1289
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#block()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.BlockMapper
  */
 @Generated(
@@ -28,14 +58,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Block")
 public interface Block extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '{'
-    // optional: ?
+    @Relation("HAS_OPEN_BRACE")
+    TerminalNodeStrings getOpenBrace();
+
+    void setOpenBrace(TerminalNodeStrings setOpenBrace);
+
+    @Relation("HAS_CLOSE_BRACE")
+    TerminalNodeStrings getCloseBrace();
+
+    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+
     @Relation("HAS_STATEMENT_LIST")
     StatementList getStatementList();
 
     void setStatementList(StatementList setStatementList);
 
-    // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 

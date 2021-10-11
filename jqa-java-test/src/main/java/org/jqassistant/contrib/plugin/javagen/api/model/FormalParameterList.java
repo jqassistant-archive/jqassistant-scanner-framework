@@ -2,27 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE formalParameterList (BLOCK (ALT receiverParameter) (ALT formalParameters ',' lastFormalParameter) (ALT lastFormalParameter)))
+ * public static class FormalParameterListContext extends ParserRuleContext {
+ *
+ *     public ReceiverParameterContext receiverParameter() {
+ *         return getRuleContext(ReceiverParameterContext.class, 0);
+ *     }
+ *
+ *     public FormalParametersContext formalParameters() {
+ *         return getRuleContext(FormalParametersContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode COMMA() {
+ *         return getToken(Java8Parser.COMMA, 0);
+ *     }
+ *
+ *     public LastFormalParameterContext lastFormalParameter() {
+ *         return getRuleContext(LastFormalParameterContext.class, 0);
+ *     }
+ *
+ *     public FormalParameterListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_formalParameterList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterFormalParameterList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitFormalParameterList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * formalParameterList
- * 	:	receiverParameter
- * 	|	formalParameters ',' lastFormalParameter
- * 	|	lastFormalParameter
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1235-1253
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#formalParameterList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.FormalParameterListMapper
  */
 @Generated(
@@ -40,7 +72,11 @@ public interface FormalParameterList extends JavaGen {
 
     void setFormalParameters(FormalParameters setFormalParameters);
 
-    // unhandled TerminalAST token: ','
+    @Relation("HAS_C_O_M_M_A")
+    TerminalNodeStrings getCOMMA();
+
+    void setCOMMA(TerminalNodeStrings setCOMMA);
+
     @Relation("HAS_LAST_FORMAL_PARAMETER")
     LastFormalParameter getLastFormalParameter();
 

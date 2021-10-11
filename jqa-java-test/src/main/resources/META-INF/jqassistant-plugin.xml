@@ -241,6 +241,7 @@
         <class>org.jqassistant.contrib.plugin.javagen.api.model.VariableInitializer</class>
         <class>org.jqassistant.contrib.plugin.javagen.api.model.VariableInitializerList</class>
         <class>org.jqassistant.contrib.plugin.javagen.api.model.VariableModifier</class>
+        <class>org.jqassistant.contrib.plugin.javagen.api.model.VisibilityModifier</class>
         <class>org.jqassistant.contrib.plugin.javagen.api.model.WhileStatement</class>
         <class>org.jqassistant.contrib.plugin.javagen.api.model.WhileStatementNoShortIf</class>
         <class>org.jqassistant.contrib.plugin.javagen.api.model.Wildcard</class>

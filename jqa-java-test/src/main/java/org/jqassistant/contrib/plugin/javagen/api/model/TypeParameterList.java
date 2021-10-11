@@ -2,26 +2,60 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeParameterList (BLOCK (ALT typeParameter (* (BLOCK (ALT ',' typeParameter))))))
+ * public static class TypeParameterListContext extends ParserRuleContext {
+ *
+ *     public List<TypeParameterContext> typeParameter() {
+ *         return getRuleContexts(TypeParameterContext.class);
+ *     }
+ *
+ *     public TypeParameterContext typeParameter(int i) {
+ *         return getRuleContext(TypeParameterContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> COMMA() {
+ *         return getTokens(Java8Parser.COMMA);
+ *     }
+ *
+ *     public TerminalNode COMMA(int i) {
+ *         return getToken(Java8Parser.COMMA, i);
+ *     }
+ *
+ *     public TypeParameterListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeParameterList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterTypeParameterList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitTypeParameterList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeParameterList
- * 	:	typeParameter (',' typeParameter)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:737-750
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#typeParameterList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TypeParameterListMapper
  */
 @Generated(
@@ -29,11 +63,15 @@ import java.util.List;
 @Label("TypeParameterList")
 public interface TypeParameterList extends JavaGen {
 
-    // unhandled TerminalAST token: ','
     @Relation("HAS_TYPE_PARAMETER")
     List<TypeParameter> getTypeParameter();
 
     void setTypeParameter(List<TypeParameter> setTypeParameter);
+
+    @Relation("HAS_C_O_M_M_A")
+    List<TerminalNodeStrings> getCOMMA();
+
+    void setCOMMA(List<TerminalNodeStrings> setCOMMA);
 
     @Relation("HAS_TEXT")
     String getText();

@@ -2,28 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE eos (BLOCK (ALT SemiColon) (ALT EOF) (ALT {this.lineTerminatorAhead()}?) (ALT {this.closeBrace()}?)))
+ * public static class EosContext extends ParserRuleContext {
+ *
+ *     public TerminalNode SemiColon() {
+ *         return getToken(TypeScriptParser.SemiColon, 0);
+ *     }
+ *
+ *     public TerminalNode EOF() {
+ *         return getToken(TypeScriptParser.EOF, 0);
+ *     }
+ *
+ *     public EosContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_eos;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterEos(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitEos(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * eos
- *     : SemiColon
- *     | EOF
- *     | {this.lineTerminatorAhead()}?
- *     | {this.closeBrace()}?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:3791-3809
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#eos()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.EosMapper
  */
 @Generated(
@@ -41,8 +64,6 @@ public interface Eos extends TypeScriptGen {
 
     void setEOF(TerminalNodeStrings setEOF);
 
-    // unhandled AST type: 59 - list: false : {this.lineTerminatorAhead()}?
-    // unhandled AST type: 59 - list: false : {this.closeBrace()}?
     @Relation("HAS_TEXT")
     String getText();
 

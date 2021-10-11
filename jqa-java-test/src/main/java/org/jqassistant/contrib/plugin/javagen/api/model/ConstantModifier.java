@@ -2,28 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE constantModifier (BLOCK (ALT annotation) (ALT 'public') (ALT 'static') (ALT 'final')))
+ * public static class ConstantModifierContext extends ParserRuleContext {
+ *
+ *     public AnnotationContext annotation() {
+ *         return getRuleContext(AnnotationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode PUBLIC() {
+ *         return getToken(Java8Parser.PUBLIC, 0);
+ *     }
+ *
+ *     public TerminalNode STATIC() {
+ *         return getToken(Java8Parser.STATIC, 0);
+ *     }
+ *
+ *     public TerminalNode FINAL() {
+ *         return getToken(Java8Parser.FINAL, 0);
+ *     }
+ *
+ *     public ConstantModifierContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_constantModifier;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterConstantModifier(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitConstantModifier(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * constantModifier
- * 	:	annotation
- * 	|	'public'
- * 	|	'static'
- * 	|	'final'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1793-1811
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#constantModifier()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ConstantModifierMapper
  */
 @Generated(
@@ -36,9 +67,21 @@ public interface ConstantModifier extends JavaGen {
 
     void setAnnotation(Annotation setAnnotation);
 
-    // unhandled TerminalAST token: 'public'
-    // unhandled TerminalAST token: 'static'
-    // unhandled TerminalAST token: 'final'
+    @Relation("HAS_P_U_B_L_I_C")
+    TerminalNodeStrings getPUBLIC();
+
+    void setPUBLIC(TerminalNodeStrings setPUBLIC);
+
+    @Relation("HAS_S_T_A_T_I_C")
+    TerminalNodeStrings getSTATIC();
+
+    void setSTATIC(TerminalNodeStrings setSTATIC);
+
+    @Relation("HAS_F_I_N_A_L")
+    TerminalNodeStrings getFINAL();
+
+    void setFINAL(TerminalNodeStrings setFINAL);
+
     @Relation("HAS_TEXT")
     String getText();
 

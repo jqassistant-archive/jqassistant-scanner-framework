@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE continueStatement (BLOCK (ALT 'continue' (? (BLOCK (ALT Identifier))) ';')))
+ * public static class ContinueStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode CONTINUE() {
+ *         return getToken(Java8Parser.CONTINUE, 0);
+ *     }
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public ContinueStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_continueStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterContinueStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitContinueStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * continueStatement
- * 	:	'continue' Identifier? ';'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2761-2772
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#continueStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ContinueStatementMapper
  */
 @Generated(
@@ -28,14 +58,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ContinueStatement")
 public interface ContinueStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'continue'
-    // optional: ?
+    @Relation("HAS_C_O_N_T_I_N_U_E")
+    TerminalNodeStrings getCONTINUE();
+
+    void setCONTINUE(TerminalNodeStrings setCONTINUE);
+
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 

@@ -2,27 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE arrayType (BLOCK (ALT primitiveType dims) (ALT classOrInterfaceType dims) (ALT typeVariable dims)))
+ * public static class ArrayTypeContext extends ParserRuleContext {
+ *
+ *     public PrimitiveTypeContext primitiveType() {
+ *         return getRuleContext(PrimitiveTypeContext.class, 0);
+ *     }
+ *
+ *     public DimsContext dims() {
+ *         return getRuleContext(DimsContext.class, 0);
+ *     }
+ *
+ *     public ClassOrInterfaceTypeContext classOrInterfaceType() {
+ *         return getRuleContext(ClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public TypeVariableContext typeVariable() {
+ *         return getRuleContext(TypeVariableContext.class, 0);
+ *     }
+ *
+ *     public ArrayTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_arrayType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterArrayType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitArrayType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * arrayType
- * 	:	primitiveType dims
- * 	|	classOrInterfaceType dims
- * 	|	typeVariable dims
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:254-274
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#arrayType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ArrayTypeMapper
  */
 @Generated(

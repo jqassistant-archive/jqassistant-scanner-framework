@@ -2,27 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE unannReferenceType (BLOCK (ALT unannClassOrInterfaceType) (ALT unannTypeVariable) (ALT unannArrayType)))
+ * public static class UnannReferenceTypeContext extends ParserRuleContext {
+ *
+ *     public UnannClassOrInterfaceTypeContext unannClassOrInterfaceType() {
+ *         return getRuleContext(UnannClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public UnannTypeVariableContext unannTypeVariable() {
+ *         return getRuleContext(UnannTypeVariableContext.class, 0);
+ *     }
+ *
+ *     public UnannArrayTypeContext unannArrayType() {
+ *         return getRuleContext(UnannArrayTypeContext.class, 0);
+ *     }
+ *
+ *     public UnannReferenceTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_unannReferenceType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterUnannReferenceType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitUnannReferenceType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * unannReferenceType
- * 	:	unannClassOrInterfaceType
- * 	|	unannTypeVariable
- * 	|	unannArrayType
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:972-986
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#unannReferenceType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannReferenceTypeMapper
  */
 @Generated(

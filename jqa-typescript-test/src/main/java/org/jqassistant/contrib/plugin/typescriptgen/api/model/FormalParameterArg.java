@@ -2,25 +2,71 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE formalParameterArg (BLOCK (ALT (? (BLOCK (ALT decorator))) (? (BLOCK (ALT accessibilityModifier))) identifierOrKeyWord (? (BLOCK (ALT '?'))) (? (BLOCK (ALT typeAnnotation))) (? (BLOCK (ALT '=' singleExpression))))))
+ * public static class FormalParameterArgContext extends ParserRuleContext {
+ *
+ *     public IdentifierOrKeyWordContext identifierOrKeyWord() {
+ *         return getRuleContext(IdentifierOrKeyWordContext.class, 0);
+ *     }
+ *
+ *     public DecoratorContext decorator() {
+ *         return getRuleContext(DecoratorContext.class, 0);
+ *     }
+ *
+ *     public AccessibilityModifierContext accessibilityModifier() {
+ *         return getRuleContext(AccessibilityModifierContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode QuestionMark() {
+ *         return getToken(TypeScriptParser.QuestionMark, 0);
+ *     }
+ *
+ *     public TypeAnnotationContext typeAnnotation() {
+ *         return getRuleContext(TypeAnnotationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Assign() {
+ *         return getToken(TypeScriptParser.Assign, 0);
+ *     }
+ *
+ *     public SingleExpressionContext singleExpression() {
+ *         return getRuleContext(SingleExpressionContext.class, 0);
+ *     }
+ *
+ *     public FormalParameterArgContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_formalParameterArg;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterFormalParameterArg(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitFormalParameterArg(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * formalParameterArg
- *     : decorator? accessibilityModifier? identifierOrKeyWord '?'? typeAnnotation? ('=' singleExpression)?      // ECMAScript 6: Initialization
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2353-2380
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#formalParameterArg()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.FormalParameterArgMapper
  */
 @Generated(
@@ -28,33 +74,36 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("FormalParameterArg")
 public interface FormalParameterArg extends TypeScriptGen {
 
-    // optional: ?
-    @Relation("HAS_DECORATOR")
-    Decorator getDecorator();
-
-    void setDecorator(Decorator setDecorator);
-
-    // optional: ?
-    @Relation("HAS_ACCESSIBILITY_MODIFIER")
-    AccessibilityModifier getAccessibilityModifier();
-
-    void setAccessibilityModifier(AccessibilityModifier setAccessibilityModifier);
-
     @Relation("HAS_IDENTIFIER_OR_KEY_WORD")
     IdentifierOrKeyWord getIdentifierOrKeyWord();
 
     void setIdentifierOrKeyWord(IdentifierOrKeyWord setIdentifierOrKeyWord);
 
-    // optional: ?
-    // unhandled TerminalAST token: '?'
-    // optional: ?
+    @Relation("HAS_DECORATOR")
+    Decorator getDecorator();
+
+    void setDecorator(Decorator setDecorator);
+
+    @Relation("HAS_ACCESSIBILITY_MODIFIER")
+    AccessibilityModifier getAccessibilityModifier();
+
+    void setAccessibilityModifier(AccessibilityModifier setAccessibilityModifier);
+
+    @Relation("HAS_QUESTION_MARK")
+    TerminalNodeStrings getQuestionMark();
+
+    void setQuestionMark(TerminalNodeStrings setQuestionMark);
+
     @Relation("HAS_TYPE_ANNOTATION")
     TypeAnnotation getTypeAnnotation();
 
     void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
 
-    // optional: ?
-    // unhandled TerminalAST token: '='
+    @Relation("HAS_ASSIGN")
+    TerminalNodeStrings getAssign();
+
+    void setAssign(TerminalNodeStrings setAssign);
+
     @Relation("HAS_SINGLE_EXPRESSION")
     SingleExpression getSingleExpression();
 

@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE fieldAccess_lf_primary (BLOCK (ALT '.' Identifier)))
+ * public static class FieldAccess_lf_primaryContext extends ParserRuleContext {
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public FieldAccess_lf_primaryContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_fieldAccess_lf_primary;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterFieldAccess_lf_primary(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitFieldAccess_lf_primary(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * fieldAccess_lf_primary
- * 	:	'.' Identifier
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:3607-3615
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#fieldAccess_lf_primary()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.FieldAccess_lf_primaryMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("FieldAccess_lf_primary")
 public interface FieldAccess_lf_primary extends JavaGen {
 
-    // unhandled TerminalAST token: '.'
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
+
+    void setDOT(TerminalNodeStrings setDOT);
+
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 

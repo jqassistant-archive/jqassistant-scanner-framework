@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE lambdaExpression (BLOCK (ALT lambdaParameters '->' lambdaBody)))
+ * public static class LambdaExpressionContext extends ParserRuleContext {
+ *
+ *     public LambdaParametersContext lambdaParameters() {
+ *         return getRuleContext(LambdaParametersContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode ARROW() {
+ *         return getToken(Java8Parser.ARROW, 0);
+ *     }
+ *
+ *     public LambdaBodyContext lambdaBody() {
+ *         return getRuleContext(LambdaBodyContext.class, 0);
+ *     }
+ *
+ *     public LambdaExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_lambdaExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterLambdaExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitLambdaExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * lambdaExpression
- * 	:	lambdaParameters '->' lambdaBody
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4247-4257
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#lambdaExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.LambdaExpressionMapper
  */
 @Generated(
@@ -33,7 +63,11 @@ public interface LambdaExpression extends JavaGen {
 
     void setLambdaParameters(LambdaParameters setLambdaParameters);
 
-    // unhandled TerminalAST token: '->'
+    @Relation("HAS_A_R_R_O_W")
+    TerminalNodeStrings getARROW();
+
+    void setARROW(TerminalNodeStrings setARROW);
+
     @Relation("HAS_LAMBDA_BODY")
     LambdaBody getLambdaBody();
 

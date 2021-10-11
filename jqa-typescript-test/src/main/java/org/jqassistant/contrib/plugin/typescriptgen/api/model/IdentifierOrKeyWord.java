@@ -2,27 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE identifierOrKeyWord (BLOCK (ALT Identifier) (ALT TypeAlias) (ALT Require)))
+ * public static class IdentifierOrKeyWordContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode TypeAlias() {
+ *         return getToken(TypeScriptParser.TypeAlias, 0);
+ *     }
+ *
+ *     public TerminalNode Require() {
+ *         return getToken(TypeScriptParser.Require, 0);
+ *     }
+ *
+ *     public IdentifierOrKeyWordContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_identifierOrKeyWord;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterIdentifierOrKeyWord(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitIdentifierOrKeyWord(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * identifierOrKeyWord
- *     : Identifier
- *     | TypeAlias
- *     | Require
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:3535-3549
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#identifierOrKeyWord()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.IdentifierOrKeyWordMapper
  */
 @Generated(

@@ -2,26 +2,76 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE normalClassDeclaration (BLOCK (ALT (* (BLOCK (ALT classModifier))) 'class' Identifier (? (BLOCK (ALT typeParameters))) (? (BLOCK (ALT superclass))) (? (BLOCK (ALT superinterfaces))) classBody)))
+ * public static class NormalClassDeclarationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode CLASS() {
+ *         return getToken(Java8Parser.CLASS, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public ClassBodyContext classBody() {
+ *         return getRuleContext(ClassBodyContext.class, 0);
+ *     }
+ *
+ *     public List<ClassModifierContext> classModifier() {
+ *         return getRuleContexts(ClassModifierContext.class);
+ *     }
+ *
+ *     public ClassModifierContext classModifier(int i) {
+ *         return getRuleContext(ClassModifierContext.class, i);
+ *     }
+ *
+ *     public TypeParametersContext typeParameters() {
+ *         return getRuleContext(TypeParametersContext.class, 0);
+ *     }
+ *
+ *     public SuperclassContext superclass() {
+ *         return getRuleContext(SuperclassContext.class, 0);
+ *     }
+ *
+ *     public SuperinterfacesContext superinterfaces() {
+ *         return getRuleContext(SuperinterfacesContext.class, 0);
+ *     }
+ *
+ *     public NormalClassDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_normalClassDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterNormalClassDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitNormalClassDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * normalClassDeclaration
- * 	:	classModifier* 'class' Identifier typeParameters? superclass? superinterfaces? classBody
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:665-687
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#normalClassDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.NormalClassDeclarationMapper
  */
 @Generated(
@@ -29,39 +79,40 @@ import java.util.List;
 @Label("NormalClassDeclaration")
 public interface NormalClassDeclaration extends JavaGen {
 
-    @Relation("HAS_CLASS_MODIFIER")
-    List<ClassModifier> getClassModifier();
+    @Relation("HAS_C_L_A_S_S")
+    TerminalNodeStrings getClazz();
 
-    void setClassModifier(List<ClassModifier> setClassModifier);
+    void setClazz(TerminalNodeStrings setClazz);
 
-    // unhandled TerminalAST token: 'class'
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
+    @Relation("HAS_CLASS_BODY")
+    ClassBody getClassBody();
+
+    void setClassBody(ClassBody setClassBody);
+
+    @Relation("HAS_CLASS_MODIFIER")
+    List<ClassModifier> getClassModifier();
+
+    void setClassModifier(List<ClassModifier> setClassModifier);
+
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
     void setTypeParameters(TypeParameters setTypeParameters);
 
-    // optional: ?
     @Relation("HAS_SUPERCLASS")
     Superclass getSuperclass();
 
     void setSuperclass(Superclass setSuperclass);
 
-    // optional: ?
     @Relation("HAS_SUPERINTERFACES")
     Superinterfaces getSuperinterfaces();
 
     void setSuperinterfaces(Superinterfaces setSuperinterfaces);
-
-    @Relation("HAS_CLASS_BODY")
-    ClassBody getClassBody();
-
-    void setClassBody(ClassBody setClassBody);
 
     @Relation("HAS_TEXT")
     String getText();

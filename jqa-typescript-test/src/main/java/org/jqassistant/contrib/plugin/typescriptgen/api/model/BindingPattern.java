@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE bindingPattern (BLOCK (ALT (BLOCK (ALT arrayLiteral) (ALT objectLiteral)))))
+ * public static class BindingPatternContext extends ParserRuleContext {
+ *
+ *     public ArrayLiteralContext arrayLiteral() {
+ *         return getRuleContext(ArrayLiteralContext.class, 0);
+ *     }
+ *
+ *     public ObjectLiteralContext objectLiteral() {
+ *         return getRuleContext(ObjectLiteralContext.class, 0);
+ *     }
+ *
+ *     public BindingPatternContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_bindingPattern;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterBindingPattern(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitBindingPattern(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * bindingPattern
- *     : (arrayLiteral | objectLiteral)
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:35-47
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#bindingPattern()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.BindingPatternMapper
  */
 @Generated(

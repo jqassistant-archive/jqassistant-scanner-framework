@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE extendsInterfaces (BLOCK (ALT 'extends' interfaceTypeList)))
+ * public static class ExtendsInterfacesContext extends ParserRuleContext {
+ *
+ *     public TerminalNode EXTENDS() {
+ *         return getToken(Java8Parser.EXTENDS, 0);
+ *     }
+ *
+ *     public InterfaceTypeListContext interfaceTypeList() {
+ *         return getRuleContext(InterfaceTypeListContext.class, 0);
+ *     }
+ *
+ *     public ExtendsInterfacesContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_extendsInterfaces;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterExtendsInterfaces(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitExtendsInterfaces(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * extendsInterfaces
- * 	:	'extends' interfaceTypeList
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1731-1739
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#extendsInterfaces()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ExtendsInterfacesMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ExtendsInterfaces")
 public interface ExtendsInterfaces extends JavaGen {
 
-    // unhandled TerminalAST token: 'extends'
+    @Relation("HAS_E_X_T_E_N_D_S")
+    TerminalNodeStrings getEXTENDS();
+
+    void setEXTENDS(TerminalNodeStrings setEXTENDS);
+
     @Relation("HAS_INTERFACE_TYPE_LIST")
     InterfaceTypeList getInterfaceTypeList();
 

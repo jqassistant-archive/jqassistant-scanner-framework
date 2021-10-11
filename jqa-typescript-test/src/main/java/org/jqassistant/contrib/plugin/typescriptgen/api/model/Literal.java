@@ -2,30 +2,67 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE literal (BLOCK (ALT NullLiteral) (ALT BooleanLiteral) (ALT StringLiteral) (ALT templateStringLiteral) (ALT RegularExpressionLiteral) (ALT numericLiteral)))
+ * public static class LiteralContext extends ParserRuleContext {
+ *
+ *     public TerminalNode NullLiteral() {
+ *         return getToken(TypeScriptParser.NullLiteral, 0);
+ *     }
+ *
+ *     public TerminalNode BooleanLiteral() {
+ *         return getToken(TypeScriptParser.BooleanLiteral, 0);
+ *     }
+ *
+ *     public TerminalNode StringLiteral() {
+ *         return getToken(TypeScriptParser.StringLiteral, 0);
+ *     }
+ *
+ *     public TemplateStringLiteralContext templateStringLiteral() {
+ *         return getRuleContext(TemplateStringLiteralContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RegularExpressionLiteral() {
+ *         return getToken(TypeScriptParser.RegularExpressionLiteral, 0);
+ *     }
+ *
+ *     public NumericLiteralContext numericLiteral() {
+ *         return getRuleContext(NumericLiteralContext.class, 0);
+ *     }
+ *
+ *     public LiteralContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_literal;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterLiteral(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitLiteral(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * literal
- *     : NullLiteral
- *     | BooleanLiteral
- *     | StringLiteral
- *     | templateStringLiteral
- *     | RegularExpressionLiteral
- *     | numericLiteral
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:3442-3468
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#literal()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.LiteralMapper
  */
 @Generated(

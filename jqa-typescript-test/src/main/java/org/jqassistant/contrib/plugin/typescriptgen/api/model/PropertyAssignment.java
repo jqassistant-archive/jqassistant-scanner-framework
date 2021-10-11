@@ -2,78 +2,44 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import java.util.List;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE propertyAssignment (BLOCK (ALT propertyName (BLOCK (ALT ':') (ALT '=')) singleExpression) (ALT '[' singleExpression ']' ':' singleExpression) (ALT getAccessor) (ALT setAccessor) (ALT generatorMethod) (ALT identifierOrKeyWord) (ALT restParameter)))
+ * public static class PropertyAssignmentContext extends ParserRuleContext {
+ *
+ *     public PropertyAssignmentContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_propertyAssignment;
+ *     }
+ *
+ *     public PropertyAssignmentContext() {
+ *     }
+ *
+ *     public void copyFrom(PropertyAssignmentContext ctx) {
+ *         super.copyFrom(ctx);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * propertyAssignment
- *     : propertyName (':' |'=') singleExpression                # PropertyExpressionAssignment
- *     | '[' singleExpression ']' ':' singleExpression           # ComputedPropertyExpressionAssignment
- *     | getAccessor                                             # PropertyGetter
- *     | setAccessor                                             # PropertySetter
- *     | generatorMethod                                         # MethodProperty
- *     | identifierOrKeyWord                                     # PropertyShorthand
- *     | restParameter                                           # RestParameterInObject
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2492-2567
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#propertyAssignment()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.PropertyAssignmentMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("PropertyAssignment")
 public interface PropertyAssignment extends TypeScriptGen {
-
-    @Relation("HAS_PROPERTY_NAME")
-    PropertyName getPropertyName();
-
-    void setPropertyName(PropertyName setPropertyName);
-
-    // unhandled TerminalAST token: ':'
-    // unhandled TerminalAST token: '='
-    // unhandled TerminalAST token: '['
-    @Relation("HAS_SINGLE_EXPRESSION")
-    List<SingleExpression> getSingleExpression();
-
-    void setSingleExpression(List<SingleExpression> setSingleExpression);
-
-    // unhandled TerminalAST token: ']'
-    // unhandled TerminalAST token: ':'
-    @Relation("HAS_GET_ACCESSOR")
-    GetAccessor getGetAccessor();
-
-    void setGetAccessor(GetAccessor setGetAccessor);
-
-    @Relation("HAS_SET_ACCESSOR")
-    SetAccessor getSetAccessor();
-
-    void setSetAccessor(SetAccessor setSetAccessor);
-
-    @Relation("HAS_GENERATOR_METHOD")
-    GeneratorMethod getGeneratorMethod();
-
-    void setGeneratorMethod(GeneratorMethod setGeneratorMethod);
-
-    @Relation("HAS_IDENTIFIER_OR_KEY_WORD")
-    IdentifierOrKeyWord getIdentifierOrKeyWord();
-
-    void setIdentifierOrKeyWord(IdentifierOrKeyWord setIdentifierOrKeyWord);
-
-    @Relation("HAS_REST_PARAMETER")
-    RestParameter getRestParameter();
-
-    void setRestParameter(RestParameter setRestParameter);
 
     @Relation("HAS_TEXT")
     String getText();

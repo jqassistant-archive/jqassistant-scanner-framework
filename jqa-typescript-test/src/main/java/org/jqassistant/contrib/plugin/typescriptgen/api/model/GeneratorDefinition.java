@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE generatorDefinition (BLOCK (ALT '*' iteratorDefinition)))
+ * public static class GeneratorDefinitionContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Multiply() {
+ *         return getToken(TypeScriptParser.Multiply, 0);
+ *     }
+ *
+ *     public IteratorDefinitionContext iteratorDefinition() {
+ *         return getRuleContext(IteratorDefinitionContext.class, 0);
+ *     }
+ *
+ *     public GeneratorDefinitionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_generatorDefinition;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterGeneratorDefinition(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitGeneratorDefinition(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * generatorDefinition
- *     : '*' iteratorDefinition
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2251-2259
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#generatorDefinition()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.GeneratorDefinitionMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("GeneratorDefinition")
 public interface GeneratorDefinition extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '*'
+    @Relation("HAS_MULTIPLY")
+    TerminalNodeStrings getMultiply();
+
+    void setMultiply(TerminalNodeStrings setMultiply);
+
     @Relation("HAS_ITERATOR_DEFINITION")
     IteratorDefinition getIteratorDefinition();
 

@@ -2,26 +2,84 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE enhancedForStatement (BLOCK (ALT 'for' '(' (* (BLOCK (ALT variableModifier))) unannType variableDeclaratorId ':' expression ')' statement)))
+ * public static class EnhancedForStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode FOR() {
+ *         return getToken(Java8Parser.FOR, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public UnannTypeContext unannType() {
+ *         return getRuleContext(UnannTypeContext.class, 0);
+ *     }
+ *
+ *     public VariableDeclaratorIdContext variableDeclaratorId() {
+ *         return getRuleContext(VariableDeclaratorIdContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode COLON() {
+ *         return getToken(Java8Parser.COLON, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public StatementContext statement() {
+ *         return getRuleContext(StatementContext.class, 0);
+ *     }
+ *
+ *     public List<VariableModifierContext> variableModifier() {
+ *         return getRuleContexts(VariableModifierContext.class);
+ *     }
+ *
+ *     public VariableModifierContext variableModifier(int i) {
+ *         return getRuleContext(VariableModifierContext.class, i);
+ *     }
+ *
+ *     public EnhancedForStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_enhancedForStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterEnhancedForStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitEnhancedForStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * enhancedForStatement
- * 	:	'for' '(' variableModifier* unannType variableDeclaratorId ':' expression ')' statement
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2698-2721
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#enhancedForStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnhancedForStatementMapper
  */
 @Generated(
@@ -29,12 +87,15 @@ import java.util.List;
 @Label("EnhancedForStatement")
 public interface EnhancedForStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'for'
-    // unhandled TerminalAST token: '('
-    @Relation("HAS_VARIABLE_MODIFIER")
-    List<VariableModifier> getVariableModifier();
+    @Relation("HAS_F_O_R")
+    TerminalNodeStrings getFOR();
 
-    void setVariableModifier(List<VariableModifier> setVariableModifier);
+    void setFOR(TerminalNodeStrings setFOR);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
 
     @Relation("HAS_UNANN_TYPE")
     UnannType getUnannType();
@@ -46,17 +107,30 @@ public interface EnhancedForStatement extends JavaGen {
 
     void setVariableDeclaratorId(VariableDeclaratorId setVariableDeclaratorId);
 
-    // unhandled TerminalAST token: ':'
+    @Relation("HAS_C_O_L_O_N")
+    TerminalNodeStrings getCOLON();
+
+    void setCOLON(TerminalNodeStrings setCOLON);
+
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 
     void setStatement(Statement setStatement);
+
+    @Relation("HAS_VARIABLE_MODIFIER")
+    List<VariableModifier> getVariableModifier();
+
+    void setVariableModifier(List<VariableModifier> setVariableModifier);
 
     @Relation("HAS_TEXT")
     String getText();

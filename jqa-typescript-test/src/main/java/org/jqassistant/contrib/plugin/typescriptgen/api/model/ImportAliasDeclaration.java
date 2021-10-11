@@ -2,25 +2,59 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE importAliasDeclaration (BLOCK (ALT Identifier '=' namespaceName SemiColon)))
+ * public static class ImportAliasDeclarationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode Assign() {
+ *         return getToken(TypeScriptParser.Assign, 0);
+ *     }
+ *
+ *     public NamespaceNameContext namespaceName() {
+ *         return getRuleContext(NamespaceNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SemiColon() {
+ *         return getToken(TypeScriptParser.SemiColon, 0);
+ *     }
+ *
+ *     public ImportAliasDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_importAliasDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterImportAliasDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitImportAliasDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * importAliasDeclaration
- *     : Identifier '=' namespaceName SemiColon
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1048-1060
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#importAliasDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ImportAliasDeclarationMapper
  */
 @Generated(
@@ -33,7 +67,11 @@ public interface ImportAliasDeclaration extends TypeScriptGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '='
+    @Relation("HAS_ASSIGN")
+    TerminalNodeStrings getAssign();
+
+    void setAssign(TerminalNodeStrings setAssign);
+
     @Relation("HAS_NAMESPACE_NAME")
     NamespaceName getNamespaceName();
 

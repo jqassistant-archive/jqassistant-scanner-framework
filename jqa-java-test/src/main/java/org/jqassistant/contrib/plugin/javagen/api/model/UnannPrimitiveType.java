@@ -2,26 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE unannPrimitiveType (BLOCK (ALT numericType) (ALT 'boolean')))
+ * public static class UnannPrimitiveTypeContext extends ParserRuleContext {
+ *
+ *     public NumericTypeContext numericType() {
+ *         return getRuleContext(NumericTypeContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode BOOLEAN() {
+ *         return getToken(Java8Parser.BOOLEAN, 0);
+ *     }
+ *
+ *     public UnannPrimitiveTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_unannPrimitiveType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterUnannPrimitiveType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitUnannPrimitiveType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * unannPrimitiveType
- * 	:	numericType
- * 	|	'boolean'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:960-970
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#unannPrimitiveType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannPrimitiveTypeMapper
  */
 @Generated(
@@ -34,7 +59,11 @@ public interface UnannPrimitiveType extends JavaGen {
 
     void setNumericType(NumericType setNumericType);
 
-    // unhandled TerminalAST token: 'boolean'
+    @Relation("HAS_B_O_O_L_E_A_N")
+    TerminalNodeStrings getBOOLEAN();
+
+    void setBOOLEAN(TerminalNodeStrings setBOOLEAN);
+
     @Relation("HAS_TEXT")
     String getText();
 

@@ -2,27 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE lambdaParameters (BLOCK (ALT Identifier) (ALT '(' (? (BLOCK (ALT formalParameterList))) ')') (ALT '(' inferredFormalParameterList ')')))
+ * public static class LambdaParametersContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public FormalParameterListContext formalParameterList() {
+ *         return getRuleContext(FormalParameterListContext.class, 0);
+ *     }
+ *
+ *     public InferredFormalParameterListContext inferredFormalParameterList() {
+ *         return getRuleContext(InferredFormalParameterListContext.class, 0);
+ *     }
+ *
+ *     public LambdaParametersContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_lambdaParameters;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterLambdaParameters(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitLambdaParameters(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * lambdaParameters
- * 	:	Identifier
- * 	|	'(' formalParameterList? ')'
- * 	|	'(' inferredFormalParameterList ')'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4259-4282
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#lambdaParameters()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.LambdaParametersMapper
  */
 @Generated(
@@ -35,21 +71,26 @@ public interface LambdaParameters extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '('
-    // optional: ?
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 
     void setFormalParameterList(FormalParameterList setFormalParameterList);
 
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: '('
     @Relation("HAS_INFERRED_FORMAL_PARAMETER_LIST")
     InferredFormalParameterList getInferredFormalParameterList();
 
     void setInferredFormalParameterList(InferredFormalParameterList setInferredFormalParameterList);
 
-    // unhandled TerminalAST token: ')'
     @Relation("HAS_TEXT")
     String getText();
 

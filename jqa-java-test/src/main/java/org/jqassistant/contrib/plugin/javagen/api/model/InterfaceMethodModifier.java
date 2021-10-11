@@ -2,30 +2,67 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE interfaceMethodModifier (BLOCK (ALT annotation) (ALT 'public') (ALT 'abstract') (ALT 'default') (ALT 'static') (ALT 'strictfp')))
+ * public static class InterfaceMethodModifierContext extends ParserRuleContext {
+ *
+ *     public AnnotationContext annotation() {
+ *         return getRuleContext(AnnotationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode PUBLIC() {
+ *         return getToken(Java8Parser.PUBLIC, 0);
+ *     }
+ *
+ *     public TerminalNode ABSTRACT() {
+ *         return getToken(Java8Parser.ABSTRACT, 0);
+ *     }
+ *
+ *     public TerminalNode DEFAULT() {
+ *         return getToken(Java8Parser.DEFAULT, 0);
+ *     }
+ *
+ *     public TerminalNode STATIC() {
+ *         return getToken(Java8Parser.STATIC, 0);
+ *     }
+ *
+ *     public TerminalNode STRICTFP() {
+ *         return getToken(Java8Parser.STRICTFP, 0);
+ *     }
+ *
+ *     public InterfaceMethodModifierContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_interfaceMethodModifier;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterInterfaceMethodModifier(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitInterfaceMethodModifier(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * interfaceMethodModifier
- * 	:	annotation
- * 	|	'public'
- * 	|	'abstract'
- * 	|	'default'
- * 	|	'static'
- * 	|	'strictfp'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1826-1852
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#interfaceMethodModifier()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.InterfaceMethodModifierMapper
  */
 @Generated(
@@ -38,11 +75,31 @@ public interface InterfaceMethodModifier extends JavaGen {
 
     void setAnnotation(Annotation setAnnotation);
 
-    // unhandled TerminalAST token: 'public'
-    // unhandled TerminalAST token: 'abstract'
-    // unhandled TerminalAST token: 'default'
-    // unhandled TerminalAST token: 'static'
-    // unhandled TerminalAST token: 'strictfp'
+    @Relation("HAS_P_U_B_L_I_C")
+    TerminalNodeStrings getPUBLIC();
+
+    void setPUBLIC(TerminalNodeStrings setPUBLIC);
+
+    @Relation("HAS_A_B_S_T_R_A_C_T")
+    TerminalNodeStrings getABSTRACT();
+
+    void setABSTRACT(TerminalNodeStrings setABSTRACT);
+
+    @Relation("HAS_D_E_F_A_U_L_T")
+    TerminalNodeStrings getDEFAULT();
+
+    void setDEFAULT(TerminalNodeStrings setDEFAULT);
+
+    @Relation("HAS_S_T_A_T_I_C")
+    TerminalNodeStrings getSTATIC();
+
+    void setSTATIC(TerminalNodeStrings setSTATIC);
+
+    @Relation("HAS_S_T_R_I_C_T_F_P")
+    TerminalNodeStrings getSTRICTFP();
+
+    void setSTRICTFP(TerminalNodeStrings setSTRICTFP);
+
     @Relation("HAS_TEXT")
     String getText();
 

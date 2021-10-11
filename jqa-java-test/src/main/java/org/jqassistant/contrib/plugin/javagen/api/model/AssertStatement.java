@@ -2,27 +2,64 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE assertStatement (BLOCK (ALT 'assert' expression ';') (ALT 'assert' expression ':' expression ';')))
+ * public static class AssertStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode ASSERT() {
+ *         return getToken(Java8Parser.ASSERT, 0);
+ *     }
+ *
+ *     public List<ExpressionContext> expression() {
+ *         return getRuleContexts(ExpressionContext.class);
+ *     }
+ *
+ *     public ExpressionContext expression(int i) {
+ *         return getRuleContext(ExpressionContext.class, i);
+ *     }
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public TerminalNode COLON() {
+ *         return getToken(Java8Parser.COLON, 0);
+ *     }
+ *
+ *     public AssertStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_assertStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterAssertStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitAssertStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * assertStatement
- * 	:	'assert' expression ';'
- * 	|	'assert' expression ':' expression ';'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2422-2444
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#assertStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AssertStatementMapper
  */
 @Generated(
@@ -30,16 +67,26 @@ import java.util.List;
 @Label("AssertStatement")
 public interface AssertStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'assert'
-    // unhandled TerminalAST token: ';'
-    // unhandled TerminalAST token: 'assert'
+    @Relation("HAS_A_S_S_E_R_T")
+    TerminalNodeStrings getASSERT();
+
+    void setASSERT(TerminalNodeStrings setASSERT);
+
     @Relation("HAS_EXPRESSION")
     List<Expression> getExpression();
 
     void setExpression(List<Expression> setExpression);
 
-    // unhandled TerminalAST token: ':'
-    // unhandled TerminalAST token: ';'
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
+    @Relation("HAS_C_O_L_O_N")
+    TerminalNodeStrings getCOLON();
+
+    void setCOLON(TerminalNodeStrings setCOLON);
+
     @Relation("HAS_TEXT")
     String getText();
 

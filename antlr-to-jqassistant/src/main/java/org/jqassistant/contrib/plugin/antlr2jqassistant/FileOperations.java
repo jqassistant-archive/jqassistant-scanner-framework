@@ -3,7 +3,7 @@ package org.jqassistant.contrib.plugin.antlr2jqassistant;
 import com.github.javaparser.ast.CompilationUnit;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
-import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.AstName;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.CleanName;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
 
 import javax.xml.bind.JAXBContext;
@@ -17,9 +17,9 @@ import java.util.Date;
 import java.util.Map;
 
 public class FileOperations {
-    static void writeToFiles(String name, String destinationPackage, Map<AstName, CompilationUnit> compilationUnitMap) {
-        for (Map.Entry<AstName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
-            AstName s = entry.getKey();
+    static void writeToFiles(String name, String destinationPackage, Map<CleanName, CompilationUnit> compilationUnitMap) {
+        for (Map.Entry<CleanName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
+            CleanName s = entry.getKey();
             CompilationUnit compilationUnit = entry.getValue();
 
             try {
@@ -50,7 +50,7 @@ public class FileOperations {
                 .toString();
     }
 
-    static void writeToFile(String fileName, String destinationPackage, Map<AstName, CompilationUnit> compilationUnitMap) {
+    static void writeToFile(String fileName, String destinationPackage, Map<CleanName, CompilationUnit> compilationUnitMap) {
 
         try {
             File file = new File(Main.destination + "src/main/java/" + destinationPackage.replace(".", "/") + "/" + fileName);
@@ -60,8 +60,8 @@ public class FileOperations {
             FileWriter myWriter = new FileWriter(file);
             myWriter.write("//" + getComment(""));
 
-            for (Map.Entry<AstName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
-                AstName s = entry.getKey();
+            for (Map.Entry<CleanName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
+                CleanName s = entry.getKey();
                 CompilationUnit compilationUnit = entry.getValue();
                 myWriter.write("\n\n//" + s + ".java\n");
                 myWriter.write(compilationUnit.toString());

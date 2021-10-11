@@ -2,25 +2,59 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE propertyMemberBase (BLOCK (ALT (? (BLOCK (ALT Async))) (? (BLOCK (ALT accessibilityModifier))) (? (BLOCK (ALT Static))) (? (BLOCK (ALT ReadOnly))))))
+ * public static class PropertyMemberBaseContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Async() {
+ *         return getToken(TypeScriptParser.Async, 0);
+ *     }
+ *
+ *     public AccessibilityModifierContext accessibilityModifier() {
+ *         return getRuleContext(AccessibilityModifierContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Static() {
+ *         return getToken(TypeScriptParser.Static, 0);
+ *     }
+ *
+ *     public TerminalNode ReadOnly() {
+ *         return getToken(TypeScriptParser.ReadOnly, 0);
+ *     }
+ *
+ *     public PropertyMemberBaseContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_propertyMemberBase;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterPropertyMemberBase(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitPropertyMemberBase(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * propertyMemberBase
- *     : Async? accessibilityModifier? Static? ReadOnly?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2151-2167
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#propertyMemberBase()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.PropertyMemberBaseMapper
  */
 @Generated(
@@ -28,25 +62,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("PropertyMemberBase")
 public interface PropertyMemberBase extends TypeScriptGen {
 
-    // optional: ?
     @Relation("HAS_ASYNC")
     TerminalNodeStrings getAsync();
 
     void setAsync(TerminalNodeStrings setAsync);
 
-    // optional: ?
     @Relation("HAS_ACCESSIBILITY_MODIFIER")
     AccessibilityModifier getAccessibilityModifier();
 
     void setAccessibilityModifier(AccessibilityModifier setAccessibilityModifier);
 
-    // optional: ?
     @Relation("HAS_STATIC")
     TerminalNodeStrings getStatic();
 
     void setStatic(TerminalNodeStrings setStatic);
 
-    // optional: ?
     @Relation("HAS_READ_ONLY")
     TerminalNodeStrings getReadOnly();
 

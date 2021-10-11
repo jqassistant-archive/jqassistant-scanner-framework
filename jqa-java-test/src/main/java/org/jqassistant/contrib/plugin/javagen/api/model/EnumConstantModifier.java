@@ -2,25 +2,47 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE enumConstantModifier (BLOCK (ALT annotation)))
+ * public static class EnumConstantModifierContext extends ParserRuleContext {
+ *
+ *     public AnnotationContext annotation() {
+ *         return getRuleContext(AnnotationContext.class, 0);
+ *     }
+ *
+ *     public EnumConstantModifierContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_enumConstantModifier;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterEnumConstantModifier(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitEnumConstantModifier(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * enumConstantModifier
- * 	:	annotation
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1645-1651
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#enumConstantModifier()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnumConstantModifierMapper
  */
 @Generated(

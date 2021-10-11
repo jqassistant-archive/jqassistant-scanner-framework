@@ -2,26 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeArgumentsOrDiamond (BLOCK (ALT typeArguments) (ALT '<' '>')))
+ * public static class TypeArgumentsOrDiamondContext extends ParserRuleContext {
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode LT() {
+ *         return getToken(Java8Parser.LT, 0);
+ *     }
+ *
+ *     public TerminalNode GT() {
+ *         return getToken(Java8Parser.GT, 0);
+ *     }
+ *
+ *     public TypeArgumentsOrDiamondContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeArgumentsOrDiamond;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterTypeArgumentsOrDiamond(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitTypeArgumentsOrDiamond(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeArgumentsOrDiamond
- * 	:	typeArguments
- * 	|	'<' '>'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:3561-3573
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#typeArgumentsOrDiamond()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TypeArgumentsOrDiamondMapper
  */
 @Generated(
@@ -34,8 +63,16 @@ public interface TypeArgumentsOrDiamond extends JavaGen {
 
     void setTypeArguments(TypeArguments setTypeArguments);
 
-    // unhandled TerminalAST token: '<'
-    // unhandled TerminalAST token: '>'
+    @Relation("HAS_L_T")
+    TerminalNodeStrings getLT();
+
+    void setLT(TerminalNodeStrings setLT);
+
+    @Relation("HAS_G_T")
+    TerminalNodeStrings getGT();
+
+    void setGT(TerminalNodeStrings setGT);
+
     @Relation("HAS_TEXT")
     String getText();
 

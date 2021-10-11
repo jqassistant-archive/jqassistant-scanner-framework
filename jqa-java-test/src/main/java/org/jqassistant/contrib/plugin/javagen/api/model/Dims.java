@@ -2,26 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE dims (BLOCK (ALT (* (BLOCK (ALT annotation))) '[' ']' (* (BLOCK (ALT (* (BLOCK (ALT annotation))) '[' ']'))))))
+ * public static class DimsContext extends ParserRuleContext {
+ *
+ *     public List<TerminalNode> LBRACK() {
+ *         return getTokens(Java8Parser.LBRACK);
+ *     }
+ *
+ *     public TerminalNode LBRACK(int i) {
+ *         return getToken(Java8Parser.LBRACK, i);
+ *     }
+ *
+ *     public List<TerminalNode> RBRACK() {
+ *         return getTokens(Java8Parser.RBRACK);
+ *     }
+ *
+ *     public TerminalNode RBRACK(int i) {
+ *         return getToken(Java8Parser.RBRACK, i);
+ *     }
+ *
+ *     public List<AnnotationContext> annotation() {
+ *         return getRuleContexts(AnnotationContext.class);
+ *     }
+ *
+ *     public AnnotationContext annotation(int i) {
+ *         return getRuleContext(AnnotationContext.class, i);
+ *     }
+ *
+ *     public DimsContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_dims;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterDims(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitDims(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * dims
- * 	:	annotation* '[' ']' (annotation* '[' ']')*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:276-297
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#dims()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.DimsMapper
  */
 @Generated(
@@ -29,15 +71,21 @@ import java.util.List;
 @Label("Dims")
 public interface Dims extends JavaGen {
 
+    @Relation("HAS_L_B_R_A_C_K")
+    List<TerminalNodeStrings> getLBRACK();
+
+    void setLBRACK(List<TerminalNodeStrings> setLBRACK);
+
+    @Relation("HAS_R_B_R_A_C_K")
+    List<TerminalNodeStrings> getRBRACK();
+
+    void setRBRACK(List<TerminalNodeStrings> setRBRACK);
+
     @Relation("HAS_ANNOTATION")
     List<Annotation> getAnnotation();
 
     void setAnnotation(List<Annotation> setAnnotation);
 
-    // unhandled TerminalAST token: '['
-    // unhandled TerminalAST token: ']'
-    // unhandled TerminalAST token: '['
-    // unhandled TerminalAST token: ']'
     @Relation("HAS_TEXT")
     String getText();
 

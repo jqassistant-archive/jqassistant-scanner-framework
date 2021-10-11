@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE withStatement (BLOCK (ALT With '(' expressionSequence ')' statement)))
+ * public static class WithStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode With() {
+ *         return getToken(TypeScriptParser.With, 0);
+ *     }
+ *
+ *     public TerminalNode OpenParen() {
+ *         return getToken(TypeScriptParser.OpenParen, 0);
+ *     }
+ *
+ *     public ExpressionSequenceContext expressionSequence() {
+ *         return getRuleContext(ExpressionSequenceContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode CloseParen() {
+ *         return getToken(TypeScriptParser.CloseParen, 0);
+ *     }
+ *
+ *     public StatementContext statement() {
+ *         return getRuleContext(StatementContext.class, 0);
+ *     }
+ *
+ *     public WithStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_withStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterWithStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitWithStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * withStatement
- *     : With '(' expressionSequence ')' statement
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1783-1797
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#withStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.WithStatementMapper
  */
 @Generated(
@@ -33,13 +71,21 @@ public interface WithStatement extends TypeScriptGen {
 
     void setWith(TerminalNodeStrings setWith);
 
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_OPEN_PAREN")
+    TerminalNodeStrings getOpenParen();
+
+    void setOpenParen(TerminalNodeStrings setOpenParen);
+
     @Relation("HAS_EXPRESSION_SEQUENCE")
     ExpressionSequence getExpressionSequence();
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_CLOSE_PAREN")
+    TerminalNodeStrings getCloseParen();
+
+    void setCloseParen(TerminalNodeStrings setCloseParen);
+
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 

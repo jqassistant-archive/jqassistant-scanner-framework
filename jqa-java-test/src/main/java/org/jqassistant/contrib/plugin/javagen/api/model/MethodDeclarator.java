@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE methodDeclarator (BLOCK (ALT Identifier '(' (? (BLOCK (ALT formalParameterList))) ')' (? (BLOCK (ALT dims))))))
+ * public static class MethodDeclaratorContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public FormalParameterListContext formalParameterList() {
+ *         return getRuleContext(FormalParameterListContext.class, 0);
+ *     }
+ *
+ *     public DimsContext dims() {
+ *         return getRuleContext(DimsContext.class, 0);
+ *     }
+ *
+ *     public MethodDeclaratorContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_methodDeclarator;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterMethodDeclarator(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitMethodDeclarator(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * methodDeclarator
- * 	:	Identifier '(' formalParameterList? ')' dims?
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1217-1233
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#methodDeclarator()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodDeclaratorMapper
  */
 @Generated(
@@ -33,15 +71,21 @@ public interface MethodDeclarator extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '('
-    // optional: ?
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 
     void setFormalParameterList(FormalParameterList setFormalParameterList);
 
-    // unhandled TerminalAST token: ')'
-    // optional: ?
     @Relation("HAS_DIMS")
     Dims getDims();
 

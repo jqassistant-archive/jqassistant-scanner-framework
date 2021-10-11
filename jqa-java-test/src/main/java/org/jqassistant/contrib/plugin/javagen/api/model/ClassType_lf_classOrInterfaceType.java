@@ -2,26 +2,64 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE classType_lf_classOrInterfaceType (BLOCK (ALT '.' (* (BLOCK (ALT annotation))) Identifier (? (BLOCK (ALT typeArguments))))))
+ * public static class ClassType_lf_classOrInterfaceTypeContext extends ParserRuleContext {
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public List<AnnotationContext> annotation() {
+ *         return getRuleContexts(AnnotationContext.class);
+ *     }
+ *
+ *     public AnnotationContext annotation(int i) {
+ *         return getRuleContext(AnnotationContext.class, i);
+ *     }
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public ClassType_lf_classOrInterfaceTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_classType_lf_classOrInterfaceType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterClassType_lf_classOrInterfaceType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitClassType_lf_classOrInterfaceType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * classType_lf_classOrInterfaceType
- * 	:	'.' annotation* Identifier typeArguments?
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:189-203
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#classType_lf_classOrInterfaceType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassType_lf_classOrInterfaceTypeMapper
  */
 @Generated(
@@ -29,18 +67,21 @@ import java.util.List;
 @Label("ClassType_lf_classOrInterfaceType")
 public interface ClassType_lf_classOrInterfaceType extends JavaGen {
 
-    // unhandled TerminalAST token: '.'
-    @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotation();
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
 
-    void setAnnotation(List<Annotation> setAnnotation);
+    void setDOT(TerminalNodeStrings setDOT);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
+    @Relation("HAS_ANNOTATION")
+    List<Annotation> getAnnotation();
+
+    void setAnnotation(List<Annotation> setAnnotation);
+
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 

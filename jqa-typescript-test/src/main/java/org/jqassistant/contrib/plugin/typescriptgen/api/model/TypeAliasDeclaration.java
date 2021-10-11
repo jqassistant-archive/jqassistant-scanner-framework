@@ -2,25 +2,67 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeAliasDeclaration (BLOCK (ALT 'type' Identifier (? (BLOCK (ALT typeParameters))) '=' type_ SemiColon)))
+ * public static class TypeAliasDeclarationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode TypeAlias() {
+ *         return getToken(TypeScriptParser.TypeAlias, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode Assign() {
+ *         return getToken(TypeScriptParser.Assign, 0);
+ *     }
+ *
+ *     public Type_Context type_() {
+ *         return getRuleContext(Type_Context.class, 0);
+ *     }
+ *
+ *     public TerminalNode SemiColon() {
+ *         return getToken(TypeScriptParser.SemiColon, 0);
+ *     }
+ *
+ *     public TypeParametersContext typeParameters() {
+ *         return getRuleContext(TypeParametersContext.class, 0);
+ *     }
+ *
+ *     public TypeAliasDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeAliasDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterTypeAliasDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitTypeAliasDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeAliasDeclaration
- *     : 'type' Identifier typeParameters? '=' type_ SemiColon
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:843-860
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#typeAliasDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.TypeAliasDeclarationMapper
  */
 @Generated(
@@ -28,19 +70,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("TypeAliasDeclaration")
 public interface TypeAliasDeclaration extends TypeScriptGen {
 
-    // unhandled TerminalAST token: 'type'
+    @Relation("HAS_TYPE_ALIAS")
+    TerminalNodeStrings getTypeAlias();
+
+    void setTypeAlias(TerminalNodeStrings setTypeAlias);
+
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
-    @Relation("HAS_TYPE_PARAMETERS")
-    TypeParameters getTypeParameters();
+    @Relation("HAS_ASSIGN")
+    TerminalNodeStrings getAssign();
 
-    void setTypeParameters(TypeParameters setTypeParameters);
+    void setAssign(TerminalNodeStrings setAssign);
 
-    // unhandled TerminalAST token: '='
     @Relation("HAS_TYPE")
     Type_ getType_();
 
@@ -50,6 +94,11 @@ public interface TypeAliasDeclaration extends TypeScriptGen {
     TerminalNodeStrings getSemiColon();
 
     void setSemiColon(TerminalNodeStrings setSemiColon);
+
+    @Relation("HAS_TYPE_PARAMETERS")
+    TypeParameters getTypeParameters();
+
+    void setTypeParameters(TypeParameters setTypeParameters);
 
     @Relation("HAS_TEXT")
     String getText();

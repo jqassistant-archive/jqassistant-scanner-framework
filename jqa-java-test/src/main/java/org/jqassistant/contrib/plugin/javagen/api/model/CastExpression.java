@@ -2,28 +2,80 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE castExpression (BLOCK (ALT '(' primitiveType ')' unaryExpression) (ALT '(' referenceType (* (BLOCK (ALT additionalBound))) ')' unaryExpressionNotPlusMinus) (ALT '(' referenceType (* (BLOCK (ALT additionalBound))) ')' lambdaExpression)))
+ * public static class CastExpressionContext extends ParserRuleContext {
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public PrimitiveTypeContext primitiveType() {
+ *         return getRuleContext(PrimitiveTypeContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public UnaryExpressionContext unaryExpression() {
+ *         return getRuleContext(UnaryExpressionContext.class, 0);
+ *     }
+ *
+ *     public ReferenceTypeContext referenceType() {
+ *         return getRuleContext(ReferenceTypeContext.class, 0);
+ *     }
+ *
+ *     public UnaryExpressionNotPlusMinusContext unaryExpressionNotPlusMinus() {
+ *         return getRuleContext(UnaryExpressionNotPlusMinusContext.class, 0);
+ *     }
+ *
+ *     public List<AdditionalBoundContext> additionalBound() {
+ *         return getRuleContexts(AdditionalBoundContext.class);
+ *     }
+ *
+ *     public AdditionalBoundContext additionalBound(int i) {
+ *         return getRuleContext(AdditionalBoundContext.class, i);
+ *     }
+ *
+ *     public LambdaExpressionContext lambdaExpression() {
+ *         return getRuleContext(LambdaExpressionContext.class, 0);
+ *     }
+ *
+ *     public CastExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_castExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterCastExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitCastExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * castExpression
- * 	:	'(' primitiveType ')' unaryExpression
- * 	|	'(' referenceType additionalBound* ')' unaryExpressionNotPlusMinus
- * 	|	'(' referenceType additionalBound* ')' lambdaExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4806-4844
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#castExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.CastExpressionMapper
  */
 @Generated(
@@ -31,37 +83,41 @@ import java.util.List;
 @Label("CastExpression")
 public interface CastExpression extends JavaGen {
 
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
     @Relation("HAS_PRIMITIVE_TYPE")
     PrimitiveType getPrimitiveType();
 
     void setPrimitiveType(PrimitiveType setPrimitiveType);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_UNARY_EXPRESSION")
     UnaryExpression getUnaryExpression();
 
     void setUnaryExpression(UnaryExpression setUnaryExpression);
 
-    // unhandled TerminalAST token: '('
     @Relation("HAS_REFERENCE_TYPE")
     ReferenceType getReferenceType();
 
     void setReferenceType(ReferenceType setReferenceType);
+
+    @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
+    UnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus();
+
+    void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus setUnaryExpressionNotPlusMinus);
 
     @Relation("HAS_ADDITIONAL_BOUND")
     List<AdditionalBound> getAdditionalBound();
 
     void setAdditionalBound(List<AdditionalBound> setAdditionalBound);
 
-    // unhandled TerminalAST token: ')'
-    @Relation("HAS_UNARY_EXPRESSION_NOT_PLUS_MINUS")
-    UnaryExpressionNotPlusMinus getUnaryExpressionNotPlusMinus();
-
-    void setUnaryExpressionNotPlusMinus(UnaryExpressionNotPlusMinus setUnaryExpressionNotPlusMinus);
-
-    // unhandled TerminalAST token: '('
-    // unhandled TerminalAST token: ')'
     @Relation("HAS_LAMBDA_EXPRESSION")
     LambdaExpression getLambdaExpression();
 

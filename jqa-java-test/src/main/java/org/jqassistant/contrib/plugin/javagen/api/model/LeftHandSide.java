@@ -2,27 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE leftHandSide (BLOCK (ALT expressionName) (ALT fieldAccess) (ALT arrayAccess)))
+ * public static class LeftHandSideContext extends ParserRuleContext {
+ *
+ *     public ExpressionNameContext expressionName() {
+ *         return getRuleContext(ExpressionNameContext.class, 0);
+ *     }
+ *
+ *     public FieldAccessContext fieldAccess() {
+ *         return getRuleContext(FieldAccessContext.class, 0);
+ *     }
+ *
+ *     public ArrayAccessContext arrayAccess() {
+ *         return getRuleContext(ArrayAccessContext.class, 0);
+ *     }
+ *
+ *     public LeftHandSideContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_leftHandSide;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterLeftHandSide(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitLeftHandSide(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * leftHandSide
- * 	:	expressionName
- * 	|	fieldAccess
- * 	|	arrayAccess
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4335-4349
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#leftHandSide()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.LeftHandSideMapper
  */
 @Generated(

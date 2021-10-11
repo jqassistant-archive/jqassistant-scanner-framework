@@ -2,27 +2,64 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
 
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE caseBlock (BLOCK (ALT '{' (? (BLOCK (ALT caseClauses))) (? (BLOCK (ALT defaultClause (? (BLOCK (ALT caseClauses)))))) '}')))
+ * public static class CaseBlockContext extends ParserRuleContext {
+ *
+ *     public TerminalNode OpenBrace() {
+ *         return getToken(TypeScriptParser.OpenBrace, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBrace() {
+ *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     }
+ *
+ *     public List<CaseClausesContext> caseClauses() {
+ *         return getRuleContexts(CaseClausesContext.class);
+ *     }
+ *
+ *     public CaseClausesContext caseClauses(int i) {
+ *         return getRuleContext(CaseClausesContext.class, i);
+ *     }
+ *
+ *     public DefaultClauseContext defaultClause() {
+ *         return getRuleContext(DefaultClauseContext.class, 0);
+ *     }
+ *
+ *     public CaseBlockContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_caseBlock;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterCaseBlock(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitCaseBlock(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * caseBlock
- *     : '{' caseClauses? (defaultClause caseClauses?)? '}'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1815-1834
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#caseBlock()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.CaseBlockMapper
  */
 @Generated(
@@ -30,21 +67,26 @@ import java.util.List;
 @Label("CaseBlock")
 public interface CaseBlock extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '{'
-    // optional: ?
+    @Relation("HAS_OPEN_BRACE")
+    TerminalNodeStrings getOpenBrace();
+
+    void setOpenBrace(TerminalNodeStrings setOpenBrace);
+
+    @Relation("HAS_CLOSE_BRACE")
+    TerminalNodeStrings getCloseBrace();
+
+    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+
     @Relation("HAS_CASE_CLAUSES")
     List<CaseClauses> getCaseClauses();
 
     void setCaseClauses(List<CaseClauses> setCaseClauses);
 
-    // optional: ?
     @Relation("HAS_DEFAULT_CLAUSE")
     DefaultClause getDefaultClause();
 
     void setDefaultClause(DefaultClause setDefaultClause);
 
-    // optional: ?
-    // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 

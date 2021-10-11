@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE staticInitializer (BLOCK (ALT 'static' block)))
+ * public static class StaticInitializerContext extends ParserRuleContext {
+ *
+ *     public TerminalNode STATIC() {
+ *         return getToken(Java8Parser.STATIC, 0);
+ *     }
+ *
+ *     public BlockContext block() {
+ *         return getRuleContext(BlockContext.class, 0);
+ *     }
+ *
+ *     public StaticInitializerContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_staticInitializer;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterStaticInitializer(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitStaticInitializer(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * staticInitializer
- * 	:	'static' block
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1405-1413
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#staticInitializer()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.StaticInitializerMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("StaticInitializer")
 public interface StaticInitializer extends JavaGen {
 
-    // unhandled TerminalAST token: 'static'
+    @Relation("HAS_S_T_A_T_I_C")
+    TerminalNodeStrings getSTATIC();
+
+    void setSTATIC(TerminalNodeStrings setSTATIC);
+
     @Relation("HAS_BLOCK")
     Block getBlock();
 

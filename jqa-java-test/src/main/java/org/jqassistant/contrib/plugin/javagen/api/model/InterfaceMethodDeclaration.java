@@ -2,37 +2,66 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE interfaceMethodDeclaration (BLOCK (ALT (* (BLOCK (ALT interfaceMethodModifier))) methodHeader methodBody)))
+ * public static class InterfaceMethodDeclarationContext extends ParserRuleContext {
+ *
+ *     public MethodHeaderContext methodHeader() {
+ *         return getRuleContext(MethodHeaderContext.class, 0);
+ *     }
+ *
+ *     public MethodBodyContext methodBody() {
+ *         return getRuleContext(MethodBodyContext.class, 0);
+ *     }
+ *
+ *     public List<InterfaceMethodModifierContext> interfaceMethodModifier() {
+ *         return getRuleContexts(InterfaceMethodModifierContext.class);
+ *     }
+ *
+ *     public InterfaceMethodModifierContext interfaceMethodModifier(int i) {
+ *         return getRuleContext(InterfaceMethodModifierContext.class, i);
+ *     }
+ *
+ *     public InterfaceMethodDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_interfaceMethodDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterInterfaceMethodDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitInterfaceMethodDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * interfaceMethodDeclaration
- * 	:	interfaceMethodModifier* methodHeader methodBody
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1813-1824
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#interfaceMethodDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.InterfaceMethodDeclarationMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("InterfaceMethodDeclaration")
 public interface InterfaceMethodDeclaration extends JavaGen {
-
-    @Relation("HAS_INTERFACE_METHOD_MODIFIER")
-    List<InterfaceMethodModifier> getInterfaceMethodModifier();
-
-    void setInterfaceMethodModifier(List<InterfaceMethodModifier> setInterfaceMethodModifier);
 
     @Relation("HAS_METHOD_HEADER")
     MethodHeader getMethodHeader();
@@ -43,6 +72,11 @@ public interface InterfaceMethodDeclaration extends JavaGen {
     MethodBody getMethodBody();
 
     void setMethodBody(MethodBody setMethodBody);
+
+    @Relation("HAS_INTERFACE_METHOD_MODIFIER")
+    List<InterfaceMethodModifier> getInterfaceMethodModifier();
+
+    void setInterfaceMethodModifier(List<InterfaceMethodModifier> setInterfaceMethodModifier);
 
     @Relation("HAS_TEXT")
     String getText();

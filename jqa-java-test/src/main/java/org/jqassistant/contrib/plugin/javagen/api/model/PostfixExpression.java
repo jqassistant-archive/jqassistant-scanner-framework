@@ -2,31 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE postfixExpression (BLOCK (ALT (BLOCK (ALT primary) (ALT expressionName)) (* (BLOCK (ALT postIncrementExpression_lf_postfixExpression) (ALT postDecrementExpression_lf_postfixExpression))))))
+ * public static class PostfixExpressionContext extends ParserRuleContext {
+ *
+ *     public PrimaryContext primary() {
+ *         return getRuleContext(PrimaryContext.class, 0);
+ *     }
+ *
+ *     public ExpressionNameContext expressionName() {
+ *         return getRuleContext(ExpressionNameContext.class, 0);
+ *     }
+ *
+ *     public List<PostIncrementExpression_lf_postfixExpressionContext> postIncrementExpression_lf_postfixExpression() {
+ *         return getRuleContexts(PostIncrementExpression_lf_postfixExpressionContext.class);
+ *     }
+ *
+ *     public PostIncrementExpression_lf_postfixExpressionContext postIncrementExpression_lf_postfixExpression(int i) {
+ *         return getRuleContext(PostIncrementExpression_lf_postfixExpressionContext.class, i);
+ *     }
+ *
+ *     public List<PostDecrementExpression_lf_postfixExpressionContext> postDecrementExpression_lf_postfixExpression() {
+ *         return getRuleContexts(PostDecrementExpression_lf_postfixExpressionContext.class);
+ *     }
+ *
+ *     public PostDecrementExpression_lf_postfixExpressionContext postDecrementExpression_lf_postfixExpression(int i) {
+ *         return getRuleContext(PostDecrementExpression_lf_postfixExpressionContext.class, i);
+ *     }
+ *
+ *     public PostfixExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_postfixExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterPostfixExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitPostfixExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * postfixExpression
- * 	:	(	primary
- * 		|	expressionName
- * 		)
- * 		(	postIncrementExpression_lf_postfixExpression
- * 		|	postDecrementExpression_lf_postfixExpression
- * 		)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4743-4768
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#postfixExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PostfixExpressionMapper
  */
 @Generated(

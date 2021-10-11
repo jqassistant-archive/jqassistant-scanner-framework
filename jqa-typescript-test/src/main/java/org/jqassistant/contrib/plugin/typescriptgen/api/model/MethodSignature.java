@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE methodSignature (BLOCK (ALT propertyName (? (BLOCK (ALT '?'))) callSignature)))
+ * public static class MethodSignatureContext extends ParserRuleContext {
+ *
+ *     public PropertyNameContext propertyName() {
+ *         return getRuleContext(PropertyNameContext.class, 0);
+ *     }
+ *
+ *     public CallSignatureContext callSignature() {
+ *         return getRuleContext(CallSignatureContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode QuestionMark() {
+ *         return getToken(TypeScriptParser.QuestionMark, 0);
+ *     }
+ *
+ *     public MethodSignatureContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_methodSignature;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterMethodSignature(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitMethodSignature(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * methodSignature
- *     : propertyName '?'? callSignature
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:830-841
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#methodSignature()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.MethodSignatureMapper
  */
 @Generated(
@@ -33,12 +63,15 @@ public interface MethodSignature extends TypeScriptGen {
 
     void setPropertyName(PropertyName setPropertyName);
 
-    // optional: ?
-    // unhandled TerminalAST token: '?'
     @Relation("HAS_CALL_SIGNATURE")
     CallSignature getCallSignature();
 
     void setCallSignature(CallSignature setCallSignature);
+
+    @Relation("HAS_QUESTION_MARK")
+    TerminalNodeStrings getQuestionMark();
+
+    void setQuestionMark(TerminalNodeStrings setQuestionMark);
 
     @Relation("HAS_TEXT")
     String getText();

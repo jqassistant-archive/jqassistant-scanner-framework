@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE catchClause (BLOCK (ALT 'catch' '(' catchFormalParameter ')' block)))
+ * public static class CatchClauseContext extends ParserRuleContext {
+ *
+ *     public TerminalNode CATCH() {
+ *         return getToken(Java8Parser.CATCH, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public CatchFormalParameterContext catchFormalParameter() {
+ *         return getRuleContext(CatchFormalParameterContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public BlockContext block() {
+ *         return getRuleContext(BlockContext.class, 0);
+ *     }
+ *
+ *     public CatchClauseContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_catchClause;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterCatchClause(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitCatchClause(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * catchClause
- * 	:	'catch' '(' catchFormalParameter ')' block
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2853-2867
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#catchClause()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.CatchClauseMapper
  */
 @Generated(
@@ -28,14 +66,26 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("CatchClause")
 public interface CatchClause extends JavaGen {
 
-    // unhandled TerminalAST token: 'catch'
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_C_A_T_C_H")
+    TerminalNodeStrings getCATCH();
+
+    void setCATCH(TerminalNodeStrings setCATCH);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
     @Relation("HAS_CATCH_FORMAL_PARAMETER")
     CatchFormalParameter getCatchFormalParameter();
 
     void setCatchFormalParameter(CatchFormalParameter setCatchFormalParameter);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_BLOCK")
     Block getBlock();
 

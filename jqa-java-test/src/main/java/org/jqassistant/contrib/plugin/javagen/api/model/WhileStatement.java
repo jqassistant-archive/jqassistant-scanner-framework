@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE whileStatement (BLOCK (ALT 'while' '(' expression ')' statement)))
+ * public static class WhileStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode WHILE() {
+ *         return getToken(Java8Parser.WHILE, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public StatementContext statement() {
+ *         return getRuleContext(StatementContext.class, 0);
+ *     }
+ *
+ *     public WhileStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_whileStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterWhileStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitWhileStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * whileStatement
- * 	:	'while' '(' expression ')' statement
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2533-2547
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#whileStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.WhileStatementMapper
  */
 @Generated(
@@ -28,14 +66,26 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("WhileStatement")
 public interface WhileStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'while'
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_W_H_I_L_E")
+    TerminalNodeStrings getWHILE();
+
+    void setWHILE(TerminalNodeStrings setWHILE);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 

@@ -2,31 +2,71 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE statementExpression (BLOCK (ALT assignment) (ALT preIncrementExpression) (ALT preDecrementExpression) (ALT postIncrementExpression) (ALT postDecrementExpression) (ALT methodInvocation) (ALT classInstanceCreationExpression)))
+ * public static class StatementExpressionContext extends ParserRuleContext {
+ *
+ *     public AssignmentContext assignment() {
+ *         return getRuleContext(AssignmentContext.class, 0);
+ *     }
+ *
+ *     public PreIncrementExpressionContext preIncrementExpression() {
+ *         return getRuleContext(PreIncrementExpressionContext.class, 0);
+ *     }
+ *
+ *     public PreDecrementExpressionContext preDecrementExpression() {
+ *         return getRuleContext(PreDecrementExpressionContext.class, 0);
+ *     }
+ *
+ *     public PostIncrementExpressionContext postIncrementExpression() {
+ *         return getRuleContext(PostIncrementExpressionContext.class, 0);
+ *     }
+ *
+ *     public PostDecrementExpressionContext postDecrementExpression() {
+ *         return getRuleContext(PostDecrementExpressionContext.class, 0);
+ *     }
+ *
+ *     public MethodInvocationContext methodInvocation() {
+ *         return getRuleContext(MethodInvocationContext.class, 0);
+ *     }
+ *
+ *     public ClassInstanceCreationExpressionContext classInstanceCreationExpression() {
+ *         return getRuleContext(ClassInstanceCreationExpressionContext.class, 0);
+ *     }
+ *
+ *     public StatementExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_statementExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterStatementExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitStatementExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * statementExpression
- * 	:	assignment
- * 	|	preIncrementExpression
- * 	|	preDecrementExpression
- * 	|	postIncrementExpression
- * 	|	postDecrementExpression
- * 	|	methodInvocation
- * 	|	classInstanceCreationExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2334-2364
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#statementExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.StatementExpressionMapper
  */
 @Generated(

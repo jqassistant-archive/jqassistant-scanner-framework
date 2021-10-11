@@ -2,26 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE packageName (BLOCK (ALT Identifier) (ALT packageName '.' Identifier)))
+ * public static class PackageNameContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public PackageNameContext packageName() {
+ *         return getRuleContext(PackageNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public PackageNameContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_packageName;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterPackageName(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitPackageName(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * packageName
- * 	:	Identifier
- * 	|	packageName '.' Identifier
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:421-435
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#packageName()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PackageNameMapper
  */
 @Generated(
@@ -39,7 +68,11 @@ public interface PackageName extends JavaGen {
 
     void setPackageName(PackageName setPackageName);
 
-    // unhandled TerminalAST token: '.'
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
+
+    void setDOT(TerminalNodeStrings setDOT);
+
     @Relation("HAS_TEXT")
     String getText();
 

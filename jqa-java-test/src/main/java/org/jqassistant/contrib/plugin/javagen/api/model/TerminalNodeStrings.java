@@ -2,15 +2,12 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
 
-/**
- * @see org.antlr.v4.runtime.tree.TerminalNode
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TerminalNodeStringsMapper
- */
+import javax.annotation.Generated;
+
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("TerminalNodeStrings")

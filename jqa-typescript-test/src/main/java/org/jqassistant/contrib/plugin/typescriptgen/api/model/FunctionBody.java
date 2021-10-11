@@ -2,25 +2,47 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE functionBody (BLOCK (ALT (? (BLOCK (ALT sourceElements))))))
+ * public static class FunctionBodyContext extends ParserRuleContext {
+ *
+ *     public SourceElementsContext sourceElements() {
+ *         return getRuleContext(SourceElementsContext.class, 0);
+ *     }
+ *
+ *     public FunctionBodyContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_functionBody;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterFunctionBody(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitFunctionBody(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * functionBody
- *     : sourceElements?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2394-2401
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#functionBody()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.FunctionBodyMapper
  */
 @Generated(
@@ -28,7 +50,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("FunctionBody")
 public interface FunctionBody extends TypeScriptGen {
 
-    // optional: ?
     @Relation("HAS_SOURCE_ELEMENTS")
     SourceElements getSourceElements();
 

@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE initializer (BLOCK (ALT '=' singleExpression)))
+ * public static class InitializerContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Assign() {
+ *         return getToken(TypeScriptParser.Assign, 0);
+ *     }
+ *
+ *     public SingleExpressionContext singleExpression() {
+ *         return getRuleContext(SingleExpressionContext.class, 0);
+ *     }
+ *
+ *     public InitializerContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_initializer;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterInitializer(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitInitializer(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * initializer
- *     : '=' singleExpression
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:25-33
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#initializer()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.InitializerMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Initializer")
 public interface Initializer extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '='
+    @Relation("HAS_ASSIGN")
+    TerminalNodeStrings getAssign();
+
+    void setAssign(TerminalNodeStrings setAssign);
+
     @Relation("HAS_SINGLE_EXPRESSION")
     SingleExpression getSingleExpression();
 

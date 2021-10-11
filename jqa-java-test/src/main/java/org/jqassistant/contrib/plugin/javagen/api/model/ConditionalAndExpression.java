@@ -2,26 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE conditionalAndExpression (BLOCK (ALT inclusiveOrExpression) (ALT conditionalAndExpression '&&' inclusiveOrExpression)))
+ * public static class ConditionalAndExpressionContext extends ParserRuleContext {
+ *
+ *     public InclusiveOrExpressionContext inclusiveOrExpression() {
+ *         return getRuleContext(InclusiveOrExpressionContext.class, 0);
+ *     }
+ *
+ *     public ConditionalAndExpressionContext conditionalAndExpression() {
+ *         return getRuleContext(ConditionalAndExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode AND() {
+ *         return getToken(Java8Parser.AND, 0);
+ *     }
+ *
+ *     public ConditionalAndExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_conditionalAndExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterConditionalAndExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitConditionalAndExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * conditionalAndExpression
- * 	:	inclusiveOrExpression
- * 	|	conditionalAndExpression '&&' inclusiveOrExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4439-4453
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#conditionalAndExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ConditionalAndExpressionMapper
  */
 @Generated(
@@ -39,7 +68,11 @@ public interface ConditionalAndExpression extends JavaGen {
 
     void setConditionalAndExpression(ConditionalAndExpression setConditionalAndExpression);
 
-    // unhandled TerminalAST token: '&&'
+    @Relation("HAS_A_N_D")
+    TerminalNodeStrings getAND();
+
+    void setAND(TerminalNodeStrings setAND);
+
     @Relation("HAS_TEXT")
     String getText();
 

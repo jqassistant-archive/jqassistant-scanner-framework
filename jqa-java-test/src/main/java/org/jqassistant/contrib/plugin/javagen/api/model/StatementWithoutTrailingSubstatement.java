@@ -2,36 +2,91 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE statementWithoutTrailingSubstatement (BLOCK (ALT block) (ALT emptyStatement) (ALT expressionStatement) (ALT assertStatement) (ALT switchStatement) (ALT doStatement) (ALT breakStatement) (ALT continueStatement) (ALT returnStatement) (ALT synchronizedStatement) (ALT throwStatement) (ALT tryStatement)))
+ * public static class StatementWithoutTrailingSubstatementContext extends ParserRuleContext {
+ *
+ *     public BlockContext block() {
+ *         return getRuleContext(BlockContext.class, 0);
+ *     }
+ *
+ *     public EmptyStatementContext emptyStatement() {
+ *         return getRuleContext(EmptyStatementContext.class, 0);
+ *     }
+ *
+ *     public ExpressionStatementContext expressionStatement() {
+ *         return getRuleContext(ExpressionStatementContext.class, 0);
+ *     }
+ *
+ *     public AssertStatementContext assertStatement() {
+ *         return getRuleContext(AssertStatementContext.class, 0);
+ *     }
+ *
+ *     public SwitchStatementContext switchStatement() {
+ *         return getRuleContext(SwitchStatementContext.class, 0);
+ *     }
+ *
+ *     public DoStatementContext doStatement() {
+ *         return getRuleContext(DoStatementContext.class, 0);
+ *     }
+ *
+ *     public BreakStatementContext breakStatement() {
+ *         return getRuleContext(BreakStatementContext.class, 0);
+ *     }
+ *
+ *     public ContinueStatementContext continueStatement() {
+ *         return getRuleContext(ContinueStatementContext.class, 0);
+ *     }
+ *
+ *     public ReturnStatementContext returnStatement() {
+ *         return getRuleContext(ReturnStatementContext.class, 0);
+ *     }
+ *
+ *     public SynchronizedStatementContext synchronizedStatement() {
+ *         return getRuleContext(SynchronizedStatementContext.class, 0);
+ *     }
+ *
+ *     public ThrowStatementContext throwStatement() {
+ *         return getRuleContext(ThrowStatementContext.class, 0);
+ *     }
+ *
+ *     public TryStatementContext tryStatement() {
+ *         return getRuleContext(TryStatementContext.class, 0);
+ *     }
+ *
+ *     public StatementWithoutTrailingSubstatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_statementWithoutTrailingSubstatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterStatementWithoutTrailingSubstatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitStatementWithoutTrailingSubstatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * statementWithoutTrailingSubstatement
- * 	:	block
- * 	|	emptyStatement
- * 	|	expressionStatement
- * 	|	assertStatement
- * 	|	switchStatement
- * 	|	doStatement
- * 	|	breakStatement
- * 	|	continueStatement
- * 	|	returnStatement
- * 	|	synchronizedStatement
- * 	|	throwStatement
- * 	|	tryStatement
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2240-2290
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#statementWithoutTrailingSubstatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.StatementWithoutTrailingSubstatementMapper
  */
 @Generated(

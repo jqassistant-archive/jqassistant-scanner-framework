@@ -8,15 +8,16 @@ import java.util.IdentityHashMap;
 import java.util.Map;
 
 public class CycleAvoidingMappingContext {
-    private Map<Object, Object> knownInstances = new IdentityHashMap<Object, Object>();
+    private Map<Object, Object> providesInstances = new IdentityHashMap<Object, Object>();
+    private Map<Object, Object> requiresInstances = new IdentityHashMap<Object, Object>();
 
     @BeforeMapping
     public <T> T getMappedInstance(Object source, @TargetType Class<T> targetType) {
-        return (T) knownInstances.get( source );
+        return (T) providesInstances.get( source );
     }
 
     @BeforeMapping
     public void storeMappedInstance(Object source, @MappingTarget Object target) {
-        knownInstances.put( source, target );
+        providesInstances.put( source, target );
     }
 }

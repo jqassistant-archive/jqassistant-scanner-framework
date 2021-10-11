@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE constraint (BLOCK (ALT 'extends' type_)))
+ * public static class ConstraintContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Extends() {
+ *         return getToken(TypeScriptParser.Extends, 0);
+ *     }
+ *
+ *     public Type_Context type_() {
+ *         return getRuleContext(Type_Context.class, 0);
+ *     }
+ *
+ *     public ConstraintContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_constraint;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterConstraint(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitConstraint(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * constraint
- *     : 'extends' type_
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:96-104
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#constraint()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ConstraintMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Constraint")
 public interface Constraint extends TypeScriptGen {
 
-    // unhandled TerminalAST token: 'extends'
+    @Relation("HAS_EXTENDS")
+    TerminalNodeStrings getExtends();
+
+    void setExtends(TerminalNodeStrings setExtends);
+
     @Relation("HAS_TYPE")
     Type_ getType_();
 

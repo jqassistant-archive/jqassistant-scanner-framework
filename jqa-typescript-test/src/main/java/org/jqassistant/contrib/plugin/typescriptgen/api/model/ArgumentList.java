@@ -2,26 +2,60 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE argumentList (BLOCK (ALT argument (* (BLOCK (ALT ',' argument))))))
+ * public static class ArgumentListContext extends ParserRuleContext {
+ *
+ *     public List<ArgumentContext> argument() {
+ *         return getRuleContexts(ArgumentContext.class);
+ *     }
+ *
+ *     public ArgumentContext argument(int i) {
+ *         return getRuleContext(ArgumentContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> Comma() {
+ *         return getTokens(TypeScriptParser.Comma);
+ *     }
+ *
+ *     public TerminalNode Comma(int i) {
+ *         return getToken(TypeScriptParser.Comma, i);
+ *     }
+ *
+ *     public ArgumentListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_argumentList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterArgumentList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitArgumentList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * argumentList
- *     : argument (',' argument)*
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2654-2667
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#argumentList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ArgumentListMapper
  */
 @Generated(
@@ -29,11 +63,15 @@ import java.util.List;
 @Label("ArgumentList")
 public interface ArgumentList extends TypeScriptGen {
 
-    // unhandled TerminalAST token: ','
     @Relation("HAS_ARGUMENT")
     List<Argument> getArgument();
 
     void setArgument(List<Argument> setArgument);
+
+    @Relation("HAS_COMMA")
+    List<TerminalNodeStrings> getComma();
+
+    void setComma(List<TerminalNodeStrings> setComma);
 
     @Relation("HAS_TEXT")
     String getText();

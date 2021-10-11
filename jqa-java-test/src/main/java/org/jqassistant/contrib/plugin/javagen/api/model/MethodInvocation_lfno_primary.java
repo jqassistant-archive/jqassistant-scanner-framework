@@ -2,29 +2,88 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
+import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE methodInvocation_lfno_primary (BLOCK (ALT methodName '(' (? (BLOCK (ALT argumentList))) ')') (ALT typeName '.' (? (BLOCK (ALT typeArguments))) Identifier '(' (? (BLOCK (ALT argumentList))) ')') (ALT expressionName '.' (? (BLOCK (ALT typeArguments))) Identifier '(' (? (BLOCK (ALT argumentList))) ')') (ALT 'super' '.' (? (BLOCK (ALT typeArguments))) Identifier '(' (? (BLOCK (ALT argumentList))) ')') (ALT typeName '.' 'super' '.' (? (BLOCK (ALT typeArguments))) Identifier '(' (? (BLOCK (ALT argumentList))) ')')))
+ * public static class MethodInvocation_lfno_primaryContext extends ParserRuleContext {
+ *
+ *     public MethodNameContext methodName() {
+ *         return getRuleContext(MethodNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public ArgumentListContext argumentList() {
+ *         return getRuleContext(ArgumentListContext.class, 0);
+ *     }
+ *
+ *     public TypeNameContext typeName() {
+ *         return getRuleContext(TypeNameContext.class, 0);
+ *     }
+ *
+ *     public List<TerminalNode> DOT() {
+ *         return getTokens(Java8Parser.DOT);
+ *     }
+ *
+ *     public TerminalNode DOT(int i) {
+ *         return getToken(Java8Parser.DOT, i);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public ExpressionNameContext expressionName() {
+ *         return getRuleContext(ExpressionNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SUPER() {
+ *         return getToken(Java8Parser.SUPER, 0);
+ *     }
+ *
+ *     public MethodInvocation_lfno_primaryContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_methodInvocation_lfno_primary;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterMethodInvocation_lfno_primary(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitMethodInvocation_lfno_primary(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * methodInvocation_lfno_primary
- * 	:	methodName '(' argumentList? ')'
- * 	|	typeName '.' typeArguments? Identifier '(' argumentList? ')'
- * 	|	expressionName '.' typeArguments? Identifier '(' argumentList? ')'
- * 	|	'super' '.' typeArguments? Identifier '(' argumentList? ')'
- * 	|	typeName '.' 'super' '.' typeArguments? Identifier '(' argumentList? ')'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:3883-3972
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#methodInvocation_lfno_primary()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodInvocation_lfno_primaryMapper
  */
 @Generated(
@@ -37,57 +96,51 @@ public interface MethodInvocation_lfno_primary extends JavaGen {
 
     void setMethodName(MethodName setMethodName);
 
-    // unhandled TerminalAST token: '('
-    // optional: ?
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
     void setArgumentList(ArgumentList setArgumentList);
 
-    // unhandled TerminalAST token: ')'
     @Relation("HAS_TYPE_NAME")
     TypeName getTypeName();
 
     void setTypeName(TypeName setTypeName);
 
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    @Relation("HAS_TYPE_ARGUMENTS")
-    TypeArguments getTypeArguments();
+    @Relation("HAS_D_O_T")
+    List<TerminalNodeStrings> getDOT();
 
-    void setTypeArguments(TypeArguments setTypeArguments);
+    void setDOT(List<TerminalNodeStrings> setDOT);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_TYPE_ARGUMENTS")
+    TypeArguments getTypeArguments();
+
+    void setTypeArguments(TypeArguments setTypeArguments);
+
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
     void setExpressionName(ExpressionName setExpressionName);
 
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: 'super'
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: '.'
-    // unhandled TerminalAST token: 'super'
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_S_U_P_E_R")
+    TerminalNodeStrings getSUPER();
+
+    void setSUPER(TerminalNodeStrings setSUPER);
+
     @Relation("HAS_TEXT")
     String getText();
 

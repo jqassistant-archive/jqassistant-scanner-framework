@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE labeledStatementNoShortIf (BLOCK (ALT Identifier ':' statementNoShortIf)))
+ * public static class LabeledStatementNoShortIfContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode COLON() {
+ *         return getToken(Java8Parser.COLON, 0);
+ *     }
+ *
+ *     public StatementNoShortIfContext statementNoShortIf() {
+ *         return getRuleContext(StatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public LabeledStatementNoShortIfContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_labeledStatementNoShortIf;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterLabeledStatementNoShortIf(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitLabeledStatementNoShortIf(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * labeledStatementNoShortIf
- * 	:	Identifier ':' statementNoShortIf
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2312-2322
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#labeledStatementNoShortIf()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.LabeledStatementNoShortIfMapper
  */
 @Generated(
@@ -33,7 +63,11 @@ public interface LabeledStatementNoShortIf extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: ':'
+    @Relation("HAS_C_O_L_O_N")
+    TerminalNodeStrings getCOLON();
+
+    void setCOLON(TerminalNodeStrings setCOLON);
+
     @Relation("HAS_STATEMENT_NO_SHORT_IF")
     StatementNoShortIf getStatementNoShortIf();
 

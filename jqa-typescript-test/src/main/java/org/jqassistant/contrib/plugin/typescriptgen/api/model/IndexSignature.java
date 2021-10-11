@@ -2,25 +2,71 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE indexSignature (BLOCK (ALT '[' Identifier ':' (BLOCK (ALT Number) (ALT String)) ']' typeAnnotation)))
+ * public static class IndexSignatureContext extends ParserRuleContext {
+ *
+ *     public TerminalNode OpenBracket() {
+ *         return getToken(TypeScriptParser.OpenBracket, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode Colon() {
+ *         return getToken(TypeScriptParser.Colon, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBracket() {
+ *         return getToken(TypeScriptParser.CloseBracket, 0);
+ *     }
+ *
+ *     public TypeAnnotationContext typeAnnotation() {
+ *         return getRuleContext(TypeAnnotationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Number() {
+ *         return getToken(TypeScriptParser.Number, 0);
+ *     }
+ *
+ *     public TerminalNode String() {
+ *         return getToken(TypeScriptParser.String, 0);
+ *     }
+ *
+ *     public IndexSignatureContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_indexSignature;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterIndexSignature(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitIndexSignature(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * indexSignature
- *     : '[' Identifier ':' (Number|String) ']' typeAnnotation
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:808-828
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#indexSignature()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.IndexSignatureMapper
  */
 @Generated(
@@ -28,13 +74,31 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("IndexSignature")
 public interface IndexSignature extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '['
+    @Relation("HAS_OPEN_BRACKET")
+    TerminalNodeStrings getOpenBracket();
+
+    void setOpenBracket(TerminalNodeStrings setOpenBracket);
+
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: ':'
+    @Relation("HAS_COLON")
+    TerminalNodeStrings getColon();
+
+    void setColon(TerminalNodeStrings setColon);
+
+    @Relation("HAS_CLOSE_BRACKET")
+    TerminalNodeStrings getCloseBracket();
+
+    void setCloseBracket(TerminalNodeStrings setCloseBracket);
+
+    @Relation("HAS_TYPE_ANNOTATION")
+    TypeAnnotation getTypeAnnotation();
+
+    void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
+
     @Relation("HAS_NUMBER")
     TerminalNodeStrings getNumber();
 
@@ -44,12 +108,6 @@ public interface IndexSignature extends TypeScriptGen {
     TerminalNodeStrings getString();
 
     void setString(TerminalNodeStrings setString);
-
-    // unhandled TerminalAST token: ']'
-    @Relation("HAS_TYPE_ANNOTATION")
-    TypeAnnotation getTypeAnnotation();
-
-    void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
 
     @Relation("HAS_TEXT")
     String getText();

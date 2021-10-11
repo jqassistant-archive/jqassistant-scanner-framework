@@ -2,27 +2,64 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeBound (BLOCK (ALT 'extends' typeVariable) (ALT 'extends' classOrInterfaceType (* (BLOCK (ALT additionalBound))))))
+ * public static class TypeBoundContext extends ParserRuleContext {
+ *
+ *     public TerminalNode EXTENDS() {
+ *         return getToken(Java8Parser.EXTENDS, 0);
+ *     }
+ *
+ *     public TypeVariableContext typeVariable() {
+ *         return getRuleContext(TypeVariableContext.class, 0);
+ *     }
+ *
+ *     public ClassOrInterfaceTypeContext classOrInterfaceType() {
+ *         return getRuleContext(ClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public List<AdditionalBoundContext> additionalBound() {
+ *         return getRuleContexts(AdditionalBoundContext.class);
+ *     }
+ *
+ *     public AdditionalBoundContext additionalBound(int i) {
+ *         return getRuleContext(AdditionalBoundContext.class, i);
+ *     }
+ *
+ *     public TypeBoundContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeBound;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterTypeBound(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitTypeBound(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeBound
- * 	:	'extends' typeVariable
- * 	|	'extends' classOrInterfaceType additionalBound*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:321-338
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#typeBound()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TypeBoundMapper
  */
 @Generated(
@@ -30,13 +67,16 @@ import java.util.List;
 @Label("TypeBound")
 public interface TypeBound extends JavaGen {
 
-    // unhandled TerminalAST token: 'extends'
+    @Relation("HAS_E_X_T_E_N_D_S")
+    TerminalNodeStrings getEXTENDS();
+
+    void setEXTENDS(TerminalNodeStrings setEXTENDS);
+
     @Relation("HAS_TYPE_VARIABLE")
     TypeVariable getTypeVariable();
 
     void setTypeVariable(TypeVariable setTypeVariable);
 
-    // unhandled TerminalAST token: 'extends'
     @Relation("HAS_CLASS_OR_INTERFACE_TYPE")
     ClassOrInterfaceType getClassOrInterfaceType();
 

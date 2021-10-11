@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE enumMember (BLOCK (ALT propertyName (? (BLOCK (ALT '=' singleExpression))))))
+ * public static class EnumMemberContext extends ParserRuleContext {
+ *
+ *     public PropertyNameContext propertyName() {
+ *         return getRuleContext(PropertyNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Assign() {
+ *         return getToken(TypeScriptParser.Assign, 0);
+ *     }
+ *
+ *     public SingleExpressionContext singleExpression() {
+ *         return getRuleContext(SingleExpressionContext.class, 0);
+ *     }
+ *
+ *     public EnumMemberContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_enumMember;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterEnumMember(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitEnumMember(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * enumMember
- *     : propertyName ('=' singleExpression)?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:998-1011
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#enumMember()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.EnumMemberMapper
  */
 @Generated(
@@ -33,8 +63,11 @@ public interface EnumMember extends TypeScriptGen {
 
     void setPropertyName(PropertyName setPropertyName);
 
-    // optional: ?
-    // unhandled TerminalAST token: '='
+    @Relation("HAS_ASSIGN")
+    TerminalNodeStrings getAssign();
+
+    void setAssign(TerminalNodeStrings setAssign);
+
     @Relation("HAS_SINGLE_EXPRESSION")
     SingleExpression getSingleExpression();
 

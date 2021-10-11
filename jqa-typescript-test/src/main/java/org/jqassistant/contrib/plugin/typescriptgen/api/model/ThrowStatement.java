@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE throwStatement (BLOCK (ALT Throw {this.notLineTerminator()}? expressionSequence eos)))
+ * public static class ThrowStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Throw() {
+ *         return getToken(TypeScriptParser.Throw, 0);
+ *     }
+ *
+ *     public ExpressionSequenceContext expressionSequence() {
+ *         return getRuleContext(ExpressionSequenceContext.class, 0);
+ *     }
+ *
+ *     public EosContext eos() {
+ *         return getRuleContext(EosContext.class, 0);
+ *     }
+ *
+ *     public ThrowStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_throwStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterThrowStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitThrowStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * throwStatement
- *     : Throw {this.notLineTerminator()}? expressionSequence eos
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1885-1897
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#throwStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ThrowStatementMapper
  */
 @Generated(
@@ -33,13 +63,16 @@ public interface ThrowStatement extends TypeScriptGen {
 
     void setThrow(TerminalNodeStrings setThrow);
 
-    // unhandled AST type: 59 - list: false : {this.notLineTerminator()}?
     @Relation("HAS_EXPRESSION_SEQUENCE")
     ExpressionSequence getExpressionSequence();
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled ast: Eos
+    @Relation("HAS_EOS")
+    Eos getEos();
+
+    void setEos(Eos setEos);
+
     @Relation("HAS_TEXT")
     String getText();
 

@@ -2,26 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE exclusiveOrExpression (BLOCK (ALT andExpression) (ALT exclusiveOrExpression '^' andExpression)))
+ * public static class ExclusiveOrExpressionContext extends ParserRuleContext {
+ *
+ *     public AndExpressionContext andExpression() {
+ *         return getRuleContext(AndExpressionContext.class, 0);
+ *     }
+ *
+ *     public ExclusiveOrExpressionContext exclusiveOrExpression() {
+ *         return getRuleContext(ExclusiveOrExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode CARET() {
+ *         return getToken(Java8Parser.CARET, 0);
+ *     }
+ *
+ *     public ExclusiveOrExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_exclusiveOrExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterExclusiveOrExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitExclusiveOrExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * exclusiveOrExpression
- * 	:	andExpression
- * 	|	exclusiveOrExpression '^' andExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4471-4485
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#exclusiveOrExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ExclusiveOrExpressionMapper
  */
 @Generated(
@@ -39,7 +68,11 @@ public interface ExclusiveOrExpression extends JavaGen {
 
     void setExclusiveOrExpression(ExclusiveOrExpression setExclusiveOrExpression);
 
-    // unhandled TerminalAST token: '^'
+    @Relation("HAS_C_A_R_E_T")
+    TerminalNodeStrings getCARET();
+
+    void setCARET(TerminalNodeStrings setCARET);
+
     @Relation("HAS_TEXT")
     String getText();
 

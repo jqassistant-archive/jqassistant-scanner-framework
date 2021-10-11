@@ -14,7 +14,8 @@ public class JavaGenScannerPluginTestIT extends AbstractPluginIT {
 //    static String file = "/helloworld.java";
 //    static String file = "/example.java";
 //    static String file = "/AllInOne7.java";
-    static String file = "/AllInOne8.java";
+//    static String file = "/AllInOne8.java";
+    static String file = "/Vet.java";
 
     @Test
     @TestStore(type = TestStore.Type.REMOTE)

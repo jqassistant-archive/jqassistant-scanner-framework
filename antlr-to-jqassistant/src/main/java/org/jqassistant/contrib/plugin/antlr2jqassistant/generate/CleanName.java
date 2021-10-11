@@ -1,5 +1,6 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
+import com.github.javaparser.ast.expr.SimpleName;
 import com.google.common.base.CaseFormat;
 import lombok.Data;
 import org.antlr.v4.tool.ast.GrammarAST;
@@ -9,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import javax.lang.model.SourceVersion;
 
 @Data
-public class AstName implements Comparable<AstName> {
+public class CleanName implements Comparable<CleanName> {
     public final static String QUOTES = "\"";
     public final static String GET = "get";
     public final static String SET = "set";
@@ -18,15 +19,19 @@ public class AstName implements Comparable<AstName> {
     private final String original;
     private final String name;
 
-    public AstName(RuleAST ast) {
+    public CleanName(SimpleName originalSimpleName) {
+        this.original = originalSimpleName.getIdentifier();
+        this.name = getCleanName(original);
+    }
+    public CleanName(RuleAST ast) {
         this.original = ast.getRuleName();
         this.name = getCleanName(original);
     }
-    public AstName(GrammarAST ast) {
+    public CleanName(GrammarAST ast) {
         this.original = ast.getText();
         this.name = getCleanName(original);
     }
-    public AstName(String name) {
+    public CleanName(String name) {
         this.original = name;
         this.name = getCleanName(original);
     }
@@ -36,7 +41,8 @@ public class AstName implements Comparable<AstName> {
     }
 
     public String getCleanName(String name) {
-        return asUpperCamel(name.equalsIgnoreCase("class") ? "clazz" : name);
+        String cleanName = name.replace("Context", "");
+        return asUpperCamel(name.equalsIgnoreCase("class") ? "clazz" : cleanName);
     }
 
     public String asUpperCamel(String text) {
@@ -76,7 +82,7 @@ public class AstName implements Comparable<AstName> {
     }
 
     @Override
-    public int compareTo(AstName o) {
+    public int compareTo(CleanName o) {
         return this.getName().compareTo(o.getName());
     }
 }

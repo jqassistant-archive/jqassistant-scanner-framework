@@ -2,25 +2,47 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE unannInterfaceType_lfno_unannClassOrInterfaceType (BLOCK (ALT unannClassType_lfno_unannClassOrInterfaceType)))
+ * public static class UnannInterfaceType_lfno_unannClassOrInterfaceTypeContext extends ParserRuleContext {
+ *
+ *     public UnannClassType_lfno_unannClassOrInterfaceTypeContext unannClassType_lfno_unannClassOrInterfaceType() {
+ *         return getRuleContext(UnannClassType_lfno_unannClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public UnannInterfaceType_lfno_unannClassOrInterfaceTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_unannInterfaceType_lfno_unannClassOrInterfaceType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterUnannInterfaceType_lfno_unannClassOrInterfaceType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitUnannInterfaceType_lfno_unannClassOrInterfaceType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * unannInterfaceType_lfno_unannClassOrInterfaceType
- * 	:	unannClassType_lfno_unannClassOrInterfaceType
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1083-1089
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#unannInterfaceType_lfno_unannClassOrInterfaceType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannInterfaceType_lfno_unannClassOrInterfaceTypeMapper
  */
 @Generated(

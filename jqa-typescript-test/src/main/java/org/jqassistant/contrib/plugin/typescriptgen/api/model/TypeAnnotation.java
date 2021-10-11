@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeAnnotation (BLOCK (ALT ':' type_)))
+ * public static class TypeAnnotationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Colon() {
+ *         return getToken(TypeScriptParser.Colon, 0);
+ *     }
+ *
+ *     public Type_Context type_() {
+ *         return getRuleContext(Type_Context.class, 0);
+ *     }
+ *
+ *     public TypeAnnotationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeAnnotation;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterTypeAnnotation(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitTypeAnnotation(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeAnnotation
- *     : ':' type_
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:616-624
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#typeAnnotation()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.TypeAnnotationMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("TypeAnnotation")
 public interface TypeAnnotation extends TypeScriptGen {
 
-    // unhandled TerminalAST token: ':'
+    @Relation("HAS_COLON")
+    TerminalNodeStrings getColon();
+
+    void setColon(TerminalNodeStrings setColon);
+
     @Relation("HAS_TYPE")
     Type_ getType_();
 

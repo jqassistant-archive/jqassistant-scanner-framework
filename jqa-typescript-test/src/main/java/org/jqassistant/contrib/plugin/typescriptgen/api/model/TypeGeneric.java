@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeGeneric (BLOCK (ALT '<' typeArgumentList '>')))
+ * public static class TypeGenericContext extends ParserRuleContext {
+ *
+ *     public TerminalNode LessThan() {
+ *         return getToken(TypeScriptParser.LessThan, 0);
+ *     }
+ *
+ *     public TypeArgumentListContext typeArgumentList() {
+ *         return getRuleContext(TypeArgumentListContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode MoreThan() {
+ *         return getToken(TypeScriptParser.MoreThan, 0);
+ *     }
+ *
+ *     public TypeGenericContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeGeneric;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterTypeGeneric(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitTypeGeneric(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeGeneric
- *     : '<' typeArgumentList '>'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:349-359
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#typeGeneric()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.TypeGenericMapper
  */
 @Generated(
@@ -28,13 +58,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("TypeGeneric")
 public interface TypeGeneric extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '<'
+    @Relation("HAS_LESS_THAN")
+    TerminalNodeStrings getLessThan();
+
+    void setLessThan(TerminalNodeStrings setLessThan);
+
     @Relation("HAS_TYPE_ARGUMENT_LIST")
     TypeArgumentList getTypeArgumentList();
 
     void setTypeArgumentList(TypeArgumentList setTypeArgumentList);
 
-    // unhandled TerminalAST token: '>'
+    @Relation("HAS_MORE_THAN")
+    TerminalNodeStrings getMoreThan();
+
+    void setMoreThan(TerminalNodeStrings setMoreThan);
+
     @Relation("HAS_TEXT")
     String getText();
 

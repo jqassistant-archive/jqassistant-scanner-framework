@@ -2,56 +2,76 @@ package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
+import com.github.javaparser.ast.NodeList;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.comments.JavadocComment;
-import com.github.javaparser.ast.comments.LineComment;
-import org.antlr.v4.tool.ast.*;
-import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
+import org.snt.inmemantlr.GenericParser;
+import org.snt.inmemantlr.memobjects.MemorySource;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ApiModelGenerator {
     public final static String TERMINAL_NODE_CLASS = "TerminalNodeStrings";
 
+    private final GenericParser genericParser;
     private final String packageName;
     private final BaseDescriptorGenerator baseDescriptorGenerator;
+    Map<String, MemorySource> antlrSources = new TreeMap<>();
+    MemorySource antlrParser;
 
-    private final Map<String, Map<String, Boolean>> interfaceHandledTypes = new HashMap<>();
-
-    public ApiModelGenerator(String packageName, BaseDescriptorGenerator baseDescriptorGenerator) {
-        this.packageName = packageName;
+    public ApiModelGenerator(GenericParser genericParser, String modelPackage, BaseDescriptorGenerator baseDescriptorGenerator) {
+        this.genericParser = genericParser;
+        this.packageName = modelPackage;
         this.baseDescriptorGenerator = baseDescriptorGenerator;
+
+        genericParser.getAllCompiledObjects().forEach(tuple -> antlrSources.put(tuple.getClassName(), tuple.getSource()));
+        antlrParser = antlrSources.keySet().stream()
+                .filter(cname -> cname.endsWith("Parser")).findAny()
+                .map(antlrSources::get).orElseThrow();
     }
 
-    public Map<AstName, CompilationUnit> generateFromRules(GrammarAST ast) {
-        System.out.println(new Date() + " Starting Api Model Generation");
-        Map<AstName, CompilationUnit> interfaces = new TreeMap<>(getTerminalNode());
+    public CompilationUnit getCompilationUnit() {
+        JavaParser javaParser = new JavaParser();
+        return javaParser.parse(antlrParser.openInputStream()).getResult().orElseThrow();
+    }
 
-        List<RuleAST> ruleAsts = (List<RuleAST>) ast.getChildren();
+    public Map<CleanName, CompilationUnit> generate() {
+        CompilationUnit compilationUnit = getCompilationUnit();
+        ClassOrInterfaceDeclaration parser = compilationUnit.getClassByName(antlrParser.getClassName()).orElseThrow();
+        List<ClassOrInterfaceDeclaration> classes = getContextClasses(parser);
 
-        for (RuleAST ruleAst : ruleAsts) {
-            try {
-                interfaces.putAll(generateInterface(ruleAst));
-            } catch (Exception e) {
-                e.printStackTrace();
+        Map<CleanName, CompilationUnit> list = new TreeMap<>(getTerminalNode());
+        classes.forEach(clazz -> list.putAll(generateInterface(clazz)));
+        return list;
+    }
+
+    private List<ClassOrInterfaceDeclaration> getContextClasses(ClassOrInterfaceDeclaration parser) {
+        List<ClassOrInterfaceDeclaration> classes = new ArrayList<>();
+        for (Node node : parser.getChildNodes()) {
+            if (node instanceof ClassOrInterfaceDeclaration) {
+                NodeList<ClassOrInterfaceType> extendedTypes = ((ClassOrInterfaceDeclaration) node).getExtendedTypes();
+                if (extendedTypes.getFirst().isPresent() && extendedTypes.getFirst().get().getName().getIdentifier().equals("ParserRuleContext")) {
+                    classes.add((ClassOrInterfaceDeclaration) node);
+                }
             }
         }
-
-        System.out.println(new Date() + " Generation Done!");
-        return interfaces;
+        return classes;
     }
 
-    private Map<AstName, CompilationUnit> getTerminalNode() {
+    private Map<CleanName, CompilationUnit> getTerminalNode() {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
         compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
-        AstName name = new AstName(TERMINAL_NODE_CLASS);
+        CleanName name = new CleanName(TERMINAL_NODE_CLASS);
 
-        compilationUnit.addOrphanComment(new JavadocComment("@see org.antlr.v4.runtime.tree.TerminalNode\n" + "@see " + Main.mapperPackage + "." + MapperGenerator.getMapperName(name.getName())));
+//        compilationUnit.addOrphanComment(new JavadocComment("@see org.antlr.v4.runtime.tree.TerminalNode\n" + "@see " + Main.mapperPackage + "." + MapperGenerator.getMapperName(name.getName())));
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(name.getName())
@@ -59,216 +79,66 @@ public class ApiModelGenerator {
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.withQuotes());
 
-        createGetterAndSetter(interfaceDeclaration, new AstName("Text"));
-        createGetterAndSetter(interfaceDeclaration, new AstName("Type"));
-        createGetterAndSetter(interfaceDeclaration, new AstName("Line"));
-        createGetterAndSetter(interfaceDeclaration, new AstName("CharPositionInLine"));
-        createGetterAndSetter(interfaceDeclaration, new AstName("TokenIndex"));
-        createGetterAndSetter(interfaceDeclaration, new AstName("StartIndex"));
-        createGetterAndSetter(interfaceDeclaration, new AstName("StopIndex"));
+        createGetterAndSetter(interfaceDeclaration, new CleanName("Text"), "String");
+        createGetterAndSetter(interfaceDeclaration, new CleanName("Type"), "String");
+        createGetterAndSetter(interfaceDeclaration, new CleanName("Line"), "String");
+        createGetterAndSetter(interfaceDeclaration, new CleanName("CharPositionInLine"), "String");
+        createGetterAndSetter(interfaceDeclaration, new CleanName("TokenIndex"), "String");
+        createGetterAndSetter(interfaceDeclaration, new CleanName("StartIndex"), "String");
+        createGetterAndSetter(interfaceDeclaration, new CleanName("StopIndex"), "String");
 
-        Map<AstName, CompilationUnit> map = new TreeMap<>();
+        Map<CleanName, CompilationUnit> map = new TreeMap<>();
         map.put(name, compilationUnit);
         return map;
     }
 
-    public Map<AstName, CompilationUnit> generateInterface(RuleAST ast) {
+    private Map<CleanName, CompilationUnit> generateInterface(ClassOrInterfaceDeclaration clazz) {
+        CleanName name = new CleanName(clazz.getName());
+
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
         compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
-
-        compilationUnit.addOrphanComment(TreeHelper.generateComment(ast));
-
-        AstName name = new AstName(ast);
-
+        compilationUnit.addOrphanComment(TreeHelper.generateComment(clazz));
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(name.getName())
                 .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.withQuotes());
+        interfaceDeclaration.tryAddImportToParentCompilationUnit(List.class);
 
-        List<GrammarAST> children = (List<GrammarAST>) ast.getChildren();
-        BlockAST blockAST = (BlockAST) children.get(1);
 
-        handleAst(interfaceDeclaration, blockAST, false);
+        List<MethodDeclaration> childContexts = clazz.getChildNodes().stream()
+                .filter(child -> child instanceof MethodDeclaration)
+                .map(MethodDeclaration.class::cast)
+                .filter(methodDeclaration -> methodDeclaration.getAnnotations().isEmpty() && methodDeclaration.getParameters().isEmpty())
+                .collect(Collectors.toList());
 
-        createGetterAndSetter(interfaceDeclaration, new AstName("Text"));
+        childContexts.forEach(methodDeclaration -> {
+            CleanName childName = new CleanName(methodDeclaration.getName());
+            String type = methodDeclaration.getType().toString();
+            if (type.equals("TerminalNode")) {
+                createGetterAndSetter(interfaceDeclaration, childName, "TerminalNodeStrings");
+            } else if (type.equals("List<TerminalNode>")) {
+                createGetterAndSetter(interfaceDeclaration, childName, "List<TerminalNodeStrings>");
+            } else {
+                createGetterAndSetter(interfaceDeclaration, childName, type);
+            }
+        });
 
+        createGetterAndSetter(interfaceDeclaration, new CleanName("Text"), "String");
         return Collections.singletonMap(name, compilationUnit);
     }
 
-    private void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, GrammarAST ast, boolean isList) {
-        if (ast instanceof List) {
-            handleChildren(interfaceDeclaration, ast, isList);
-        } else if (ast instanceof BlockAST) {
-            handleAst(interfaceDeclaration, (BlockAST) ast, isList);
-        } else if (ast instanceof PlusBlockAST) {
-            handleAst(interfaceDeclaration, (PlusBlockAST) ast, isList);
-        } else if (ast instanceof OptionalBlockAST) {
-            handleAst(interfaceDeclaration, (OptionalBlockAST) ast, isList);
-        } else if (ast instanceof TerminalAST) {
-            handleAst(interfaceDeclaration, (TerminalAST) ast, isList);
-        } else if (ast instanceof StarBlockAST) {
-            handleAst(interfaceDeclaration, (StarBlockAST) ast, isList);
-        } else if (ast instanceof AltAST) {
-            handleAst(interfaceDeclaration, (AltAST) ast, isList);
-        } else if (ast instanceof PredAST) {
-            handleAst(interfaceDeclaration, (PredAST) ast, isList);
-        } else if (ast instanceof RuleRefAST) {
-            handleGenericAst(interfaceDeclaration, ast, isList);
-        } else {
-            interfaceDeclaration.addOrphanComment(new LineComment("unhandled AST type: " + ast.getType() + " - list: " + isList + " : " + ast.getText()));
-            handleGenericAst(interfaceDeclaration, ast, isList);
-        }
-    }
-
-    public void handleChildren(ClassOrInterfaceDeclaration interfaceDeclaration, GrammarAST ast, boolean isList) {
-        List<GrammarAST> children = (List<GrammarAST>) ast.getChildren();
-        if (children == null) {
-            String name = ast.getText();
-            interfaceDeclaration.addOrphanComment(new LineComment("unhandled StarBlockAST token: " + name + isList));
-            return;
-        }
-        for (GrammarAST child : children) {
-            boolean areMonozygotic = checkForTwins(child, children, isList);
-            handleAst(interfaceDeclaration, child, areMonozygotic);
-        }
-    }
-
-    private boolean checkForTwins(GrammarAST child, List<GrammarAST> children, boolean isList) {
-        if (child instanceof TerminalAST || child instanceof RuleRefAST) {
-            if (children.stream().filter(grammarAST -> grammarAST.getText().equals(child.getText())).count() > 1) {
-                return true;
-            }
-        }
-        
-        return isList;
-    }
-
-    public void handleGenericAst(ClassOrInterfaceDeclaration interfaceDeclaration, GrammarAST ast, boolean isList) {
-        AstName name = new AstName(ast);
-        if (name.getName().length() < 4) {
-            interfaceDeclaration.addOrphanComment(new LineComment("unhandled ast: " + name));
-            return;
-        }
-        if (name.getName().toLowerCase().contains("epsilon")) {
-            interfaceDeclaration.addOrphanComment(new LineComment("Avoided Token: " + name));
-            return;
-        }
-        addMethodDeclaration(interfaceDeclaration, name, isList);
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, BlockAST ast, boolean isList) {
-        handleChildren(interfaceDeclaration, ast, isList);
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, PlusBlockAST ast, boolean isList) {
-        handleChildren(interfaceDeclaration, ast, true);
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, StarBlockAST ast, boolean isList) {
-        handleChildren(interfaceDeclaration, ast, true);
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, OptionalBlockAST ast, boolean isList) {
-        interfaceDeclaration.addOrphanComment(new LineComment("optional: " + ast.getText()));
-        handleChildren(interfaceDeclaration, ast, isList);
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, TerminalAST ast, boolean isList) {
-        AstName name = new AstName(ast);
-
-        if (Character.isUpperCase((name.getName().charAt(0)))) {  // Take a chance!
-            addMethodDeclaration(interfaceDeclaration, name, TERMINAL_NODE_CLASS, isList);
-        } else {
-            interfaceDeclaration.addOrphanComment(new LineComment("unhandled TerminalAST token: " + name));
-        }
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, AltAST ast, boolean isList) {
-        handleChildren(interfaceDeclaration, ast, isList);
-    }
-
-    public void handleAst(ClassOrInterfaceDeclaration interfaceDeclaration, PredAST ast, boolean isList) {
-        interfaceDeclaration.addOrphanComment(new LineComment("unhandled AST type: " + ast.getType() + " - list: " + isList + " : " + ast.getText()));
-//        handleChildren(interfaceDeclaration, ast, isList);
-    }
-
-    private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, boolean isList) {
-        addMethodDeclaration(interfaceDeclaration, name, name.getName(), isList);
-    }
-
-    private void addMethodDeclaration(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type, boolean isList) {
-        if (isDuplicateEvenAfterMitigation(interfaceDeclaration, name, type, isList)) return;
-
-        if (isList) {
-            createListGetterAndSetter(interfaceDeclaration, name, type);
-        } else {
-            createGetterAndSetter(interfaceDeclaration, name, type);
-        }
-    }
-
-    private boolean isDuplicateEvenAfterMitigation(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type, boolean shouldBeList) {
-        Map<String, Boolean> handledTypes = interfaceHandledTypes.getOrDefault(interfaceDeclaration.getNameAsString(), new HashMap<>());
-        Boolean isList = handledTypes.get(name.getName());
-
-        if (isList == null) {
-            handledTypes.put(name.getName(), shouldBeList);
-            interfaceHandledTypes.put(interfaceDeclaration.getNameAsString(), handledTypes);
-            return false;
-        }
-
-        if (isList) {
-            return true;
-        }
-
-        // not a list, but should be a list, then remove existing methods
-        if (shouldBeList) {
-            removeMethodByName(interfaceDeclaration, name);
-
-            handledTypes.put(name.getName(), true);
-            interfaceHandledTypes.put(interfaceDeclaration.getNameAsString(), handledTypes);
-            return false;
-        }
-
-        // not a list, but was supposed to be added twice. make into a list. Disable if wonky.
-//        addMethodDeclaration(interfaceDeclaration, name, type, true);
-        return true;
-    }
-
-    private void removeMethodByName(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name) {
-        List<MethodDeclaration> getters = interfaceDeclaration.getMethodsByName(name.getGetterName());
-        List<MethodDeclaration> setters = interfaceDeclaration.getMethodsByName(name.getSetterName());
-
-        getters.forEach(interfaceDeclaration::remove);
-        setters.forEach(interfaceDeclaration::remove);
-    }
-
-    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name) {
-        createGetterAndSetter(interfaceDeclaration, name, "String");
-    }
-
-    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type) {
+    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, CleanName
+            name, String type){
 
         interfaceDeclaration.addMethod(name.getGetterName())
                 .removeBody()
-                .setType(type)
+                .setType(new CleanName(type).getName())
                 .addSingleMemberAnnotation(Relation.class, name.getRelationNameWithQuotes());
         interfaceDeclaration.addMethod(name.getSetterName())
                 .removeBody()
-                .addParameter(type, name.getSetterName());
-    }
-
-    public static void createListGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, AstName name, String type) {
-
-        interfaceDeclaration.addMethod(name.getGetterName())
-                .removeBody()
-                .setType("List<" + type + ">")
-                .addSingleMemberAnnotation(Relation.class, name.getRelationNameWithQuotes())
-                .tryAddImportToParentCompilationUnit(List.class);
-        interfaceDeclaration.addMethod(name.getSetterName())
-                .removeBody()
-                .addParameter("List<" + type + ">", name.getSetterName());
+                .addParameter(new CleanName(type).getName(), name.getSetterName());
     }
 
 }

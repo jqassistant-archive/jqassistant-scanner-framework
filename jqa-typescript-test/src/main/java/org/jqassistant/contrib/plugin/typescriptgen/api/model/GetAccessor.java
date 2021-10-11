@@ -2,25 +2,71 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE getAccessor (BLOCK (ALT getter '(' ')' (? (BLOCK (ALT typeAnnotation))) '{' functionBody '}')))
+ * public static class GetAccessorContext extends ParserRuleContext {
+ *
+ *     public GetterContext getter() {
+ *         return getRuleContext(GetterContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode OpenParen() {
+ *         return getToken(TypeScriptParser.OpenParen, 0);
+ *     }
+ *
+ *     public TerminalNode CloseParen() {
+ *         return getToken(TypeScriptParser.CloseParen, 0);
+ *     }
+ *
+ *     public TerminalNode OpenBrace() {
+ *         return getToken(TypeScriptParser.OpenBrace, 0);
+ *     }
+ *
+ *     public FunctionBodyContext functionBody() {
+ *         return getRuleContext(FunctionBodyContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBrace() {
+ *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     }
+ *
+ *     public TypeAnnotationContext typeAnnotation() {
+ *         return getRuleContext(TypeAnnotationContext.class, 0);
+ *     }
+ *
+ *     public GetAccessorContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_getAccessor;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterGetAccessor(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitGetAccessor(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * getAccessor
- *     : getter '(' ')' typeAnnotation? '{' functionBody '}'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2569-2588
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#getAccessor()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.GetAccessorMapper
  */
 @Generated(
@@ -33,21 +79,36 @@ public interface GetAccessor extends TypeScriptGen {
 
     void setGetter(Getter setGetter);
 
-    // unhandled TerminalAST token: '('
-    // unhandled TerminalAST token: ')'
-    // optional: ?
-    @Relation("HAS_TYPE_ANNOTATION")
-    TypeAnnotation getTypeAnnotation();
+    @Relation("HAS_OPEN_PAREN")
+    TerminalNodeStrings getOpenParen();
 
-    void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
+    void setOpenParen(TerminalNodeStrings setOpenParen);
 
-    // unhandled TerminalAST token: '{'
+    @Relation("HAS_CLOSE_PAREN")
+    TerminalNodeStrings getCloseParen();
+
+    void setCloseParen(TerminalNodeStrings setCloseParen);
+
+    @Relation("HAS_OPEN_BRACE")
+    TerminalNodeStrings getOpenBrace();
+
+    void setOpenBrace(TerminalNodeStrings setOpenBrace);
+
     @Relation("HAS_FUNCTION_BODY")
     FunctionBody getFunctionBody();
 
     void setFunctionBody(FunctionBody setFunctionBody);
 
-    // unhandled TerminalAST token: '}'
+    @Relation("HAS_CLOSE_BRACE")
+    TerminalNodeStrings getCloseBrace();
+
+    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+
+    @Relation("HAS_TYPE_ANNOTATION")
+    TypeAnnotation getTypeAnnotation();
+
+    void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
+
     @Relation("HAS_TEXT")
     String getText();
 

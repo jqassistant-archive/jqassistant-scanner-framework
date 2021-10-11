@@ -2,27 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE methodHeader (BLOCK (ALT result methodDeclarator (? (BLOCK (ALT throws_)))) (ALT typeParameters (* (BLOCK (ALT annotation))) result methodDeclarator (? (BLOCK (ALT throws_))))))
+ * public static class MethodHeaderContext extends ParserRuleContext {
+ *
+ *     public ResultContext result() {
+ *         return getRuleContext(ResultContext.class, 0);
+ *     }
+ *
+ *     public MethodDeclaratorContext methodDeclarator() {
+ *         return getRuleContext(MethodDeclaratorContext.class, 0);
+ *     }
+ *
+ *     public Throws_Context throws_() {
+ *         return getRuleContext(Throws_Context.class, 0);
+ *     }
+ *
+ *     public TypeParametersContext typeParameters() {
+ *         return getRuleContext(TypeParametersContext.class, 0);
+ *     }
+ *
+ *     public List<AnnotationContext> annotation() {
+ *         return getRuleContexts(AnnotationContext.class);
+ *     }
+ *
+ *     public AnnotationContext annotation(int i) {
+ *         return getRuleContext(AnnotationContext.class, i);
+ *     }
+ *
+ *     public MethodHeaderContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_methodHeader;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterMethodHeader(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitMethodHeader(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * methodHeader
- * 	:	result methodDeclarator throws_?
- * 	|	typeParameters annotation* result methodDeclarator throws_?
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1178-1203
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#methodHeader()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodHeaderMapper
  */
 @Generated(
@@ -40,7 +81,6 @@ public interface MethodHeader extends JavaGen {
 
     void setMethodDeclarator(MethodDeclarator setMethodDeclarator);
 
-    // optional: ?
     @Relation("HAS_THROWS")
     Throws_ getThrows_();
 
@@ -56,7 +96,6 @@ public interface MethodHeader extends JavaGen {
 
     void setAnnotation(List<Annotation> setAnnotation);
 
-    // optional: ?
     @Relation("HAS_TEXT")
     String getText();
 

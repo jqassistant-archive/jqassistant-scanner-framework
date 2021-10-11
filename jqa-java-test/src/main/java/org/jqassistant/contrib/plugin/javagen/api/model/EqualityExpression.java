@@ -2,27 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE equalityExpression (BLOCK (ALT relationalExpression) (ALT equalityExpression '==' relationalExpression) (ALT equalityExpression '!=' relationalExpression)))
+ * public static class EqualityExpressionContext extends ParserRuleContext {
+ *
+ *     public RelationalExpressionContext relationalExpression() {
+ *         return getRuleContext(RelationalExpressionContext.class, 0);
+ *     }
+ *
+ *     public EqualityExpressionContext equalityExpression() {
+ *         return getRuleContext(EqualityExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode EQUAL() {
+ *         return getToken(Java8Parser.EQUAL, 0);
+ *     }
+ *
+ *     public TerminalNode NOTEQUAL() {
+ *         return getToken(Java8Parser.NOTEQUAL, 0);
+ *     }
+ *
+ *     public EqualityExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_equalityExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterEqualityExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitEqualityExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * equalityExpression
- * 	:	relationalExpression
- * 	|	equalityExpression '==' relationalExpression
- * 	|	equalityExpression '!=' relationalExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4503-4525
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#equalityExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EqualityExpressionMapper
  */
 @Generated(
@@ -40,8 +72,16 @@ public interface EqualityExpression extends JavaGen {
 
     void setEqualityExpression(EqualityExpression setEqualityExpression);
 
-    // unhandled TerminalAST token: '=='
-    // unhandled TerminalAST token: '!='
+    @Relation("HAS_E_Q_U_A_L")
+    TerminalNodeStrings getEQUAL();
+
+    void setEQUAL(TerminalNodeStrings setEQUAL);
+
+    @Relation("HAS_N_O_T_E_Q_U_A_L")
+    TerminalNodeStrings getNOTEQUAL();
+
+    void setNOTEQUAL(TerminalNodeStrings setNOTEQUAL);
+
     @Relation("HAS_TEXT")
     String getText();
 

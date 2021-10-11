@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE switchStatement (BLOCK (ALT 'switch' '(' expression ')' switchBlock)))
+ * public static class SwitchStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode SWITCH() {
+ *         return getToken(Java8Parser.SWITCH, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public SwitchBlockContext switchBlock() {
+ *         return getRuleContext(SwitchBlockContext.class, 0);
+ *     }
+ *
+ *     public SwitchStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_switchStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterSwitchStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitSwitchStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * switchStatement
- * 	:	'switch' '(' expression ')' switchBlock
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2446-2460
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#switchStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.SwitchStatementMapper
  */
 @Generated(
@@ -28,14 +66,26 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("SwitchStatement")
 public interface SwitchStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'switch'
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_S_W_I_T_C_H")
+    TerminalNodeStrings getSWITCH();
+
+    void setSWITCH(TerminalNodeStrings setSWITCH);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_SWITCH_BLOCK")
     SwitchBlock getSwitchBlock();
 

@@ -2,29 +2,80 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE formalParameterList (BLOCK (ALT formalParameterArg (* (BLOCK (ALT ',' formalParameterArg))) (? (BLOCK (ALT ',' lastFormalParameterArg)))) (ALT lastFormalParameterArg) (ALT arrayLiteral) (ALT objectLiteral (? (BLOCK (ALT ':' formalParameterList))))))
+ * public static class FormalParameterListContext extends ParserRuleContext {
+ *
+ *     public List<FormalParameterArgContext> formalParameterArg() {
+ *         return getRuleContexts(FormalParameterArgContext.class);
+ *     }
+ *
+ *     public FormalParameterArgContext formalParameterArg(int i) {
+ *         return getRuleContext(FormalParameterArgContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> Comma() {
+ *         return getTokens(TypeScriptParser.Comma);
+ *     }
+ *
+ *     public TerminalNode Comma(int i) {
+ *         return getToken(TypeScriptParser.Comma, i);
+ *     }
+ *
+ *     public LastFormalParameterArgContext lastFormalParameterArg() {
+ *         return getRuleContext(LastFormalParameterArgContext.class, 0);
+ *     }
+ *
+ *     public ArrayLiteralContext arrayLiteral() {
+ *         return getRuleContext(ArrayLiteralContext.class, 0);
+ *     }
+ *
+ *     public ObjectLiteralContext objectLiteral() {
+ *         return getRuleContext(ObjectLiteralContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Colon() {
+ *         return getToken(TypeScriptParser.Colon, 0);
+ *     }
+ *
+ *     public FormalParameterListContext formalParameterList() {
+ *         return getRuleContext(FormalParameterListContext.class, 0);
+ *     }
+ *
+ *     public FormalParameterListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_formalParameterList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterFormalParameterList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitFormalParameterList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * formalParameterList
- *     : formalParameterArg (',' formalParameterArg)* (',' lastFormalParameterArg)?
- *     | lastFormalParameterArg
- *     | arrayLiteral                              // ECMAScript 6: Parameter Context Matching
- *     | objectLiteral (':' formalParameterList)?  // ECMAScript 6: Parameter Context Matching
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2308-2351
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#formalParameterList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.FormalParameterListMapper
  */
 @Generated(
@@ -32,14 +83,16 @@ import java.util.List;
 @Label("FormalParameterList")
 public interface FormalParameterList extends TypeScriptGen {
 
-    // unhandled TerminalAST token: ','
     @Relation("HAS_FORMAL_PARAMETER_ARG")
     List<FormalParameterArg> getFormalParameterArg();
 
     void setFormalParameterArg(List<FormalParameterArg> setFormalParameterArg);
 
-    // optional: ?
-    // unhandled TerminalAST token: ','
+    @Relation("HAS_COMMA")
+    List<TerminalNodeStrings> getComma();
+
+    void setComma(List<TerminalNodeStrings> setComma);
+
     @Relation("HAS_LAST_FORMAL_PARAMETER_ARG")
     LastFormalParameterArg getLastFormalParameterArg();
 
@@ -55,8 +108,11 @@ public interface FormalParameterList extends TypeScriptGen {
 
     void setObjectLiteral(ObjectLiteral setObjectLiteral);
 
-    // optional: ?
-    // unhandled TerminalAST token: ':'
+    @Relation("HAS_COLON")
+    TerminalNodeStrings getColon();
+
+    void setColon(TerminalNodeStrings setColon);
+
     @Relation("HAS_FORMAL_PARAMETER_LIST")
     FormalParameterList getFormalParameterList();
 

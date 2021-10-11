@@ -2,26 +2,52 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE dimExprs (BLOCK (ALT dimExpr (* (BLOCK (ALT dimExpr))))))
+ * public static class DimExprsContext extends ParserRuleContext {
+ *
+ *     public List<DimExprContext> dimExpr() {
+ *         return getRuleContexts(DimExprContext.class);
+ *     }
+ *
+ *     public DimExprContext dimExpr(int i) {
+ *         return getRuleContext(DimExprContext.class, i);
+ *     }
+ *
+ *     public DimExprsContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_dimExprs;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterDimExprs(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitDimExprs(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * dimExprs
- * 	:	dimExpr dimExpr*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4201-4210
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#dimExprs()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.DimExprsMapper
  */
 @Generated(

@@ -2,26 +2,56 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE enumBodyDeclarations (BLOCK (ALT ';' (* (BLOCK (ALT classBodyDeclaration))))))
+ * public static class EnumBodyDeclarationsContext extends ParserRuleContext {
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public List<ClassBodyDeclarationContext> classBodyDeclaration() {
+ *         return getRuleContexts(ClassBodyDeclarationContext.class);
+ *     }
+ *
+ *     public ClassBodyDeclarationContext classBodyDeclaration(int i) {
+ *         return getRuleContext(ClassBodyDeclarationContext.class, i);
+ *     }
+ *
+ *     public EnumBodyDeclarationsContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_enumBodyDeclarations;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterEnumBodyDeclarations(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitEnumBodyDeclarations(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * enumBodyDeclarations
- * 	:	';' classBodyDeclaration*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1653-1662
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#enumBodyDeclarations()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnumBodyDeclarationsMapper
  */
 @Generated(
@@ -29,7 +59,11 @@ import java.util.List;
 @Label("EnumBodyDeclarations")
 public interface EnumBodyDeclarations extends JavaGen {
 
-    // unhandled TerminalAST token: ';'
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
     @Relation("HAS_CLASS_BODY_DECLARATION")
     List<ClassBodyDeclaration> getClassBodyDeclaration();
 

@@ -2,25 +2,59 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE caseClause (BLOCK (ALT Case expressionSequence ':' (? (BLOCK (ALT statementList))))))
+ * public static class CaseClauseContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Case() {
+ *         return getToken(TypeScriptParser.Case, 0);
+ *     }
+ *
+ *     public ExpressionSequenceContext expressionSequence() {
+ *         return getRuleContext(ExpressionSequenceContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Colon() {
+ *         return getToken(TypeScriptParser.Colon, 0);
+ *     }
+ *
+ *     public StatementListContext statementList() {
+ *         return getRuleContext(StatementListContext.class, 0);
+ *     }
+ *
+ *     public CaseClauseContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_caseClause;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterCaseClause(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitCaseClause(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * caseClause
- *     : Case expressionSequence ':' statementList?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1845-1858
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#caseClause()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.CaseClauseMapper
  */
 @Generated(
@@ -38,8 +72,11 @@ public interface CaseClause extends TypeScriptGen {
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // unhandled TerminalAST token: ':'
-    // optional: ?
+    @Relation("HAS_COLON")
+    TerminalNodeStrings getColon();
+
+    void setColon(TerminalNodeStrings setColon);
+
     @Relation("HAS_STATEMENT_LIST")
     StatementList getStatementList();
 

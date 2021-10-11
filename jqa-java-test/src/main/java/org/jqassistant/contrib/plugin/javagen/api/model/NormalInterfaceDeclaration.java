@@ -2,26 +2,72 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE normalInterfaceDeclaration (BLOCK (ALT (* (BLOCK (ALT interfaceModifier))) 'interface' Identifier (? (BLOCK (ALT typeParameters))) (? (BLOCK (ALT extendsInterfaces))) interfaceBody)))
+ * public static class NormalInterfaceDeclarationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode INTERFACE() {
+ *         return getToken(Java8Parser.INTERFACE, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public InterfaceBodyContext interfaceBody() {
+ *         return getRuleContext(InterfaceBodyContext.class, 0);
+ *     }
+ *
+ *     public List<InterfaceModifierContext> interfaceModifier() {
+ *         return getRuleContexts(InterfaceModifierContext.class);
+ *     }
+ *
+ *     public InterfaceModifierContext interfaceModifier(int i) {
+ *         return getRuleContext(InterfaceModifierContext.class, i);
+ *     }
+ *
+ *     public TypeParametersContext typeParameters() {
+ *         return getRuleContext(TypeParametersContext.class, 0);
+ *     }
+ *
+ *     public ExtendsInterfacesContext extendsInterfaces() {
+ *         return getRuleContext(ExtendsInterfacesContext.class, 0);
+ *     }
+ *
+ *     public NormalInterfaceDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_normalInterfaceDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterNormalInterfaceDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitNormalInterfaceDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * normalInterfaceDeclaration
- * 	:	interfaceModifier* 'interface' Identifier typeParameters? extendsInterfaces? interfaceBody
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1678-1697
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#normalInterfaceDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.NormalInterfaceDeclarationMapper
  */
 @Generated(
@@ -29,33 +75,35 @@ import java.util.List;
 @Label("NormalInterfaceDeclaration")
 public interface NormalInterfaceDeclaration extends JavaGen {
 
-    @Relation("HAS_INTERFACE_MODIFIER")
-    List<InterfaceModifier> getInterfaceModifier();
+    @Relation("HAS_I_N_T_E_R_F_A_C_E")
+    TerminalNodeStrings getINTERFACE();
 
-    void setInterfaceModifier(List<InterfaceModifier> setInterfaceModifier);
+    void setINTERFACE(TerminalNodeStrings setINTERFACE);
 
-    // unhandled TerminalAST token: 'interface'
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
+    @Relation("HAS_INTERFACE_BODY")
+    InterfaceBody getInterfaceBody();
+
+    void setInterfaceBody(InterfaceBody setInterfaceBody);
+
+    @Relation("HAS_INTERFACE_MODIFIER")
+    List<InterfaceModifier> getInterfaceModifier();
+
+    void setInterfaceModifier(List<InterfaceModifier> setInterfaceModifier);
+
     @Relation("HAS_TYPE_PARAMETERS")
     TypeParameters getTypeParameters();
 
     void setTypeParameters(TypeParameters setTypeParameters);
 
-    // optional: ?
     @Relation("HAS_EXTENDS_INTERFACES")
     ExtendsInterfaces getExtendsInterfaces();
 
     void setExtendsInterfaces(ExtendsInterfaces setExtendsInterfaces);
-
-    @Relation("HAS_INTERFACE_BODY")
-    InterfaceBody getInterfaceBody();
-
-    void setInterfaceBody(InterfaceBody setInterfaceBody);
 
     @Relation("HAS_TEXT")
     String getText();

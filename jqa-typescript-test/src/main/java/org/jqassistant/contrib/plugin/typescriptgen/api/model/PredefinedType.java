@@ -2,30 +2,67 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE predefinedType (BLOCK (ALT Any) (ALT Number) (ALT Boolean) (ALT String) (ALT Symbol) (ALT Void)))
+ * public static class PredefinedTypeContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Any() {
+ *         return getToken(TypeScriptParser.Any, 0);
+ *     }
+ *
+ *     public TerminalNode Number() {
+ *         return getToken(TypeScriptParser.Number, 0);
+ *     }
+ *
+ *     public TerminalNode Boolean() {
+ *         return getToken(TypeScriptParser.Boolean, 0);
+ *     }
+ *
+ *     public TerminalNode String() {
+ *         return getToken(TypeScriptParser.String, 0);
+ *     }
+ *
+ *     public TerminalNode Symbol() {
+ *         return getToken(TypeScriptParser.Symbol, 0);
+ *     }
+ *
+ *     public TerminalNode Void() {
+ *         return getToken(TypeScriptParser.Void, 0);
+ *     }
+ *
+ *     public PredefinedTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_predefinedType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterPredefinedType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitPredefinedType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * predefinedType
- *     : Any
- *     | Number
- *     | Boolean
- *     | String
- *     | Symbol
- *     | Void
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:284-310
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#predefinedType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.PredefinedTypeMapper
  */
 @Generated(

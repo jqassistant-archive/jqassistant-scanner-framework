@@ -2,26 +2,52 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE sourceElements (BLOCK (ALT (+ (BLOCK (ALT sourceElement))))))
+ * public static class SourceElementsContext extends ParserRuleContext {
+ *
+ *     public List<SourceElementContext> sourceElement() {
+ *         return getRuleContexts(SourceElementContext.class);
+ *     }
+ *
+ *     public SourceElementContext sourceElement(int i) {
+ *         return getRuleContext(SourceElementContext.class, i);
+ *     }
+ *
+ *     public SourceElementsContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_sourceElements;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterSourceElements(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitSourceElements(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * sourceElements
- *     : sourceElement+
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2403-2410
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#sourceElements()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.SourceElementsMapper
  */
 @Generated(

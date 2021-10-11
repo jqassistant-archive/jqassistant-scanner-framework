@@ -2,25 +2,71 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE ifThenElseStatement (BLOCK (ALT 'if' '(' expression ')' statementNoShortIf 'else' statement)))
+ * public static class IfThenElseStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode IF() {
+ *         return getToken(Java8Parser.IF, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public StatementNoShortIfContext statementNoShortIf() {
+ *         return getRuleContext(StatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode ELSE() {
+ *         return getToken(Java8Parser.ELSE, 0);
+ *     }
+ *
+ *     public StatementContext statement() {
+ *         return getRuleContext(StatementContext.class, 0);
+ *     }
+ *
+ *     public IfThenElseStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_ifThenElseStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterIfThenElseStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitIfThenElseStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * ifThenElseStatement
- * 	:	'if' '(' expression ')' statementNoShortIf 'else' statement
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2382-2400
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#ifThenElseStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.IfThenElseStatementMapper
  */
 @Generated(
@@ -28,20 +74,36 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("IfThenElseStatement")
 public interface IfThenElseStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'if'
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_I_F")
+    TerminalNodeStrings getIF();
+
+    void setIF(TerminalNodeStrings setIF);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ')'
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
     @Relation("HAS_STATEMENT_NO_SHORT_IF")
     StatementNoShortIf getStatementNoShortIf();
 
     void setStatementNoShortIf(StatementNoShortIf setStatementNoShortIf);
 
-    // unhandled TerminalAST token: 'else'
+    @Relation("HAS_E_L_S_E")
+    TerminalNodeStrings getELSE();
+
+    void setELSE(TerminalNodeStrings setELSE);
+
     @Relation("HAS_STATEMENT")
     Statement getStatement();
 

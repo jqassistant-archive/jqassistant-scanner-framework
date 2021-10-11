@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE expressionStatement (BLOCK (ALT {this.notOpenBraceAndNotFunction()}? expressionSequence (? (BLOCK (ALT SemiColon))))))
+ * public static class ExpressionStatementContext extends ParserRuleContext {
+ *
+ *     public ExpressionSequenceContext expressionSequence() {
+ *         return getRuleContext(ExpressionSequenceContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SemiColon() {
+ *         return getToken(TypeScriptParser.SemiColon, 0);
+ *     }
+ *
+ *     public ExpressionStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_expressionStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterExpressionStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitExpressionStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * expressionStatement
- *     : {this.notOpenBraceAndNotFunction()}? expressionSequence SemiColon?
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1512-1523
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#expressionStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ExpressionStatementMapper
  */
 @Generated(
@@ -28,13 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ExpressionStatement")
 public interface ExpressionStatement extends TypeScriptGen {
 
-    // unhandled AST type: 59 - list: false : {this.notOpenBraceAndNotFunction()}?
     @Relation("HAS_EXPRESSION_SEQUENCE")
     ExpressionSequence getExpressionSequence();
 
     void setExpressionSequence(ExpressionSequence setExpressionSequence);
 
-    // optional: ?
     @Relation("HAS_SEMI_COLON")
     TerminalNodeStrings getSemiColon();
 

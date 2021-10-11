@@ -2,26 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE identifierOrPattern (BLOCK (ALT identifierName) (ALT bindingPattern)))
+ * public static class IdentifierOrPatternContext extends ParserRuleContext {
+ *
+ *     public IdentifierNameContext identifierName() {
+ *         return getRuleContext(IdentifierNameContext.class, 0);
+ *     }
+ *
+ *     public BindingPatternContext bindingPattern() {
+ *         return getRuleContext(BindingPatternContext.class, 0);
+ *     }
+ *
+ *     public IdentifierOrPatternContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_identifierOrPattern;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterIdentifierOrPattern(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitIdentifierOrPattern(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * identifierOrPattern
- *     : identifierName
- *     | bindingPattern
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:775-785
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#identifierOrPattern()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.IdentifierOrPatternMapper
  */
 @Generated(

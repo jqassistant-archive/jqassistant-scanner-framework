@@ -2,53 +2,163 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE statement (BLOCK (ALT block) (ALT importStatement) (ALT exportStatement) (ALT emptyStatement) (ALT abstractDeclaration) (ALT decoratorList) (ALT classDeclaration) (ALT interfaceDeclaration) (ALT namespaceDeclaration) (ALT ifStatement) (ALT iterationStatement) (ALT continueStatement) (ALT breakStatement) (ALT returnStatement) (ALT yieldStatement) (ALT withStatement) (ALT labelledStatement) (ALT switchStatement) (ALT throwStatement) (ALT tryStatement) (ALT debuggerStatement) (ALT functionDeclaration) (ALT arrowFunctionDeclaration) (ALT generatorFunctionDeclaration) (ALT variableStatement) (ALT typeAliasDeclaration) (ALT enumDeclaration) (ALT expressionStatement) (ALT Export statement)))
+ * public static class StatementContext extends ParserRuleContext {
+ *
+ *     public BlockContext block() {
+ *         return getRuleContext(BlockContext.class, 0);
+ *     }
+ *
+ *     public ImportStatementContext importStatement() {
+ *         return getRuleContext(ImportStatementContext.class, 0);
+ *     }
+ *
+ *     public ExportStatementContext exportStatement() {
+ *         return getRuleContext(ExportStatementContext.class, 0);
+ *     }
+ *
+ *     public EmptyStatementContext emptyStatement() {
+ *         return getRuleContext(EmptyStatementContext.class, 0);
+ *     }
+ *
+ *     public AbstractDeclarationContext abstractDeclaration() {
+ *         return getRuleContext(AbstractDeclarationContext.class, 0);
+ *     }
+ *
+ *     public DecoratorListContext decoratorList() {
+ *         return getRuleContext(DecoratorListContext.class, 0);
+ *     }
+ *
+ *     public ClassDeclarationContext classDeclaration() {
+ *         return getRuleContext(ClassDeclarationContext.class, 0);
+ *     }
+ *
+ *     public InterfaceDeclarationContext interfaceDeclaration() {
+ *         return getRuleContext(InterfaceDeclarationContext.class, 0);
+ *     }
+ *
+ *     public NamespaceDeclarationContext namespaceDeclaration() {
+ *         return getRuleContext(NamespaceDeclarationContext.class, 0);
+ *     }
+ *
+ *     public IfStatementContext ifStatement() {
+ *         return getRuleContext(IfStatementContext.class, 0);
+ *     }
+ *
+ *     public IterationStatementContext iterationStatement() {
+ *         return getRuleContext(IterationStatementContext.class, 0);
+ *     }
+ *
+ *     public ContinueStatementContext continueStatement() {
+ *         return getRuleContext(ContinueStatementContext.class, 0);
+ *     }
+ *
+ *     public BreakStatementContext breakStatement() {
+ *         return getRuleContext(BreakStatementContext.class, 0);
+ *     }
+ *
+ *     public ReturnStatementContext returnStatement() {
+ *         return getRuleContext(ReturnStatementContext.class, 0);
+ *     }
+ *
+ *     public YieldStatementContext yieldStatement() {
+ *         return getRuleContext(YieldStatementContext.class, 0);
+ *     }
+ *
+ *     public WithStatementContext withStatement() {
+ *         return getRuleContext(WithStatementContext.class, 0);
+ *     }
+ *
+ *     public LabelledStatementContext labelledStatement() {
+ *         return getRuleContext(LabelledStatementContext.class, 0);
+ *     }
+ *
+ *     public SwitchStatementContext switchStatement() {
+ *         return getRuleContext(SwitchStatementContext.class, 0);
+ *     }
+ *
+ *     public ThrowStatementContext throwStatement() {
+ *         return getRuleContext(ThrowStatementContext.class, 0);
+ *     }
+ *
+ *     public TryStatementContext tryStatement() {
+ *         return getRuleContext(TryStatementContext.class, 0);
+ *     }
+ *
+ *     public DebuggerStatementContext debuggerStatement() {
+ *         return getRuleContext(DebuggerStatementContext.class, 0);
+ *     }
+ *
+ *     public FunctionDeclarationContext functionDeclaration() {
+ *         return getRuleContext(FunctionDeclarationContext.class, 0);
+ *     }
+ *
+ *     public ArrowFunctionDeclarationContext arrowFunctionDeclaration() {
+ *         return getRuleContext(ArrowFunctionDeclarationContext.class, 0);
+ *     }
+ *
+ *     public GeneratorFunctionDeclarationContext generatorFunctionDeclaration() {
+ *         return getRuleContext(GeneratorFunctionDeclarationContext.class, 0);
+ *     }
+ *
+ *     public VariableStatementContext variableStatement() {
+ *         return getRuleContext(VariableStatementContext.class, 0);
+ *     }
+ *
+ *     public TypeAliasDeclarationContext typeAliasDeclaration() {
+ *         return getRuleContext(TypeAliasDeclarationContext.class, 0);
+ *     }
+ *
+ *     public EnumDeclarationContext enumDeclaration() {
+ *         return getRuleContext(EnumDeclarationContext.class, 0);
+ *     }
+ *
+ *     public ExpressionStatementContext expressionStatement() {
+ *         return getRuleContext(ExpressionStatementContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode Export() {
+ *         return getToken(TypeScriptParser.Export, 0);
+ *     }
+ *
+ *     public StatementContext statement() {
+ *         return getRuleContext(StatementContext.class, 0);
+ *     }
+ *
+ *     public StatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_statement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * statement
- *     : block
- *     | importStatement
- *     | exportStatement
- *     | emptyStatement
- *     | abstractDeclaration //ADDED
- *     | decoratorList
- *     | classDeclaration
- *     | interfaceDeclaration //ADDED
- *     | namespaceDeclaration //ADDED
- *     | ifStatement
- *     | iterationStatement
- *     | continueStatement
- *     | breakStatement
- *     | returnStatement
- *     | yieldStatement
- *     | withStatement
- *     | labelledStatement
- *     | switchStatement
- *     | throwStatement
- *     | tryStatement
- *     | debuggerStatement
- *     | functionDeclaration
- *     | arrowFunctionDeclaration
- *     | generatorFunctionDeclaration
- *     | variableStatement
- *     | typeAliasDeclaration //ADDED
- *     | enumDeclaration      //ADDED
- *     | expressionStatement
- *     | Export statement
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1146-1276
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#statement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.StatementMapper
  */
 @Generated(

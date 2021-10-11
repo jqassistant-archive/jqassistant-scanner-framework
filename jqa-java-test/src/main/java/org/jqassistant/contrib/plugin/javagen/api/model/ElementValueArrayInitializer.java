@@ -2,25 +2,59 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE elementValueArrayInitializer (BLOCK (ALT '{' (? (BLOCK (ALT elementValueList))) (? (BLOCK (ALT ','))) '}')))
+ * public static class ElementValueArrayInitializerContext extends ParserRuleContext {
+ *
+ *     public TerminalNode LBRACE() {
+ *         return getToken(Java8Parser.LBRACE, 0);
+ *     }
+ *
+ *     public TerminalNode RBRACE() {
+ *         return getToken(Java8Parser.RBRACE, 0);
+ *     }
+ *
+ *     public ElementValueListContext elementValueList() {
+ *         return getRuleContext(ElementValueListContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode COMMA() {
+ *         return getToken(Java8Parser.COMMA, 0);
+ *     }
+ *
+ *     public ElementValueArrayInitializerContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_elementValueArrayInitializer;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterElementValueArrayInitializer(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitElementValueArrayInitializer(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * elementValueArrayInitializer
- * 	:	'{' elementValueList? ','? '}'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2035-2049
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#elementValueArrayInitializer()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ElementValueArrayInitializerMapper
  */
 @Generated(
@@ -28,16 +62,26 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ElementValueArrayInitializer")
 public interface ElementValueArrayInitializer extends JavaGen {
 
-    // unhandled TerminalAST token: '{'
-    // optional: ?
+    @Relation("HAS_L_B_R_A_C_E")
+    TerminalNodeStrings getLBRACE();
+
+    void setLBRACE(TerminalNodeStrings setLBRACE);
+
+    @Relation("HAS_R_B_R_A_C_E")
+    TerminalNodeStrings getRBRACE();
+
+    void setRBRACE(TerminalNodeStrings setRBRACE);
+
     @Relation("HAS_ELEMENT_VALUE_LIST")
     ElementValueList getElementValueList();
 
     void setElementValueList(ElementValueList setElementValueList);
 
-    // optional: ?
-    // unhandled TerminalAST token: ','
-    // unhandled TerminalAST token: '}'
+    @Relation("HAS_C_O_M_M_A")
+    TerminalNodeStrings getCOMMA();
+
+    void setCOMMA(TerminalNodeStrings setCOMMA);
+
     @Relation("HAS_TEXT")
     String getText();
 

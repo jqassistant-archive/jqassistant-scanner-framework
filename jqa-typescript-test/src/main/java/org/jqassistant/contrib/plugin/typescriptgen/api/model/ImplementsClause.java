@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE implementsClause (BLOCK (ALT Implements classOrInterfaceTypeList)))
+ * public static class ImplementsClauseContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Implements() {
+ *         return getToken(TypeScriptParser.Implements, 0);
+ *     }
+ *
+ *     public ClassOrInterfaceTypeListContext classOrInterfaceTypeList() {
+ *         return getRuleContext(ClassOrInterfaceTypeListContext.class, 0);
+ *     }
+ *
+ *     public ImplementsClauseContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_implementsClause;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterImplementsClause(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitImplementsClause(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * implementsClause
- *     : Implements classOrInterfaceTypeList
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2040-2048
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#implementsClause()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ImplementsClauseMapper
  */
 @Generated(

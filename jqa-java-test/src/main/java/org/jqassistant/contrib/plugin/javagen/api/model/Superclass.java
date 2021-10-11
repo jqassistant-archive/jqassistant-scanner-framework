@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE superclass (BLOCK (ALT 'extends' classType)))
+ * public static class SuperclassContext extends ParserRuleContext {
+ *
+ *     public TerminalNode EXTENDS() {
+ *         return getToken(Java8Parser.EXTENDS, 0);
+ *     }
+ *
+ *     public ClassTypeContext classType() {
+ *         return getRuleContext(ClassTypeContext.class, 0);
+ *     }
+ *
+ *     public SuperclassContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_superclass;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterSuperclass(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitSuperclass(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * superclass
- * 	:	'extends' classType
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:752-760
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#superclass()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.SuperclassMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Superclass")
 public interface Superclass extends JavaGen {
 
-    // unhandled TerminalAST token: 'extends'
+    @Relation("HAS_E_X_T_E_N_D_S")
+    TerminalNodeStrings getEXTENDS();
+
+    void setEXTENDS(TerminalNodeStrings setEXTENDS);
+
     @Relation("HAS_CLASS_TYPE")
     ClassType getClassType();
 

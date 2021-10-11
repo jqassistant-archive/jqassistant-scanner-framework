@@ -2,74 +2,243 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE keyword (BLOCK (ALT Break) (ALT Do) (ALT Instanceof) (ALT Typeof) (ALT Case) (ALT Else) (ALT New) (ALT Var) (ALT Catch) (ALT Finally) (ALT Return) (ALT Void) (ALT Continue) (ALT For) (ALT Switch) (ALT While) (ALT Debugger) (ALT Function_) (ALT This) (ALT With) (ALT Default) (ALT If) (ALT Throw) (ALT Delete) (ALT In) (ALT Try) (ALT ReadOnly) (ALT Async) (ALT From) (ALT Class) (ALT Enum) (ALT Extends) (ALT Super) (ALT Const) (ALT Export) (ALT Import) (ALT Implements) (ALT Let) (ALT Private) (ALT Public) (ALT Interface) (ALT Package) (ALT Protected) (ALT Static) (ALT Yield) (ALT Get) (ALT Set) (ALT Require) (ALT TypeAlias) (ALT String)))
+ * public static class KeywordContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Break() {
+ *         return getToken(TypeScriptParser.Break, 0);
+ *     }
+ *
+ *     public TerminalNode Do() {
+ *         return getToken(TypeScriptParser.Do, 0);
+ *     }
+ *
+ *     public TerminalNode Instanceof() {
+ *         return getToken(TypeScriptParser.Instanceof, 0);
+ *     }
+ *
+ *     public TerminalNode Typeof() {
+ *         return getToken(TypeScriptParser.Typeof, 0);
+ *     }
+ *
+ *     public TerminalNode Case() {
+ *         return getToken(TypeScriptParser.Case, 0);
+ *     }
+ *
+ *     public TerminalNode Else() {
+ *         return getToken(TypeScriptParser.Else, 0);
+ *     }
+ *
+ *     public TerminalNode New() {
+ *         return getToken(TypeScriptParser.New, 0);
+ *     }
+ *
+ *     public TerminalNode Var() {
+ *         return getToken(TypeScriptParser.Var, 0);
+ *     }
+ *
+ *     public TerminalNode Catch() {
+ *         return getToken(TypeScriptParser.Catch, 0);
+ *     }
+ *
+ *     public TerminalNode Finally() {
+ *         return getToken(TypeScriptParser.Finally, 0);
+ *     }
+ *
+ *     public TerminalNode Return() {
+ *         return getToken(TypeScriptParser.Return, 0);
+ *     }
+ *
+ *     public TerminalNode Void() {
+ *         return getToken(TypeScriptParser.Void, 0);
+ *     }
+ *
+ *     public TerminalNode Continue() {
+ *         return getToken(TypeScriptParser.Continue, 0);
+ *     }
+ *
+ *     public TerminalNode For() {
+ *         return getToken(TypeScriptParser.For, 0);
+ *     }
+ *
+ *     public TerminalNode Switch() {
+ *         return getToken(TypeScriptParser.Switch, 0);
+ *     }
+ *
+ *     public TerminalNode While() {
+ *         return getToken(TypeScriptParser.While, 0);
+ *     }
+ *
+ *     public TerminalNode Debugger() {
+ *         return getToken(TypeScriptParser.Debugger, 0);
+ *     }
+ *
+ *     public TerminalNode Function_() {
+ *         return getToken(TypeScriptParser.Function_, 0);
+ *     }
+ *
+ *     public TerminalNode This() {
+ *         return getToken(TypeScriptParser.This, 0);
+ *     }
+ *
+ *     public TerminalNode With() {
+ *         return getToken(TypeScriptParser.With, 0);
+ *     }
+ *
+ *     public TerminalNode Default() {
+ *         return getToken(TypeScriptParser.Default, 0);
+ *     }
+ *
+ *     public TerminalNode If() {
+ *         return getToken(TypeScriptParser.If, 0);
+ *     }
+ *
+ *     public TerminalNode Throw() {
+ *         return getToken(TypeScriptParser.Throw, 0);
+ *     }
+ *
+ *     public TerminalNode Delete() {
+ *         return getToken(TypeScriptParser.Delete, 0);
+ *     }
+ *
+ *     public TerminalNode In() {
+ *         return getToken(TypeScriptParser.In, 0);
+ *     }
+ *
+ *     public TerminalNode Try() {
+ *         return getToken(TypeScriptParser.Try, 0);
+ *     }
+ *
+ *     public TerminalNode ReadOnly() {
+ *         return getToken(TypeScriptParser.ReadOnly, 0);
+ *     }
+ *
+ *     public TerminalNode Async() {
+ *         return getToken(TypeScriptParser.Async, 0);
+ *     }
+ *
+ *     public TerminalNode From() {
+ *         return getToken(TypeScriptParser.From, 0);
+ *     }
+ *
+ *     public TerminalNode Class() {
+ *         return getToken(TypeScriptParser.Class, 0);
+ *     }
+ *
+ *     public TerminalNode Enum() {
+ *         return getToken(TypeScriptParser.Enum, 0);
+ *     }
+ *
+ *     public TerminalNode Extends() {
+ *         return getToken(TypeScriptParser.Extends, 0);
+ *     }
+ *
+ *     public TerminalNode Super() {
+ *         return getToken(TypeScriptParser.Super, 0);
+ *     }
+ *
+ *     public TerminalNode Const() {
+ *         return getToken(TypeScriptParser.Const, 0);
+ *     }
+ *
+ *     public TerminalNode Export() {
+ *         return getToken(TypeScriptParser.Export, 0);
+ *     }
+ *
+ *     public TerminalNode Import() {
+ *         return getToken(TypeScriptParser.Import, 0);
+ *     }
+ *
+ *     public TerminalNode Implements() {
+ *         return getToken(TypeScriptParser.Implements, 0);
+ *     }
+ *
+ *     public TerminalNode Let() {
+ *         return getToken(TypeScriptParser.Let, 0);
+ *     }
+ *
+ *     public TerminalNode Private() {
+ *         return getToken(TypeScriptParser.Private, 0);
+ *     }
+ *
+ *     public TerminalNode Public() {
+ *         return getToken(TypeScriptParser.Public, 0);
+ *     }
+ *
+ *     public TerminalNode Interface() {
+ *         return getToken(TypeScriptParser.Interface, 0);
+ *     }
+ *
+ *     public TerminalNode Package() {
+ *         return getToken(TypeScriptParser.Package, 0);
+ *     }
+ *
+ *     public TerminalNode Protected() {
+ *         return getToken(TypeScriptParser.Protected, 0);
+ *     }
+ *
+ *     public TerminalNode Static() {
+ *         return getToken(TypeScriptParser.Static, 0);
+ *     }
+ *
+ *     public TerminalNode Yield() {
+ *         return getToken(TypeScriptParser.Yield, 0);
+ *     }
+ *
+ *     public TerminalNode Get() {
+ *         return getToken(TypeScriptParser.Get, 0);
+ *     }
+ *
+ *     public TerminalNode Set() {
+ *         return getToken(TypeScriptParser.Set, 0);
+ *     }
+ *
+ *     public TerminalNode Require() {
+ *         return getToken(TypeScriptParser.Require, 0);
+ *     }
+ *
+ *     public TerminalNode TypeAlias() {
+ *         return getToken(TypeScriptParser.TypeAlias, 0);
+ *     }
+ *
+ *     public TerminalNode String() {
+ *         return getToken(TypeScriptParser.String, 0);
+ *     }
+ *
+ *     public KeywordContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_keyword;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterKeyword(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitKeyword(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * keyword
- *     : Break
- *     | Do
- *     | Instanceof
- *     | Typeof
- *     | Case
- *     | Else
- *     | New
- *     | Var
- *     | Catch
- *     | Finally
- *     | Return
- *     | Void
- *     | Continue
- *     | For
- *     | Switch
- *     | While
- *     | Debugger
- *     | Function_
- *     | This
- *     | With
- *     | Default
- *     | If
- *     | Throw
- *     | Delete
- *     | In
- *     | Try
- *     | ReadOnly
- *     | Async
- *     | From
- *     | Class
- *     | Enum
- *     | Extends
- *     | Super
- *     | Const
- *     | Export
- *     | Import
- *     | Implements
- *     | Let
- *     | Private
- *     | Public
- *     | Interface
- *     | Package
- *     | Protected
- *     | Static
- *     | Yield
- *     | Get
- *     | Set
- *     | Require
- *     | TypeAlias
- *     | String
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:3567-3769
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#keyword()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.KeywordMapper
  */
 @Generated(

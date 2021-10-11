@@ -2,26 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE unannType (BLOCK (ALT unannPrimitiveType) (ALT unannReferenceType)))
+ * public static class UnannTypeContext extends ParserRuleContext {
+ *
+ *     public UnannPrimitiveTypeContext unannPrimitiveType() {
+ *         return getRuleContext(UnannPrimitiveTypeContext.class, 0);
+ *     }
+ *
+ *     public UnannReferenceTypeContext unannReferenceType() {
+ *         return getRuleContext(UnannReferenceTypeContext.class, 0);
+ *     }
+ *
+ *     public UnannTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_unannType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterUnannType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitUnannType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * unannType
- * 	:	unannPrimitiveType
- * 	|	unannReferenceType
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:948-958
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#unannType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnannTypeMapper
  */
 @Generated(

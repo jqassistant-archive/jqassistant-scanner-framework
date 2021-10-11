@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE variableDeclaratorId (BLOCK (ALT Identifier (? (BLOCK (ALT dims))))))
+ * public static class VariableDeclaratorIdContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public DimsContext dims() {
+ *         return getRuleContext(DimsContext.class, 0);
+ *     }
+ *
+ *     public VariableDeclaratorIdContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_variableDeclaratorId;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterVariableDeclaratorId(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitVariableDeclaratorId(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * variableDeclaratorId
- * 	:	Identifier dims?
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:925-934
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#variableDeclaratorId()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.VariableDeclaratorIdMapper
  */
 @Generated(
@@ -33,7 +59,6 @@ public interface VariableDeclaratorId extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
     @Relation("HAS_DIMS")
     Dims getDims();
 

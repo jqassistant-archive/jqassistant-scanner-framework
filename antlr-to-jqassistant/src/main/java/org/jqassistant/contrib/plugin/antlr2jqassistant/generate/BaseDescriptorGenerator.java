@@ -21,24 +21,24 @@ public class BaseDescriptorGenerator {
     public final String HAS = "HAS_";
 
     public final String packageName;
-    private final AstName entryNode;
+    private final CleanName entryNode;
     public String BASE_DESCRIPTOR_NAME = "Descriptor";
     public String BASE_FILE_DESCRIPTOR_NAME = "FileDescriptor";
 
     public BaseDescriptorGenerator(String packageName, String entryNode) {
         this.packageName = packageName;
-        this.entryNode = new AstName(entryNode);
+        this.entryNode = new CleanName(entryNode);
     }
 
-    public Map<AstName, CompilationUnit> generate() {
+    public Map<CleanName, CompilationUnit> generate() {
         System.out.println(new Date() + " Starting Base Descriptor Model Generation");
-        Map<AstName, CompilationUnit> interfaces = new TreeMap<>();
+        Map<CleanName, CompilationUnit> interfaces = new TreeMap<>();
 
         CompilationUnit baseDescriptor = getBaseDescriptor();
-        interfaces.put(new AstName(BASE_DESCRIPTOR_NAME), baseDescriptor);
+        interfaces.put(new CleanName(BASE_DESCRIPTOR_NAME), baseDescriptor);
 
         CompilationUnit baseFileDescriptor = getBaseFileDescriptor();
-        interfaces.put(new AstName(BASE_FILE_DESCRIPTOR_NAME), baseFileDescriptor);
+        interfaces.put(new CleanName(BASE_FILE_DESCRIPTOR_NAME), baseFileDescriptor);
 
         System.out.println(new Date() + " Generation Done!");
         return interfaces;

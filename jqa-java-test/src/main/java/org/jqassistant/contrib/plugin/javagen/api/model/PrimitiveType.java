@@ -2,27 +2,60 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE primitiveType (BLOCK (ALT (* (BLOCK (ALT annotation))) numericType) (ALT (* (BLOCK (ALT annotation))) 'boolean')))
+ * public static class PrimitiveTypeContext extends ParserRuleContext {
+ *
+ *     public NumericTypeContext numericType() {
+ *         return getRuleContext(NumericTypeContext.class, 0);
+ *     }
+ *
+ *     public List<AnnotationContext> annotation() {
+ *         return getRuleContexts(AnnotationContext.class);
+ *     }
+ *
+ *     public AnnotationContext annotation(int i) {
+ *         return getRuleContext(AnnotationContext.class, i);
+ *     }
+ *
+ *     public TerminalNode BOOLEAN() {
+ *         return getToken(Java8Parser.BOOLEAN, 0);
+ *     }
+ *
+ *     public PrimitiveTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_primitiveType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterPrimitiveType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitPrimitiveType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * primitiveType
- * 	:	annotation* numericType
- * 	|	annotation* 'boolean'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:52-68
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#primitiveType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimitiveTypeMapper
  */
 @Generated(
@@ -30,17 +63,21 @@ import java.util.List;
 @Label("PrimitiveType")
 public interface PrimitiveType extends JavaGen {
 
-    @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotation();
-
-    void setAnnotation(List<Annotation> setAnnotation);
-
     @Relation("HAS_NUMERIC_TYPE")
     NumericType getNumericType();
 
     void setNumericType(NumericType setNumericType);
 
-    // unhandled TerminalAST token: 'boolean'
+    @Relation("HAS_ANNOTATION")
+    List<Annotation> getAnnotation();
+
+    void setAnnotation(List<Annotation> setAnnotation);
+
+    @Relation("HAS_B_O_O_L_E_A_N")
+    TerminalNodeStrings getBOOLEAN();
+
+    void setBOOLEAN(TerminalNodeStrings setBOOLEAN);
+
     @Relation("HAS_TEXT")
     String getText();
 

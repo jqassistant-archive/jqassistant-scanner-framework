@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class JqassistantPluginGenerator {
 
 
-    public static JqassistantPlugin generatePlugin(AstName name, Map<AstName, CompilationUnit> compilationUnitMap) {
+    public static JqassistantPlugin generatePlugin(CleanName name, Map<CleanName, CompilationUnit> compilationUnitMap) {
         JqassistantPlugin jqassistantPlugin = new JqassistantPlugin();
 
         jqassistantPlugin.setName(name.getName());
@@ -34,7 +34,7 @@ public class JqassistantPluginGenerator {
         return classListType;
     }
 
-    private static IdClassListType generateScanner(AstName name, Map<AstName, CompilationUnit> compilationUnitMap) {
+    private static IdClassListType generateScanner(CleanName name, Map<CleanName, CompilationUnit> compilationUnitMap) {
         IdClassListType idClassListType = new IdClassListType();
         List<IdClassType> clazz = idClassListType.getClazz();
 
@@ -45,7 +45,7 @@ public class JqassistantPluginGenerator {
         return idClassListType;
     }
 
-    private static ClassListType generateModel(Map<AstName, CompilationUnit> compilationUnitMap) {
+    private static ClassListType generateModel(Map<CleanName, CompilationUnit> compilationUnitMap) {
         ClassListType classListType = new ClassListType();
         List<String> clazz = classListType.getClazz();
 

@@ -2,26 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeParameter (BLOCK (ALT Identifier (? (BLOCK (ALT constraint)))) (ALT typeParameters)))
+ * public static class TypeParameterContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public ConstraintContext constraint() {
+ *         return getRuleContext(ConstraintContext.class, 0);
+ *     }
+ *
+ *     public TypeParametersContext typeParameters() {
+ *         return getRuleContext(TypeParametersContext.class, 0);
+ *     }
+ *
+ *     public TypeParameterContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeParameter;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterTypeParameter(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitTypeParameter(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeParameter
- *     : Identifier constraint?
- *     | typeParameters
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:81-94
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#typeParameter()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.TypeParameterMapper
  */
 @Generated(
@@ -34,7 +63,6 @@ public interface TypeParameter extends TypeScriptGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
     @Relation("HAS_CONSTRAINT")
     Constraint getConstraint();
 

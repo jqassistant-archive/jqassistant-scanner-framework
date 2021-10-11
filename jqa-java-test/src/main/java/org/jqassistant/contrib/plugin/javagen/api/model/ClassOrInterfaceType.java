@@ -2,29 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE classOrInterfaceType (BLOCK (ALT (BLOCK (ALT classType_lfno_classOrInterfaceType) (ALT interfaceType_lfno_classOrInterfaceType)) (* (BLOCK (ALT classType_lf_classOrInterfaceType) (ALT interfaceType_lf_classOrInterfaceType))))))
+ * public static class ClassOrInterfaceTypeContext extends ParserRuleContext {
+ *
+ *     public ClassType_lfno_classOrInterfaceTypeContext classType_lfno_classOrInterfaceType() {
+ *         return getRuleContext(ClassType_lfno_classOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public InterfaceType_lfno_classOrInterfaceTypeContext interfaceType_lfno_classOrInterfaceType() {
+ *         return getRuleContext(InterfaceType_lfno_classOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public List<ClassType_lf_classOrInterfaceTypeContext> classType_lf_classOrInterfaceType() {
+ *         return getRuleContexts(ClassType_lf_classOrInterfaceTypeContext.class);
+ *     }
+ *
+ *     public ClassType_lf_classOrInterfaceTypeContext classType_lf_classOrInterfaceType(int i) {
+ *         return getRuleContext(ClassType_lf_classOrInterfaceTypeContext.class, i);
+ *     }
+ *
+ *     public List<InterfaceType_lf_classOrInterfaceTypeContext> interfaceType_lf_classOrInterfaceType() {
+ *         return getRuleContexts(InterfaceType_lf_classOrInterfaceTypeContext.class);
+ *     }
+ *
+ *     public InterfaceType_lf_classOrInterfaceTypeContext interfaceType_lf_classOrInterfaceType(int i) {
+ *         return getRuleContext(InterfaceType_lf_classOrInterfaceTypeContext.class, i);
+ *     }
+ *
+ *     public ClassOrInterfaceTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_classOrInterfaceType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterClassOrInterfaceType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitClassOrInterfaceType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * classOrInterfaceType
- * 	:	(	classType_lfno_classOrInterfaceType |	interfaceType_lfno_classOrInterfaceType
- * 		)
- * 		(	classType_lf_classOrInterfaceType |	interfaceType_lf_classOrInterfaceType
- * 		)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:134-159
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#classOrInterfaceType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassOrInterfaceTypeMapper
  */
 @Generated(

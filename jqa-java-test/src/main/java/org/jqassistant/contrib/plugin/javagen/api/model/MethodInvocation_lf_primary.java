@@ -2,25 +2,67 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE methodInvocation_lf_primary (BLOCK (ALT '.' (? (BLOCK (ALT typeArguments))) Identifier '(' (? (BLOCK (ALT argumentList))) ')')))
+ * public static class MethodInvocation_lf_primaryContext extends ParserRuleContext {
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public ArgumentListContext argumentList() {
+ *         return getRuleContext(ArgumentListContext.class, 0);
+ *     }
+ *
+ *     public MethodInvocation_lf_primaryContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_methodInvocation_lf_primary;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterMethodInvocation_lf_primary(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitMethodInvocation_lf_primary(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * methodInvocation_lf_primary
- * 	:	'.' typeArguments? Identifier '(' argumentList? ')'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:3863-3881
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#methodInvocation_lf_primary()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodInvocation_lf_primaryMapper
  */
 @Generated(
@@ -28,26 +70,36 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("MethodInvocation_lf_primary")
 public interface MethodInvocation_lf_primary extends JavaGen {
 
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    @Relation("HAS_TYPE_ARGUMENTS")
-    TypeArguments getTypeArguments();
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
 
-    void setTypeArguments(TypeArguments setTypeArguments);
+    void setDOT(TerminalNodeStrings setDOT);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // unhandled TerminalAST token: '('
-    // optional: ?
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
+    @Relation("HAS_TYPE_ARGUMENTS")
+    TypeArguments getTypeArguments();
+
+    void setTypeArguments(TypeArguments setTypeArguments);
+
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
     void setArgumentList(ArgumentList setArgumentList);
 
-    // unhandled TerminalAST token: ')'
     @Relation("HAS_TEXT")
     String getText();
 

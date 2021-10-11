@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE block (BLOCK (ALT '{' (? (BLOCK (ALT blockStatements))) '}')))
+ * public static class BlockContext extends ParserRuleContext {
+ *
+ *     public TerminalNode LBRACE() {
+ *         return getToken(Java8Parser.LBRACE, 0);
+ *     }
+ *
+ *     public TerminalNode RBRACE() {
+ *         return getToken(Java8Parser.RBRACE, 0);
+ *     }
+ *
+ *     public BlockStatementsContext blockStatements() {
+ *         return getRuleContext(BlockStatementsContext.class, 0);
+ *     }
+ *
+ *     public BlockContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_block;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterBlock(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitBlock(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * block
- * 	:	'{' blockStatements? '}'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2127-2138
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#block()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.BlockMapper
  */
 @Generated(
@@ -28,14 +58,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Block")
 public interface Block extends JavaGen {
 
-    // unhandled TerminalAST token: '{'
-    // optional: ?
+    @Relation("HAS_L_B_R_A_C_E")
+    TerminalNodeStrings getLBRACE();
+
+    void setLBRACE(TerminalNodeStrings setLBRACE);
+
+    @Relation("HAS_R_B_R_A_C_E")
+    TerminalNodeStrings getRBRACE();
+
+    void setRBRACE(TerminalNodeStrings setRBRACE);
+
     @Relation("HAS_BLOCK_STATEMENTS")
     BlockStatements getBlockStatements();
 
     void setBlockStatements(BlockStatements setBlockStatements);
 
-    // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 

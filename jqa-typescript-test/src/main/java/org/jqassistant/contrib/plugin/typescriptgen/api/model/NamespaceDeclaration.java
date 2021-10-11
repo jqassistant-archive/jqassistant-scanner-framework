@@ -2,25 +2,63 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE namespaceDeclaration (BLOCK (ALT Namespace namespaceName '{' (? (BLOCK (ALT statementList))) '}')))
+ * public static class NamespaceDeclarationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Namespace() {
+ *         return getToken(TypeScriptParser.Namespace, 0);
+ *     }
+ *
+ *     public NamespaceNameContext namespaceName() {
+ *         return getRuleContext(NamespaceNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode OpenBrace() {
+ *         return getToken(TypeScriptParser.OpenBrace, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBrace() {
+ *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     }
+ *
+ *     public StatementListContext statementList() {
+ *         return getRuleContext(StatementListContext.class, 0);
+ *     }
+ *
+ *     public NamespaceDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_namespaceDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterNamespaceDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitNamespaceDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * namespaceDeclaration
- *     : Namespace namespaceName '{' statementList? '}'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:1015-1030
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#namespaceDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.NamespaceDeclarationMapper
  */
 @Generated(
@@ -38,14 +76,21 @@ public interface NamespaceDeclaration extends TypeScriptGen {
 
     void setNamespaceName(NamespaceName setNamespaceName);
 
-    // unhandled TerminalAST token: '{'
-    // optional: ?
+    @Relation("HAS_OPEN_BRACE")
+    TerminalNodeStrings getOpenBrace();
+
+    void setOpenBrace(TerminalNodeStrings setOpenBrace);
+
+    @Relation("HAS_CLOSE_BRACE")
+    TerminalNodeStrings getCloseBrace();
+
+    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+
     @Relation("HAS_STATEMENT_LIST")
     StatementList getStatementList();
 
     void setStatementList(StatementList setStatementList);
 
-    // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 

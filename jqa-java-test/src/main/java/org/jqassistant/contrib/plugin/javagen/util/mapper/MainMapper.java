@@ -5,17 +5,18 @@
 //MainMapper.java
 package org.jqassistant.contrib.plugin.javagen.util.mapper;
 
+import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser;
 import org.jqassistant.contrib.plugin.javagen.api.model.*;
-import org.mapstruct.factory.Mappers;
-import org.mapstruct.NullValueCheckStrategy;
-import javax.annotation.Generated;
-import org.mapstruct.Mapper;
-import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
 import org.mapstruct.Context;
-import org.antlr.v4.runtime.tree.TerminalNode;
-import org.antlr.v4.runtime.Token;
-import org.antlr.v4.runtime.CharStream;
+import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.factory.Mappers;
+
+import javax.annotation.Generated;
 
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MapperGenerator")
@@ -487,6 +488,8 @@ public interface MainMapper {
     VariableInitializerList map(@Context() ScannerContext scannerContext, Java8Parser.VariableInitializerListContext parserContext);
 
     VariableModifier map(@Context() ScannerContext scannerContext, Java8Parser.VariableModifierContext parserContext);
+
+    VisibilityModifier map(@Context() ScannerContext scannerContext, Java8Parser.VisibilityModifierContext parserContext);
 
     WhileStatement map(@Context() ScannerContext scannerContext, Java8Parser.WhileStatementContext parserContext);
 

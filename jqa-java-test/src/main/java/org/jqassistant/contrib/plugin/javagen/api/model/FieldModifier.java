@@ -2,32 +2,67 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE fieldModifier (BLOCK (ALT annotation) (ALT 'public') (ALT 'protected') (ALT 'private') (ALT 'static') (ALT 'final') (ALT 'transient') (ALT 'volatile')))
+ * public static class FieldModifierContext extends ParserRuleContext {
+ *
+ *     public AnnotationContext annotation() {
+ *         return getRuleContext(AnnotationContext.class, 0);
+ *     }
+ *
+ *     public VisibilityModifierContext visibilityModifier() {
+ *         return getRuleContext(VisibilityModifierContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode STATIC() {
+ *         return getToken(Java8Parser.STATIC, 0);
+ *     }
+ *
+ *     public TerminalNode FINAL() {
+ *         return getToken(Java8Parser.FINAL, 0);
+ *     }
+ *
+ *     public TerminalNode TRANSIENT() {
+ *         return getToken(Java8Parser.TRANSIENT, 0);
+ *     }
+ *
+ *     public TerminalNode VOLATILE() {
+ *         return getToken(Java8Parser.VOLATILE, 0);
+ *     }
+ *
+ *     public FieldModifierContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_fieldModifier;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterFieldModifier(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitFieldModifier(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * fieldModifier
- * 	:	annotation
- * 	|	'public'
- * 	|	'protected'
- * 	|	'private'
- * 	|	'static'
- * 	|	'final'
- * 	|	'transient'
- * 	|	'volatile'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:859-893
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#fieldModifier()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.FieldModifierMapper
  */
 @Generated(
@@ -40,13 +75,31 @@ public interface FieldModifier extends JavaGen {
 
     void setAnnotation(Annotation setAnnotation);
 
-    // unhandled TerminalAST token: 'public'
-    // unhandled TerminalAST token: 'protected'
-    // unhandled TerminalAST token: 'private'
-    // unhandled TerminalAST token: 'static'
-    // unhandled TerminalAST token: 'final'
-    // unhandled TerminalAST token: 'transient'
-    // unhandled TerminalAST token: 'volatile'
+    @Relation("HAS_VISIBILITY_MODIFIER")
+    VisibilityModifier getVisibilityModifier();
+
+    void setVisibilityModifier(VisibilityModifier setVisibilityModifier);
+
+    @Relation("HAS_S_T_A_T_I_C")
+    TerminalNodeStrings getSTATIC();
+
+    void setSTATIC(TerminalNodeStrings setSTATIC);
+
+    @Relation("HAS_F_I_N_A_L")
+    TerminalNodeStrings getFINAL();
+
+    void setFINAL(TerminalNodeStrings setFINAL);
+
+    @Relation("HAS_T_R_A_N_S_I_E_N_T")
+    TerminalNodeStrings getTRANSIENT();
+
+    void setTRANSIENT(TerminalNodeStrings setTRANSIENT);
+
+    @Relation("HAS_V_O_L_A_T_I_L_E")
+    TerminalNodeStrings getVOLATILE();
+
+    void setVOLATILE(TerminalNodeStrings setVOLATILE);
+
     @Relation("HAS_TEXT")
     String getText();
 

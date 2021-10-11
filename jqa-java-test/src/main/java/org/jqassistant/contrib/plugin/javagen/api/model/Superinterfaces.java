@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE superinterfaces (BLOCK (ALT 'implements' interfaceTypeList)))
+ * public static class SuperinterfacesContext extends ParserRuleContext {
+ *
+ *     public TerminalNode IMPLEMENTS() {
+ *         return getToken(Java8Parser.IMPLEMENTS, 0);
+ *     }
+ *
+ *     public InterfaceTypeListContext interfaceTypeList() {
+ *         return getRuleContext(InterfaceTypeListContext.class, 0);
+ *     }
+ *
+ *     public SuperinterfacesContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_superinterfaces;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterSuperinterfaces(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitSuperinterfaces(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * superinterfaces
- * 	:	'implements' interfaceTypeList
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:762-770
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#superinterfaces()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.SuperinterfacesMapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Superinterfaces")
 public interface Superinterfaces extends JavaGen {
 
-    // unhandled TerminalAST token: 'implements'
+    @Relation("HAS_I_M_P_L_E_M_E_N_T_S")
+    TerminalNodeStrings getIMPLEMENTS();
+
+    void setIMPLEMENTS(TerminalNodeStrings setIMPLEMENTS);
+
     @Relation("HAS_INTERFACE_TYPE_LIST")
     InterfaceTypeList getInterfaceTypeList();
 

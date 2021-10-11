@@ -2,26 +2,52 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE catches (BLOCK (ALT catchClause (* (BLOCK (ALT catchClause))))))
+ * public static class CatchesContext extends ParserRuleContext {
+ *
+ *     public List<CatchClauseContext> catchClause() {
+ *         return getRuleContexts(CatchClauseContext.class);
+ *     }
+ *
+ *     public CatchClauseContext catchClause(int i) {
+ *         return getRuleContext(CatchClauseContext.class, i);
+ *     }
+ *
+ *     public CatchesContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_catches;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterCatches(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitCatches(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * catches
- * 	:	catchClause catchClause*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2842-2851
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#catches()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.CatchesMapper
  */
 @Generated(

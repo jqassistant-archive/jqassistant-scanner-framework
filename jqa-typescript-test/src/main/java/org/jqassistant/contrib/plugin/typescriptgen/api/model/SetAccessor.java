@@ -2,25 +2,79 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE setAccessor (BLOCK (ALT setter '(' (BLOCK (ALT Identifier) (ALT bindingPattern)) (? (BLOCK (ALT typeAnnotation))) ')' '{' functionBody '}')))
+ * public static class SetAccessorContext extends ParserRuleContext {
+ *
+ *     public SetterContext setter() {
+ *         return getRuleContext(SetterContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode OpenParen() {
+ *         return getToken(TypeScriptParser.OpenParen, 0);
+ *     }
+ *
+ *     public TerminalNode CloseParen() {
+ *         return getToken(TypeScriptParser.CloseParen, 0);
+ *     }
+ *
+ *     public TerminalNode OpenBrace() {
+ *         return getToken(TypeScriptParser.OpenBrace, 0);
+ *     }
+ *
+ *     public FunctionBodyContext functionBody() {
+ *         return getRuleContext(FunctionBodyContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBrace() {
+ *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     }
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
+ *     public BindingPatternContext bindingPattern() {
+ *         return getRuleContext(BindingPatternContext.class, 0);
+ *     }
+ *
+ *     public TypeAnnotationContext typeAnnotation() {
+ *         return getRuleContext(TypeAnnotationContext.class, 0);
+ *     }
+ *
+ *     public SetAccessorContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_setAccessor;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterSetAccessor(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitSetAccessor(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * setAccessor
- *     : setter '(' ( Identifier | bindingPattern) typeAnnotation? ')' '{' functionBody '}'
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2590-2618
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#setAccessor()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.SetAccessorMapper
  */
 @Generated(
@@ -33,7 +87,31 @@ public interface SetAccessor extends TypeScriptGen {
 
     void setSetter(Setter setSetter);
 
-    // unhandled TerminalAST token: '('
+    @Relation("HAS_OPEN_PAREN")
+    TerminalNodeStrings getOpenParen();
+
+    void setOpenParen(TerminalNodeStrings setOpenParen);
+
+    @Relation("HAS_CLOSE_PAREN")
+    TerminalNodeStrings getCloseParen();
+
+    void setCloseParen(TerminalNodeStrings setCloseParen);
+
+    @Relation("HAS_OPEN_BRACE")
+    TerminalNodeStrings getOpenBrace();
+
+    void setOpenBrace(TerminalNodeStrings setOpenBrace);
+
+    @Relation("HAS_FUNCTION_BODY")
+    FunctionBody getFunctionBody();
+
+    void setFunctionBody(FunctionBody setFunctionBody);
+
+    @Relation("HAS_CLOSE_BRACE")
+    TerminalNodeStrings getCloseBrace();
+
+    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
@@ -44,20 +122,11 @@ public interface SetAccessor extends TypeScriptGen {
 
     void setBindingPattern(BindingPattern setBindingPattern);
 
-    // optional: ?
     @Relation("HAS_TYPE_ANNOTATION")
     TypeAnnotation getTypeAnnotation();
 
     void setTypeAnnotation(TypeAnnotation setTypeAnnotation);
 
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: '{'
-    @Relation("HAS_FUNCTION_BODY")
-    FunctionBody getFunctionBody();
-
-    void setFunctionBody(FunctionBody setFunctionBody);
-
-    // unhandled TerminalAST token: '}'
     @Relation("HAS_TEXT")
     String getText();
 

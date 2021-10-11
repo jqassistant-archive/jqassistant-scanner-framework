@@ -2,25 +2,43 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE primaryNoNewArray_lf_arrayAccess (BLOCK (ALT EPSILON)))
+ * public static class PrimaryNoNewArray_lf_arrayAccessContext extends ParserRuleContext {
+ *
+ *     public PrimaryNoNewArray_lf_arrayAccessContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_primaryNoNewArray_lf_arrayAccess;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterPrimaryNoNewArray_lf_arrayAccess(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitPrimaryNoNewArray_lf_arrayAccess(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * primaryNoNewArray_lf_arrayAccess
- * 	:
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:3068-3072
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#primaryNoNewArray_lf_arrayAccess()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimaryNoNewArray_lf_arrayAccessMapper
  */
 @Generated(
@@ -28,8 +46,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("PrimaryNoNewArray_lf_arrayAccess")
 public interface PrimaryNoNewArray_lf_arrayAccess extends JavaGen {
 
-    // unhandled AST type: 83 - list: false : EPSILON
-    // Avoided Token: EPSILON
     @Relation("HAS_TEXT")
     String getText();
 

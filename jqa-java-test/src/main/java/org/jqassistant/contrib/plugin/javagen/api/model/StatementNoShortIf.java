@@ -2,29 +2,63 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE statementNoShortIf (BLOCK (ALT statementWithoutTrailingSubstatement) (ALT labeledStatementNoShortIf) (ALT ifThenElseStatementNoShortIf) (ALT whileStatementNoShortIf) (ALT forStatementNoShortIf)))
+ * public static class StatementNoShortIfContext extends ParserRuleContext {
+ *
+ *     public StatementWithoutTrailingSubstatementContext statementWithoutTrailingSubstatement() {
+ *         return getRuleContext(StatementWithoutTrailingSubstatementContext.class, 0);
+ *     }
+ *
+ *     public LabeledStatementNoShortIfContext labeledStatementNoShortIf() {
+ *         return getRuleContext(LabeledStatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public IfThenElseStatementNoShortIfContext ifThenElseStatementNoShortIf() {
+ *         return getRuleContext(IfThenElseStatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public WhileStatementNoShortIfContext whileStatementNoShortIf() {
+ *         return getRuleContext(WhileStatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public ForStatementNoShortIfContext forStatementNoShortIf() {
+ *         return getRuleContext(ForStatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public StatementNoShortIfContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_statementNoShortIf;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterStatementNoShortIf(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitStatementNoShortIf(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * statementNoShortIf
- * 	:	statementWithoutTrailingSubstatement
- * 	|	labeledStatementNoShortIf
- * 	|	ifThenElseStatementNoShortIf
- * 	|	whileStatementNoShortIf
- * 	|	forStatementNoShortIf
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2216-2238
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#statementNoShortIf()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.StatementNoShortIfMapper
  */
 @Generated(

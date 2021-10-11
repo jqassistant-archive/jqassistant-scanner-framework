@@ -2,30 +2,60 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE primary (BLOCK (ALT (BLOCK (ALT primaryNoNewArray_lfno_primary) (ALT arrayCreationExpression)) (* (BLOCK (ALT primaryNoNewArray_lf_primary))))))
+ * public static class PrimaryContext extends ParserRuleContext {
+ *
+ *     public PrimaryNoNewArray_lfno_primaryContext primaryNoNewArray_lfno_primary() {
+ *         return getRuleContext(PrimaryNoNewArray_lfno_primaryContext.class, 0);
+ *     }
+ *
+ *     public ArrayCreationExpressionContext arrayCreationExpression() {
+ *         return getRuleContext(ArrayCreationExpressionContext.class, 0);
+ *     }
+ *
+ *     public List<PrimaryNoNewArray_lf_primaryContext> primaryNoNewArray_lf_primary() {
+ *         return getRuleContexts(PrimaryNoNewArray_lf_primaryContext.class);
+ *     }
+ *
+ *     public PrimaryNoNewArray_lf_primaryContext primaryNoNewArray_lf_primary(int i) {
+ *         return getRuleContext(PrimaryNoNewArray_lf_primaryContext.class, i);
+ *     }
+ *
+ *     public PrimaryContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_primary;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterPrimary(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitPrimary(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * primary
- * 	:	(	primaryNoNewArray_lfno_primary
- * 		|	arrayCreationExpression
- * 		)
- * 		(	primaryNoNewArray_lf_primary
- * 		)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2974-2995
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#primary()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimaryMapper
  */
 @Generated(

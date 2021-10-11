@@ -2,27 +2,68 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE classType (BLOCK (ALT (* (BLOCK (ALT annotation))) Identifier (? (BLOCK (ALT typeArguments)))) (ALT classOrInterfaceType '.' (* (BLOCK (ALT annotation))) Identifier (? (BLOCK (ALT typeArguments))))))
+ * public static class ClassTypeContext extends ParserRuleContext {
+ *
+ *     public TerminalNode Identifier() {
+ *         return getToken(Java8Parser.Identifier, 0);
+ *     }
+ *
+ *     public List<AnnotationContext> annotation() {
+ *         return getRuleContexts(AnnotationContext.class);
+ *     }
+ *
+ *     public AnnotationContext annotation(int i) {
+ *         return getRuleContext(AnnotationContext.class, i);
+ *     }
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public ClassOrInterfaceTypeContext classOrInterfaceType() {
+ *         return getRuleContext(ClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public ClassTypeContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_classType;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterClassType(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitClassType(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * classType
- * 	:	annotation* Identifier typeArguments?
- * 	|	classOrInterfaceType '.' annotation* Identifier typeArguments?
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:161-187
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#classType()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassTypeMapper
  */
 @Generated(
@@ -30,17 +71,16 @@ import java.util.List;
 @Label("ClassType")
 public interface ClassType extends JavaGen {
 
-    @Relation("HAS_ANNOTATION")
-    List<Annotation> getAnnotation();
-
-    void setAnnotation(List<Annotation> setAnnotation);
-
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    // optional: ?
+    @Relation("HAS_ANNOTATION")
+    List<Annotation> getAnnotation();
+
+    void setAnnotation(List<Annotation> setAnnotation);
+
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
@@ -51,8 +91,11 @@ public interface ClassType extends JavaGen {
 
     void setClassOrInterfaceType(ClassOrInterfaceType setClassOrInterfaceType);
 
-    // unhandled TerminalAST token: '.'
-    // optional: ?
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
+
+    void setDOT(TerminalNodeStrings setDOT);
+
     @Relation("HAS_TEXT")
     String getText();
 

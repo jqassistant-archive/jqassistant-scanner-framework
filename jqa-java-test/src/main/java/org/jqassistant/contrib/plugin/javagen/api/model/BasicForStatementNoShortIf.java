@@ -2,25 +2,80 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
+import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE basicForStatementNoShortIf (BLOCK (ALT 'for' '(' (? (BLOCK (ALT forInit))) ';' (? (BLOCK (ALT expression))) ';' (? (BLOCK (ALT forUpdate))) ')' statementNoShortIf)))
+ * public static class BasicForStatementNoShortIfContext extends ParserRuleContext {
+ *
+ *     public TerminalNode FOR() {
+ *         return getToken(Java8Parser.FOR, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public List<TerminalNode> SEMI() {
+ *         return getTokens(Java8Parser.SEMI);
+ *     }
+ *
+ *     public TerminalNode SEMI(int i) {
+ *         return getToken(Java8Parser.SEMI, i);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public StatementNoShortIfContext statementNoShortIf() {
+ *         return getRuleContext(StatementNoShortIfContext.class, 0);
+ *     }
+ *
+ *     public ForInitContext forInit() {
+ *         return getRuleContext(ForInitContext.class, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public ForUpdateContext forUpdate() {
+ *         return getRuleContext(ForUpdateContext.class, 0);
+ *     }
+ *
+ *     public BasicForStatementNoShortIfContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_basicForStatementNoShortIf;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterBasicForStatementNoShortIf(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitBasicForStatementNoShortIf(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * basicForStatementNoShortIf
- * 	:	'for' '(' forInit? ';' expression? ';' forUpdate? ')' statementNoShortIf
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2636-2661
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#basicForStatementNoShortIf()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.BasicForStatementNoShortIfMapper
  */
 @Generated(
@@ -28,33 +83,45 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("BasicForStatementNoShortIf")
 public interface BasicForStatementNoShortIf extends JavaGen {
 
-    // unhandled TerminalAST token: 'for'
-    // unhandled TerminalAST token: '('
-    // optional: ?
+    @Relation("HAS_F_O_R")
+    TerminalNodeStrings getFOR();
+
+    void setFOR(TerminalNodeStrings setFOR);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
+    @Relation("HAS_S_E_M_I")
+    List<TerminalNodeStrings> getSEMI();
+
+    void setSEMI(List<TerminalNodeStrings> setSEMI);
+
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
+    @Relation("HAS_STATEMENT_NO_SHORT_IF")
+    StatementNoShortIf getStatementNoShortIf();
+
+    void setStatementNoShortIf(StatementNoShortIf setStatementNoShortIf);
+
     @Relation("HAS_FOR_INIT")
     ForInit getForInit();
 
     void setForInit(ForInit setForInit);
 
-    // unhandled TerminalAST token: ';'
-    // optional: ?
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ';'
-    // optional: ?
     @Relation("HAS_FOR_UPDATE")
     ForUpdate getForUpdate();
 
     void setForUpdate(ForUpdate setForUpdate);
-
-    // unhandled TerminalAST token: ')'
-    @Relation("HAS_STATEMENT_NO_SHORT_IF")
-    StatementNoShortIf getStatementNoShortIf();
-
-    void setStatementNoShortIf(StatementNoShortIf setStatementNoShortIf);
 
     @Relation("HAS_TEXT")
     String getText();

@@ -2,27 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE typeDeclaration (BLOCK (ALT classDeclaration) (ALT interfaceDeclaration) (ALT ';')))
+ * public static class TypeDeclarationContext extends ParserRuleContext {
+ *
+ *     public ClassDeclarationContext classDeclaration() {
+ *         return getRuleContext(ClassDeclarationContext.class, 0);
+ *     }
+ *
+ *     public InterfaceDeclarationContext interfaceDeclaration() {
+ *         return getRuleContext(InterfaceDeclarationContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public TypeDeclarationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_typeDeclaration;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterTypeDeclaration(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitTypeDeclaration(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * typeDeclaration
- * 	:	classDeclaration
- * 	|	interfaceDeclaration
- * 	|	';'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:635-649
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#typeDeclaration()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TypeDeclarationMapper
  */
 @Generated(
@@ -40,7 +68,11 @@ public interface TypeDeclaration extends JavaGen {
 
     void setInterfaceDeclaration(InterfaceDeclaration setInterfaceDeclaration);
 
-    // unhandled TerminalAST token: ';'
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
     @Relation("HAS_TEXT")
     String getText();
 

@@ -2,28 +2,67 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE arrayCreationExpression (BLOCK (ALT 'new' primitiveType dimExprs (? (BLOCK (ALT dims)))) (ALT 'new' classOrInterfaceType dimExprs (? (BLOCK (ALT dims)))) (ALT 'new' primitiveType dims arrayInitializer) (ALT 'new' classOrInterfaceType dims arrayInitializer)))
+ * public static class ArrayCreationExpressionContext extends ParserRuleContext {
+ *
+ *     public TerminalNode NEW() {
+ *         return getToken(Java8Parser.NEW, 0);
+ *     }
+ *
+ *     public PrimitiveTypeContext primitiveType() {
+ *         return getRuleContext(PrimitiveTypeContext.class, 0);
+ *     }
+ *
+ *     public DimExprsContext dimExprs() {
+ *         return getRuleContext(DimExprsContext.class, 0);
+ *     }
+ *
+ *     public DimsContext dims() {
+ *         return getRuleContext(DimsContext.class, 0);
+ *     }
+ *
+ *     public ClassOrInterfaceTypeContext classOrInterfaceType() {
+ *         return getRuleContext(ClassOrInterfaceTypeContext.class, 0);
+ *     }
+ *
+ *     public ArrayInitializerContext arrayInitializer() {
+ *         return getRuleContext(ArrayInitializerContext.class, 0);
+ *     }
+ *
+ *     public ArrayCreationExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_arrayCreationExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterArrayCreationExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitArrayCreationExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * arrayCreationExpression
- * 	:	'new' primitiveType dimExprs dims?
- * 	|	'new' classOrInterfaceType dimExprs dims?
- * 	|	'new' primitiveType dims arrayInitializer
- * 	|	'new' classOrInterfaceType dims arrayInitializer
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4155-4199
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#arrayCreationExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ArrayCreationExpressionMapper
  */
 @Generated(
@@ -31,7 +70,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ArrayCreationExpression")
 public interface ArrayCreationExpression extends JavaGen {
 
-    // unhandled TerminalAST token: 'new'
+    @Relation("HAS_N_E_W")
+    TerminalNodeStrings getNEW();
+
+    void setNEW(TerminalNodeStrings setNEW);
+
     @Relation("HAS_PRIMITIVE_TYPE")
     PrimitiveType getPrimitiveType();
 
@@ -42,26 +85,21 @@ public interface ArrayCreationExpression extends JavaGen {
 
     void setDimExprs(DimExprs setDimExprs);
 
-    // optional: ?
     @Relation("HAS_DIMS")
     Dims getDims();
 
     void setDims(Dims setDims);
 
-    // unhandled TerminalAST token: 'new'
     @Relation("HAS_CLASS_OR_INTERFACE_TYPE")
     ClassOrInterfaceType getClassOrInterfaceType();
 
     void setClassOrInterfaceType(ClassOrInterfaceType setClassOrInterfaceType);
 
-    // optional: ?
-    // unhandled TerminalAST token: 'new'
     @Relation("HAS_ARRAY_INITIALIZER")
     ArrayInitializer getArrayInitializer();
 
     void setArrayInitializer(ArrayInitializer setArrayInitializer);
 
-    // unhandled TerminalAST token: 'new'
     @Relation("HAS_TEXT")
     String getText();
 

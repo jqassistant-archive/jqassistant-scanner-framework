@@ -2,25 +2,51 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE throws_ (BLOCK (ALT 'throws' exceptionTypeList)))
+ * public static class Throws_Context extends ParserRuleContext {
+ *
+ *     public TerminalNode THROWS() {
+ *         return getToken(Java8Parser.THROWS, 0);
+ *     }
+ *
+ *     public ExceptionTypeListContext exceptionTypeList() {
+ *         return getRuleContext(ExceptionTypeListContext.class, 0);
+ *     }
+ *
+ *     public Throws_Context(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_throws_;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterThrows_(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitThrows_(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * throws_
- * 	:	'throws' exceptionTypeList
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1348-1356
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#throws_()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.Throws_Mapper
  */
 @Generated(
@@ -28,7 +54,11 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("Throws_")
 public interface Throws_ extends JavaGen {
 
-    // unhandled TerminalAST token: 'throws'
+    @Relation("HAS_T_H_R_O_W_S")
+    TerminalNodeStrings getTHROWS();
+
+    void setTHROWS(TerminalNodeStrings setTHROWS);
+
     @Relation("HAS_EXCEPTION_TYPE_LIST")
     ExceptionTypeList getExceptionTypeList();
 

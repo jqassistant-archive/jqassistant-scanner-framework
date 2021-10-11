@@ -2,28 +2,83 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE explicitConstructorInvocation (BLOCK (ALT (? (BLOCK (ALT typeArguments))) 'this' '(' (? (BLOCK (ALT argumentList))) ')' ';') (ALT (? (BLOCK (ALT typeArguments))) 'super' '(' (? (BLOCK (ALT argumentList))) ')' ';') (ALT expressionName '.' (? (BLOCK (ALT typeArguments))) 'super' '(' (? (BLOCK (ALT argumentList))) ')' ';') (ALT primary '.' (? (BLOCK (ALT typeArguments))) 'super' '(' (? (BLOCK (ALT argumentList))) ')' ';')))
+ * public static class ExplicitConstructorInvocationContext extends ParserRuleContext {
+ *
+ *     public TerminalNode THIS() {
+ *         return getToken(Java8Parser.THIS, 0);
+ *     }
+ *
+ *     public TerminalNode LPAREN() {
+ *         return getToken(Java8Parser.LPAREN, 0);
+ *     }
+ *
+ *     public TerminalNode RPAREN() {
+ *         return getToken(Java8Parser.RPAREN, 0);
+ *     }
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public TypeArgumentsContext typeArguments() {
+ *         return getRuleContext(TypeArgumentsContext.class, 0);
+ *     }
+ *
+ *     public ArgumentListContext argumentList() {
+ *         return getRuleContext(ArgumentListContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode SUPER() {
+ *         return getToken(Java8Parser.SUPER, 0);
+ *     }
+ *
+ *     public ExpressionNameContext expressionName() {
+ *         return getRuleContext(ExpressionNameContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode DOT() {
+ *         return getToken(Java8Parser.DOT, 0);
+ *     }
+ *
+ *     public PrimaryContext primary() {
+ *         return getRuleContext(PrimaryContext.class, 0);
+ *     }
+ *
+ *     public ExplicitConstructorInvocationContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_explicitConstructorInvocation;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterExplicitConstructorInvocation(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitExplicitConstructorInvocation(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * explicitConstructorInvocation
- * 	:	typeArguments? 'this' '(' argumentList? ')' ';'
- * 	|	typeArguments? 'super' '(' argumentList? ')' ';'
- * 	|	expressionName '.' typeArguments? 'super' '(' argumentList? ')' ';'
- * 	|	primary '.' typeArguments? 'super' '(' argumentList? ')' ';'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:1493-1567
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#explicitConstructorInvocation()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ExplicitConstructorInvocationMapper
  */
 @Generated(
@@ -31,52 +86,56 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ExplicitConstructorInvocation")
 public interface ExplicitConstructorInvocation extends JavaGen {
 
-    // optional: ?
+    @Relation("HAS_T_H_I_S")
+    TerminalNodeStrings getTHIS();
+
+    void setTHIS(TerminalNodeStrings setTHIS);
+
+    @Relation("HAS_L_P_A_R_E_N")
+    TerminalNodeStrings getLPAREN();
+
+    void setLPAREN(TerminalNodeStrings setLPAREN);
+
+    @Relation("HAS_R_P_A_R_E_N")
+    TerminalNodeStrings getRPAREN();
+
+    void setRPAREN(TerminalNodeStrings setRPAREN);
+
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
     @Relation("HAS_TYPE_ARGUMENTS")
     TypeArguments getTypeArguments();
 
     void setTypeArguments(TypeArguments setTypeArguments);
 
-    // unhandled TerminalAST token: 'this'
-    // unhandled TerminalAST token: '('
-    // optional: ?
     @Relation("HAS_ARGUMENT_LIST")
     ArgumentList getArgumentList();
 
     void setArgumentList(ArgumentList setArgumentList);
 
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: ';'
-    // optional: ?
-    // unhandled TerminalAST token: 'super'
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: ';'
+    @Relation("HAS_S_U_P_E_R")
+    TerminalNodeStrings getSUPER();
+
+    void setSUPER(TerminalNodeStrings setSUPER);
+
     @Relation("HAS_EXPRESSION_NAME")
     ExpressionName getExpressionName();
 
     void setExpressionName(ExpressionName setExpressionName);
 
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    // unhandled TerminalAST token: 'super'
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: ';'
+    @Relation("HAS_D_O_T")
+    TerminalNodeStrings getDOT();
+
+    void setDOT(TerminalNodeStrings setDOT);
+
     @Relation("HAS_PRIMARY")
     Primary getPrimary();
 
     void setPrimary(Primary setPrimary);
 
-    // unhandled TerminalAST token: '.'
-    // optional: ?
-    // unhandled TerminalAST token: 'super'
-    // unhandled TerminalAST token: '('
-    // optional: ?
-    // unhandled TerminalAST token: ')'
-    // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 

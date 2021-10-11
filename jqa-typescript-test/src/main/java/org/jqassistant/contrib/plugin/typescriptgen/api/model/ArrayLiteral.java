@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE arrayLiteral (BLOCK (ALT (BLOCK (ALT '[' (? (BLOCK (ALT elementList))) ']')))))
+ * public static class ArrayLiteralContext extends ParserRuleContext {
+ *
+ *     public TerminalNode OpenBracket() {
+ *         return getToken(TypeScriptParser.OpenBracket, 0);
+ *     }
+ *
+ *     public TerminalNode CloseBracket() {
+ *         return getToken(TypeScriptParser.CloseBracket, 0);
+ *     }
+ *
+ *     public ElementListContext elementList() {
+ *         return getRuleContext(ElementListContext.class, 0);
+ *     }
+ *
+ *     public ArrayLiteralContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_arrayLiteral;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).enterArrayLiteral(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof TypeScriptParserListener)
+ *             ((TypeScriptParserListener) listener).exitArrayLiteral(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * arrayLiteral
- *     : ('[' elementList? ']')
- *     ;
- * </pre>
- *
- * Source Grammar: <a href="../TypeScriptParser.g4">TypeScriptParser.g4</a>:2412-2425
- * @see org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser#arrayLiteral()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptLexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\TypeScriptParser.g4
  * @see org.jqassistant.contrib.plugin.typescriptgen.util.mapper.ArrayLiteralMapper
  */
 @Generated(
@@ -28,14 +58,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ArrayLiteral")
 public interface ArrayLiteral extends TypeScriptGen {
 
-    // unhandled TerminalAST token: '['
-    // optional: ?
+    @Relation("HAS_OPEN_BRACKET")
+    TerminalNodeStrings getOpenBracket();
+
+    void setOpenBracket(TerminalNodeStrings setOpenBracket);
+
+    @Relation("HAS_CLOSE_BRACKET")
+    TerminalNodeStrings getCloseBracket();
+
+    void setCloseBracket(TerminalNodeStrings setCloseBracket);
+
     @Relation("HAS_ELEMENT_LIST")
     ElementList getElementList();
 
     void setElementList(ElementList setElementList);
 
-    // unhandled TerminalAST token: ']'
     @Relation("HAS_TEXT")
     String getText();
 

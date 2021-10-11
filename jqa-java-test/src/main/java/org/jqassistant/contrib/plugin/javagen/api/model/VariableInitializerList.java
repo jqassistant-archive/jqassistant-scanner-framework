@@ -2,26 +2,60 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 import java.util.List;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE variableInitializerList (BLOCK (ALT variableInitializer (* (BLOCK (ALT ',' variableInitializer))))))
+ * public static class VariableInitializerListContext extends ParserRuleContext {
+ *
+ *     public List<VariableInitializerContext> variableInitializer() {
+ *         return getRuleContexts(VariableInitializerContext.class);
+ *     }
+ *
+ *     public VariableInitializerContext variableInitializer(int i) {
+ *         return getRuleContext(VariableInitializerContext.class, i);
+ *     }
+ *
+ *     public List<TerminalNode> COMMA() {
+ *         return getTokens(Java8Parser.COMMA);
+ *     }
+ *
+ *     public TerminalNode COMMA(int i) {
+ *         return getToken(Java8Parser.COMMA, i);
+ *     }
+ *
+ *     public VariableInitializerListContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_variableInitializerList;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterVariableInitializerList(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitVariableInitializerList(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * variableInitializerList
- * 	:	variableInitializer (',' variableInitializer)*
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2110-2123
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#variableInitializerList()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.VariableInitializerListMapper
  */
 @Generated(
@@ -29,11 +63,15 @@ import java.util.List;
 @Label("VariableInitializerList")
 public interface VariableInitializerList extends JavaGen {
 
-    // unhandled TerminalAST token: ','
     @Relation("HAS_VARIABLE_INITIALIZER")
     List<VariableInitializer> getVariableInitializer();
 
     void setVariableInitializer(List<VariableInitializer> setVariableInitializer);
+
+    @Relation("HAS_C_O_M_M_A")
+    List<TerminalNodeStrings> getCOMMA();
+
+    void setCOMMA(List<TerminalNodeStrings> setCOMMA);
 
     @Relation("HAS_TEXT")
     String getText();

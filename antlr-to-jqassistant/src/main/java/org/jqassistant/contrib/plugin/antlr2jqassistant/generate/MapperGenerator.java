@@ -35,13 +35,13 @@ public class MapperGenerator {
         this.baseDescriptorGenerator = baseDescriptorGenerator;
     }
 
-    public static AstName getMapperName(String modelName) {
-        return new AstName(modelName + "Mapper");
+    public static CleanName getMapperName(String modelName) {
+        return new CleanName(modelName + "Mapper");
     }
 
-    public Map<AstName, CompilationUnit> generateFromApiModel(Map<AstName, CompilationUnit> apiModelCompilationUnitMap) {
+    public Map<CleanName, CompilationUnit> generateFromApiModel(Map<CleanName, CompilationUnit> apiModelCompilationUnitMap) {
         System.out.println(new Date() + " Starting Mapper Generation");
-        Map<AstName, CompilationUnit> mapperCompilationUnitMap = new TreeMap<>();
+        Map<CleanName, CompilationUnit> mapperCompilationUnitMap = new TreeMap<>();
 
 //        for (Map.Entry<String, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
 //            mapperCompilationUnitMap.putAll(generateModelToContextMapper(entry.getKey(), entry.getValue()));
@@ -54,7 +54,7 @@ public class MapperGenerator {
         return mapperCompilationUnitMap;
     }
 
-    public Map<AstName, CompilationUnit> generateSingleMapperFromApiModel(Map<AstName, CompilationUnit> apiModelCompilationUnitMap) {
+    public Map<CleanName, CompilationUnit> generateSingleMapperFromApiModel(Map<CleanName, CompilationUnit> apiModelCompilationUnitMap) {
         System.out.println(new Date() + " Starting Single Mapper Generation");
 
         CompilationUnit compilationUnit = new CompilationUnit();
@@ -64,7 +64,7 @@ public class MapperGenerator {
         compilationUnit.addImport(Mappers.class);
         compilationUnit.addImport(NullValueCheckStrategy.class);
 
-        AstName mainMapper = getMapperName("Main");
+        CleanName mainMapper = getMapperName("Main");
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(mainMapper.getName());
         TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
@@ -74,8 +74,8 @@ public class MapperGenerator {
         mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
         mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
 
-        for (Map.Entry<AstName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
-            AstName modelName = entry.getKey();
+        for (Map.Entry<CleanName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
+            CleanName modelName = entry.getKey();
             if (!modelName.getName().equalsIgnoreCase(ApiModelGenerator.TERMINAL_NODE_CLASS)) {
                 compilationUnit.addImport(Main.modelPackage + "." + modelName);
                 MethodDeclaration mapMethodDeclaration = classDeclaration.addMethod("map").removeBody();
@@ -83,8 +83,8 @@ public class MapperGenerator {
                 mapMethodDeclaration
                         .addAndGetParameter(ScannerContext.class, "scannerContext")
                         .addAnnotation(Context.class);
-                mapMethodDeclaration
-                        .addParameter(Main.parserName + "Parser." + modelName.asUpperCamel(modelName.getOriginal()) + "Context", "parserContext");
+                mapMethodDeclaration.addParameter(Main.parserName + "Parser." + modelName.asUpperCamel(modelName.getOriginal()), "parserContext");
+
             }
         }
 
@@ -147,12 +147,12 @@ public class MapperGenerator {
     }
 
 
-    private Map<AstName, CompilationUnit> generateDescriptorFactory() {
+    private Map<CleanName, CompilationUnit> generateDescriptorFactory() {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
         compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
-        AstName name = new AstName("DescriptorFactory");
+        CleanName name = new CleanName("DescriptorFactory");
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass(name.getName());
 
         NodeList<ClassOrInterfaceType> typeBound = new NodeList<>(new ClassOrInterfaceType().setName(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME));
@@ -181,7 +181,7 @@ public class MapperGenerator {
         return Collections.singletonMap(name, compilationUnit);
     }
 
-    private Map<AstName, CompilationUnit> generateModelToContextMapper(String modelName, CompilationUnit apiModel) {
+    private Map<CleanName, CompilationUnit> generateModelToContextMapper(String modelName, CompilationUnit apiModel) {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
 
@@ -190,7 +190,7 @@ public class MapperGenerator {
         compilationUnit.addImport("org.mapstruct.factory.Mappers");
 //        compilationUnit.addImport("org.jqassistant.contrib.plugin.javagen.util.CycleAvoidingMappingContext");
 
-        AstName name = getMapperName(modelName);
+        CleanName name = getMapperName(modelName);
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name.getName());
         TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
@@ -213,7 +213,7 @@ public class MapperGenerator {
         return Collections.singletonMap(name, compilationUnit);
     }
 
-    private void addStaticInstance(ClassOrInterfaceDeclaration classDeclaration, AstName name) {
+    private void addStaticInstance(ClassOrInterfaceDeclaration classDeclaration, CleanName name) {
         FieldDeclaration fieldDeclaration = classDeclaration
                 .addField(name.getName(), "INSTANCE")
                 .addModifier(Modifier.Keyword.PUBLIC)
@@ -221,14 +221,14 @@ public class MapperGenerator {
         fieldDeclaration.getVariable(0).setInitializer("Mappers.getMapper(" + name + ".class)");
     }
 
-    private Map<AstName, ? extends CompilationUnit> generateTerminalNodeMapper() {
+    private Map<CleanName, ? extends CompilationUnit> generateTerminalNodeMapper() {
         CompilationUnit compilationUnit = new CompilationUnit();
         compilationUnit.setPackageDeclaration(packageName);
 
         compilationUnit.addImport("org.mapstruct.factory.Mappers");
 
         String modelName = ApiModelGenerator.TERMINAL_NODE_CLASS;
-        AstName mapperName = getMapperName(modelName);
+        CleanName mapperName = getMapperName(modelName);
 
         compilationUnit.addImport(TerminalNode.class);
         compilationUnit.addImport(Main.modelPackage + "." + modelName);

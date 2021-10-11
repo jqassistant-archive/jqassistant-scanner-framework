@@ -2,25 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE returnStatement (BLOCK (ALT 'return' (? (BLOCK (ALT expression))) ';')))
+ * public static class ReturnStatementContext extends ParserRuleContext {
+ *
+ *     public TerminalNode RETURN() {
+ *         return getToken(Java8Parser.RETURN, 0);
+ *     }
+ *
+ *     public TerminalNode SEMI() {
+ *         return getToken(Java8Parser.SEMI, 0);
+ *     }
+ *
+ *     public ExpressionContext expression() {
+ *         return getRuleContext(ExpressionContext.class, 0);
+ *     }
+ *
+ *     public ReturnStatementContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_returnStatement;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterReturnStatement(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitReturnStatement(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * returnStatement
- * 	:	'return' expression? ';'
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:2774-2785
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#returnStatement()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ReturnStatementMapper
  */
 @Generated(
@@ -28,14 +58,21 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("ReturnStatement")
 public interface ReturnStatement extends JavaGen {
 
-    // unhandled TerminalAST token: 'return'
-    // optional: ?
+    @Relation("HAS_R_E_T_U_R_N")
+    TerminalNodeStrings getRETURN();
+
+    void setRETURN(TerminalNodeStrings setRETURN);
+
+    @Relation("HAS_S_E_M_I")
+    TerminalNodeStrings getSEMI();
+
+    void setSEMI(TerminalNodeStrings setSEMI);
+
     @Relation("HAS_EXPRESSION")
     Expression getExpression();
 
     void setExpression(Expression setExpression);
 
-    // unhandled TerminalAST token: ';'
     @Relation("HAS_TEXT")
     String getText();
 

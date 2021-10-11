@@ -2,26 +2,55 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+
+import javax.annotation.Generated;
 
 /**
- * Generated from AST:
+ * Generated from Parser:
  * <pre>
- * (RULE andExpression (BLOCK (ALT equalityExpression) (ALT andExpression '&' equalityExpression)))
+ * public static class AndExpressionContext extends ParserRuleContext {
+ *
+ *     public EqualityExpressionContext equalityExpression() {
+ *         return getRuleContext(EqualityExpressionContext.class, 0);
+ *     }
+ *
+ *     public AndExpressionContext andExpression() {
+ *         return getRuleContext(AndExpressionContext.class, 0);
+ *     }
+ *
+ *     public TerminalNode BITAND() {
+ *         return getToken(Java8Parser.BITAND, 0);
+ *     }
+ *
+ *     public AndExpressionContext(ParserRuleContext parent, int invokingState) {
+ *         super(parent, invokingState);
+ *     }
+ *
+ *     @Override
+ *     public int getRuleIndex() {
+ *         return RULE_andExpression;
+ *     }
+ *
+ *     @Override
+ *     public void enterRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).enterAndExpression(this);
+ *     }
+ *
+ *     @Override
+ *     public void exitRule(ParseTreeListener listener) {
+ *         if (listener instanceof Java8ParserListener)
+ *             ((Java8ParserListener) listener).exitAndExpression(this);
+ *     }
+ * }
  * </pre>
  *
- * <pre>
- * andExpression
- * 	:	equalityExpression
- * 	|	andExpression '&' equalityExpression
- * 	;
- * </pre>
- *
- * Source Grammar: <a href="../Java8Parser.g4">Java8Parser.g4</a>:4487-4501
- * @see org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser#andExpression()
+ * Source Grammar(s):
+ * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
+ * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
  * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AndExpressionMapper
  */
 @Generated(
@@ -39,7 +68,11 @@ public interface AndExpression extends JavaGen {
 
     void setAndExpression(AndExpression setAndExpression);
 
-    // unhandled TerminalAST token: '&'
+    @Relation("HAS_B_I_T_A_N_D")
+    TerminalNodeStrings getBITAND();
+
+    void setBITAND(TerminalNodeStrings setBITAND);
+
     @Relation("HAS_TEXT")
     String getText();
 
