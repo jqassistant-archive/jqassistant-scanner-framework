@@ -362,12 +362,6 @@ variableInitializer
 	|	arrayInitializer
 	;
 
-type
-    : interfaceType
-    | unannType
-    | unannTypeinterfaceType
-    ;
-
 unannType
 	:	unannPrimitiveType
 	|	unannReferenceType
@@ -602,7 +596,7 @@ interfaceMemberDeclaration
 	;
 
 constantDeclaration
-	:	constantModifier* type variableDeclaratorList ';'
+	:	constantModifier* unannType variableDeclaratorList ';'
 	;
 
 constantModifier

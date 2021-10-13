@@ -2,11 +2,11 @@
 
 package org.jqassistant.contrib.plugin.javagen.api.model;
 
-import com.buschmais.xo.neo4j.api.annotation.Label;
-import com.buschmais.xo.neo4j.api.annotation.Relation;
 import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
-
 import javax.annotation.Generated;
+import com.buschmais.xo.neo4j.api.annotation.Label;
+import java.util.List;
+import com.buschmais.xo.neo4j.api.annotation.Relation;
 
 /**
  * Generated from Parser:

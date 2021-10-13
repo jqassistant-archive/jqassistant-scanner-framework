@@ -11,35 +11,39 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 /**
  * Generated from Parser:
  * <pre>
- * public static class ConstructorModifierContext extends ParserRuleContext {
+ * public static class VisibilityModifierContext extends ParserRuleContext {
  *
- *     public AnnotationContext annotation() {
- *         return getRuleContext(AnnotationContext.class, 0);
+ *     public TerminalNode PUBLIC() {
+ *         return getToken(Java8Parser.PUBLIC, 0);
  *     }
  *
- *     public VisibilityModifierContext visibilityModifier() {
- *         return getRuleContext(VisibilityModifierContext.class, 0);
+ *     public TerminalNode PROTECTED() {
+ *         return getToken(Java8Parser.PROTECTED, 0);
  *     }
  *
- *     public ConstructorModifierContext(ParserRuleContext parent, int invokingState) {
+ *     public TerminalNode PRIVATE() {
+ *         return getToken(Java8Parser.PRIVATE, 0);
+ *     }
+ *
+ *     public VisibilityModifierContext(ParserRuleContext parent, int invokingState) {
  *         super(parent, invokingState);
  *     }
  *
  *     @Override
  *     public int getRuleIndex() {
- *         return RULE_constructorModifier;
+ *         return RULE_visibilityModifier;
  *     }
  *
  *     @Override
  *     public void enterRule(ParseTreeListener listener) {
  *         if (listener instanceof Java8ParserListener)
- *             ((Java8ParserListener) listener).enterConstructorModifier(this);
+ *             ((Java8ParserListener) listener).enterVisibilityModifier(this);
  *     }
  *
  *     @Override
  *     public void exitRule(ParseTreeListener listener) {
  *         if (listener instanceof Java8ParserListener)
- *             ((Java8ParserListener) listener).exitConstructorModifier(this);
+ *             ((Java8ParserListener) listener).exitVisibilityModifier(this);
  *     }
  * }
  * </pre>
@@ -47,22 +51,27 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ConstructorModifierMapper
+ * @see org.jqassistant.contrib.plugin.javagen.util.mapper.VisibilityModifierMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
-@Label("ConstructorModifier")
-public interface ConstructorModifier extends JavaGen {
+@Label("VisibilityModifier")
+public interface VisibilityModifier extends JavaGen {
 
-    @Relation("HAS_ANNOTATION")
-    Annotation getAnnotation();
+    @Relation("HAS_P_U_B_L_I_C")
+    TerminalNodeStrings getPUBLIC();
 
-    void setAnnotation(Annotation setAnnotation);
+    void setPUBLIC(TerminalNodeStrings setPUBLIC);
 
-    @Relation("HAS_VISIBILITY_MODIFIER")
-    VisibilityModifier getVisibilityModifier();
+    @Relation("HAS_P_R_O_T_E_C_T_E_D")
+    TerminalNodeStrings getPROTECTED();
 
-    void setVisibilityModifier(VisibilityModifier setVisibilityModifier);
+    void setPROTECTED(TerminalNodeStrings setPROTECTED);
+
+    @Relation("HAS_P_R_I_V_A_T_E")
+    TerminalNodeStrings getPRIVATE();
+
+    void setPRIVATE(TerminalNodeStrings setPRIVATE);
 
     @Relation("HAS_TEXT")
     String getText();
