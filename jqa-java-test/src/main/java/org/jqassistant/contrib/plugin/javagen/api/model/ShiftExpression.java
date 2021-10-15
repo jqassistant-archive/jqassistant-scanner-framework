@@ -63,7 +63,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ShiftExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -80,12 +79,12 @@ public interface ShiftExpression extends JavaGen {
 
     void setShiftExpression(ShiftExpression setShiftExpression);
 
-    @Relation("HAS_L_T")
+    @Relation("HAS_LT")
     List<TerminalNodeStrings> getLT();
 
     void setLT(List<TerminalNodeStrings> setLT);
 
-    @Relation("HAS_G_T")
+    @Relation("HAS_GT")
     List<TerminalNodeStrings> getGT();
 
     void setGT(List<TerminalNodeStrings> setGT);

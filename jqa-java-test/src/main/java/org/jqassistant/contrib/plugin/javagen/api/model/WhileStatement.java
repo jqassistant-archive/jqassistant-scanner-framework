@@ -59,19 +59,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.WhileStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("WhileStatement")
 public interface WhileStatement extends JavaGen {
 
-    @Relation("HAS_W_H_I_L_E")
+    @Relation("HAS_WHILE")
     TerminalNodeStrings getWHILE();
 
     void setWHILE(TerminalNodeStrings setWHILE);
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
@@ -81,7 +80,7 @@ public interface WhileStatement extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);

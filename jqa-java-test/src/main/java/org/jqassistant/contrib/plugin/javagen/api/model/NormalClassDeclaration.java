@@ -71,14 +71,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.NormalClassDeclarationMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("NormalClassDeclaration")
 public interface NormalClassDeclaration extends JavaGen {
 
-    @Relation("HAS_C_L_A_S_S")
+    @Relation("HAS_CLASS")
     TerminalNodeStrings getClazz();
 
     void setClazz(TerminalNodeStrings setClazz);

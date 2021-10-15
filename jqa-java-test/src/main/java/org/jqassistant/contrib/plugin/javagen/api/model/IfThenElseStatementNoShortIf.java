@@ -67,19 +67,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.IfThenElseStatementNoShortIfMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("IfThenElseStatementNoShortIf")
 public interface IfThenElseStatementNoShortIf extends JavaGen {
 
-    @Relation("HAS_I_F")
+    @Relation("HAS_IF")
     TerminalNodeStrings getIF();
 
     void setIF(TerminalNodeStrings setIF);
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
@@ -89,7 +88,7 @@ public interface IfThenElseStatementNoShortIf extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);
@@ -99,7 +98,7 @@ public interface IfThenElseStatementNoShortIf extends JavaGen {
 
     void setStatementNoShortIf(List<StatementNoShortIf> setStatementNoShortIf);
 
-    @Relation("HAS_E_L_S_E")
+    @Relation("HAS_ELSE")
     TerminalNodeStrings getELSE();
 
     void setELSE(TerminalNodeStrings setELSE);

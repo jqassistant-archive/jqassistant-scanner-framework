@@ -63,7 +63,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ReceiverParameterMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -75,7 +74,7 @@ public interface ReceiverParameter extends JavaGen {
 
     void setUnannType(UnannType setUnannType);
 
-    @Relation("HAS_T_H_I_S")
+    @Relation("HAS_THIS")
     TerminalNodeStrings getTHIS();
 
     void setTHIS(TerminalNodeStrings setTHIS);
@@ -90,7 +89,7 @@ public interface ReceiverParameter extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     TerminalNodeStrings getDOT();
 
     void setDOT(TerminalNodeStrings setDOT);

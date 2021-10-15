@@ -43,14 +43,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PostIncrementExpression_lf_postfixExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("PostIncrementExpression_lf_postfixExpression")
 public interface PostIncrementExpression_lf_postfixExpression extends JavaGen {
 
-    @Relation("HAS_I_N_C")
+    @Relation("HAS_INC")
     TerminalNodeStrings getINC();
 
     void setINC(TerminalNodeStrings setINC);

@@ -47,14 +47,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AdditionalBoundMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("AdditionalBound")
 public interface AdditionalBound extends JavaGen {
 
-    @Relation("HAS_B_I_T_A_N_D")
+    @Relation("HAS_BITAND")
     TerminalNodeStrings getBITAND();
 
     void setBITAND(TerminalNodeStrings setBITAND);

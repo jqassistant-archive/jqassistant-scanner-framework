@@ -59,7 +59,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MultiplicativeExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -76,17 +75,17 @@ public interface MultiplicativeExpression extends JavaGen {
 
     void setMultiplicativeExpression(MultiplicativeExpression setMultiplicativeExpression);
 
-    @Relation("HAS_M_U_L")
+    @Relation("HAS_MUL")
     TerminalNodeStrings getMUL();
 
     void setMUL(TerminalNodeStrings setMUL);
 
-    @Relation("HAS_D_I_V")
+    @Relation("HAS_DIV")
     TerminalNodeStrings getDIV();
 
     void setDIV(TerminalNodeStrings setDIV);
 
-    @Relation("HAS_M_O_D")
+    @Relation("HAS_MOD")
     TerminalNodeStrings getMOD();
 
     void setMOD(TerminalNodeStrings setMOD);

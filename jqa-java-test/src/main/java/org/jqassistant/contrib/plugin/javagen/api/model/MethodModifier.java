@@ -71,7 +71,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodModifierMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -88,32 +87,32 @@ public interface MethodModifier extends JavaGen {
 
     void setVisibilityModifier(VisibilityModifier setVisibilityModifier);
 
-    @Relation("HAS_A_B_S_T_R_A_C_T")
+    @Relation("HAS_ABSTRACT")
     TerminalNodeStrings getABSTRACT();
 
     void setABSTRACT(TerminalNodeStrings setABSTRACT);
 
-    @Relation("HAS_S_T_A_T_I_C")
+    @Relation("HAS_STATIC")
     TerminalNodeStrings getSTATIC();
 
     void setSTATIC(TerminalNodeStrings setSTATIC);
 
-    @Relation("HAS_F_I_N_A_L")
+    @Relation("HAS_FINAL")
     TerminalNodeStrings getFINAL();
 
     void setFINAL(TerminalNodeStrings setFINAL);
 
-    @Relation("HAS_S_Y_N_C_H_R_O_N_I_Z_E_D")
+    @Relation("HAS_SYNCHRONIZED")
     TerminalNodeStrings getSYNCHRONIZED();
 
     void setSYNCHRONIZED(TerminalNodeStrings setSYNCHRONIZED);
 
-    @Relation("HAS_N_A_T_I_V_E")
+    @Relation("HAS_NATIVE")
     TerminalNodeStrings getNATIVE();
 
     void setNATIVE(TerminalNodeStrings setNATIVE);
 
-    @Relation("HAS_S_T_R_I_C_T_F_P")
+    @Relation("HAS_STRICTFP")
     TerminalNodeStrings getSTRICTFP();
 
     void setSTRICTFP(TerminalNodeStrings setSTRICTFP);

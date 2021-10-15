@@ -59,14 +59,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AssertStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("AssertStatement")
 public interface AssertStatement extends JavaGen {
 
-    @Relation("HAS_A_S_S_E_R_T")
+    @Relation("HAS_ASSERT")
     TerminalNodeStrings getASSERT();
 
     void setASSERT(TerminalNodeStrings setASSERT);
@@ -76,12 +75,12 @@ public interface AssertStatement extends JavaGen {
 
     void setExpression(List<Expression> setExpression);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);
 
-    @Relation("HAS_C_O_L_O_N")
+    @Relation("HAS_COLON")
     TerminalNodeStrings getCOLON();
 
     void setCOLON(TerminalNodeStrings setCOLON);

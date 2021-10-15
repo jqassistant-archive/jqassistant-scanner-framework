@@ -55,7 +55,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ExceptionTypeListMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -67,7 +66,7 @@ public interface ExceptionTypeList extends JavaGen {
 
     void setExceptionType(List<ExceptionType> setExceptionType);
 
-    @Relation("HAS_C_O_M_M_A")
+    @Relation("HAS_COMMA")
     List<TerminalNodeStrings> getCOMMA();
 
     void setCOMMA(List<TerminalNodeStrings> setCOMMA);

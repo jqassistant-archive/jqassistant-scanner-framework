@@ -59,7 +59,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ConditionalExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -71,7 +70,7 @@ public interface ConditionalExpression extends JavaGen {
 
     void setConditionalOrExpression(ConditionalOrExpression setConditionalOrExpression);
 
-    @Relation("HAS_Q_U_E_S_T_I_O_N")
+    @Relation("HAS_QUESTION")
     TerminalNodeStrings getQUESTION();
 
     void setQUESTION(TerminalNodeStrings setQUESTION);
@@ -81,7 +80,7 @@ public interface ConditionalExpression extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_C_O_L_O_N")
+    @Relation("HAS_COLON")
     TerminalNodeStrings getCOLON();
 
     void setCOLON(TerminalNodeStrings setCOLON);

@@ -51,19 +51,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ReturnStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ReturnStatement")
 public interface ReturnStatement extends JavaGen {
 
-    @Relation("HAS_R_E_T_U_R_N")
+    @Relation("HAS_RETURN")
     TerminalNodeStrings getRETURN();
 
     void setRETURN(TerminalNodeStrings setRETURN);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

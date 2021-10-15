@@ -47,14 +47,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.Throws_Mapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("Throws_")
 public interface Throws_ extends JavaGen {
 
-    @Relation("HAS_T_H_R_O_W_S")
+    @Relation("HAS_THROWS")
     TerminalNodeStrings getTHROWS();
 
     void setTHROWS(TerminalNodeStrings setTHROWS);

@@ -47,14 +47,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.Finally_Mapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("Finally_")
 public interface Finally_ extends JavaGen {
 
-    @Relation("HAS_F_I_N_A_L_L_Y")
+    @Relation("HAS_FINALLY")
     TerminalNodeStrings getFINALLY();
 
     void setFINALLY(TerminalNodeStrings setFINALLY);

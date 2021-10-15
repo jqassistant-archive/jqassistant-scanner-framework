@@ -47,14 +47,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.FieldAccess_lf_primaryMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("FieldAccess_lf_primary")
 public interface FieldAccess_lf_primary extends JavaGen {
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     TerminalNodeStrings getDOT();
 
     void setDOT(TerminalNodeStrings setDOT);

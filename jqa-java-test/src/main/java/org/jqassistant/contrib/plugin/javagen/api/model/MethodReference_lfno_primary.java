@@ -83,7 +83,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodReference_lfno_primaryMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -95,7 +94,7 @@ public interface MethodReference_lfno_primary extends JavaGen {
 
     void setExpressionName(ExpressionName setExpressionName);
 
-    @Relation("HAS_C_O_L_O_N_C_O_L_O_N")
+    @Relation("HAS_COLONCOLON")
     TerminalNodeStrings getCOLONCOLON();
 
     void setCOLONCOLON(TerminalNodeStrings setCOLONCOLON);
@@ -115,7 +114,7 @@ public interface MethodReference_lfno_primary extends JavaGen {
 
     void setReferenceType(ReferenceType setReferenceType);
 
-    @Relation("HAS_S_U_P_E_R")
+    @Relation("HAS_SUPER")
     TerminalNodeStrings getSUPER();
 
     void setSUPER(TerminalNodeStrings setSUPER);
@@ -125,7 +124,7 @@ public interface MethodReference_lfno_primary extends JavaGen {
 
     void setTypeName(TypeName setTypeName);
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     TerminalNodeStrings getDOT();
 
     void setDOT(TerminalNodeStrings setDOT);
@@ -135,7 +134,7 @@ public interface MethodReference_lfno_primary extends JavaGen {
 
     void setClassType(ClassType setClassType);
 
-    @Relation("HAS_N_E_W")
+    @Relation("HAS_NEW")
     TerminalNodeStrings getNEW();
 
     void setNEW(TerminalNodeStrings setNEW);

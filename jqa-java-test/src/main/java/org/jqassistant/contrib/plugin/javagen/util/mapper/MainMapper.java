@@ -1,14 +1,11 @@
 //Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
 
-
-
-//MainMapper.java
 package org.jqassistant.contrib.plugin.javagen.util.mapper;
 
 import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser;
-import org.jqassistant.contrib.plugin.javagen.api.model.*;
 import org.mapstruct.factory.Mappers;
 import org.mapstruct.NullValueCheckStrategy;
+import org.jqassistant.contrib.plugin.javagen.api.model.*;
 import javax.annotation.Generated;
 import org.mapstruct.Mapper;
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;

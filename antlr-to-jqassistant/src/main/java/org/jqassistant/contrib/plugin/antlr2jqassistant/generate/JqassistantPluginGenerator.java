@@ -34,7 +34,7 @@ public class JqassistantPluginGenerator {
         List<IdClassType> clazz = idClassListType.getClazz();
 
         IdClassType idClassType = new IdClassType();
-        idClassType.setValue("org.jqassistant.contrib.plugin." + config.getParserName().toLowerCase() + ".impl.scanner." + config.getPluginId().toLowerCase() + "FileScannerPlugin");
+        idClassType.setValue(config.getPaths().getProjectPackage() + ".impl.scanner." + config.getPluginId() + "FileScannerPlugin");
         clazz.add(idClassType);
 
         return idClassListType;

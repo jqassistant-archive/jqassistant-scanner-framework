@@ -59,34 +59,33 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.IntegralTypeMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("IntegralType")
 public interface IntegralType extends JavaGen {
 
-    @Relation("HAS_B_Y_T_E")
+    @Relation("HAS_BYTE")
     TerminalNodeStrings getBYTE();
 
     void setBYTE(TerminalNodeStrings setBYTE);
 
-    @Relation("HAS_S_H_O_R_T")
+    @Relation("HAS_SHORT")
     TerminalNodeStrings getSHORT();
 
     void setSHORT(TerminalNodeStrings setSHORT);
 
-    @Relation("HAS_I_N_T")
+    @Relation("HAS_INT")
     TerminalNodeStrings getINT();
 
     void setINT(TerminalNodeStrings setINT);
 
-    @Relation("HAS_L_O_N_G")
+    @Relation("HAS_LONG")
     TerminalNodeStrings getLONG();
 
     void setLONG(TerminalNodeStrings setLONG);
 
-    @Relation("HAS_C_H_A_R")
+    @Relation("HAS_CHAR")
     TerminalNodeStrings getCHAR();
 
     void setCHAR(TerminalNodeStrings setCHAR);

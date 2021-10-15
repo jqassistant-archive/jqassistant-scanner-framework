@@ -51,14 +51,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TypeArgumentsMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("TypeArguments")
 public interface TypeArguments extends JavaGen {
 
-    @Relation("HAS_L_T")
+    @Relation("HAS_LT")
     TerminalNodeStrings getLT();
 
     void setLT(TerminalNodeStrings setLT);
@@ -68,7 +67,7 @@ public interface TypeArguments extends JavaGen {
 
     void setTypeArgumentList(TypeArgumentList setTypeArgumentList);
 
-    @Relation("HAS_G_T")
+    @Relation("HAS_GT")
     TerminalNodeStrings getGT();
 
     void setGT(TerminalNodeStrings setGT);

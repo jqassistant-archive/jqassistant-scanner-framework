@@ -36,7 +36,7 @@ public class ApiModelGenerator {
     MemorySource antlrParser;
 
     public ApiModelGenerator(GenerationConfig config, GenericParser genericParser, BaseDescriptorGenerator baseDescriptorGenerator) {
-        this.packageName = config.getModelPackage();
+        this.packageName = config.getPaths().getModelPackage();
         this.config = config;
         this.baseDescriptorGenerator = baseDescriptorGenerator;
 

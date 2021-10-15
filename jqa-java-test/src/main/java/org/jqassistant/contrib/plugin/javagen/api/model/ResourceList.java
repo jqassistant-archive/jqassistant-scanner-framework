@@ -55,7 +55,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ResourceListMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -67,7 +66,7 @@ public interface ResourceList extends JavaGen {
 
     void setResource(List<Resource> setResource);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     List<TerminalNodeStrings> getSEMI();
 
     void setSEMI(List<TerminalNodeStrings> setSEMI);

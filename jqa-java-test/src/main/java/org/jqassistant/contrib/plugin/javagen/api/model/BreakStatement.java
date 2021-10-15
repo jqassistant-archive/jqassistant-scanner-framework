@@ -51,19 +51,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.BreakStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("BreakStatement")
 public interface BreakStatement extends JavaGen {
 
-    @Relation("HAS_B_R_E_A_K")
+    @Relation("HAS_BREAK")
     TerminalNodeStrings getBREAK();
 
     void setBREAK(TerminalNodeStrings setBREAK);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

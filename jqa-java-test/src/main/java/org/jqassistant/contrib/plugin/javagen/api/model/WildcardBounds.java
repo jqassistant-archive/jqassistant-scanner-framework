@@ -51,14 +51,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.WildcardBoundsMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("WildcardBounds")
 public interface WildcardBounds extends JavaGen {
 
-    @Relation("HAS_E_X_T_E_N_D_S")
+    @Relation("HAS_EXTENDS")
     TerminalNodeStrings getEXTENDS();
 
     void setEXTENDS(TerminalNodeStrings setEXTENDS);
@@ -68,7 +67,7 @@ public interface WildcardBounds extends JavaGen {
 
     void setReferenceType(ReferenceType setReferenceType);
 
-    @Relation("HAS_S_U_P_E_R")
+    @Relation("HAS_SUPER")
     TerminalNodeStrings getSUPER();
 
     void setSUPER(TerminalNodeStrings setSUPER);

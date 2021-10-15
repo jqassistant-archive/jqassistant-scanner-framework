@@ -51,7 +51,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.LambdaExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -63,7 +62,7 @@ public interface LambdaExpression extends JavaGen {
 
     void setLambdaParameters(LambdaParameters setLambdaParameters);
 
-    @Relation("HAS_A_R_R_O_W")
+    @Relation("HAS_ARROW")
     TerminalNodeStrings getARROW();
 
     void setARROW(TerminalNodeStrings setARROW);

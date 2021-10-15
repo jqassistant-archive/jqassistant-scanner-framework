@@ -2,6 +2,7 @@ package org.jqassistant.contrib.plugin.antlr2jqassistant;
 
 import com.github.javaparser.ast.CompilationUnit;
 import lombok.AllArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
@@ -16,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @AllArgsConstructor
@@ -55,6 +57,7 @@ public class FileOperations {
                 .append("\n\n")
                 .toString();
     }
+
     void writeToFile(JqassistantPlugin jqassistantPlugin) {
         String name = "jqassistant-plugin.xml";
 
@@ -102,5 +105,15 @@ public class FileOperations {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public void copyFiles(List<File> files, String destination) {
+        files.forEach(file -> {
+            try {
+                FileUtils.copyFile(file, new File(destination + "/" + file.getName()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

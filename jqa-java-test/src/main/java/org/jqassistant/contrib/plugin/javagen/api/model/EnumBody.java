@@ -59,19 +59,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EnumBodyMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("EnumBody")
 public interface EnumBody extends JavaGen {
 
-    @Relation("HAS_L_B_R_A_C_E")
+    @Relation("HAS_LBRACE")
     TerminalNodeStrings getLBRACE();
 
     void setLBRACE(TerminalNodeStrings setLBRACE);
 
-    @Relation("HAS_R_B_R_A_C_E")
+    @Relation("HAS_RBRACE")
     TerminalNodeStrings getRBRACE();
 
     void setRBRACE(TerminalNodeStrings setRBRACE);
@@ -81,7 +80,7 @@ public interface EnumBody extends JavaGen {
 
     void setEnumConstantList(EnumConstantList setEnumConstantList);
 
-    @Relation("HAS_C_O_M_M_A")
+    @Relation("HAS_COMMA")
     TerminalNodeStrings getCOMMA();
 
     void setCOMMA(TerminalNodeStrings setCOMMA);

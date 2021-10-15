@@ -166,42 +166,6 @@
 
     <build>
         <plugins>
-
-<!--            <plugin>-->
-<!--                <groupId>com.googlecode.maven-download-plugin</groupId>-->
-<!--                <artifactId>download-maven-plugin</artifactId>-->
-<!--                <version>1.6.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>get-Java8Lexer.g4</id>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>wget</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <url>https://raw.githubusercontent.com/antlr/grammars-v4/master/java/java8/Java8Lexer.g4-->
-<!--                            </url>-->
-<!--                            <outputFileName>Java8Lexer.g4</outputFileName>-->
-<!--                            <outputDirectory>src/main/antlr4/org/jqassistant/contrib/plugin/javagen/antlr4-->
-<!--                            </outputDirectory>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>get-Java8Parser.g4</id>-->
-<!--                        <phase>generate-sources</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>wget</goal>-->
-<!--                        </goals>-->
-<!--                        <configuration>-->
-<!--                            <url>https://raw.githubusercontent.com/antlr/grammars-v4/master/java/java8/Java8Parser.g4-->
-<!--                            </url>-->
-<!--                            <outputFileName>Java8Parser.g4</outputFileName>-->
-<!--                            <outputDirectory>src/main/antlr4/org/jqassistant/contrib/plugin/javagen/antlr4-->
-<!--                            </outputDirectory>-->
-<!--                        </configuration>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
             <!-- Plugin to compile the g4 files ahead of the java files
                  See https://github.com/antlr/antlr4/blob/master/antlr4-maven-plugin/src/site/apt/examples/simple.apt.vm
                  Except that the grammar does not need to contain the package declaration as stated in the documentation (I do not know why)

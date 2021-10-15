@@ -47,7 +47,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PostDecrementExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -59,7 +58,7 @@ public interface PostDecrementExpression extends JavaGen {
 
     void setPostfixExpression(PostfixExpression setPostfixExpression);
 
-    @Relation("HAS_D_E_C")
+    @Relation("HAS_DEC")
     TerminalNodeStrings getDEC();
 
     void setDEC(TerminalNodeStrings setDEC);

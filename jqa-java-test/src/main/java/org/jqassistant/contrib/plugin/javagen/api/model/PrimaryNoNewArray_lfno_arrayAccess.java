@@ -107,7 +107,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimaryNoNewArray_lfno_arrayAccessMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -124,37 +123,37 @@ public interface PrimaryNoNewArray_lfno_arrayAccess extends JavaGen {
 
     void setTypeName(TypeName setTypeName);
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     TerminalNodeStrings getDOT();
 
     void setDOT(TerminalNodeStrings setDOT);
 
-    @Relation("HAS_C_L_A_S_S")
+    @Relation("HAS_CLASS")
     TerminalNodeStrings getClazz();
 
     void setClazz(TerminalNodeStrings setClazz);
 
-    @Relation("HAS_L_B_R_A_C_K")
+    @Relation("HAS_LBRACK")
     List<TerminalNodeStrings> getLBRACK();
 
     void setLBRACK(List<TerminalNodeStrings> setLBRACK);
 
-    @Relation("HAS_R_B_R_A_C_K")
+    @Relation("HAS_RBRACK")
     List<TerminalNodeStrings> getRBRACK();
 
     void setRBRACK(List<TerminalNodeStrings> setRBRACK);
 
-    @Relation("HAS_V_O_I_D")
+    @Relation("HAS_VOID")
     TerminalNodeStrings getVOID();
 
     void setVOID(TerminalNodeStrings setVOID);
 
-    @Relation("HAS_T_H_I_S")
+    @Relation("HAS_THIS")
     TerminalNodeStrings getTHIS();
 
     void setTHIS(TerminalNodeStrings setTHIS);
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
@@ -164,7 +163,7 @@ public interface PrimaryNoNewArray_lfno_arrayAccess extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);

@@ -59,7 +59,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnaryExpressionNotPlusMinusMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -71,7 +70,7 @@ public interface UnaryExpressionNotPlusMinus extends JavaGen {
 
     void setPostfixExpression(PostfixExpression setPostfixExpression);
 
-    @Relation("HAS_T_I_L_D_E")
+    @Relation("HAS_TILDE")
     TerminalNodeStrings getTILDE();
 
     void setTILDE(TerminalNodeStrings setTILDE);
@@ -81,7 +80,7 @@ public interface UnaryExpressionNotPlusMinus extends JavaGen {
 
     void setUnaryExpression(UnaryExpression setUnaryExpression);
 
-    @Relation("HAS_B_A_N_G")
+    @Relation("HAS_BANG")
     TerminalNodeStrings getBANG();
 
     void setBANG(TerminalNodeStrings setBANG);

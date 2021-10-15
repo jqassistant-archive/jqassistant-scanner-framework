@@ -26,7 +26,7 @@ public class BaseDescriptorGenerator {
 
     public BaseDescriptorGenerator(GenerationConfig config) {
         this.config = config;
-        this.packageName = config.getApiPackage();
+        this.packageName = config.getPaths().getApiPackage();
         this.pluginName = new FormattedName(config.getPluginId());
         this.entryNode = new FormattedName(config.getEntryNode());
         BASE_DESCRIPTOR_NAME = pluginName.getName();
@@ -49,7 +49,7 @@ public class BaseDescriptorGenerator {
 
     private CompilationUnit getBaseDescriptor() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(config.getApiPackage());
+        compilationUnit.setPackageDeclaration(config.getPaths().getApiPackage());
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(pluginName.getName())
@@ -66,7 +66,7 @@ public class BaseDescriptorGenerator {
         compilationUnit.setPackageDeclaration(packageName);
 
         compilationUnit.addImport(BASE_DESCRIPTOR_NAME);
-        compilationUnit.addImport(config.getModelPackage() + "." + entryNode.getName());
+        compilationUnit.addImport(config.getPaths().getModelPackage() + "." + entryNode.getName());
 
         FormattedName name = new FormattedName(BASE_FILE_DESCRIPTOR_NAME);
 

@@ -56,7 +56,7 @@ public class FormattedName implements Comparable<FormattedName> {
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, getName());
     }
 
-    private String asUpperCamel(String text) {
+    public static String asUpperCamel(String text) {
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, text);
     }
 
@@ -65,7 +65,7 @@ public class FormattedName implements Comparable<FormattedName> {
     }
 
     public String getRelationNameWithQuotes() {
-        String relationship = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, original);
+        String relationship = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_UNDERSCORE, StringUtils.isAllUpperCase(original) ? original.toLowerCase() : original);
         relationship = StringUtils.strip(relationship, "_");
         return QUOTES + HAS + relationship + QUOTES;
     }

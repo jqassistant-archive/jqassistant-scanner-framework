@@ -30,11 +30,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class MapperGenerator {
-    public final String QUOTES = "\"";
-    public final String GET = "get";
-    public final String SET = "set";
-    public final String                   HAS = "HAS_";
-    public final String                   mapperPackage;
     private      GenerationConfig config;
     private final BaseDescriptorGenerator baseDescriptorGenerator;
     private Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap;
@@ -42,7 +37,6 @@ public class MapperGenerator {
     public MapperGenerator(GenerationConfig config, BaseDescriptorGenerator baseDescriptorGenerator,
             Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap) {
 
-        this.mapperPackage = config.getMapperPackage();
         this.config = config;
         this.baseDescriptorGenerator = baseDescriptorGenerator;
         this.apiModelCompilationUnitMap = apiModelCompilationUnitMap;
@@ -63,11 +57,12 @@ public class MapperGenerator {
         System.out.println(new Date() + " Starting Single Mapper Generation");
 
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(mapperPackage);
+        compilationUnit.setPackageDeclaration(config.getPaths().getMapperPackage());
 
-        compilationUnit.addImport(config.getAntlrPackage() + "." + config.getParserName() + "Parser");
+        compilationUnit.addImport(config.getPaths().getAntlrPackage() + "." + config.getParserName() + "Parser");
         compilationUnit.addImport(Mappers.class);
         compilationUnit.addImport(NullValueCheckStrategy.class);
+        compilationUnit.addImport(config.getPaths().getModelPackage() + ".*");
 
         FormattedName mainMapper = getMapperName("Main");
 
@@ -82,13 +77,12 @@ public class MapperGenerator {
         for (Map.Entry<FormattedName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
             FormattedName modelName = entry.getKey();
             if (!modelName.getName().equalsIgnoreCase(ApiModelGenerator.TERMINAL_NODE_CLASS)) {
-                compilationUnit.addImport(config.getModelPackage() + "." + modelName);
                 MethodDeclaration mapMethodDeclaration = classDeclaration.addMethod("map").removeBody();
                 mapMethodDeclaration.setType(modelName.getName());
                 mapMethodDeclaration
                         .addAndGetParameter(ScannerContext.class, "scannerContext")
                         .addAnnotation(Context.class);
-                mapMethodDeclaration.addParameter(config.getParserName() + "Parser." + modelName.asUpperCamel(), "parserContext");
+                mapMethodDeclaration.addParameter(config.getParserName() + "Parser." + FormattedName.asUpperCamel(modelName.getOriginal()), "parserContext");
             }
         }
 
@@ -126,7 +120,7 @@ public class MapperGenerator {
 
     private Map<FormattedName, CompilationUnit> generateDescriptorFactory() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(mapperPackage);
+        compilationUnit.setPackageDeclaration(config.getPaths().getMapperPackage());
         compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
         FormattedName name = new FormattedName("DescriptorFactory");

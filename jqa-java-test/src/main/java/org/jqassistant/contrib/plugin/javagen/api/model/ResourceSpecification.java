@@ -55,14 +55,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ResourceSpecificationMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ResourceSpecification")
 public interface ResourceSpecification extends JavaGen {
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
@@ -72,12 +71,12 @@ public interface ResourceSpecification extends JavaGen {
 
     void setResourceList(ResourceList setResourceList);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

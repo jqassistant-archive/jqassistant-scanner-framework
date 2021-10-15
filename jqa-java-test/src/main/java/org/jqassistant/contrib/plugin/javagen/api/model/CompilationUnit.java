@@ -63,14 +63,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.CompilationUnitMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("CompilationUnit")
 public interface CompilationUnit extends JavaGen {
 
-    @Relation("HAS_E_O_F")
+    @Relation("HAS_EOF")
     TerminalNodeStrings getEOF();
 
     void setEOF(TerminalNodeStrings setEOF);

@@ -51,19 +51,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ContinueStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ContinueStatement")
 public interface ContinueStatement extends JavaGen {
 
-    @Relation("HAS_C_O_N_T_I_N_U_E")
+    @Relation("HAS_CONTINUE")
     TerminalNodeStrings getCONTINUE();
 
     void setCONTINUE(TerminalNodeStrings setCONTINUE);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

@@ -67,14 +67,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.DoStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("DoStatement")
 public interface DoStatement extends JavaGen {
 
-    @Relation("HAS_D_O")
+    @Relation("HAS_DO")
     TerminalNodeStrings getDO();
 
     void setDO(TerminalNodeStrings setDO);
@@ -84,12 +83,12 @@ public interface DoStatement extends JavaGen {
 
     void setStatement(Statement setStatement);
 
-    @Relation("HAS_W_H_I_L_E")
+    @Relation("HAS_WHILE")
     TerminalNodeStrings getWHILE();
 
     void setWHILE(TerminalNodeStrings setWHILE);
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
@@ -99,12 +98,12 @@ public interface DoStatement extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

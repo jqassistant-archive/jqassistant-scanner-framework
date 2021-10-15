@@ -63,19 +63,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.StaticImportOnDemandDeclarationMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("StaticImportOnDemandDeclaration")
 public interface StaticImportOnDemandDeclaration extends JavaGen {
 
-    @Relation("HAS_I_M_P_O_R_T")
+    @Relation("HAS_IMPORT")
     TerminalNodeStrings getIMPORT();
 
     void setIMPORT(TerminalNodeStrings setIMPORT);
 
-    @Relation("HAS_S_T_A_T_I_C")
+    @Relation("HAS_STATIC")
     TerminalNodeStrings getSTATIC();
 
     void setSTATIC(TerminalNodeStrings setSTATIC);
@@ -85,17 +84,17 @@ public interface StaticImportOnDemandDeclaration extends JavaGen {
 
     void setTypeName(TypeName setTypeName);
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     TerminalNodeStrings getDOT();
 
     void setDOT(TerminalNodeStrings setDOT);
 
-    @Relation("HAS_M_U_L")
+    @Relation("HAS_MUL")
     TerminalNodeStrings getMUL();
 
     void setMUL(TerminalNodeStrings setMUL);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

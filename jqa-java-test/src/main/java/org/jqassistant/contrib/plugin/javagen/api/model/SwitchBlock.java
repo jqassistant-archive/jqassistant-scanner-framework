@@ -63,19 +63,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.SwitchBlockMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("SwitchBlock")
 public interface SwitchBlock extends JavaGen {
 
-    @Relation("HAS_L_B_R_A_C_E")
+    @Relation("HAS_LBRACE")
     TerminalNodeStrings getLBRACE();
 
     void setLBRACE(TerminalNodeStrings setLBRACE);
 
-    @Relation("HAS_R_B_R_A_C_E")
+    @Relation("HAS_RBRACE")
     TerminalNodeStrings getRBRACE();
 
     void setRBRACE(TerminalNodeStrings setRBRACE);

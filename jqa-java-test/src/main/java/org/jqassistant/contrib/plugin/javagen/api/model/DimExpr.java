@@ -59,14 +59,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.DimExprMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("DimExpr")
 public interface DimExpr extends JavaGen {
 
-    @Relation("HAS_L_B_R_A_C_K")
+    @Relation("HAS_LBRACK")
     TerminalNodeStrings getLBRACK();
 
     void setLBRACK(TerminalNodeStrings setLBRACK);
@@ -76,7 +75,7 @@ public interface DimExpr extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_R_B_R_A_C_K")
+    @Relation("HAS_RBRACK")
     TerminalNodeStrings getRBRACK();
 
     void setRBRACK(TerminalNodeStrings setRBRACK);

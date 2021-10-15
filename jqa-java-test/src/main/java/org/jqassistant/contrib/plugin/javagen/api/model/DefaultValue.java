@@ -47,14 +47,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.DefaultValueMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("DefaultValue")
 public interface DefaultValue extends JavaGen {
 
-    @Relation("HAS_D_E_F_A_U_L_T")
+    @Relation("HAS_DEFAULT")
     TerminalNodeStrings getDEFAULT();
 
     void setDEFAULT(TerminalNodeStrings setDEFAULT);

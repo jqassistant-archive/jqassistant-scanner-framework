@@ -55,7 +55,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.PrimitiveTypeMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -72,7 +71,7 @@ public interface PrimitiveType extends JavaGen {
 
     void setAnnotation(List<Annotation> setAnnotation);
 
-    @Relation("HAS_B_O_O_L_E_A_N")
+    @Relation("HAS_BOOLEAN")
     TerminalNodeStrings getBOOLEAN();
 
     void setBOOLEAN(TerminalNodeStrings setBOOLEAN);

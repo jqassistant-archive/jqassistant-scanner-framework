@@ -83,19 +83,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ClassInstanceCreationExpression_lf_primaryMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ClassInstanceCreationExpression_lf_primary")
 public interface ClassInstanceCreationExpression_lf_primary extends JavaGen {
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     TerminalNodeStrings getDOT();
 
     void setDOT(TerminalNodeStrings setDOT);
 
-    @Relation("HAS_N_E_W")
+    @Relation("HAS_NEW")
     TerminalNodeStrings getNEW();
 
     void setNEW(TerminalNodeStrings setNEW);
@@ -105,12 +104,12 @@ public interface ClassInstanceCreationExpression_lf_primary extends JavaGen {
 
     void setIdentifier(TerminalNodeStrings setIdentifier);
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);

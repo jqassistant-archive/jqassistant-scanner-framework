@@ -59,19 +59,18 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.FieldAccess_lfno_primaryMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("FieldAccess_lfno_primary")
 public interface FieldAccess_lfno_primary extends JavaGen {
 
-    @Relation("HAS_S_U_P_E_R")
+    @Relation("HAS_SUPER")
     TerminalNodeStrings getSUPER();
 
     void setSUPER(TerminalNodeStrings setSUPER);
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     List<TerminalNodeStrings> getDOT();
 
     void setDOT(List<TerminalNodeStrings> setDOT);

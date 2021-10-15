@@ -10,7 +10,9 @@ import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MavenProjectGen
 import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ScannerGenerator;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.PackagePaths;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
+import org.jruby.ir.operands.Array;
 import org.snt.inmemantlr.GenericParser;
 import org.snt.inmemantlr.exceptions.CompilationException;
 import org.snt.inmemantlr.exceptions.IllegalWorkflowException;
@@ -19,12 +21,14 @@ import org.snt.inmemantlr.exceptions.ParsingException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Main {
     public static final GenerationConfig CONFIG_JAVA = GenerationConfig.builder()
             .pluginId("JavaGen")
+            .paths(new PackagePaths("JavaGen", "jqa-java-test/"))
             .parserName("Java8")
             .sourceFolder("antlr-to-jqassistant/")
             .destinationFolder("jqa-java-test/")
@@ -33,10 +37,12 @@ public class Main {
                     new File("antlr-to-jqassistant/src/main/resources/Java8Lexer.g4"),
                     new File("antlr-to-jqassistant/src/main/resources/Java8Parser.g4")
             ))
+            .grammarDependencies(Collections.emptyList())
             .build();
 
     public static final GenerationConfig CONFIG_TYPESCRIPT = GenerationConfig.builder()
             .pluginId("TypeScriptGen")
+            .paths(new PackagePaths("TypeScriptGen", "jqa-typescript-test/"))
             .parserName("TypeScript")
             .sourceFolder("antlr-to-jqassistant/")
             .destinationFolder("jqa-typescript-test/")
@@ -66,18 +72,22 @@ public class Main {
         ScannerGenerator scannerGenerator = new ScannerGenerator(CONFIG);
         GenericParser genericParser = scannerGenerator.getGenericParser();
 
-        genericParser.writeAntlrAritfactsTo(CONFIG.getGrammarDestination());
+        genericParser.writeAntlrAritfactsTo(CONFIG.getPaths().getGrammarPath());
+        fileOperations.copyFiles(CONFIG.getGrammarFiles(), CONFIG.getPaths().getGrammarPath());
+        fileOperations.copyFiles(CONFIG.getGrammarDependencies(), CONFIG.getPaths().getGrammarPath());
+
+
         BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(CONFIG);
         Map<FormattedName, CompilationUnit> baseDescriptors = baseDescriptorGenerator.generate();
-        fileOperations.writeToFiles(CONFIG.getApiDestination(), baseDescriptors);
+        fileOperations.writeToFiles(CONFIG.getPaths().getApiPath(), baseDescriptors);
 
         ApiModelGenerator antlrParserApiModelGenerator = new ApiModelGenerator(CONFIG, genericParser, baseDescriptorGenerator);
         Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap = antlrParserApiModelGenerator.generate();
-        fileOperations.writeToFiles(CONFIG.getModelDestination(), apiModelCompilationUnitMap);
+        fileOperations.writeToFiles(CONFIG.getPaths().getModelPath(), apiModelCompilationUnitMap);
 
         MapperGenerator mapperGenerator = new MapperGenerator(CONFIG, baseDescriptorGenerator, apiModelCompilationUnitMap);
         Map<FormattedName, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generate();
-        fileOperations.writeToFiles(CONFIG.getMapperDestination(), mapperCompilationUnitMap);
+        fileOperations.writeToFiles(CONFIG.getPaths().getMapperPath(), mapperCompilationUnitMap);
 
         Map<FormattedName, CompilationUnit> allModels = new LinkedHashMap<>();
         allModels.putAll(baseDescriptors);

@@ -55,7 +55,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ConstantModifierMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -67,17 +66,17 @@ public interface ConstantModifier extends JavaGen {
 
     void setAnnotation(Annotation setAnnotation);
 
-    @Relation("HAS_P_U_B_L_I_C")
+    @Relation("HAS_PUBLIC")
     TerminalNodeStrings getPUBLIC();
 
     void setPUBLIC(TerminalNodeStrings setPUBLIC);
 
-    @Relation("HAS_S_T_A_T_I_C")
+    @Relation("HAS_STATIC")
     TerminalNodeStrings getSTATIC();
 
     void setSTATIC(TerminalNodeStrings setSTATIC);
 
-    @Relation("HAS_F_I_N_A_L")
+    @Relation("HAS_FINAL")
     TerminalNodeStrings getFINAL();
 
     void setFINAL(TerminalNodeStrings setFINAL);

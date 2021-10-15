@@ -51,7 +51,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.AnnotationTypeElementModifierMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -63,12 +62,12 @@ public interface AnnotationTypeElementModifier extends JavaGen {
 
     void setAnnotation(Annotation setAnnotation);
 
-    @Relation("HAS_P_U_B_L_I_C")
+    @Relation("HAS_PUBLIC")
     TerminalNodeStrings getPUBLIC();
 
     void setPUBLIC(TerminalNodeStrings setPUBLIC);
 
-    @Relation("HAS_A_B_S_T_R_A_C_T")
+    @Relation("HAS_ABSTRACT")
     TerminalNodeStrings getABSTRACT();
 
     void setABSTRACT(TerminalNodeStrings setABSTRACT);

@@ -75,7 +75,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ArrayAccess_lf_primaryMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -87,7 +86,7 @@ public interface ArrayAccess_lf_primary extends JavaGen {
 
     void setPrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary(PrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary setPrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary);
 
-    @Relation("HAS_L_B_R_A_C_K")
+    @Relation("HAS_LBRACK")
     List<TerminalNodeStrings> getLBRACK();
 
     void setLBRACK(List<TerminalNodeStrings> setLBRACK);
@@ -97,7 +96,7 @@ public interface ArrayAccess_lf_primary extends JavaGen {
 
     void setExpression(List<Expression> setExpression);
 
-    @Relation("HAS_R_B_R_A_C_K")
+    @Relation("HAS_RBRACK")
     List<TerminalNodeStrings> getRBRACK();
 
     void setRBRACK(List<TerminalNodeStrings> setRBRACK);

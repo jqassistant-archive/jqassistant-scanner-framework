@@ -87,7 +87,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.MethodInvocationMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -99,12 +98,12 @@ public interface MethodInvocation extends JavaGen {
 
     void setMethodName(MethodName setMethodName);
 
-    @Relation("HAS_L_P_A_R_E_N")
+    @Relation("HAS_LPAREN")
     TerminalNodeStrings getLPAREN();
 
     void setLPAREN(TerminalNodeStrings setLPAREN);
 
-    @Relation("HAS_R_P_A_R_E_N")
+    @Relation("HAS_RPAREN")
     TerminalNodeStrings getRPAREN();
 
     void setRPAREN(TerminalNodeStrings setRPAREN);
@@ -119,7 +118,7 @@ public interface MethodInvocation extends JavaGen {
 
     void setTypeName(TypeName setTypeName);
 
-    @Relation("HAS_D_O_T")
+    @Relation("HAS_DOT")
     List<TerminalNodeStrings> getDOT();
 
     void setDOT(List<TerminalNodeStrings> setDOT);
@@ -144,7 +143,7 @@ public interface MethodInvocation extends JavaGen {
 
     void setPrimary(Primary setPrimary);
 
-    @Relation("HAS_S_U_P_E_R")
+    @Relation("HAS_SUPER")
     TerminalNodeStrings getSUPER();
 
     void setSUPER(TerminalNodeStrings setSUPER);

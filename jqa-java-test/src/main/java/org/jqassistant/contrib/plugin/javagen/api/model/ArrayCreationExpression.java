@@ -63,14 +63,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ArrayCreationExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ArrayCreationExpression")
 public interface ArrayCreationExpression extends JavaGen {
 
-    @Relation("HAS_N_E_W")
+    @Relation("HAS_NEW")
     TerminalNodeStrings getNEW();
 
     void setNEW(TerminalNodeStrings setNEW);

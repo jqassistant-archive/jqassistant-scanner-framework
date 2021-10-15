@@ -59,14 +59,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.SwitchLabelMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("SwitchLabel")
 public interface SwitchLabel extends JavaGen {
 
-    @Relation("HAS_C_A_S_E")
+    @Relation("HAS_CASE")
     TerminalNodeStrings getCASE();
 
     void setCASE(TerminalNodeStrings setCASE);
@@ -76,7 +75,7 @@ public interface SwitchLabel extends JavaGen {
 
     void setConstantExpression(ConstantExpression setConstantExpression);
 
-    @Relation("HAS_C_O_L_O_N")
+    @Relation("HAS_COLON")
     TerminalNodeStrings getCOLON();
 
     void setCOLON(TerminalNodeStrings setCOLON);
@@ -86,7 +85,7 @@ public interface SwitchLabel extends JavaGen {
 
     void setEnumConstantName(EnumConstantName setEnumConstantName);
 
-    @Relation("HAS_D_E_F_A_U_L_T")
+    @Relation("HAS_DEFAULT")
     TerminalNodeStrings getDEFAULT();
 
     void setDEFAULT(TerminalNodeStrings setDEFAULT);

@@ -47,7 +47,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.VariableModifierMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -59,7 +58,7 @@ public interface VariableModifier extends JavaGen {
 
     void setAnnotation(Annotation setAnnotation);
 
-    @Relation("HAS_F_I_N_A_L")
+    @Relation("HAS_FINAL")
     TerminalNodeStrings getFINAL();
 
     void setFINAL(TerminalNodeStrings setFINAL);

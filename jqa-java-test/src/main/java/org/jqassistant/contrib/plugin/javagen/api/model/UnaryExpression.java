@@ -63,7 +63,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.UnaryExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -80,7 +79,7 @@ public interface UnaryExpression extends JavaGen {
 
     void setPreDecrementExpression(PreDecrementExpression setPreDecrementExpression);
 
-    @Relation("HAS_A_D_D")
+    @Relation("HAS_ADD")
     TerminalNodeStrings getADD();
 
     void setADD(TerminalNodeStrings setADD);
@@ -90,7 +89,7 @@ public interface UnaryExpression extends JavaGen {
 
     void setUnaryExpression(UnaryExpression setUnaryExpression);
 
-    @Relation("HAS_S_U_B")
+    @Relation("HAS_SUB")
     TerminalNodeStrings getSUB();
 
     void setSUB(TerminalNodeStrings setSUB);

@@ -55,7 +55,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.EqualityExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -72,12 +71,12 @@ public interface EqualityExpression extends JavaGen {
 
     void setEqualityExpression(EqualityExpression setEqualityExpression);
 
-    @Relation("HAS_E_Q_U_A_L")
+    @Relation("HAS_EQUAL")
     TerminalNodeStrings getEQUAL();
 
     void setEQUAL(TerminalNodeStrings setEQUAL);
 
-    @Relation("HAS_N_O_T_E_Q_U_A_L")
+    @Relation("HAS_NOTEQUAL")
     TerminalNodeStrings getNOTEQUAL();
 
     void setNOTEQUAL(TerminalNodeStrings setNOTEQUAL);

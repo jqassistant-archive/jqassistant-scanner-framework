@@ -51,7 +51,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.InclusiveOrExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -68,7 +67,7 @@ public interface InclusiveOrExpression extends JavaGen {
 
     void setInclusiveOrExpression(InclusiveOrExpression setInclusiveOrExpression);
 
-    @Relation("HAS_B_I_T_O_R")
+    @Relation("HAS_BITOR")
     TerminalNodeStrings getBITOR();
 
     void setBITOR(TerminalNodeStrings setBITOR);

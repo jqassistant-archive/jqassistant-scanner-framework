@@ -51,14 +51,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.ThrowStatementMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("ThrowStatement")
 public interface ThrowStatement extends JavaGen {
 
-    @Relation("HAS_T_H_R_O_W")
+    @Relation("HAS_THROW")
     TerminalNodeStrings getTHROW();
 
     void setTHROW(TerminalNodeStrings setTHROW);
@@ -68,7 +67,7 @@ public interface ThrowStatement extends JavaGen {
 
     void setExpression(Expression setExpression);
 
-    @Relation("HAS_S_E_M_I")
+    @Relation("HAS_SEMI")
     TerminalNodeStrings getSEMI();
 
     void setSEMI(TerminalNodeStrings setSEMI);

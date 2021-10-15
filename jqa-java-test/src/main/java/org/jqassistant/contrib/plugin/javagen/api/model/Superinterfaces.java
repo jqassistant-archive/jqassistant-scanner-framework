@@ -47,14 +47,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.SuperinterfacesMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("Superinterfaces")
 public interface Superinterfaces extends JavaGen {
 
-    @Relation("HAS_I_M_P_L_E_M_E_N_T_S")
+    @Relation("HAS_IMPLEMENTS")
     TerminalNodeStrings getIMPLEMENTS();
 
     void setIMPLEMENTS(TerminalNodeStrings setIMPLEMENTS);

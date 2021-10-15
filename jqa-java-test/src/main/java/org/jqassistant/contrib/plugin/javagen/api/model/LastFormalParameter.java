@@ -71,7 +71,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.LastFormalParameterMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -83,7 +82,7 @@ public interface LastFormalParameter extends JavaGen {
 
     void setUnannType(UnannType setUnannType);
 
-    @Relation("HAS_E_L_L_I_P_S_I_S")
+    @Relation("HAS_ELLIPSIS")
     TerminalNodeStrings getELLIPSIS();
 
     void setELLIPSIS(TerminalNodeStrings setELLIPSIS);

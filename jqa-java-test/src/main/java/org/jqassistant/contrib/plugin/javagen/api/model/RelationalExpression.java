@@ -71,7 +71,6 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.RelationalExpressionMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
@@ -88,27 +87,27 @@ public interface RelationalExpression extends JavaGen {
 
     void setRelationalExpression(RelationalExpression setRelationalExpression);
 
-    @Relation("HAS_L_T")
+    @Relation("HAS_LT")
     TerminalNodeStrings getLT();
 
     void setLT(TerminalNodeStrings setLT);
 
-    @Relation("HAS_G_T")
+    @Relation("HAS_GT")
     TerminalNodeStrings getGT();
 
     void setGT(TerminalNodeStrings setGT);
 
-    @Relation("HAS_L_E")
+    @Relation("HAS_LE")
     TerminalNodeStrings getLE();
 
     void setLE(TerminalNodeStrings setLE);
 
-    @Relation("HAS_G_E")
+    @Relation("HAS_GE")
     TerminalNodeStrings getGE();
 
     void setGE(TerminalNodeStrings setGE);
 
-    @Relation("HAS_I_N_S_T_A_N_C_E_O_F")
+    @Relation("HAS_INSTANCEOF")
     TerminalNodeStrings getINSTANCEOF();
 
     void setINSTANCEOF(TerminalNodeStrings setINSTANCEOF);

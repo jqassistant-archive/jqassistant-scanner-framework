@@ -59,14 +59,13 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  * Source Grammar(s):
  * @see antlr-to-jqassistant\src\main\resources\Java8Lexer.g4
  * @see antlr-to-jqassistant\src\main\resources\Java8Parser.g4
- * @see org.jqassistant.contrib.plugin.javagen.util.mapper.TypeBoundMapper
  */
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")
 @Label("TypeBound")
 public interface TypeBound extends JavaGen {
 
-    @Relation("HAS_E_X_T_E_N_D_S")
+    @Relation("HAS_EXTENDS")
     TerminalNodeStrings getEXTENDS();
 
     void setEXTENDS(TerminalNodeStrings setEXTENDS);
