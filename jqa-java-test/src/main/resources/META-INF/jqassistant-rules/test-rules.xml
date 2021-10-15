@@ -1,0 +1,46 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v1.8 https://schema.jqassistant.org/rule/jqassistant-rule-v1.10.xsd">
+
+    <concept id="java:Imports">
+        <cypher><![CDATA[
+            MATCH
+                (c:CompilationUnit)-[*0..3]->(x)-[:HAS_I_M_P_O_R_T]->(y)-[*0..3]->(token)
+            CREATE
+                (c)-[r:TEST_IMPORTS]->(token)
+            ]]></cypher>
+    </concept>
+
+    <group id="java">
+        <includeConcept refId="java:*"/>
+    </group>
+
+    <concept id="java:ClassDeclaration">
+        <cypher><![CDATA[
+            MATCH
+                (:CompilationUnit)-[:HAS_TYPE_DECLARATION]->()-[:HAS_CLASS_DECLARATION]->()
+                    -[:HAS_NORMAL_CLASS_DECLARATION]->(ncd:NormalClassDeclaration)
+                    -[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE
+                (type:Java:Language:Type:Class {name: identifier.text})
+            MERGE
+                (type)-[:DEFINED_BY]->(ncd)
+            RETURN
+                type AS Class
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:ClassExtendsSuperclass">
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <cypher><![CDATA[
+            MATCH(type:Java:Language:Type:Class)-[:DEFINED_BY]->()-[:HAS_SUPERCLASS]->()-[:HAS_CLASS_TYPE]-()
+                     -[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE (superClass:Java:Language:Type {name: identifier.text})
+            MERGE
+                (type)-[x:EXTENDS]->(superClass)
+            RETURN
+                type, superClass, x
+            ]]></cypher>
+    </concept>
+
+</jqassistant-rules>

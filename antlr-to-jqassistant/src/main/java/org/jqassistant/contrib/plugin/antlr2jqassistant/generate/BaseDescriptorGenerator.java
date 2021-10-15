@@ -6,39 +6,42 @@ import com.buschmais.xo.api.annotation.Abstract;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.google.common.base.CaseFormat;
-import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
+import lombok.Getter;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
 
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
+@Getter
 public class BaseDescriptorGenerator {
-    public final String QUOTES = "\"";
-    public final String GET = "get";
-    public final String SET = "set";
-    public final String HAS = "HAS_";
+    private final GenerationConfig config;
+    private final String           packageName;
+    private final FormattedName    entryNode;
+    private final FormattedName    pluginName;
+    public        String           BASE_DESCRIPTOR_NAME; //TODO: naming
+    public        String           BASE_FILE_DESCRIPTOR_NAME;
 
-    public final String packageName;
-    private final CleanName entryNode;
-    public String BASE_DESCRIPTOR_NAME = "Descriptor";
-    public String BASE_FILE_DESCRIPTOR_NAME = "FileDescriptor";
-
-    public BaseDescriptorGenerator(String packageName, String entryNode) {
-        this.packageName = packageName;
-        this.entryNode = new CleanName(entryNode);
+    public BaseDescriptorGenerator(GenerationConfig config) {
+        this.config = config;
+        this.packageName = config.getApiPackage();
+        this.pluginName = new FormattedName(config.getPluginId());
+        this.entryNode = new FormattedName(config.getEntryNode());
+        BASE_DESCRIPTOR_NAME = pluginName.getName();
+        BASE_FILE_DESCRIPTOR_NAME = pluginName.getName() + "FileDescriptor";
     }
 
-    public Map<CleanName, CompilationUnit> generate() {
+    public Map<FormattedName, CompilationUnit> generate() {
         System.out.println(new Date() + " Starting Base Descriptor Model Generation");
-        Map<CleanName, CompilationUnit> interfaces = new TreeMap<>();
+        Map<FormattedName, CompilationUnit> interfaces = new TreeMap<>();
 
         CompilationUnit baseDescriptor = getBaseDescriptor();
-        interfaces.put(new CleanName(BASE_DESCRIPTOR_NAME), baseDescriptor);
+        interfaces.put(new FormattedName(BASE_DESCRIPTOR_NAME), baseDescriptor);
 
         CompilationUnit baseFileDescriptor = getBaseFileDescriptor();
-        interfaces.put(new CleanName(BASE_FILE_DESCRIPTOR_NAME), baseFileDescriptor);
+        interfaces.put(new FormattedName(BASE_FILE_DESCRIPTOR_NAME), baseFileDescriptor);
 
         System.out.println(new Date() + " Generation Done!");
         return interfaces;
@@ -46,19 +49,14 @@ public class BaseDescriptorGenerator {
 
     private CompilationUnit getBaseDescriptor() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-
-        String name = Main.id;
-        BASE_DESCRIPTOR_NAME = name;
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        String nameString = QUOTES + nameUpperCamel + QUOTES;
+        compilationUnit.setPackageDeclaration(config.getApiPackage());
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
-                .addInterface(name)
+                .addInterface(pluginName.getName())
                 .addExtendedType(Descriptor.class);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addAnnotation(Abstract.class);
-        interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
+        interfaceDeclaration.addSingleMemberAnnotation(Label.class, pluginName.asUpperCamelWithQuotes());
 
         return compilationUnit;
     }
@@ -68,22 +66,18 @@ public class BaseDescriptorGenerator {
         compilationUnit.setPackageDeclaration(packageName);
 
         compilationUnit.addImport(BASE_DESCRIPTOR_NAME);
-        compilationUnit.addImport(Main.modelPackage + "." + entryNode.getName());
+        compilationUnit.addImport(config.getModelPackage() + "." + entryNode.getName());
 
-        String name = Main.id + BASE_FILE_DESCRIPTOR_NAME;
-        BASE_FILE_DESCRIPTOR_NAME = name;
-        String nameUpperCamel = CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, name);
-        String nameString = QUOTES + nameUpperCamel + QUOTES;
+        FormattedName name = new FormattedName(BASE_FILE_DESCRIPTOR_NAME);
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
-                .addInterface(name)
+                .addInterface(name.getName())
                 .addExtendedType(BASE_DESCRIPTOR_NAME)
                 .addExtendedType(FileDescriptor.class);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
-        interfaceDeclaration.addSingleMemberAnnotation(Label.class, nameString);
+        interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.asUpperCamelWithQuotes());
 
         ApiModelGenerator.createGetterAndSetter(interfaceDeclaration, entryNode, entryNode.getName());
-
 
         return compilationUnit;
     }

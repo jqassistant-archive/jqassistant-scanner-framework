@@ -1,9 +1,15 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant;
 
 import com.github.javaparser.ast.CompilationUnit;
-import org.antlr.v4.tool.ast.GrammarAST;
 import org.apache.maven.model.Model;
-import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.*;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.BaseDescriptorGenerator;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.JqassistantPluginGenerator;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MapperGenerator;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.MavenProjectGenerator;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ScannerGenerator;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
 import org.snt.inmemantlr.GenericParser;
 import org.snt.inmemantlr.exceptions.CompilationException;
@@ -12,26 +18,40 @@ import org.snt.inmemantlr.exceptions.ParsingException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Main {
-    public static final String id = "JavaGen";
-    public static final String parserName = "Java8";
-    public static final String source = "antlr-to-jqassistant/";
-    public static final String destination = "jqa-java-test/";
-    public final static String entryNode = "CompilationUnit"; //TODO: Consider finding "unused" parser rules that contain EOF
-    public static File[] dependencies = null;
+    public static final GenerationConfig CONFIG_JAVA = GenerationConfig.builder()
+            .pluginId("JavaGen")
+            .parserName("Java8")
+            .sourceFolder("antlr-to-jqassistant/")
+            .destinationFolder("jqa-java-test/")
+            .entryNode("CompilationUnit") //TODO: Consider finding "unused" parser rules that contain EOF
+            .grammarFiles(Arrays.asList(
+                    new File("antlr-to-jqassistant/src/main/resources/Java8Lexer.g4"),
+                    new File("antlr-to-jqassistant/src/main/resources/Java8Parser.g4")
+            ))
+            .build();
 
-//    public static final String id = "TypeScriptGen";
-//    public static final String parserName = "TypeScript";
-//    public static final String source = "antlr-to-jqassistant/";
-//    public static final String destination = "jqa-typescript-test/";
-//    public final static String entryNode = "Program";
-//    public static File[] dependencies = {
-//            new File(source + "src/main/resources/" + parserName + "LexerBase.java"),
-//            new File(source + "src/main/resources/" + parserName + "ParserBase.java")
-//    };
+    public static final GenerationConfig CONFIG_TYPESCRIPT = GenerationConfig.builder()
+            .pluginId("TypeScriptGen")
+            .parserName("TypeScript")
+            .sourceFolder("antlr-to-jqassistant/")
+            .destinationFolder("jqa-typescript-test/")
+            .entryNode("Program")
+            .grammarFiles(Arrays.asList(
+                new File("antlr-to-jqassistant/src/main/resources/TypeScriptLexer.g4"),
+                new File("antlr-to-jqassistant/src/main/resources/TypeScriptParser.g4")
+            ))
+            .grammarDependencies(Arrays.asList(
+                new File("antlr-to-jqassistant/src/main/resources/TypeScriptLexerBase.java"),
+                new File("antlr-to-jqassistant/src/main/resources/TypeScriptParserBase.java")
+            ))
+            .build();
+
+    public static final GenerationConfig CONFIG = CONFIG_JAVA;
 
     public static void main(String[] args) {
         try {
@@ -41,47 +61,32 @@ public class Main {
         }
     }
 
-    public static final String rootPackage = "org.jqassistant.contrib.plugin." + id.toLowerCase();
-    public static final String antlrPackage = rootPackage + ".antlr4";
-    public static final String apiPackage = rootPackage + ".api";
-    public static final String modelPackage = apiPackage + ".model";
-    public static final String mapperPackage = rootPackage + ".util.mapper";
-
-    public static File[] files = {
-            new File(source + "src/main/resources/" + parserName + "Lexer.g4"),
-            new File(source + "src/main/resources/" + parserName + "Parser.g4")
-    };
-
     public Main() throws FileNotFoundException, CompilationException, ParsingException, IllegalWorkflowException {
-        ScannerGenerator scannerGenerator = new ScannerGenerator(files, dependencies);
+        FileOperations fileOperations = new FileOperations(CONFIG);
+        ScannerGenerator scannerGenerator = new ScannerGenerator(CONFIG);
         GenericParser genericParser = scannerGenerator.getGenericParser();
-        GrammarAST rulesAst = scannerGenerator.getRulesAst();
 
-        genericParser.writeAntlrAritfactsTo(Main.destination + "/gen");
-        BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(apiPackage, entryNode);
-        Map<CleanName, CompilationUnit> baseDescriptors = baseDescriptorGenerator.generate();
-        FileOperations.writeToFiles(id, apiPackage, baseDescriptors);
+        genericParser.writeAntlrAritfactsTo(CONFIG.getGrammarDestination());
+        BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(CONFIG);
+        Map<FormattedName, CompilationUnit> baseDescriptors = baseDescriptorGenerator.generate();
+        fileOperations.writeToFiles(CONFIG.getApiDestination(), baseDescriptors);
 
-        ApiModelGenerator antlrParserApiModelGenerator = new ApiModelGenerator(genericParser, modelPackage, baseDescriptorGenerator);
-        Map<CleanName, CompilationUnit> apiModelCompilationUnitMap = antlrParserApiModelGenerator.generate();
-        FileOperations.writeToFiles(id, modelPackage, apiModelCompilationUnitMap);
+        ApiModelGenerator antlrParserApiModelGenerator = new ApiModelGenerator(CONFIG, genericParser, baseDescriptorGenerator);
+        Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap = antlrParserApiModelGenerator.generate();
+        fileOperations.writeToFiles(CONFIG.getModelDestination(), apiModelCompilationUnitMap);
 
-        MapperGenerator mapperGenerator = new MapperGenerator(mapperPackage, baseDescriptorGenerator);
+        MapperGenerator mapperGenerator = new MapperGenerator(CONFIG, baseDescriptorGenerator, apiModelCompilationUnitMap);
+        Map<FormattedName, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generate();
+        fileOperations.writeToFiles(CONFIG.getMapperDestination(), mapperCompilationUnitMap);
 
-        Map<CleanName, CompilationUnit> singleMapperCompilationUnitMap = mapperGenerator.generateSingleMapperFromApiModel(apiModelCompilationUnitMap);
-        FileOperations.writeToFile("MainMapper.java", mapperPackage, singleMapperCompilationUnitMap);
-
-        Map<CleanName, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generateFromApiModel(apiModelCompilationUnitMap);
-        FileOperations.writeToFiles(id, mapperPackage, mapperCompilationUnitMap);
-
-        Map<CleanName, CompilationUnit> allModels = new LinkedHashMap<>();
+        Map<FormattedName, CompilationUnit> allModels = new LinkedHashMap<>();
         allModels.putAll(baseDescriptors);
         allModels.putAll(apiModelCompilationUnitMap);
-        JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(new CleanName(id), allModels);
-        FileOperations.writeToFile(jqassistantPlugin);
+        JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(CONFIG, allModels);
+        fileOperations.writeToFile(jqassistantPlugin);
 
-        Model mavenProject = MavenProjectGenerator.generateMavenProject(id);
-        FileOperations.writeToFile(mavenProject);
+        Model mavenProject = MavenProjectGenerator.generateMavenProject(CONFIG.getPluginId());
+        fileOperations.writeToFile(mavenProject);
     }
 
 }

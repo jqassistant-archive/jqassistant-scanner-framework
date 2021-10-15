@@ -1,0 +1,33 @@
+Java Sprachkonzepte:
+- Package declaration
+- Classes
+    - Superclass and interfaces
+    - FQDN
+    - References to FQDN
+    - Annotations ***
+    - Class Members
+    - Fields
+        - Signatures
+    - Methods
+        - Annotations ***
+        - Signatures *
+            - Parameters
+            - Return Type
+            - throws
+        - READS
+        - WRITES
+        - Invocations
+        x Generics
+    - Inner Classes
+        - Named
+        - Anonymous
+        x (lambda)
+
+
+
+- Annotations
+
+
+
+jqassistant/adr/protobufGenerate_Protocol_CLasses_From_Protobuf_Files.adoc:19
+providesConcepts="java:GeneratedType"]

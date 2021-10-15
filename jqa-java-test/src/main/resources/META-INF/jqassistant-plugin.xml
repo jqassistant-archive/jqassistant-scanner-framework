@@ -250,4 +250,7 @@
     <scanner>
         <class>org.jqassistant.contrib.plugin.javagen.impl.scanner.JavaGenFileScannerPlugin</class>
     </scanner>
+    <rules>
+        <resource>test-rules.xml</resource>
+    </rules>
 </jqassistant-plugin>

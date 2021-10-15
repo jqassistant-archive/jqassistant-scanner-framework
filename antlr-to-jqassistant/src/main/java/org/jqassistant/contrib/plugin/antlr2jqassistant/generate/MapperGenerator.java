@@ -15,56 +15,61 @@ import com.github.javaparser.ast.type.TypeParameter;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
-import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
-import org.mapstruct.*;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.mapstruct.Context;
+import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.TargetType;
 import org.mapstruct.factory.Mappers;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class MapperGenerator {
     public final String QUOTES = "\"";
     public final String GET = "get";
     public final String SET = "set";
-    public final String HAS = "HAS_";
-    public final String packageName;
+    public final String                   HAS = "HAS_";
+    public final String                   mapperPackage;
+    private      GenerationConfig config;
     private final BaseDescriptorGenerator baseDescriptorGenerator;
+    private Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap;
 
-    public MapperGenerator(String packageName, BaseDescriptorGenerator baseDescriptorGenerator) {
-        this.packageName = packageName;
+    public MapperGenerator(GenerationConfig config, BaseDescriptorGenerator baseDescriptorGenerator,
+            Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap) {
+
+        this.mapperPackage = config.getMapperPackage();
+        this.config = config;
         this.baseDescriptorGenerator = baseDescriptorGenerator;
+        this.apiModelCompilationUnitMap = apiModelCompilationUnitMap;
     }
 
-    public static CleanName getMapperName(String modelName) {
-        return new CleanName(modelName + "Mapper");
+    public Map<FormattedName, CompilationUnit> generate() {
+        TreeMap<FormattedName, CompilationUnit> compilationUnitMap = new TreeMap<>();
+        compilationUnitMap.putAll(generateSingleMapperFromApiModel());
+        compilationUnitMap.putAll(generateDescriptorFactory());
+        return compilationUnitMap;
     }
 
-    public Map<CleanName, CompilationUnit> generateFromApiModel(Map<CleanName, CompilationUnit> apiModelCompilationUnitMap) {
-        System.out.println(new Date() + " Starting Mapper Generation");
-        Map<CleanName, CompilationUnit> mapperCompilationUnitMap = new TreeMap<>();
-
-//        for (Map.Entry<String, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
-//            mapperCompilationUnitMap.putAll(generateModelToContextMapper(entry.getKey(), entry.getValue()));
-//        }
-        mapperCompilationUnitMap.putAll(generateDescriptorFactory());
-//        mapperCompilationUnitMap.putAll(generateTerminalNodeMapper());
-//        mapperCompilationUnitMap.putAll(generateMapperConfig(mapperCompilationUnitMap));
-
-        System.out.println(new Date() + " Generation Done!");
-        return mapperCompilationUnitMap;
+    private static FormattedName getMapperName(String modelName) {
+        return new FormattedName(modelName + "Mapper");
     }
 
-    public Map<CleanName, CompilationUnit> generateSingleMapperFromApiModel(Map<CleanName, CompilationUnit> apiModelCompilationUnitMap) {
+    private Map<FormattedName, CompilationUnit> generateSingleMapperFromApiModel() {
         System.out.println(new Date() + " Starting Single Mapper Generation");
 
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
+        compilationUnit.setPackageDeclaration(mapperPackage);
 
-        compilationUnit.addImport(Main.antlrPackage + "." + Main.parserName + "Parser");
+        compilationUnit.addImport(config.getAntlrPackage() + "." + config.getParserName() + "Parser");
         compilationUnit.addImport(Mappers.class);
         compilationUnit.addImport(NullValueCheckStrategy.class);
 
-        CleanName mainMapper = getMapperName("Main");
+        FormattedName mainMapper = getMapperName("Main");
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(mainMapper.getName());
         TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
@@ -74,17 +79,16 @@ public class MapperGenerator {
         mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
         mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
 
-        for (Map.Entry<CleanName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
-            CleanName modelName = entry.getKey();
+        for (Map.Entry<FormattedName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
+            FormattedName modelName = entry.getKey();
             if (!modelName.getName().equalsIgnoreCase(ApiModelGenerator.TERMINAL_NODE_CLASS)) {
-                compilationUnit.addImport(Main.modelPackage + "." + modelName);
+                compilationUnit.addImport(config.getModelPackage() + "." + modelName);
                 MethodDeclaration mapMethodDeclaration = classDeclaration.addMethod("map").removeBody();
                 mapMethodDeclaration.setType(modelName.getName());
                 mapMethodDeclaration
                         .addAndGetParameter(ScannerContext.class, "scannerContext")
                         .addAnnotation(Context.class);
-                mapMethodDeclaration.addParameter(Main.parserName + "Parser." + modelName.asUpperCamel(modelName.getOriginal()), "parserContext");
-
+                mapMethodDeclaration.addParameter(config.getParserName() + "Parser." + modelName.asUpperCamel(), "parserContext");
             }
         }
 
@@ -120,39 +124,12 @@ public class MapperGenerator {
         return Collections.singletonMap(mainMapper, compilationUnit);
     }
 
-    private Map<String, CompilationUnit> generateMapperConfig(Map<String, CompilationUnit> mapperCompilationUnitMap) {
-        Map<String, CompilationUnit> classes = new HashMap<>();
-
+    private Map<FormattedName, CompilationUnit> generateDescriptorFactory() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-        compilationUnit.addImport(MapperConfig.class);
-        mapperCompilationUnitMap.keySet().forEach(s -> compilationUnit.addImport(packageName + "." + s));
+        compilationUnit.setPackageDeclaration(mapperPackage);
+        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
 
-        String name = "MapperConfiguration";
-
-        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass(name);
-        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
-
-        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(MapperConfig.class);
-//        mapperConfigAnnotation.addPair("\n\tnullValuePropertyMappingStrategy", "NullValuePropertyMappingStrategy.IGNORE");
-//        mapperConfigAnnotation.addPair("\n\tnullValueCheckStrategy", "NullValueCheckStrategy.ALWAYS");
-        mapperConfigAnnotation
-                .addPair("\n\tuses",
-                        "{\n\t\t"
-                                + String.join(".class,\n\t\t", mapperCompilationUnitMap.keySet())
-                                + ".class\n\t}\n");
-
-        classes.put(name, compilationUnit);
-        return classes;
-    }
-
-
-    private Map<CleanName, CompilationUnit> generateDescriptorFactory() {
-        CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-        compilationUnit.addImport(baseDescriptorGenerator.packageName + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
-
-        CleanName name = new CleanName("DescriptorFactory");
+        FormattedName name = new FormattedName("DescriptorFactory");
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass(name.getName());
 
         NodeList<ClassOrInterfaceType> typeBound = new NodeList<>(new ClassOrInterfaceType().setName(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME));
@@ -181,95 +158,12 @@ public class MapperGenerator {
         return Collections.singletonMap(name, compilationUnit);
     }
 
-    private Map<CleanName, CompilationUnit> generateModelToContextMapper(String modelName, CompilationUnit apiModel) {
-        CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-
-        compilationUnit.addImport(Main.modelPackage + "." + modelName);
-        compilationUnit.addImport(Main.antlrPackage + "." + Main.parserName + "Parser");
-        compilationUnit.addImport("org.mapstruct.factory.Mappers");
-//        compilationUnit.addImport("org.jqassistant.contrib.plugin.javagen.util.CycleAvoidingMappingContext");
-
-        CleanName name = getMapperName(modelName);
-
-        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(name.getName());
-        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
-        addStaticInstance(classDeclaration, name);
-
-        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
-        mapperConfigAnnotation.addPair("config", "MapperConfiguration.class");
-
-        MethodDeclaration mapMethodDeclaration = classDeclaration.addMethod("map").removeBody();
-        mapMethodDeclaration.setType(modelName);
-        mapMethodDeclaration
-                .addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapMethodDeclaration
-                .addParameter(Main.parserName + "Parser." + modelName + "Context", "parserContext");
-//        mapMethodDeclaration
-//                .addAndGetParameter("CycleAvoidingMappingContext", "mappingContext")
-//                .addAnnotation(Context.class);
-
-        return Collections.singletonMap(name, compilationUnit);
-    }
-
-    private void addStaticInstance(ClassOrInterfaceDeclaration classDeclaration, CleanName name) {
+    private void addStaticInstance(ClassOrInterfaceDeclaration classDeclaration, FormattedName name) {
         FieldDeclaration fieldDeclaration = classDeclaration
                 .addField(name.getName(), "INSTANCE")
                 .addModifier(Modifier.Keyword.PUBLIC)
                 .addModifier(Modifier.Keyword.STATIC);
         fieldDeclaration.getVariable(0).setInitializer("Mappers.getMapper(" + name + ".class)");
-    }
-
-    private Map<CleanName, ? extends CompilationUnit> generateTerminalNodeMapper() {
-        CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-
-        compilationUnit.addImport("org.mapstruct.factory.Mappers");
-
-        String modelName = ApiModelGenerator.TERMINAL_NODE_CLASS;
-        CleanName mapperName = getMapperName(modelName);
-
-        compilationUnit.addImport(TerminalNode.class);
-        compilationUnit.addImport(Main.modelPackage + "." + modelName);
-
-        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(mapperName.getName());
-        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
-        addStaticInstance(classDeclaration, mapperName);
-
-        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
-        mapperConfigAnnotation.addPair("config", "MapperConfiguration.class");
-
-        MethodDeclaration mapMethodDeclaration = classDeclaration
-                .addMethod("map")
-                .setDefault(true)
-                .setType(modelName);
-        mapMethodDeclaration.addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapMethodDeclaration
-                .addParameter(TerminalNode.class, "terminalNode");
-
-        mapMethodDeclaration.setBody(new BlockStmt().addStatement(
-                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
-        ));
-
-        MethodDeclaration mapMethodDeclaration2 = classDeclaration
-                .addMethod("map")
-                .removeBody()
-                .setType(modelName);
-        mapMethodDeclaration2.addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapMethodDeclaration2
-                .addParameter(Token.class, "symbol");
-
-        classDeclaration
-                .addMethod("map")
-                .removeBody()
-                .setType(String.class)
-                .addParameter(CharStream.class, "value");
-
-
-        return Collections.singletonMap(mapperName, compilationUnit);
     }
 
 }

@@ -1,4 +1,4 @@
-package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
+package org.jqassistant.contrib.plugin.antlr2jqassistant.model;
 
 import com.github.javaparser.ast.expr.SimpleName;
 import com.google.common.base.CaseFormat;
@@ -10,42 +10,53 @@ import org.apache.commons.lang3.StringUtils;
 import javax.lang.model.SourceVersion;
 
 @Data
-public class CleanName implements Comparable<CleanName> {
+public class FormattedName implements Comparable<FormattedName> {
     public final static String QUOTES = "\"";
-    public final static String GET = "get";
-    public final static String SET = "set";
-    public final static String HAS = "HAS_";
+    public final static String GET    = "get";
+    public final static String SET    = "set";
+    public final static String HAS    = "HAS_";
 
     private final String original;
     private final String name;
 
-    public CleanName(SimpleName originalSimpleName) {
+    public FormattedName(SimpleName originalSimpleName) {
         this.original = originalSimpleName.getIdentifier();
-        this.name = getCleanName(original);
+        this.name = getCleanNameFor(original);
     }
-    public CleanName(RuleAST ast) {
+
+    public FormattedName(RuleAST ast) {
         this.original = ast.getRuleName();
-        this.name = getCleanName(original);
+        this.name = getCleanNameFor(original);
     }
-    public CleanName(GrammarAST ast) {
+
+    public FormattedName(GrammarAST ast) {
         this.original = ast.getText();
-        this.name = getCleanName(original);
+        this.name = getCleanNameFor(original);
     }
-    public CleanName(String name) {
+
+    public FormattedName(String name) {
         this.original = name;
-        this.name = getCleanName(original);
+        this.name = getCleanNameFor(original);
     }
 
     public String withQuotes() {
         return QUOTES + name + QUOTES;
     }
 
-    public String getCleanName(String name) {
+    private String getCleanNameFor(String name) {
         String cleanName = name.replace("Context", "");
         return asUpperCamel(name.equalsIgnoreCase("class") ? "clazz" : cleanName);
     }
 
-    public String asUpperCamel(String text) {
+    public String asUpperCamelWithQuotes() {
+        return QUOTES + asUpperCamel() + QUOTES;
+    }
+
+    public String asUpperCamel() {
+        return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, getName());
+    }
+
+    private String asUpperCamel(String text) {
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, text);
     }
 
@@ -59,7 +70,7 @@ public class CleanName implements Comparable<CleanName> {
         return QUOTES + HAS + relationship + QUOTES;
     }
 
-    public String toLowerCase() {
+    public String asLowerCase() {
         return name.toLowerCase();
     }
 
@@ -70,11 +81,10 @@ public class CleanName implements Comparable<CleanName> {
     public String getGetterName() {
         return GET + name;
     }
+
     public String getSetterName() {
         return SET + name;
     }
-
-
 
     @Override
     public String toString() {
@@ -82,7 +92,7 @@ public class CleanName implements Comparable<CleanName> {
     }
 
     @Override
-    public int compareTo(CleanName o) {
+    public int compareTo(FormattedName o) {
         return this.getName().compareTo(o.getName());
     }
 }
