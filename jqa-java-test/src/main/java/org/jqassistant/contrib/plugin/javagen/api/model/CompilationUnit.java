@@ -89,8 +89,8 @@ public interface CompilationUnit extends JavaGen {
 
     void setTypeDeclaration(List<TypeDeclaration> setTypeDeclaration);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

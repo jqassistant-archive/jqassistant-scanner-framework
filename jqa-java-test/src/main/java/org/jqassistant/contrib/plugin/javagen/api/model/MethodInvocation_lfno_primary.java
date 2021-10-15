@@ -139,8 +139,8 @@ public interface MethodInvocation_lfno_primary extends JavaGen {
 
     void setSUPER(TerminalNodeStrings setSUPER);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

@@ -76,8 +76,8 @@ public interface InterfaceBody extends JavaGen {
 
     void setInterfaceMemberDeclaration(List<InterfaceMemberDeclaration> setInterfaceMemberDeclaration);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

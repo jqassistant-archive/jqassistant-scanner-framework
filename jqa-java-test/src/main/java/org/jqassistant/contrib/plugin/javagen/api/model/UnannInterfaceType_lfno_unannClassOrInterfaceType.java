@@ -54,8 +54,8 @@ public interface UnannInterfaceType_lfno_unannClassOrInterfaceType extends JavaG
 
     void setUnannClassType_lfno_unannClassOrInterfaceType(UnannClassType_lfno_unannClassOrInterfaceType setUnannClassType_lfno_unannClassOrInterfaceType);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

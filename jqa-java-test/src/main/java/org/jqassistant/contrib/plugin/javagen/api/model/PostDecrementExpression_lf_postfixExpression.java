@@ -54,8 +54,8 @@ public interface PostDecrementExpression_lf_postfixExpression extends JavaGen {
 
     void setDEC(TerminalNodeStrings setDEC);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

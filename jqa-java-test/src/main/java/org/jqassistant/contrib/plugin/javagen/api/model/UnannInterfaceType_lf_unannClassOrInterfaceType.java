@@ -54,8 +54,8 @@ public interface UnannInterfaceType_lf_unannClassOrInterfaceType extends JavaGen
 
     void setUnannClassType_lf_unannClassOrInterfaceType(UnannClassType_lf_unannClassOrInterfaceType setUnannClassType_lf_unannClassOrInterfaceType);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

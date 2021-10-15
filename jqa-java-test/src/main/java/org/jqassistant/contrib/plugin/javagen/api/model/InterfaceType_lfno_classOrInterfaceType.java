@@ -54,8 +54,8 @@ public interface InterfaceType_lfno_classOrInterfaceType extends JavaGen {
 
     void setClassType_lfno_classOrInterfaceType(ClassType_lfno_classOrInterfaceType setClassType_lfno_classOrInterfaceType);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

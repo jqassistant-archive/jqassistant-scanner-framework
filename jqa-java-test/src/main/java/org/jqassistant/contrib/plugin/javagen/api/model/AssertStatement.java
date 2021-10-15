@@ -85,8 +85,8 @@ public interface AssertStatement extends JavaGen {
 
     void setCOLON(TerminalNodeStrings setCOLON);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

@@ -90,8 +90,8 @@ public interface LambdaParameters extends JavaGen {
 
     void setInferredFormalParameterList(InferredFormalParameterList setInferredFormalParameterList);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

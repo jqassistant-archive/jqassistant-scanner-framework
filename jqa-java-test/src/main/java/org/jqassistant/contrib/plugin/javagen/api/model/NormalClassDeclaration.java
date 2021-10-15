@@ -78,9 +78,9 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface NormalClassDeclaration extends JavaGen {
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClazz();
+    TerminalNodeStrings getCLASS();
 
-    void setClazz(TerminalNodeStrings setClazz);
+    void setCLASS(TerminalNodeStrings setCLASS);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
@@ -112,8 +112,8 @@ public interface NormalClassDeclaration extends JavaGen {
 
     void setSuperinterfaces(Superinterfaces setSuperinterfaces);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

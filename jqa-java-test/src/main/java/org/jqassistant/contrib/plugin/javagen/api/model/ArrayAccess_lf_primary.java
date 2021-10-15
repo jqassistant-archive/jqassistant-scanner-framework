@@ -106,8 +106,8 @@ public interface ArrayAccess_lf_primary extends JavaGen {
 
     void setPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary(List<PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary> setPrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

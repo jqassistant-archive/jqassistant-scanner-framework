@@ -133,9 +133,9 @@ public interface PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary ex
     void setDOT(TerminalNodeStrings setDOT);
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClazz();
+    TerminalNodeStrings getCLASS();
 
-    void setClazz(TerminalNodeStrings setClazz);
+    void setCLASS(TerminalNodeStrings setCLASS);
 
     @Relation("HAS_LBRACK")
     List<TerminalNodeStrings> getLBRACK();
@@ -197,8 +197,8 @@ public interface PrimaryNoNewArray_lfno_primary_lfno_arrayAccess_lfno_primary ex
 
     void setMethodReference_lfno_primary(MethodReference_lfno_primary setMethodReference_lfno_primary);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

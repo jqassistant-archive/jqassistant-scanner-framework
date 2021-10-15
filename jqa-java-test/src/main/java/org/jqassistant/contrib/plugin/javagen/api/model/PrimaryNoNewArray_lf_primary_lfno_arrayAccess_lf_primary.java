@@ -81,8 +81,8 @@ public interface PrimaryNoNewArray_lf_primary_lfno_arrayAccess_lf_primary extend
 
     void setMethodReference_lf_primary(MethodReference_lf_primary setMethodReference_lf_primary);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

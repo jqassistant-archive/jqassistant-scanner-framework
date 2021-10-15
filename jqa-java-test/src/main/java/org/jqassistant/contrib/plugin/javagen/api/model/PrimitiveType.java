@@ -76,8 +76,8 @@ public interface PrimitiveType extends JavaGen {
 
     void setBOOLEAN(TerminalNodeStrings setBOOLEAN);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

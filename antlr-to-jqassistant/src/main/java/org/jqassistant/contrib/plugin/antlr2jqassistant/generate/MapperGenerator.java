@@ -1,6 +1,7 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
+import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
@@ -10,18 +11,17 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ReturnStmt;
+import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.TypeParameter;
 import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
-import org.mapstruct.Context;
-import org.mapstruct.Mapper;
-import org.mapstruct.NullValueCheckStrategy;
-import org.mapstruct.TargetType;
+import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.Collections;
@@ -35,8 +35,8 @@ public record MapperGenerator(GenerationConfig config,
 
     public Map<FormattedName, CompilationUnit> generate() {
         TreeMap<FormattedName, CompilationUnit> compilationUnitMap = new TreeMap<>();
-        compilationUnitMap.putAll(generateSingleMapperFromApiModel());
         compilationUnitMap.putAll(generateDescriptorFactory());
+        compilationUnitMap.putAll(generateSingleMapperFromApiModel());
         return compilationUnitMap;
     }
 
@@ -47,8 +47,10 @@ public record MapperGenerator(GenerationConfig config,
         compilationUnit.setPackageDeclaration(config.getPaths().getMapperPackage());
 
         compilationUnit.addImport(config.getPaths().getAntlrPackage() + "." + config.getParserName() + "Parser");
+        compilationUnit.addImport("org.mapstruct.*");
         compilationUnit.addImport(Mappers.class);
-        compilationUnit.addImport(NullValueCheckStrategy.class);
+        compilationUnit.addImport(ParserRuleContext.class);
+        compilationUnit.addImport(org.antlr.v4.runtime.misc.Interval.class);
         compilationUnit.addImport(config.getPaths().getModelPackage() + ".*");
 
         FormattedName mainMapper = new FormattedName("MainMapper");
@@ -59,7 +61,47 @@ public record MapperGenerator(GenerationConfig config,
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
         mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
+        mapperConfigAnnotation.addPair("unmappedTargetPolicy", "ReportingPolicy.ERROR");
         mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
+
+        MethodDeclaration mapSourceCode = classDeclaration
+                .addMethod("mapSourceCode")
+                .setDefault(true)
+                .setType(String.class);
+        mapSourceCode
+                .addParameter(ParserRuleContext.class, "parserContext");
+        mapSourceCode.setBody(new BlockStmt()
+                .addStatement(StaticJavaParser.parseStatement("String code = parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex()));"))
+                .addStatement(
+                    new ReturnStmt("code.indexOf(\"\\n\") == -1 ? code : code.substring(0, code.indexOf(\"\\n\"))")));
+        mapSourceCode.addAndGetAnnotation(Named.class).addPair("value", "\"mapSourceCode\"");
+
+        MethodDeclaration mapTerminalNode = classDeclaration
+                .addMethod("map")
+                .setDefault(true)
+                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
+        mapTerminalNode.addAndGetParameter(ScannerContext.class, "scannerContext")
+                .addAnnotation(Context.class);
+        mapTerminalNode
+                .addParameter(TerminalNode.class, "terminalNode");
+        mapTerminalNode.setBody(new BlockStmt().addStatement(
+                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
+        ));
+
+        MethodDeclaration mapToken = classDeclaration
+                .addMethod("map")
+                .removeBody()
+                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
+        mapToken.addAndGetParameter(ScannerContext.class, "scannerContext")
+                .addAnnotation(Context.class);
+        mapToken
+                .addParameter(Token.class, "symbol");
+
+        classDeclaration
+                .addMethod("map")
+                .removeBody()
+                .setType(String.class)
+                .addParameter(CharStream.class, "value");
 
         for (Map.Entry<FormattedName, CompilationUnit> entry : apiModelCompilationUnitMap.entrySet()) {
             FormattedName modelName = entry.getKey();
@@ -70,36 +112,14 @@ public record MapperGenerator(GenerationConfig config,
                         .addAndGetParameter(ScannerContext.class, "scannerContext")
                         .addAnnotation(Context.class);
                 mapMethodDeclaration.addParameter(config.getParserName() + "Parser." + FormattedName.asUpperCamel(modelName.getOriginal()), "parserContext");
+                mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
+                        .addPair("target", "\"sourceCode\"")
+                        .addPair("source", "\".\"")
+                        .addPair("qualifiedByName", "\"mapSourceCode\"");
             }
         }
 
-        MethodDeclaration mapMethodDeclaration = classDeclaration
-                .addMethod("map")
-                .setDefault(true)
-                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
-        mapMethodDeclaration.addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapMethodDeclaration
-                .addParameter(TerminalNode.class, "terminalNode");
-
-        mapMethodDeclaration.setBody(new BlockStmt().addStatement(
-                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
-        ));
-
-        MethodDeclaration mapMethodDeclaration2 = classDeclaration
-                .addMethod("map")
-                .removeBody()
-                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
-        mapMethodDeclaration2.addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapMethodDeclaration2
-                .addParameter(Token.class, "symbol");
-
-        classDeclaration
-                .addMethod("map")
-                .removeBody()
-                .setType(String.class)
-                .addParameter(CharStream.class, "value");
+//        parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex()))
 
         System.out.println(new Date() + " Generation Done!");
         return Collections.singletonMap(mainMapper, compilationUnit);

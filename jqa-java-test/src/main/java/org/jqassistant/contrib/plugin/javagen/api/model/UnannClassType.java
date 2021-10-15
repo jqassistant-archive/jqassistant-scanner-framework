@@ -94,8 +94,8 @@ public interface UnannClassType extends JavaGen {
 
     void setAnnotation(List<Annotation> setAnnotation);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

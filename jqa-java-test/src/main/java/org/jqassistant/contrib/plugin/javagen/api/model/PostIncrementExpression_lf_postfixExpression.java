@@ -54,8 +54,8 @@ public interface PostIncrementExpression_lf_postfixExpression extends JavaGen {
 
     void setINC(TerminalNodeStrings setINC);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

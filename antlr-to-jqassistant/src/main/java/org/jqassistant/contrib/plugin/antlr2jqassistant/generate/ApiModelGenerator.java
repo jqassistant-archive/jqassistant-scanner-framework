@@ -131,7 +131,7 @@ public class ApiModelGenerator {
             }
         });
 
-        createGetterAndSetter(interfaceDeclaration, new FormattedName("Text"), "String");
+        createGetterAndSetter(interfaceDeclaration, new FormattedName("SourceCode"), "String");
         return Collections.singletonMap(name, compilationUnit);
     }
 

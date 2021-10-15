@@ -89,8 +89,8 @@ public interface PostfixExpression extends JavaGen {
 
     void setPostDecrementExpression_lf_postfixExpression(List<PostDecrementExpression_lf_postfixExpression> setPostDecrementExpression_lf_postfixExpression);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

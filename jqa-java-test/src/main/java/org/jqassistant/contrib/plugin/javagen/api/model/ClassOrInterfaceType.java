@@ -89,8 +89,8 @@ public interface ClassOrInterfaceType extends JavaGen {
 
     void setInterfaceType_lf_classOrInterfaceType(List<InterfaceType_lf_classOrInterfaceType> setInterfaceType_lf_classOrInterfaceType);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

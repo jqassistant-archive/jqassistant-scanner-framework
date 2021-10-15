@@ -45,8 +45,8 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary")
 public interface PrimaryNoNewArray_lf_primary_lf_arrayAccess_lf_primary extends JavaGen {
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }
