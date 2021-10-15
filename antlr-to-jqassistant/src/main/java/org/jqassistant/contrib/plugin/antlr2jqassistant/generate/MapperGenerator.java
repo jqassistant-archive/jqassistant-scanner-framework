@@ -29,28 +29,15 @@ import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class MapperGenerator {
-    private      GenerationConfig config;
-    private final BaseDescriptorGenerator baseDescriptorGenerator;
-    private Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap;
-
-    public MapperGenerator(GenerationConfig config, BaseDescriptorGenerator baseDescriptorGenerator,
-            Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap) {
-
-        this.config = config;
-        this.baseDescriptorGenerator = baseDescriptorGenerator;
-        this.apiModelCompilationUnitMap = apiModelCompilationUnitMap;
-    }
+public record MapperGenerator(GenerationConfig config,
+                              BaseDescriptorGenerator baseDescriptorGenerator,
+                              Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap) {
 
     public Map<FormattedName, CompilationUnit> generate() {
         TreeMap<FormattedName, CompilationUnit> compilationUnitMap = new TreeMap<>();
         compilationUnitMap.putAll(generateSingleMapperFromApiModel());
         compilationUnitMap.putAll(generateDescriptorFactory());
         return compilationUnitMap;
-    }
-
-    private static FormattedName getMapperName(String modelName) {
-        return new FormattedName(modelName + "Mapper");
     }
 
     private Map<FormattedName, CompilationUnit> generateSingleMapperFromApiModel() {
@@ -64,7 +51,7 @@ public class MapperGenerator {
         compilationUnit.addImport(NullValueCheckStrategy.class);
         compilationUnit.addImport(config.getPaths().getModelPackage() + ".*");
 
-        FormattedName mainMapper = getMapperName("Main");
+        FormattedName mainMapper = new FormattedName("MainMapper");
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(mainMapper.getName());
         TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());

@@ -1,17 +1,18 @@
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant
+
 package org.jqassistant.contrib.plugin.typescriptgen.antlr4;
 
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.Token;
-
 import java.util.Stack;
 
 /**
  * All lexer methods that used in grammar (IsStrictMode)
  * should start with Upper Case Char similar to Lexer rules.
  */
-public abstract class TypeScriptLexerBase extends Lexer
-{
+public abstract class TypeScriptLexerBase extends Lexer {
+
     /**
      * Stores values of nested modes. By default mode is strict or
      * defined externally (useStrictDefault)
@@ -19,16 +20,19 @@ public abstract class TypeScriptLexerBase extends Lexer
     private Stack<Boolean> scopeStrictModes = new Stack<Boolean>();
 
     private Token lastToken = null;
+
     /**
      * Default value of strict mode
      * Can be defined externally by setUseStrictDefault
      */
     private boolean useStrictDefault = false;
+
     /**
      * Current value of strict mode
      * Can be defined during parsing, see StringFunctions.js and StringGlobal.js samples
      */
     private boolean useStrictCurrent = false;
+
     /**
      * Keeps track of the the current depth of nested template string backticks.
      * E.g. after the X in:
@@ -73,33 +77,26 @@ public abstract class TypeScriptLexerBase extends Lexer
     @Override
     public Token nextToken() {
         Token next = super.nextToken();
-
         if (next.getChannel() == Token.DEFAULT_CHANNEL) {
             // Keep track of the last token on the default channel.
             this.lastToken = next;
         }
-
         return next;
     }
 
-    protected void ProcessOpenBrace()
-    {
+    protected void ProcessOpenBrace() {
         useStrictCurrent = scopeStrictModes.size() > 0 && scopeStrictModes.peek() ? true : useStrictDefault;
         scopeStrictModes.push(useStrictCurrent);
     }
 
-    protected void ProcessCloseBrace()
-    {
+    protected void ProcessCloseBrace() {
         useStrictCurrent = scopeStrictModes.size() > 0 ? scopeStrictModes.pop() : useStrictDefault;
     }
 
-    protected void ProcessStringLiteral()
-    {
-        if (lastToken == null || lastToken.getType() == TypeScriptLexer.OpenBrace)
-        {
+    protected void ProcessStringLiteral() {
+        if (lastToken == null || lastToken.getType() == TypeScriptLexer.OpenBrace) {
             String text = getText();
-            if (text.equals("\"use strict\"") || text.equals("'use strict'"))
-            {
+            if (text.equals("\"use strict\"") || text.equals("'use strict'")) {
                 if (scopeStrictModes.size() > 0)
                     scopeStrictModes.pop();
                 useStrictCurrent = true;
@@ -120,14 +117,12 @@ public abstract class TypeScriptLexerBase extends Lexer
      * Returns {@code true} if the lexer can match a regex literal.
      */
     protected boolean IsRegexPossible() {
-                                       
         if (this.lastToken == null) {
             // No token has been produced yet: at the start of the input,
             // no division is possible, so a regex literal _is_ possible.
             return true;
         }
-        
-        switch (this.lastToken.getType()) {
+        switch(this.lastToken.getType()) {
             case TypeScriptLexer.Identifier:
             case TypeScriptLexer.NullLiteral:
             case TypeScriptLexer.BooleanLiteral:

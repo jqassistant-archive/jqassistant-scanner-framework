@@ -1,4 +1,4 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant
 
 package org.jqassistant.contrib.plugin.typescriptgen.api;
 

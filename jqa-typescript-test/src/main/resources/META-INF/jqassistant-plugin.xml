@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jqassistant-plugin xmlns="http://schema.jqassistant.org/plugin/v1.10" name="TypeScriptGen" id="jqa.plugin.generated.typescriptgen">
+<jqassistant-plugin xmlns="http://schema.jqassistant.org/plugin/v1.10" name="TypeScript" id="jqa.plugin.generated.typescript">
     <description>
-		Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
+		Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant
 
-		Provides a generated scanner for TypeScriptGen.
+		Provides a generated scanner for TypeScript.
 	</description>
     <model>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen</class>

@@ -1,7 +1,10 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
 import org.antlr.v4.tool.ast.GrammarAST;
 import org.antlr.v4.tool.ast.GrammarRootAST;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
 import org.snt.inmemantlr.GenericParser;
 import org.snt.inmemantlr.listener.DefaultTreeListener;
@@ -10,16 +13,14 @@ import org.snt.inmemantlr.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-public class ScannerGenerator {
+public class AntlrGenerator {
     private final GenerationConfig config;
     private final Set<String>      gcontent = new HashSet<>();
     private final InmemantlrTool inmemantlrTool = new InmemantlrTool();
 
-    public ScannerGenerator(GenerationConfig config) throws FileNotFoundException {
+    public AntlrGenerator(GenerationConfig config) throws FileNotFoundException {
         this.config = config;
         for (File f : config.getGrammarFiles()) {
             if (!f.exists() || !f.canRead()) {
@@ -47,7 +48,7 @@ public class ScannerGenerator {
     public GenericParser getGenericParser() {
         try {
             GenericParser gp = new GenericParser(config.getGrammarFilesArray());
-            if (config.getGrammarDependencies() != null && config.getGrammarDependencies().size() > 0) {
+            if (config.getGrammarDependencies().size() > 0) {
                 gp.addUtilityJavaFiles(config.getGrammarDependenciesArray());
             }
 
@@ -62,5 +63,21 @@ public class ScannerGenerator {
         return null;
     }
 
+    public Map<FormattedName, CompilationUnit> getPreparedGrammarDependencies() {
+        Map<FormattedName, CompilationUnit> map = new TreeMap<>();
+        JavaParser javaParser = new JavaParser();
 
+        if (config.getGrammarDependencies().size() > 0) {
+            config.getGrammarDependencies().forEach(file -> {
+                try {
+                    CompilationUnit compilationUnit = javaParser.parse(file).getResult().orElseThrow();
+                    compilationUnit.setPackageDeclaration(config.getPaths().getProjectPackage() + ".antlr4");
+                    map.put(new FormattedName(file.getName()), compilationUnit);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        return map;
+    }
 }

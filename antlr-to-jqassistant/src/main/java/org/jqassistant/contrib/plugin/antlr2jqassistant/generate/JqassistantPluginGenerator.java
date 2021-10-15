@@ -1,7 +1,6 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
 import com.github.javaparser.ast.CompilationUnit;
-import org.jqassistant.contrib.plugin.antlr2jqassistant.Main;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
 import org.jqassistant.schema.plugin.v1.ClassListType;

@@ -1,12 +1,11 @@
-//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant/
+//Generated from C:\workspace\jqassistant\jqassistant-scanner-framework/antlr-to-jqassistant
 
 package org.jqassistant.contrib.plugin.typescriptgen.api.model;
 
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+import javax.annotation.Generated;
 import com.buschmais.xo.neo4j.api.annotation.Label;
 import com.buschmais.xo.neo4j.api.annotation.Relation;
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
-
-import javax.annotation.Generated;
 
 @Generated(
 	value = "org.jqassistant.contrib.plugin.antlr2jqassistant.generate.ApiModelGenerator")

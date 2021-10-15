@@ -7,6 +7,7 @@ import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.PackagePaths;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
 
 import javax.xml.bind.JAXBContext;
@@ -24,14 +25,15 @@ import java.util.Map;
 public class FileOperations {
     private GenerationConfig config;
 
-    void writeToFiles(String destination, Map<FormattedName, CompilationUnit> compilationUnitMap) {
+    void writeToFiles(Map<FormattedName, CompilationUnit> compilationUnitMap) {
+        String destination = config.getDestinationFolder() + "/" + PackagePaths.SRC_JAVA;
         for (Map.Entry<FormattedName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
             FormattedName name = entry.getKey();
             CompilationUnit compilationUnit = entry.getValue();
 
             try {
-                String packageIdentifier = compilationUnit.getPackageDeclaration().orElseThrow().getName().getIdentifier();
-                File file = new File(destination + "/" + name + ".java");
+                String packagePath = compilationUnit.getPackageDeclaration().orElseThrow().getName().toString().replace(".", "/");
+                File file = new File(destination + "/" + packagePath + "/" + name + (name.getName().contains(".java") ? "" : ".java"));
                 if (file.getParentFile().mkdirs()) {
                     System.out.println("Created new directories");
                 }
@@ -71,7 +73,7 @@ public class FileOperations {
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            File file = new File(config.getDestinationFolder() + "src/main/resources/META-INF/" + name);
+            File file = new File(config.getDestinationFolder() + "/" + PackagePaths.SRC_META_INF + "/" + name);
             if (file.getParentFile().mkdirs()) {
                 System.out.println("Created new directories");
             }
@@ -95,7 +97,7 @@ public class FileOperations {
 
         MavenXpp3Writer writer = new MavenXpp3Writer();
         try {
-            File file = new File(config.getDestinationFolder() + "src/main/resources/META-INF/" + name);
+            File file = new File(config.getDestinationFolder() + "/" + PackagePaths.SRC_META_INF + "/" + name);
             if (file.getParentFile().mkdirs()) {
                 System.out.println("Created new directories");
             }

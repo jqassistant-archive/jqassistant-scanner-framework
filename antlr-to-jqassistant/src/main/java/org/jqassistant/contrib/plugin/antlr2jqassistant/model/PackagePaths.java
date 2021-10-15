@@ -3,12 +3,13 @@ package org.jqassistant.contrib.plugin.antlr2jqassistant.model;
 import lombok.Getter;
 
 @Getter
-public
-class PackagePaths {
-    private static final String SRC = "src/main";
-    private static final String SRC_JAVA = SRC + "/java";
-    private static final String SRC_ANTLR = SRC + "/antlr4";
-    private static final String ROOT_PACKAGE = "org.jqassistant.contrib.plugin";
+public class PackagePaths {
+    public static final String SRC = "src/main";
+    public static final String SRC_JAVA = SRC + "/java";
+    public static final String SRC_ANTLR = SRC + "/antlr4";
+    public static final String SRC_RESOURCES = SRC + "/resources";
+    public static final String SRC_META_INF = SRC_RESOURCES + "/META-INF";
+    public static final String ROOT_PACKAGE = "org.jqassistant.contrib.plugin";
 
     private final String pluginId;
 
@@ -19,6 +20,7 @@ class PackagePaths {
     private final String modelPackage;
 
     private final String grammarPath;
+    private final String grammarDependenciesPath;
 
     private final String projectPath;
     private final String antlrPath;
@@ -36,6 +38,7 @@ class PackagePaths {
         modelPackage = apiPackage + ".model";
 
         grammarPath = getPathFrom(destinationFolder, SRC_ANTLR, antlrPackage);
+        grammarDependenciesPath = getPathFrom(destinationFolder, SRC_JAVA, antlrPackage);
 
         projectPath = getPathFrom(destinationFolder, SRC_JAVA, projectPackage);
         antlrPath = getPathFrom(destinationFolder, SRC_JAVA, antlrPackage);
