@@ -1,0 +1,25 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <concept id="java:MemberDeclaration">
+        <requiresConcept refId="java:PackageDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (methodDeclaration:MethodDeclaration)-[:HAS_METHOD_HEADER]->
+                ()-[:HAS_METHOD_DECLARATOR]->
+                ()-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            OPTIONAL MATCH
+                (methodDeclaration:MethodDeclaration)-[:HAS_METHOD_MODIFIER]->
+                ()-[:HAS_VISIBILITY_MODIFIER]->
+                (visibilityModifier:VisibilityModifier)
+            MERGE (method:Java:Language:Method {
+                fqn: 'package.fqn' + '.' + identifier.text,
+                name: identifier.text,
+                visibility: visibilityModifier.sourceCode
+            })
+            MERGE
+                (method)-[:DEFINED_BY]->(methodDeclaration)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+</jqassistant-rules>

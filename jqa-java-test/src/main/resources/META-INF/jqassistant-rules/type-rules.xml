@@ -1,0 +1,98 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="java:Type">
+        <includeConcept refId="java:ClassDeclaration"/>
+        <includeConcept refId="java:EnumDeclaration"/>
+    </group>
+
+    <concept id="java:ClassDeclaration">
+        <requiresConcept refId="java:PackageDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (package:Package)<-[:MEMBER_OF]-
+                (cu:CompilationUnit)-[:HAS_TYPE_DECLARATION]->
+                ()-[:HAS_CLASS_DECLARATION]->
+                ()-[:HAS_NORMAL_CLASS_DECLARATION]->
+                (ncd:NormalClassDeclaration)-[:HAS_IDENTIFIER]->
+                (identifier:TerminalNodeStrings)
+            MERGE
+                (type:Java:Language:Type:Class {
+                    name: identifier.text,
+                    fqn:  package.fqn + '.' + identifier.text
+                })
+            MERGE
+                (type)-[:DEFINED_BY]->(ncd)
+            MERGE
+                (type)-[:MEMBER_OF]->(package)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:EnumDeclaration">
+        <requiresConcept refId="java:PackageDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (package:Package)<-[:MEMBER_OF]-
+                (cu:CompilationUnit)-[:HAS_TYPE_DECLARATION]->
+                ()-[:HAS_CLASS_DECLARATION]->
+                ()-[:HAS_ENUM_DECLARATION]->
+                (enum:EnumDeclaration)-[:HAS_IDENTIFIER]->
+                (identifier:TerminalNodeStrings)
+            MERGE
+                (type:Java:Language:Type:Enum {
+                    name: identifier.text,
+                    fqn:  package.fqn + '.' + identifier.text
+                })
+            MERGE
+                (type)-[x:DEFINED_BY]->(enum)
+            MERGE
+                (type)-[y:MEMBER_OF]->(package)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+<!--    TODO: THESE NEED FQN! -->
+    <concept id="java:ClassExtendsSuperclass">
+        <requiresConcept refId="java:TypeResolution:*"/>
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:Java:Language:Type:Class)-[:DEFINED_BY]->
+                ()-[:HAS_SUPERCLASS]->
+                ()-[:HAS_CLASS_TYPE]->
+                (classType)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE (superClass:Java:Language:Type:Class {
+                name: identifier.text
+            })
+            MERGE
+                (type)-[x:EXTENDS]->(superClass)
+//            MERGE
+//                (superClass)-[:IS_REFERENCED_BY_GUESS]->(classType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:ImplementsInterface">
+        <requiresConcept refId="java:TypeResolution:*"/>
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <requiresConcept refId="java:EnumDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:Java:Language:Type)-[:DEFINED_BY]->
+                ()-[:HAS_SUPERINTERFACES]->
+                ()-[:HAS_INTERFACE_TYPE_LIST]->
+                ()-[:HAS_INTERFACE_TYPE]->
+                ()-[:HAS_CLASS_TYPE]->
+                (classType)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE (interface:Java:Language:Type:Interface {
+                name: identifier.text
+            })
+            MERGE
+                (type)-[x:IMPLEMENTS]->(interface)
+//            MERGE
+//                (interface)-[:IS_REFERENCED_BY_SIMPLE_NAME]->(classType) //TODO: improve
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+</jqassistant-rules>

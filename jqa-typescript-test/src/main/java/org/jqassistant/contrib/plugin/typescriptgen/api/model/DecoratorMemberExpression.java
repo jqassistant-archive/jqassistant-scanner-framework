@@ -108,8 +108,8 @@ public interface DecoratorMemberExpression extends TypeScriptGen {
 
     void setIdentifierName(IdentifierName setIdentifierName);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

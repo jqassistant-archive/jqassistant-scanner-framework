@@ -81,8 +81,8 @@ public interface ArrowFunctionBody extends TypeScriptGen {
 
     void setCloseBrace(TerminalNodeStrings setCloseBrace);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

@@ -4,10 +4,12 @@ import com.buschmais.jqassistant.core.store.api.model.Descriptor;
 import com.buschmais.jqassistant.plugin.common.api.model.FileDescriptor;
 import com.buschmais.xo.api.annotation.Abstract;
 import com.buschmais.xo.neo4j.api.annotation.Label;
+import com.buschmais.xo.neo4j.api.annotation.Relation;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import lombok.Getter;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.base.BaseGenerator;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
 
@@ -16,21 +18,18 @@ import java.util.Map;
 import java.util.TreeMap;
 
 @Getter
-public class BaseDescriptorGenerator {
-    private final GenerationConfig config;
-    private final String           packageName;
+public class BaseDescriptorGenerator extends BaseGenerator {
     private final FormattedName    entryNode;
     private final FormattedName    pluginName;
-    public        String           BASE_DESCRIPTOR_NAME; //TODO: naming
-    public        String           BASE_FILE_DESCRIPTOR_NAME;
+    public        FormattedName    BASE_DESCRIPTOR_NAME; //TODO: naming
+    public        FormattedName    BASE_FILE_DESCRIPTOR_NAME;
 
     public BaseDescriptorGenerator(GenerationConfig config) {
-        this.config = config;
-        this.packageName = config.getPaths().getApiPackage();
+        super(config.getPaths().getApiPackage(), config);
         this.pluginName = new FormattedName(config.getPluginId());
         this.entryNode = new FormattedName(config.getEntryNode());
-        BASE_DESCRIPTOR_NAME = pluginName.getName();
-        BASE_FILE_DESCRIPTOR_NAME = pluginName.getName() + "FileDescriptor";
+        BASE_DESCRIPTOR_NAME = new FormattedName(pluginName.getName() + "AST");
+        BASE_FILE_DESCRIPTOR_NAME = new FormattedName(pluginName.getName() + "FileDescriptor");
     }
 
     public Map<FormattedName, CompilationUnit> generate() {
@@ -38,10 +37,10 @@ public class BaseDescriptorGenerator {
         Map<FormattedName, CompilationUnit> interfaces = new TreeMap<>();
 
         CompilationUnit baseDescriptor = getBaseDescriptor();
-        interfaces.put(new FormattedName(BASE_DESCRIPTOR_NAME), baseDescriptor);
+        interfaces.put(BASE_DESCRIPTOR_NAME, baseDescriptor);
 
         CompilationUnit baseFileDescriptor = getBaseFileDescriptor();
-        interfaces.put(new FormattedName(BASE_FILE_DESCRIPTOR_NAME), baseFileDescriptor);
+        interfaces.put(BASE_FILE_DESCRIPTOR_NAME, baseFileDescriptor);
 
         System.out.println(new Date() + " Generation Done!");
         return interfaces;
@@ -49,33 +48,34 @@ public class BaseDescriptorGenerator {
 
     private CompilationUnit getBaseDescriptor() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(config.getPaths().getApiPackage());
+        compilationUnit.setPackageDeclaration(getConfig().getPaths().getApiPackage());
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
-                .addInterface(pluginName.getName())
+                .addInterface(BASE_DESCRIPTOR_NAME.getName())
                 .addExtendedType(Descriptor.class);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addAnnotation(Abstract.class);
-        interfaceDeclaration.addSingleMemberAnnotation(Label.class, pluginName.asUpperCamelWithQuotes());
+        interfaceDeclaration.addSingleMemberAnnotation(Label.class, BASE_DESCRIPTOR_NAME.asUpperCamelWithQuotes());
+
+        createGetterAndSetter(interfaceDeclaration, new FormattedName("FileName"), "String");
+        createGetterAndSetter(interfaceDeclaration, new FormattedName("SourceCode"), "String");
 
         return compilationUnit;
     }
 
     private CompilationUnit getBaseFileDescriptor() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
+        compilationUnit.setPackageDeclaration(getPackageName());
 
-        compilationUnit.addImport(BASE_DESCRIPTOR_NAME);
-        compilationUnit.addImport(config.getPaths().getModelPackage() + "." + entryNode.getName());
-
-        FormattedName name = new FormattedName(BASE_FILE_DESCRIPTOR_NAME);
+        compilationUnit.addImport(BASE_FILE_DESCRIPTOR_NAME.getName());
+        compilationUnit.addImport(getConfig().getPaths().getModelPackage() + "." + entryNode.getName());
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
-                .addInterface(name.getName())
-                .addExtendedType(BASE_DESCRIPTOR_NAME)
+                .addInterface(BASE_FILE_DESCRIPTOR_NAME.getName())
+                .addExtendedType(BASE_DESCRIPTOR_NAME.getName())
                 .addExtendedType(FileDescriptor.class);
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
-        interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.asUpperCamelWithQuotes());
+        interfaceDeclaration.addSingleMemberAnnotation(Label.class, BASE_FILE_DESCRIPTOR_NAME.asUpperCamelWithQuotes());
 
         ApiModelGenerator.createGetterAndSetter(interfaceDeclaration, entryNode, entryNode.getName());
 

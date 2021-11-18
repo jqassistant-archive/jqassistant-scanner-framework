@@ -81,8 +81,8 @@ public interface CaseClause extends TypeScriptGen {
 
     void setStatementList(StatementList setStatementList);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

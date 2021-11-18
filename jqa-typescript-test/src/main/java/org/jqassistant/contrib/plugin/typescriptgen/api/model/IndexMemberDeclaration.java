@@ -63,8 +63,8 @@ public interface IndexMemberDeclaration extends TypeScriptGen {
 
     void setSemiColon(TerminalNodeStrings setSemiColon);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

@@ -70,9 +70,9 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 public interface ClassDeclaration extends TypeScriptGen {
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClazz();
+    TerminalNodeStrings getClass();
 
-    void setClazz(TerminalNodeStrings setClazz);
+    void setClass(TerminalNodeStrings setClass);
 
     @Relation("HAS_IDENTIFIER")
     TerminalNodeStrings getIdentifier();
@@ -99,8 +99,8 @@ public interface ClassDeclaration extends TypeScriptGen {
 
     void setTypeParameters(TypeParameters setTypeParameters);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

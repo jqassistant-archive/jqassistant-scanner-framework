@@ -1,0 +1,81 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="java:TypeResolution">
+        <includeConcept refId="java:TypeResolution:*"/>
+    </group>
+
+    <!--    TODO: match the CompilationUnit by file name ... unless the order of execution is enough? !important -->
+    <concept id="java:TypeResolution:SingleImportFqn">
+        <requiresConcept refId="java:SingleImportDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[*0..15]-> //TODO: improve, use file name
+                (typeName)
+                WHERE typeName:TypeName OR typeName:ClassType
+            MATCH
+                (cu:CompilationUnit)-[:IMPORTS]->(type:Type {fqn: typeName.sourceCode})
+            MERGE
+                (type)-[:IS_REFERENCED_BY]->(typeName)
+            MERGE
+                (typeName)-[:RESOLVES_BY_FQN]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:TypeResolution:SingleImportSimpleName">
+        <requiresConcept refId="java:TypeResolution:SingleImportFqn"/>
+        <requiresConcept refId="java:SingleImportDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[*0..15]-> //TODO: improve
+                (typeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+                WHERE typeName:TypeName OR typeName:ClassType
+                AND NOT (typeName)-[:RESOLVES_BY_FQN]->()
+            MATCH
+                (cu:CompilationUnit)-[:IMPORTS]->(type:Type {name: identifier.text})
+            MERGE
+                (type)-[:IS_REFERENCED_BY]->(typeName)
+            MERGE
+                (typeName)-[:RESOLVES_BY_SINGLE_IMPORT]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:TypeResolution:PackageSiblings">
+        <requiresConcept refId="java:TypeResolution:SingleImportSimpleName"/>
+        <requiresConcept refId="java:PackageImportDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[*0..15]-> //TODO: improve
+                (typeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+                WHERE typeName:TypeName OR typeName:ClassType
+                AND NOT (typeName)-[:RESOLVES_BY_FQN]->()
+            MATCH
+                (cu)-[:MEMBER_OF]->(package:Package)<-[:MEMBER_OF]-(type:Type {name: identifier.text})
+            MERGE
+                (type)-[:IS_REFERENCED_BY]->(typeName)
+            MERGE
+                (typeName)-[:RESOLVES_BY_PACKAGE_SIBLING]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+<!--    <concept id="java:TypeResolution:WildcardPackage">-->
+<!--        <requiresConcept refId="java:TypeResolution:SingleImportSimpleName"/>-->
+<!--        <requiresConcept refId="java:PackageImportDeclaration"/>-->
+<!--        <cypher><![CDATA[-->
+<!--            MATCH-->
+<!--                (cu:CompilationUnit)-[*0..5]-> //TODO: improve-->
+<!--                (typeName:TypeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)-->
+<!--                WHERE NOT (typeName)-[:RESOLVES_BY_FQN]->()-->
+<!--            MATCH-->
+<!--                (cu)-[:IMPORTS]->(package:Package)<-[:MEMBER_OF]-(type:Type {name: identifier.text})-->
+<!--            MERGE-->
+<!--                (type)-[:IS_REFERENCED_BY]->(typeName)-->
+<!--            MERGE-->
+<!--                (typeName)-[:RESOLVES_BY_PACKAGE]->(type)-->
+<!--            RETURN *-->
+<!--            ]]></cypher>-->
+<!--    </concept>-->
+
+
+</jqassistant-rules>

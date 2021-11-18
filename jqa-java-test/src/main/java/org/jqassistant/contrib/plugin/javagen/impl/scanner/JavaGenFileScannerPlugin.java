@@ -12,9 +12,9 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Lexer;
 import org.jqassistant.contrib.plugin.javagen.antlr4.Java8Parser;
-import org.jqassistant.contrib.plugin.javagen.api.JavaGen;
+import org.jqassistant.contrib.plugin.javagen.api.JavaGenAST;
 import org.jqassistant.contrib.plugin.javagen.api.JavaGenFileDescriptor;
-import org.jqassistant.contrib.plugin.javagen.api.model.CompilationUnit;
+import org.jqassistant.contrib.plugin.javagen.api.model.generated.CompilationUnit;
 import org.jqassistant.contrib.plugin.javagen.api.scanner.JavaGenScope;
 import org.jqassistant.contrib.plugin.javagen.util.mapper.MainMapper;
 import org.slf4j.Logger;
@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.Date;
 
 @Requires(FileDescriptor.class)
-public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, JavaGen> {
+public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, JavaGenAST> {
     private static final Logger LOGGER = LoggerFactory.getLogger(JavaGenFileScannerPlugin.class);
 
     @Override
@@ -41,6 +41,9 @@ public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource
         Store store = scannerContext.getStore();
         JavaGenFileDescriptor fileDescriptor = store.addDescriptorType(scannerContext.getCurrentDescriptor(), JavaGenFileDescriptor.class);
 
+//        scannerContext.push(JavaTypeResolver.class, new JavaTypeResolver(scannerContext));
+//        scannerContext.push(JavaTypeSolver.class, new JavaTypeSolver("C:/workspace/jqassistant/jqassistant-scanner-framework/jqa-java-test/src/test/resources", "C:/workspace/jqassistant/jqassistant-scanner-framework/jqa-java-test/src/test/resources/"));
+
         final InputStream inputStream = item.createStream();
         final Java8Lexer lexer = new Java8Lexer(CharStreams.fromStream(inputStream));
         final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
@@ -51,7 +54,7 @@ public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource
 
         LOGGER.info(new Date() + " - Starting Mapper for compilationUnitContext");
 
-        CompilationUnit compilationUnit = MainMapper.INSTANCE.map(scannerContext, compilationUnitContext);
+        CompilationUnit compilationUnit = MainMapper.INSTANCE.map(item, scannerContext, compilationUnitContext);
         fileDescriptor.setCompilationUnit(compilationUnit);
 
         LOGGER.info(new Date() + " - Done");

@@ -2,6 +2,8 @@
  * This is a sample file.
  */
 
+package org.example.samples;
+
 public class ThisIsASampleClass extends C1 implements I1, I2, I3, I4, I5 {
     private int f1 = 1;
     private String field2 = "";

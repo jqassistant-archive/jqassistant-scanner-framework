@@ -58,8 +58,8 @@ public interface DecoratorList extends TypeScriptGen {
 
     void setDecorator(List<Decorator> setDecorator);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

@@ -1,7 +1,6 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
 import com.buschmais.xo.neo4j.api.annotation.Label;
-import com.buschmais.xo.neo4j.api.annotation.Relation;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
@@ -13,6 +12,7 @@ import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.google.common.base.CaseFormat;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.base.BaseGenerator;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
 import org.snt.inmemantlr.GenericParser;
@@ -22,18 +22,15 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ApiModelGenerator {
+public class ApiModelGenerator extends BaseGenerator {
     public final static String TERMINAL_NODE_CLASS = "TerminalNodeStrings";
 
-    private final String packageName;
-    private final GenerationConfig config;
     private final BaseDescriptorGenerator baseDescriptorGenerator;
     Map<String, MemorySource> antlrSources = new TreeMap<>();
     MemorySource antlrParser;
 
     public ApiModelGenerator(GenerationConfig config, GenericParser genericParser, BaseDescriptorGenerator baseDescriptorGenerator) {
-        this.packageName = config.getPaths().getModelPackage();
-        this.config = config;
+        super(config.getPaths().getModelPackage(), config);
         this.baseDescriptorGenerator = baseDescriptorGenerator;
 
         genericParser.getAllCompiledObjects().forEach(tuple -> antlrSources.put(tuple.getClassName(), tuple.getSource()));
@@ -72,8 +69,8 @@ public class ApiModelGenerator {
 
     private Map<FormattedName, CompilationUnit> getTerminalNode() {
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
+        compilationUnit.setPackageDeclaration(getPackageName());
+        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
 
         FormattedName name = new FormattedName(TERMINAL_NODE_CLASS);
 
@@ -81,7 +78,7 @@ public class ApiModelGenerator {
 
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(name.getName())
-                .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
+                .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.withQuotes());
 
@@ -102,12 +99,12 @@ public class ApiModelGenerator {
         FormattedName name = new FormattedName(clazz.getName());
 
         CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(packageName);
-        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
+        compilationUnit.setPackageDeclaration(getPackageName());
+        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
         compilationUnit.addOrphanComment(generateComment(clazz));
         ClassOrInterfaceDeclaration interfaceDeclaration = compilationUnit
                 .addInterface(name.getName())
-                .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME);
+                .addExtendedType(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
         TreeHelper.addGeneratedAnnotation(interfaceDeclaration, this.getClass().getName());
         interfaceDeclaration.addSingleMemberAnnotation(Label.class, name.withQuotes());
         interfaceDeclaration.tryAddImportToParentCompilationUnit(List.class);
@@ -131,18 +128,9 @@ public class ApiModelGenerator {
             }
         });
 
-        createGetterAndSetter(interfaceDeclaration, new FormattedName("SourceCode"), "String");
+//        createGetterAndSetter(interfaceDeclaration, new FormattedName("FileName"), "String");
+//        createGetterAndSetter(interfaceDeclaration, new FormattedName("SourceCode"), "String");
         return Collections.singletonMap(name, compilationUnit);
-    }
-
-    public static void createGetterAndSetter(ClassOrInterfaceDeclaration interfaceDeclaration, FormattedName name, String type){
-        interfaceDeclaration.addMethod(name.getGetterName())
-                .removeBody()
-                .setType(new FormattedName(type).getName())
-                .addSingleMemberAnnotation(Relation.class, name.getRelationNameWithQuotes());
-        interfaceDeclaration.addMethod(name.getSetterName())
-                .removeBody()
-                .addParameter(new FormattedName(type).getName(), name.getSetterName());
     }
 
     public Comment generateComment(ClassOrInterfaceDeclaration clazz) {
@@ -157,7 +145,7 @@ public class ApiModelGenerator {
                 .append("\n\n")
                 .append("Source Grammar(s): ")
                 .append("\n");
-        for (File file: config.getGrammarFiles()) {
+        for (File file: getConfig().getGrammarFiles()) {
             comment.append("@see ").append(file.toString()).append("\n");
         }
 

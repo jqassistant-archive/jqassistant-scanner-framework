@@ -144,8 +144,8 @@ public interface AssignmentOperator extends TypeScriptGen {
 
     void setBitOrAssign(TerminalNodeStrings setBitOrAssign);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

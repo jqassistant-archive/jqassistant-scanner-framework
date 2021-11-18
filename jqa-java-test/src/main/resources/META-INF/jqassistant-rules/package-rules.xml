@@ -1,0 +1,71 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="java">
+        <includeConcept refId="java:*"/>
+    </group>
+
+    <concept id="java:PackageDeclaration">
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[:HAS_PACKAGE_DECLARATION]->
+                ()-[:HAS_PACKAGE_NAME]->
+                (packageName:PackageName)
+            MERGE
+                (package:Java:Language:Package {
+                    fqn: packageName.sourceCode
+                })
+            MERGE
+                (cu)-[x:MEMBER_OF]->(package)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:PackageImportDeclaration">
+        <requiresConcept refId="java:PackageDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[:HAS_IMPORT_DECLARATION]->
+                ()-[:HAS_TYPE_IMPORT_ON_DEMAND_DECLARATION]->
+                ()-[:HAS_PACKAGE_OR_TYPE_NAME]->
+                (packageOrTypeName:PackageOrTypeName)
+            MERGE
+                (package:Java:Language:Package {
+                    fqn: packageOrTypeName.sourceCode
+                })
+            MERGE
+                (cu)-[:IMPORTS]->(package)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:SingleImportDeclaration">
+        <requiresConcept refId="java:PackageDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[:HAS_IMPORT_DECLARATION]->
+                ()-[:HAS_SINGLE_TYPE_IMPORT_DECLARATION]->
+                ()-[:HAS_TYPE_NAME]->
+                (typeName:TypeName)-[:HAS_IDENTIFIER]->
+                (identifier:TerminalNodeStrings)
+            MATCH
+                (typeName:TypeName)-[:HAS_PACKAGE_OR_TYPE_NAME]->
+                (packageOrTypeName:PackageOrTypeName)
+            MERGE
+                (type:Java:Language:Type {
+                    name: identifier.text,
+                    fqn:  typeName.sourceCode
+                })
+            MERGE
+                (package:Java:Language:Package {
+                    fqn: packageOrTypeName.sourceCode
+                })
+            MERGE
+                (cu)-[:IMPORTS]->(type)
+            MERGE
+                (type)-[:MEMBER_OF]->(package)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+
+</jqassistant-rules>

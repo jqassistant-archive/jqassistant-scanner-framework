@@ -72,8 +72,8 @@ public interface TypeParameters extends TypeScriptGen {
 
     void setTypeParameterList(TypeParameterList setTypeParameterList);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

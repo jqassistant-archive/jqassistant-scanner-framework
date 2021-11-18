@@ -35,7 +35,7 @@ public class PackagePaths {
         antlrPackage = projectPackage + ".antlr4";
         mapperPackage = projectPackage + ".util.mapper";
         apiPackage = projectPackage + ".api";
-        modelPackage = apiPackage + ".model";
+        modelPackage = apiPackage + ".model.generated";
 
         grammarPath = getPathFrom(destinationFolder, SRC_ANTLR, antlrPackage);
         grammarDependenciesPath = getPathFrom(destinationFolder, SRC_JAVA, antlrPackage);

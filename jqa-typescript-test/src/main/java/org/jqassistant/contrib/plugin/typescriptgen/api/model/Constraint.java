@@ -63,8 +63,8 @@ public interface Constraint extends TypeScriptGen {
 
     void setType_(Type_ setType_);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

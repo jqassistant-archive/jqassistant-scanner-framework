@@ -63,8 +63,8 @@ public interface DecoratorCallExpression extends TypeScriptGen {
 
     void setArguments(Arguments setArguments);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

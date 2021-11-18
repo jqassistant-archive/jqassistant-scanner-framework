@@ -1,0 +1,31 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+
+    <!--    TODO: NEED FQN FOR TYPE! -->
+    <concept id="java:TypeAnnotation">
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <requiresConcept refId="java:EnumDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:Java:Language:Type)-[:DEFINED_BY]->
+                ()-[:HAS_CLASS_MODIFIER]->
+                ()-[:HAS_ANNOTATION]->
+                (a)-[]->
+                ()-[:HAS_TYPE_NAME]->
+                ()-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE (annotation:Java:Language:Annotation {
+                name: identifier.text
+            })
+            MERGE
+                (annotation)-[:DEFINED_BY]->(a)
+            MERGE
+                (type)-[:ANNOTATED_BY]->(annotation)
+//            MERGE (annotationType:Java:Language:Type {
+//                name: identifier.text
+//            })
+//            MERGE
+//                (annotation)-[:OF_TYPE]->(annotationType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+</jqassistant-rules>

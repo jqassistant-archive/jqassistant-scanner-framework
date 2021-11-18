@@ -108,8 +108,8 @@ public interface FormalParameterArg extends TypeScriptGen {
 
     void setSingleExpression(SingleExpression setSingleExpression);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

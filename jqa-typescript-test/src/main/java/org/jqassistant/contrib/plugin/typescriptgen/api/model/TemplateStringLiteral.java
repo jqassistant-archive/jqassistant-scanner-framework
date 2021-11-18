@@ -71,8 +71,8 @@ public interface TemplateStringLiteral extends TypeScriptGen {
 
     void setTemplateStringAtom(List<TemplateStringAtom> setTemplateStringAtom);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

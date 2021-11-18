@@ -40,8 +40,8 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
 @Label("UnionOrIntersectionOrPrimaryType")
 public interface UnionOrIntersectionOrPrimaryType extends TypeScriptGen {
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }

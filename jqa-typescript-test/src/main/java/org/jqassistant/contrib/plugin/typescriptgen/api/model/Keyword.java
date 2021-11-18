@@ -391,9 +391,9 @@ public interface Keyword extends TypeScriptGen {
     void setFrom(TerminalNodeStrings setFrom);
 
     @Relation("HAS_CLASS")
-    TerminalNodeStrings getClazz();
+    TerminalNodeStrings getClass();
 
-    void setClazz(TerminalNodeStrings setClazz);
+    void setClass(TerminalNodeStrings setClass);
 
     @Relation("HAS_ENUM")
     TerminalNodeStrings getEnum();
@@ -495,8 +495,8 @@ public interface Keyword extends TypeScriptGen {
 
     void setString(TerminalNodeStrings setString);
 
-    @Relation("HAS_TEXT")
-    String getText();
+    @Relation("HAS_SOURCE_CODE")
+    String getSourceCode();
 
-    void setText(String setText);
+    void setSourceCode(String setSourceCode);
 }
