@@ -1,0 +1,54 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+
+<!--    TODO: What happens when there is more than one HAS_VARIABLE_DECLARATOR-->
+    <concept id="java:FieldDeclaration">
+        <requiresConcept refId="java:TypeResolution:Unresolved"/>
+        <cypher><![CDATA[
+            MATCH
+                (package:Package)<-[:MEMBER_OF]-
+                (cu:CompilationUnit)-[:CHILD_OF_COMPILATIONUNIT]->
+                (fieldDeclaration:FieldDeclaration)-[:HAS_VARIABLE_DECLARATOR_LIST]->
+                ()-[:HAS_VARIABLE_DECLARATOR]->
+                ()-[:HAS_VARIABLE_DECLARATOR_ID]->
+                ()-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MATCH
+                (class:Java:Language:Class)-[:DEFINED_BY]->
+                ()-[:HAS_CLASS_BODY]->
+                ()-[:HAS_CLASS_BODY_DECLARATION]->
+                ()-[:HAS_CLASS_MEMBER_DECLARATION]->
+                ()-[:HAS_FIELD_DECLARATION]->
+                (fieldDeclaration)
+            OPTIONAL MATCH
+                (fieldDeclaration)-[:HAS_FIELD_MODIFIER]->
+                ()-[:HAS_VISIBILITY_MODIFIER]->
+                (visibilityModifier:VisibilityModifier)
+            MERGE (field:Java:Language:Member:Field {
+                fqn:          class.fqn + '.' + identifier.text,
+                name:         identifier.text,
+                visibility:   visibilityModifier.sourceCode
+            })
+            MERGE
+                (class)-[:DECLARES]->(field)
+            MERGE
+                (field)-[:DEFINED_BY]->(fieldDeclaration)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+    <concept id="java:FieldDeclaration:Type">
+        <requiresConcept refId="java:FieldDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (field:Java:Language:Member:Field)-[:DEFINED_BY]->
+                (:FieldDeclaration)-[]->
+                (typeIdentifier:TypeIdentifier)-[:RESOLVES_TO]->(resolvedType:Java:Language:Type)
+            MERGE
+                (field)-[:OF_TYPE]->(resolvedType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+
+</jqassistant-rules>

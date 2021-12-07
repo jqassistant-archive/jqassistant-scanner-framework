@@ -3,18 +3,93 @@
         <includeConcept refId="java:TypeResolution:*"/>
     </group>
 
-    <!--    TODO: match the CompilationUnit by file name ... unless the order of execution is enough? !important -->
-    <concept id="java:TypeResolution:SingleImportFqn">
-        <requiresConcept refId="java:SingleImportDeclaration"/>
+    <concept id="java:TypeResolution:Void">
         <cypher><![CDATA[
             MATCH
-                (cu:CompilationUnit)-[*0..15]-> //TODO: improve, use file name
-                (typeName)
-                WHERE typeName:TypeName OR typeName:ClassType
+                (type:JavaGenAST)-[:HAS_VOID]->(identifier:TerminalNodeStrings)
+            SET
+            identifier:TypeIdentifier:VoidType
+            MERGE
+                (void:Java:Language:Type:Void {
+                    name: 'void',
+                    fqn: 'void'
+                })
+            MERGE
+                (void)-[:IS_REFERENCED_BY]->(type)
+            MERGE
+                (identifier)-[:RESOLVES_TO]->(void)
+            MERGE
+                (identifier)-[:RESOLVES_BY_VOID]->(void)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:TypeResolution:Primitives">
+        <requiresConcept refId="java:TypeResolution:Void"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:JavaGenAST)
+                WHERE type:PrimitiveType OR type:UnannPrimitiveType
+            SET
+            type:TypeIdentifier:PrimitiveType
+            MERGE
+                (primitive:Java:Language:Type:Primitive {
+                    name: type.sourceCode,
+//                    fqn:  'java.lang.' + type.sourceCode
+                    fqn: type.sourceCode
+                })
+            MERGE
+                (primitive)-[:IS_REFERENCED_BY]->(type)
+            MERGE
+                (type)-[:RESOLVES_TO]->(primitive)
+            MERGE
+                (type)-[:RESOLVES_BY_PRIMITIVE]->(primitive)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:TypeResolution:TypeIdentifier">
+        <requiresConcept refId="java:SingleImportDeclaration"/>
+        <requiresConcept refId="java:TypeResolution:Primitives"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:JavaGenAST)
+                WHERE type:TypeName OR type:ClassType OR type:UnannType
+            SET
+            type:TypeIdentifier
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:TypeResolution:ResolvePrimitives">
+        <cypher><![CDATA[
+            MATCH
+                (type:JavaGenAST:TypeIdentifier)-[]->
+                (primitiveType:PrimitiveType)-[:RESOLVES_TO]->(primitive:Java:Language:Type:Primitive)
+            MERGE
+                (primitive)-[:IS_REFERENCED_BY]->(type)
+            MERGE
+                (type)-[:RESOLVES_TO]->(primitive)
+            MERGE
+                (type)-[:RESOLVES_BY_PRIMITIVE]->(primitive)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:TypeResolution:SingleImportFqn">
+        <requiresConcept refId="java:TypeResolution:TypeIdentifier"/>
+        <requiresConcept refId="java:TypeResolution:ResolvePrimitives"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit)-[:CHILD_OF_COMPILATIONUNIT]->
+                (typeName:TypeIdentifier)
+                WHERE NOT (typeName)-[:RESOLVES_TO]->()
             MATCH
                 (cu:CompilationUnit)-[:IMPORTS]->(type:Type {fqn: typeName.sourceCode})
             MERGE
                 (type)-[:IS_REFERENCED_BY]->(typeName)
+            MERGE
+                (typeName)-[:RESOLVES_TO]->(type)
             MERGE
                 (typeName)-[:RESOLVES_BY_FQN]->(type)
             RETURN *
@@ -22,18 +97,19 @@
     </concept>
 
     <concept id="java:TypeResolution:SingleImportSimpleName">
+        <requiresConcept refId="java:TypeResolution:TypeIdentifier"/>
         <requiresConcept refId="java:TypeResolution:SingleImportFqn"/>
-        <requiresConcept refId="java:SingleImportDeclaration"/>
         <cypher><![CDATA[
             MATCH
-                (cu:CompilationUnit)-[*0..15]-> //TODO: improve
-                (typeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
-                WHERE typeName:TypeName OR typeName:ClassType
-                AND NOT (typeName)-[:RESOLVES_BY_FQN]->()
+                (cu:CompilationUnit)-[:CHILD_OF_COMPILATIONUNIT]->
+                (typeName:TypeIdentifier)
+                WHERE NOT (typeName)-[:RESOLVES_TO]->()
             MATCH
-                (cu:CompilationUnit)-[:IMPORTS]->(type:Type {name: identifier.text})
+                (cu:CompilationUnit)-[:IMPORTS]->(type:Type {name: typeName.sourceCode})
             MERGE
                 (type)-[:IS_REFERENCED_BY]->(typeName)
+            MERGE
+                (typeName)-[:RESOLVES_TO]->(type)
             MERGE
                 (typeName)-[:RESOLVES_BY_SINGLE_IMPORT]->(type)
             RETURN *
@@ -41,41 +117,74 @@
     </concept>
 
     <concept id="java:TypeResolution:PackageSiblings">
+        <requiresConcept refId="java:TypeResolution:TypeIdentifier"/>
         <requiresConcept refId="java:TypeResolution:SingleImportSimpleName"/>
-        <requiresConcept refId="java:PackageImportDeclaration"/>
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <requiresConcept refId="java:EnumDeclaration"/>
         <cypher><![CDATA[
             MATCH
-                (cu:CompilationUnit)-[*0..15]-> //TODO: improve
-                (typeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
-                WHERE typeName:TypeName OR typeName:ClassType
-                AND NOT (typeName)-[:RESOLVES_BY_FQN]->()
+                (cu:CompilationUnit)-[:CHILD_OF_COMPILATIONUNIT]->
+                (typeName:TypeIdentifier)
+                WHERE NOT (typeName)-[:RESOLVES_TO]->()
             MATCH
-                (cu)-[:MEMBER_OF]->(package:Package)<-[:MEMBER_OF]-(type:Type {name: identifier.text})
+                (cu)-[:MEMBER_OF]->(package:Package)
+            MATCH
+                (type:Java:Language:Type {name: typeName.sourceCode})-[:MEMBER_OF]->(package:Package)
             MERGE
                 (type)-[:IS_REFERENCED_BY]->(typeName)
+            MERGE
+                (typeName)-[:RESOLVES_TO]->(type)
             MERGE
                 (typeName)-[:RESOLVES_BY_PACKAGE_SIBLING]->(type)
             RETURN *
             ]]></cypher>
     </concept>
 
-<!--    <concept id="java:TypeResolution:WildcardPackage">-->
-<!--        <requiresConcept refId="java:TypeResolution:SingleImportSimpleName"/>-->
-<!--        <requiresConcept refId="java:PackageImportDeclaration"/>-->
-<!--        <cypher><![CDATA[-->
-<!--            MATCH-->
-<!--                (cu:CompilationUnit)-[*0..5]-> //TODO: improve-->
-<!--                (typeName:TypeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)-->
-<!--                WHERE NOT (typeName)-[:RESOLVES_BY_FQN]->()-->
-<!--            MATCH-->
-<!--                (cu)-[:IMPORTS]->(package:Package)<-[:MEMBER_OF]-(type:Type {name: identifier.text})-->
-<!--            MERGE-->
-<!--                (type)-[:IS_REFERENCED_BY]->(typeName)-->
-<!--            MERGE-->
-<!--                (typeName)-[:RESOLVES_BY_PACKAGE]->(type)-->
-<!--            RETURN *-->
-<!--            ]]></cypher>-->
-<!--    </concept>-->
+    <!--        <concept id="java:TypeResolution:WildcardPackage">-->
+    <!--            <requiresConcept refId="java:TypeResolution:TypeIdentifier"/>-->
+    <!--            <requiresConcept refId="java:TypeResolution:PackageSiblings"/>-->
+    <!--            <requiresConcept refId="java:PackageImportDeclaration"/>-->
+    <!--            <cypher><![CDATA[-->
+    <!--                MATCH-->
+    <!--                    (cu:CompilationUnit)-[:CHILD_OF_COMPILATIONUNIT]->-->
+    <!--                    (typeName:TypeName)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)-->
+    <!--                    WHERE typeName:TypeName OR typeName:ClassType OR typeName:UnannType-->
+    <!--                    AND NOT (typeName)-[:RESOLVES_BY_SINGLE_IMPORT]->()-->
+    <!--                    AND NOT (typeName)-[:RESOLVES_BY_FQN]->()-->
+    <!--                    AND NOT (typeName)-[:RESOLVES_BY_PACKAGE_SIBLING]->()-->
+    <!--                MATCH-->
+    <!--                    (cu)-[:IMPORTS]->(package:Package)<-[:MEMBER_OF]-(type:Type {name: identifier.text})-->
+    <!--                MERGE-->
+    <!--                    (type)-[:IS_REFERENCED_BY]->(typeName)-->
+    <!--                MERGE-->
+    <!--                    (typeName)-[:RESOLVES_BY_PACKAGE]->(type)-->
+    <!--                RETURN *-->
+    <!--                ]]></cypher>-->
+    <!--        </concept>-->
+
+    <concept id="java:TypeResolution:Unresolved">
+        <requiresConcept refId="java:TypeResolution:TypeIdentifier"/>
+        <requiresConcept refId="java:TypeResolution:Void"/>
+        <requiresConcept refId="java:TypeResolution:ResolvePrimitives"/>
+        <requiresConcept refId="java:TypeResolution:PackageSiblings"/>
+        <requiresConcept refId="java:PackageImportDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (typeName:TypeIdentifier)
+                WHERE NOT (typeName)-[:RESOLVES_TO]->()
+            MERGE
+                (type:Java:Language:Type {
+                    name: typeName.sourceCode,
+                    fqn:  typeName.sourceCode,
+                    TODO: 'double check fqn'
+                })
+            MERGE
+                (typeName)-[:RESOLVES_TO]->(type)
+            MERGE
+                (typeName)-[:RESOLVES_TO_BY_NOTHING]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
 
 
 </jqassistant-rules>

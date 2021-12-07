@@ -44,9 +44,13 @@ public class JavaGenScannerPluginTestIT extends AbstractPluginIT {
         File baseEntity = new File(getClassesDirectory(JavaGenScannerPluginTestIT.class), "/BaseEntity.java");
         getScanner().scan(baseEntity, "/BaseEntity.java", DefaultScope.NONE);
 
+        File specialty = new File(getClassesDirectory(JavaGenScannerPluginTestIT.class), "/Specialty.java");
+        getScanner().scan(specialty, "/Specialty.java", DefaultScope.NONE);
+
         store.commitTransaction();
 
         executeGroup("java");
+//        executeGroup("debug");
     }
 
     @Test

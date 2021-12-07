@@ -51,7 +51,7 @@ public class Main {
             ))
             .build();
 
-    public static final GenerationConfig CONFIG = CONFIG_JAVA;
+    public static final GenerationConfig CONFIG = CONFIG_TYPESCRIPT;
 
     public static void main(String[] args) {
         try {

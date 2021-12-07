@@ -12,15 +12,15 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptLexer;
 import org.jqassistant.contrib.plugin.typescriptgen.antlr4.TypeScriptParser;
-import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGen;
+import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGenAST;
 import org.jqassistant.contrib.plugin.typescriptgen.api.TypeScriptGenFileDescriptor;
-import org.jqassistant.contrib.plugin.typescriptgen.api.model.Program;
+import org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.Program;
 import org.jqassistant.contrib.plugin.typescriptgen.util.mapper.MainMapper;
 
 import java.io.IOException;
 
 @Requires(FileDescriptor.class)
-public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, TypeScriptGen> {
+public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, TypeScriptGenAST> {
 
     @Override
     public boolean accepts(FileResource item, String path, Scope scope) {
@@ -37,7 +37,7 @@ public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileRe
         final TypeScriptParser parser = new TypeScriptParser(new CommonTokenStream(lexer));
 
         TypeScriptParser.ProgramContext context = parser.program(); //TODO: find root node and how it was determined
-        Program rootDescriptor = MainMapper.INSTANCE.map(scannerContext, context);
+        Program rootDescriptor = MainMapper.INSTANCE.map(item, scannerContext, context);
         fileDescriptor.setProgram(rootDescriptor);
 
         return fileDescriptor;

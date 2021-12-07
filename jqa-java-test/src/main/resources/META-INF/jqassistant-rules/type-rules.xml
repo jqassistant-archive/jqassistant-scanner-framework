@@ -15,10 +15,12 @@
                 (ncd:NormalClassDeclaration)-[:HAS_IDENTIFIER]->
                 (identifier:TerminalNodeStrings)
             MERGE
-                (type:Java:Language:Type:Class {
+                (type:Java:Language:Type {
                     name: identifier.text,
                     fqn:  package.fqn + '.' + identifier.text
                 })
+            SET //Class label is added separately so that a resolved type:Java:Language:Type can be referenced
+            type:Class
             MERGE
                 (type)-[:DEFINED_BY]->(ncd)
             MERGE
@@ -38,10 +40,12 @@
                 (enum:EnumDeclaration)-[:HAS_IDENTIFIER]->
                 (identifier:TerminalNodeStrings)
             MERGE
-                (type:Java:Language:Type:Enum {
+                (type:Java:Language:Type {
                     name: identifier.text,
                     fqn:  package.fqn + '.' + identifier.text
                 })
+            SET //Enum label is added separately so that a resolved type:Java:Language:Type can be referenced
+            type:Enum
             MERGE
                 (type)-[x:DEFINED_BY]->(enum)
             MERGE
@@ -50,7 +54,7 @@
             ]]></cypher>
     </concept>
 
-<!--    TODO: THESE NEED FQN! -->
+    <!--    TODO: THESE NEED FQN! -->
     <concept id="java:ClassExtendsSuperclass">
         <requiresConcept refId="java:TypeResolution:*"/>
         <requiresConcept refId="java:ClassDeclaration"/>
@@ -65,8 +69,8 @@
             })
             MERGE
                 (type)-[x:EXTENDS]->(superClass)
-//            MERGE
-//                (superClass)-[:IS_REFERENCED_BY_GUESS]->(classType)
+            MERGE
+                (type)-[:DEFINED_BY]->(classType)
             RETURN *
             ]]></cypher>
     </concept>
@@ -81,15 +85,15 @@
                 ()-[:HAS_SUPERINTERFACES]->
                 ()-[:HAS_INTERFACE_TYPE_LIST]->
                 ()-[:HAS_INTERFACE_TYPE]->
-                ()-[:HAS_CLASS_TYPE]->
+                (interfaceType)-[:HAS_CLASS_TYPE]->
                 (classType)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
             MERGE (interface:Java:Language:Type:Interface {
                 name: identifier.text
             })
             MERGE
-                (type)-[x:IMPLEMENTS]->(interface)
-//            MERGE
-//                (interface)-[:IS_REFERENCED_BY_SIMPLE_NAME]->(classType) //TODO: improve
+                (type)-[:IMPLEMENTS]->(interface)
+            MERGE
+                (interface)-[:DEFINED_BY]->(interfaceType)
             RETURN *
             ]]></cypher>
     </concept>

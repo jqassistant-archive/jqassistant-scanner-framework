@@ -1,0 +1,13 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="debug">
+        <includeConcept refId="debug:*"/>
+    </group>
+    <concept id="debug:DeleteAllPackageChildrenRelationships">
+        <cypher><![CDATA[
+            MATCH
+                (x)-[child:CHILD_OF_COMPILATIONUNIT]->(y)
+            DELETE child
+            ]]>
+        </cypher>
+    </concept>
+</jqassistant-rules>

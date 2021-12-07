@@ -45,7 +45,9 @@ public class FormattedName implements Comparable<FormattedName> {
 
     private String getCleanNameFor(String name) {
         String cleanName = name.replace("Context", "");
-        return asUpperCamel(name.equals("class") ? "clazz" : cleanName);
+        if (name.equals("class")) cleanName = "clazz";
+        if (name.equals("Class")) cleanName = "Clazz";
+        return asUpperCamel(cleanName);
     }
 
     public String asUpperCamelWithQuotes() {

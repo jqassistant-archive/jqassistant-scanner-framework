@@ -3,12 +3,34 @@
         <includeConcept refId="java:*"/>
     </group>
 
-    <concept id="java:PackageDeclaration">
+    <concept id="java:AllPackageChildren">
         <cypher><![CDATA[
             MATCH
-                (cu:CompilationUnit)-[:HAS_PACKAGE_DECLARATION]->
+                (cu:CompilationUnit)-[*..256]->(child)
+            CALL apoc.path.spanningTree(cu, {labelFilter: '+CompilationUnit'})
+            YIELD path
+            MERGE
+                (cu)-[:CHILD_OF_COMPILATIONUNIT]->(child)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+    <concept id="debug:temp">
+        <cypher><![CDATA[
+            MATCH
+                (x)-[childRelationship:CHILD_OF_COMPILATIONUNIT]->(y)
+            DELETE childRelationship
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="java:PackageDeclaration">
+        <requiresConcept refId="java:AllPackageChildren"/>
+        <cypher><![CDATA[
+            MATCH
+                (cu:CompilationUnit:JavaGenAST)-[:HAS_PACKAGE_DECLARATION]->
                 ()-[:HAS_PACKAGE_NAME]->
-                (packageName:PackageName)
+                (packageName:PackageName:JavaGenAST)
             MERGE
                 (package:Java:Language:Package {
                     fqn: packageName.sourceCode

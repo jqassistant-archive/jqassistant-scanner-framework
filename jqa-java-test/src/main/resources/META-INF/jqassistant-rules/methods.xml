@@ -1,0 +1,161 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+
+    <concept id="java:MethodDeclaration">
+        <requiresConcept refId="java:TypeResolution:Unresolved"/>
+        <cypher><![CDATA[
+            MATCH
+                (package:Package)<-[:MEMBER_OF]-
+                (cu:CompilationUnit)-[:CHILD_OF_COMPILATIONUNIT]->
+                (methodDeclaration:MethodDeclaration)-[:HAS_METHOD_HEADER]->
+                (methodHeader)-[:HAS_METHOD_DECLARATOR]->
+                ()-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MATCH
+                (class:Java:Language:Class)-[:DEFINED_BY]->
+                ()-[:HAS_CLASS_BODY]->
+                ()-[:HAS_CLASS_BODY_DECLARATION]->
+                ()-[:HAS_CLASS_MEMBER_DECLARATION]->
+                ()-[:HAS_METHOD_DECLARATION]->
+                (methodDeclaration)
+            OPTIONAL MATCH
+                (methodDeclaration)-[:HAS_METHOD_MODIFIER]->
+                ()-[:HAS_VISIBILITY_MODIFIER]->
+                (visibilityModifier:VisibilityModifier)
+            MERGE (method:Java:Language:Member:Method {
+                fqn:          class.fqn + '.' + identifier.text,
+                name:         identifier.text,
+                visibility:   visibilityModifier.sourceCode,
+                headerSource: methodHeader.sourceCode
+            })
+            MERGE
+                (class)-[:DECLARES]->(method)
+            MERGE
+                (method)-[:DEFINED_BY]->(methodDeclaration)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:MethodDeclaration:Returns">
+        <requiresConcept refId="java:MethodDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (method:Java:Language:Member:Method)-[:DEFINED_BY]->
+                ()-[:HAS_METHOD_HEADER]->
+                ()-[:HAS_RESULT]->
+                (result:Result:JavaGenAST)-[]->
+                (typeIdentifier)-[:RESOLVES_TO]->(resolvedType:Java:Language:Type)
+            MERGE
+                (method)-[:RETURNS]->(resolvedType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:MethodDeclaration:Parameters">
+        <requiresConcept refId="java:MethodDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (method:Java:Language:Member:Method)-[:DEFINED_BY]->
+                ()-[:HAS_METHOD_HEADER]->
+                ()-[:HAS_METHOD_DECLARATOR]->
+                ()-[:HAS_FORMAL_PARAMETER_LIST]->
+                (paramList:FormalParameterList:JavaGenAST)-[:HAS_FORMAL_PARAMETERS]->
+                (params:FormalParameters:JavaGenAST)-[:HAS_FORMAL_PARAMETER]->
+                (formalParameter:FormalParameter:JavaGenAST)-[]->
+                (typeIdentifier:TypeIdentifier)-[:RESOLVES_TO]->
+                (resolvedType:Java:Language:Type)
+            MATCH
+                (formalParameter:FormalParameter)-[:HAS_VARIABLE_DECLARATOR_ID]->
+                ()-[:HAS_IDENTIFIER]->
+                (identifier:TerminalNodeStrings)
+            MERGE (variable:Java:Language:Variable {
+                name:      identifier.text,
+                signature: resolvedType.fqn + ' ' + identifier.text
+            })
+            MERGE (parameter:Java:Language:Parameter {
+                name:      identifier.text,
+                position:  id(formalParameter),
+                signature: resolvedType.fqn + ' ' + identifier.text
+            })
+            MERGE
+                (method)-[:HAS]->(parameter)
+            MERGE
+                (method)-[:DECLARES]->(variable)
+            MERGE
+                (parameter)-[:DEFINED_BY]->(formalParameter)
+            MERGE
+                (parameter)-[:OF_TYPE]->(resolvedType)
+            MERGE
+                (variable)-[:OF_TYPE]->(resolvedType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+<!--    TODO: remove, as is not really needed. adapt java:MethodSignature -->
+    <concept id="java:MethodDeclaration:LastParameter">
+        <requiresConcept refId="java:MethodDeclaration:Parameters"/>
+        <cypher><![CDATA[
+            MATCH
+                (method:Java:Language:Member:Method)-[:DEFINED_BY]->
+                ()-[:HAS_METHOD_HEADER]->
+                ()-[:HAS_METHOD_DECLARATOR]->
+                ()-[:HAS_FORMAL_PARAMETER_LIST]->
+                (paramList:FormalParameterList:JavaGenAST)-[:HAS_LAST_FORMAL_PARAMETER]->
+                ()-[:HAS_FORMAL_PARAMETER]->
+                (lastParam:FormalParameter)-[]->
+                (typeIdentifier:TypeIdentifier)-[:RESOLVES_TO]->
+                (resolvedType:Java:Language:Type)
+            MATCH
+                (lastParam:FormalParameter)-[:HAS_VARIABLE_DECLARATOR_ID]->
+                ()-[:HAS_IDENTIFIER]->
+                (identifier:TerminalNodeStrings)
+            MERGE (variable:Java:Language:Variable {
+                name:      identifier.text,
+                signature: resolvedType.fqn + ' ' + identifier.text
+            })
+            MERGE (parameter:Java:Language:Parameter {
+                name:      identifier.text,
+                last:      true,
+                position:  id(lastParam),
+                signature: resolvedType.fqn + ' ' + identifier.text
+            })
+            MERGE
+                (method)-[:HAS]->(parameter)
+            MERGE
+                (method)-[:DECLARES]->(variable)
+            MERGE
+                (parameter)-[:DEFINED_BY]->(lastParam)
+            MERGE
+                (parameter)-[:OF_TYPE]->(resolvedType)
+            MERGE
+                (variable)-[:OF_TYPE]->(resolvedType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+    <concept id="java:MethodSignature">
+        <requiresConcept refId="java:MethodDeclaration:LastParameter"/>
+        <cypher><![CDATA[
+            MATCH
+                (method:Java:Language:Member:Method)-[:HAS]->
+                (lastParameter:Java:Language:Parameter {last: true})-[:OF_TYPE]->
+                (type)
+            CALL {
+                WITH method
+                CALL {
+                    WITH method
+                    MATCH (method:Java:Language:Member:Method)-[:HAS]->(parameter:Java:Language:Parameter)
+                    RETURN parameter
+                    ORDER BY parameter.position ASCENDING
+                }
+                RETURN
+                    count(parameter) AS numberOfParameters,
+                    collect(parameter.signature) AS parameterList
+            }
+            SET method.numberOfParameters = numberOfParameters
+            SET method.signature = method.name + '(' + apoc.text.join(parameterList, ', ') + ')'
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+</jqassistant-rules>

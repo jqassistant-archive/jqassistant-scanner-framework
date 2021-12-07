@@ -76,4 +76,9 @@ public class Vet extends Person {
         getSpecialtiesInternal().add(specialty);
     }
 
+    public void setSpecificSpecialty(Specialty specialty1, Specialty specialty2, int index1, int index2) {
+        getSpecialtiesInternal().get(index1) = specialty1;
+        getSpecialtiesInternal().get(index2) = specialty2;
+    }
+
 }

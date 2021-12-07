@@ -255,5 +255,8 @@
         <resource>package-rules.xml</resource>
         <resource>type-resolution-rules.xml</resource>
         <resource>type-rules.xml</resource>
+        <resource>methods.xml</resource>
+        <resource>fields.xml</resource>
+        <resource>debug.xml</resource>
     </rules>
 </jqassistant-plugin>

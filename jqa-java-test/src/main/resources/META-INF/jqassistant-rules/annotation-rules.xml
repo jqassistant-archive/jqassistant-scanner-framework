@@ -1,29 +1,82 @@
 <jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
 
-    <!--    TODO: NEED FQN FOR TYPE! -->
     <concept id="java:TypeAnnotation">
         <requiresConcept refId="java:ClassDeclaration"/>
         <requiresConcept refId="java:EnumDeclaration"/>
+        <requiresConcept refId="java:TypeResolution:Unresolved"/>
         <cypher><![CDATA[
             MATCH
                 (type:Java:Language:Type)-[:DEFINED_BY]->
                 ()-[:HAS_CLASS_MODIFIER]->
                 ()-[:HAS_ANNOTATION]->
-                (a)-[]->
+                (a:Annotation:JavaGenAST)-[]->
                 ()-[:HAS_TYPE_NAME]->
-                ()-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
-            MERGE (annotation:Java:Language:Annotation {
-                name: identifier.text
+                (typeName:TypeName:JavaGenAST)
+            MATCH
+                (referencedType:Java:Language:Type)-[:IS_REFERENCED_BY]->(typeName:TypeName:JavaGenAST)
+            CREATE (annotation:Java:Language:Annotation {
+                sourceCode: a.sourceCode
             })
+            MERGE
+                (type)-[:ANNOTATED_BY]->(annotation)
             MERGE
                 (annotation)-[:DEFINED_BY]->(a)
             MERGE
-                (type)-[:ANNOTATED_BY]->(annotation)
-//            MERGE (annotationType:Java:Language:Type {
-//                name: identifier.text
-//            })
-//            MERGE
-//                (annotation)-[:OF_TYPE]->(annotationType)
+                (annotation)-[:OF_TYPE]->(referencedType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:MemberAnnotation">
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <requiresConcept refId="java:EnumDeclaration"/>
+        <requiresConcept refId="java:TypeResolution:Unresolved"/>
+        <requiresConcept refId="java:MethodDeclaration"/>
+        <requiresConcept refId="java:FieldDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (member:Java:Language:Member)-[:DEFINED_BY]->
+                (declaration:JavaGenAST)-[]->
+                (modifier)-[:HAS_ANNOTATION]->
+                (a:Annotation:JavaGenAST)-[]->
+                ()-[:HAS_TYPE_NAME]->
+                (:TypeIdentifier)-[:RESOLVES_TO]->(resolvedType:Java:Language:Type)
+            WHERE modifier:MethodModifier OR modifier:FieldModifier
+            CREATE (annotation:Java:Language:Annotation {
+                sourceCode: a.sourceCode
+            })
+            MERGE
+                (member)-[:ANNOTATED_BY]->(annotation)
+            MERGE
+                (annotation)-[:DEFINED_BY]->(a)
+            MERGE
+                (annotation)-[:OF_TYPE]->(resolvedType)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="java:AnnotationValuePair">
+        <requiresConcept refId="java:TypeAnnotation"/>
+        <requiresConcept refId="java:MemberAnnotation"/>
+        <requiresConcept refId="java:TypeResolution:Unresolved"/>
+        <cypher><![CDATA[
+            MATCH
+                (annotation:Java:Language:Annotation)-[:DEFINED_BY]->
+                ()-[:HAS_NORMAL_ANNOTATION]->
+                ()-[:HAS_ELEMENT_VALUE_PAIR_LIST]->
+                ()-[:HAS_ELEMENT_VALUE_PAIR]->
+                (elementValuePair:ElementValuePair)-[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            OPTIONAL MATCH
+                (elementValuePair)-[:HAS_ELEMENT_VALUE]->
+                (elementValue:ElementValue)
+            MERGE (value:Java:Language:Value {
+                name: identifier.text,
+                value: elementValue.sourceCode
+            })
+            MERGE
+                (value)-[:DEFINED_BY]->(elementValuePair)
+            MERGE
+                (annotation)-[:HAS]->(value)
             RETURN *
             ]]></cypher>
     </concept>
