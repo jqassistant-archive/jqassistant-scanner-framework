@@ -32,16 +32,14 @@ public interface MainMapper {
 
     @Named(value = "mapSourceCode")
     default String mapSourceCode(ParserRuleContext parserContext) {
-        String code = "mapSourceCode ERROR: ";
         try {
-            code = parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex()));
-            return code.indexOf("\n") == -1 ? code : code.substring(0, code.indexOf("\n"));
-        } catch (Exception e) {
-            return code + e.getMessage();
+            return parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex()));
+        } catch (Exception ex) {
+            return "mapSourceCode ERROR: " + ex.getMessage();
         }
     }
 
-    default TerminalNodeStrings map(@Context() ScannerContext scannerContext, TerminalNode terminalNode) {
+    default TerminalNodeStrings map(@Context() FileResource item, @Context() ScannerContext scannerContext, TerminalNode terminalNode) {
         return map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol());
     }
 
@@ -57,7 +55,15 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    AbstractMemberDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AbstractMemberDeclarationContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     AccessibilityModifier map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AccessibilityModifierContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    AdditiveExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AdditiveExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -73,11 +79,23 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ArgumentsExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArgumentsExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ArrayElement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArrayElementContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ArrayLiteral map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArrayLiteralContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ArrayLiteralExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArrayLiteralExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ArrayPrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArrayPrimTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -93,6 +111,10 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ArrowFunctionExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArrowFunctionExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ArrowFunctionParameters map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArrowFunctionParametersContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -101,11 +123,39 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    AssignmentExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AssignmentExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     AssignmentOperator map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AssignmentOperatorContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    AssignmentOperatorExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AssignmentOperatorExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     BindingPattern map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.BindingPatternContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    BitAndExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.BitAndExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    BitNotExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.BitNotExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    BitOrExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.BitOrExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    BitShiftExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.BitShiftExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    BitXOrExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.BitXOrExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -133,16 +183,25 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
-    CatchProduction map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.CatchProductionContext parserContext);
+    CastAsExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.CastAsExpressionContext parserContext);
 
-    @Mapping(target = "clazz", expression = "java(map(scannerContext, parserContext.Class()))")
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    CatchProduction map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.CatchProductionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "clazz", expression = "java(map(item, scannerContext, parserContext.Class()))")
     ClassDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ClassDeclarationContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ClassElement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ClassElementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "clazz", expression = "java(map(item, scannerContext, parserContext.Class()))")
+    ClassExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ClassExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -159,6 +218,10 @@ public interface MainMapper {
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ClassTail map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ClassTailContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ComputedPropertyExpressionAssignment map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ComputedPropertyExpressionAssignmentContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -206,6 +269,14 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    DeleteExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.DeleteExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    DoStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.DoStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ElementList map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ElementListContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -234,6 +305,10 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    EqualityExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.EqualityExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ExportStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ExportStatementContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -247,6 +322,22 @@ public interface MainMapper {
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     FinallyProduction map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.FinallyProductionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ForInStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ForInStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ForStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ForStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ForVarInStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ForVarInStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ForVarStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ForVarStatementContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -267,6 +358,10 @@ public interface MainMapper {
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     FunctionDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.FunctionDeclarationContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    FunctionExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.FunctionExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -294,11 +389,34 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    GeneratorsExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.GeneratorsExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    GeneratorsFunctionExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.GeneratorsFunctionExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    GenericTypes map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.GenericTypesContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "getter", expression = "java(map(item, scannerContext, parserContext.getter()))")
     GetAccessor map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.GetAccessorContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     Getter map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.GetterContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "getAccessor", expression = "java(map(item, scannerContext, parserContext.getAccessor()))")
+    @Mapping(target = "setAccessor", expression = "java(map(item, scannerContext, parserContext.setAccessor()))")
+    GetterSetterDeclarationExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.GetterSetterDeclarationExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    IdentifierExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.IdentifierExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -330,6 +448,10 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    InExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.InExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     IndexMemberDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.IndexMemberDeclarationContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -342,6 +464,10 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    InstanceofExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.InstanceofExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     InterfaceDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.InterfaceDeclarationContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -350,6 +476,16 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    Intersection map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.IntersectionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @SubclassMapping(target = DoStatement.class, source = TypeScriptParser.DoStatementContext.class)
+    @SubclassMapping(target = ForInStatement.class, source = TypeScriptParser.ForInStatementContext.class)
+    @SubclassMapping(target = ForStatement.class, source = TypeScriptParser.ForStatementContext.class)
+    @SubclassMapping(target = ForVarInStatement.class, source = TypeScriptParser.ForVarInStatementContext.class)
+    @SubclassMapping(target = ForVarStatement.class, source = TypeScriptParser.ForVarStatementContext.class)
+    @SubclassMapping(target = WhileStatement.class, source = TypeScriptParser.WhileStatementContext.class)
     IterationStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.IterationStatementContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -360,9 +496,13 @@ public interface MainMapper {
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     IteratorDefinition map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.IteratorDefinitionContext parserContext);
 
-    @Mapping(target = "clazz", expression = "java(map(scannerContext, parserContext.Class()))")
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    IteratorsExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.IteratorsExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "clazz", expression = "java(map(item, scannerContext, parserContext.Class()))")
     Keyword map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.KeywordContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -379,11 +519,43 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    LiteralExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.LiteralExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    LogicalAndExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.LogicalAndExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    LogicalOrExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.LogicalOrExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    MemberDotExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MemberDotExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    MemberIndexExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MemberIndexExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    MethodDeclarationExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MethodDeclarationExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    MethodProperty map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MethodPropertyContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     MethodSignature map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MethodSignatureContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     MultipleImportStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MultipleImportStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    MultiplicativeExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.MultiplicativeExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -399,11 +571,27 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    NewExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.NewExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    NotExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.NotExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     NumericLiteral map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.NumericLiteralContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ObjectLiteral map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ObjectLiteralContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ObjectLiteralExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ObjectLiteralExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ObjectPrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ObjectPrimTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -423,10 +611,51 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ParenthesizedExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ParenthesizedExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ParenthesizedPrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ParenthesizedPrimTypeContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PostDecreaseExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PostDecreaseExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PostIncrementExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PostIncrementExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PreDecreaseExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PreDecreaseExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PreIncrementExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PreIncrementExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PredefinedPrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PredefinedPrimTypeContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     PredefinedType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PredefinedTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    Primary map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PrimaryContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @SubclassMapping(target = ArrayPrimType.class, source = TypeScriptParser.ArrayPrimTypeContext.class)
+    @SubclassMapping(target = ObjectPrimType.class, source = TypeScriptParser.ObjectPrimTypeContext.class)
+    @SubclassMapping(target = ParenthesizedPrimType.class, source = TypeScriptParser.ParenthesizedPrimTypeContext.class)
+    @SubclassMapping(target = PredefinedPrimType.class, source = TypeScriptParser.PredefinedPrimTypeContext.class)
+    @SubclassMapping(target = QueryPrimType.class, source = TypeScriptParser.QueryPrimTypeContext.class)
+    @SubclassMapping(target = RedefinitionOfType.class, source = TypeScriptParser.RedefinitionOfTypeContext.class)
+    @SubclassMapping(target = ReferencePrimType.class, source = TypeScriptParser.ReferencePrimTypeContext.class)
+    @SubclassMapping(target = ThisPrimType.class, source = TypeScriptParser.ThisPrimTypeContext.class)
+    @SubclassMapping(target = TuplePrimType.class, source = TypeScriptParser.TuplePrimTypeContext.class)
     PrimaryType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PrimaryTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -435,7 +664,27 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @SubclassMapping(target = ComputedPropertyExpressionAssignment.class, source = TypeScriptParser.ComputedPropertyExpressionAssignmentContext.class)
+    @SubclassMapping(target = MethodProperty.class, source = TypeScriptParser.MethodPropertyContext.class)
+    @SubclassMapping(target = PropertyExpressionAssignment.class, source = TypeScriptParser.PropertyExpressionAssignmentContext.class)
+    @SubclassMapping(target = PropertyGetter.class, source = TypeScriptParser.PropertyGetterContext.class)
+    @SubclassMapping(target = PropertySetter.class, source = TypeScriptParser.PropertySetterContext.class)
+    @SubclassMapping(target = PropertyShorthand.class, source = TypeScriptParser.PropertyShorthandContext.class)
+    @SubclassMapping(target = RestParameterInObject.class, source = TypeScriptParser.RestParameterInObjectContext.class)
     PropertyAssignment map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertyAssignmentContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PropertyDeclarationExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertyDeclarationExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PropertyExpressionAssignment map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertyExpressionAssignmentContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "getAccessor", expression = "java(map(item, scannerContext, parserContext.getAccessor()))")
+    PropertyGetter map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertyGetterContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -443,6 +692,10 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @SubclassMapping(target = AbstractMemberDeclaration.class, source = TypeScriptParser.AbstractMemberDeclarationContext.class)
+    @SubclassMapping(target = GetterSetterDeclarationExpression.class, source = TypeScriptParser.GetterSetterDeclarationExpressionContext.class)
+    @SubclassMapping(target = MethodDeclarationExpression.class, source = TypeScriptParser.MethodDeclarationExpressionContext.class)
+    @SubclassMapping(target = PropertyDeclarationExpression.class, source = TypeScriptParser.PropertyDeclarationExpressionContext.class)
     PropertyMemberDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertyMemberDeclarationContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -451,7 +704,32 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "setAccessor", expression = "java(map(item, scannerContext, parserContext.setAccessor()))")
+    PropertySetter map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertySetterContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    PropertyShorthand map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertyShorthandContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     PropertySignatur map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.PropertySignaturContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    QueryPrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.QueryPrimTypeContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    RedefinitionOfType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.RedefinitionOfTypeContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ReferencePrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ReferencePrimTypeContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    RelationalExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.RelationalExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -471,10 +749,15 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    RestParameterInObject map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.RestParameterInObjectContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     ReturnStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ReturnStatementContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @Mapping(target = "setter", expression = "java(map(item, scannerContext, parserContext.setter()))")
     SetAccessor map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.SetAccessorContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -483,6 +766,53 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @SubclassMapping(target = AdditiveExpression.class, source = TypeScriptParser.AdditiveExpressionContext.class)
+    @SubclassMapping(target = ArgumentsExpression.class, source = TypeScriptParser.ArgumentsExpressionContext.class)
+    @SubclassMapping(target = ArrayLiteralExpression.class, source = TypeScriptParser.ArrayLiteralExpressionContext.class)
+    @SubclassMapping(target = ArrowFunctionExpression.class, source = TypeScriptParser.ArrowFunctionExpressionContext.class)
+    @SubclassMapping(target = AssignmentExpression.class, source = TypeScriptParser.AssignmentExpressionContext.class)
+    @SubclassMapping(target = AssignmentOperatorExpression.class, source = TypeScriptParser.AssignmentOperatorExpressionContext.class)
+    @SubclassMapping(target = BitAndExpression.class, source = TypeScriptParser.BitAndExpressionContext.class)
+    @SubclassMapping(target = BitNotExpression.class, source = TypeScriptParser.BitNotExpressionContext.class)
+    @SubclassMapping(target = BitOrExpression.class, source = TypeScriptParser.BitOrExpressionContext.class)
+    @SubclassMapping(target = BitShiftExpression.class, source = TypeScriptParser.BitShiftExpressionContext.class)
+    @SubclassMapping(target = BitXOrExpression.class, source = TypeScriptParser.BitXOrExpressionContext.class)
+    @SubclassMapping(target = CastAsExpression.class, source = TypeScriptParser.CastAsExpressionContext.class)
+    @SubclassMapping(target = ClassExpression.class, source = TypeScriptParser.ClassExpressionContext.class)
+    @SubclassMapping(target = DeleteExpression.class, source = TypeScriptParser.DeleteExpressionContext.class)
+    @SubclassMapping(target = EqualityExpression.class, source = TypeScriptParser.EqualityExpressionContext.class)
+    @SubclassMapping(target = FunctionExpression.class, source = TypeScriptParser.FunctionExpressionContext.class)
+    @SubclassMapping(target = GeneratorsExpression.class, source = TypeScriptParser.GeneratorsExpressionContext.class)
+    @SubclassMapping(target = GeneratorsFunctionExpression.class, source = TypeScriptParser.GeneratorsFunctionExpressionContext.class)
+    @SubclassMapping(target = GenericTypes.class, source = TypeScriptParser.GenericTypesContext.class)
+    @SubclassMapping(target = IdentifierExpression.class, source = TypeScriptParser.IdentifierExpressionContext.class)
+    @SubclassMapping(target = InExpression.class, source = TypeScriptParser.InExpressionContext.class)
+    @SubclassMapping(target = InstanceofExpression.class, source = TypeScriptParser.InstanceofExpressionContext.class)
+    @SubclassMapping(target = IteratorsExpression.class, source = TypeScriptParser.IteratorsExpressionContext.class)
+    @SubclassMapping(target = LiteralExpression.class, source = TypeScriptParser.LiteralExpressionContext.class)
+    @SubclassMapping(target = LogicalAndExpression.class, source = TypeScriptParser.LogicalAndExpressionContext.class)
+    @SubclassMapping(target = LogicalOrExpression.class, source = TypeScriptParser.LogicalOrExpressionContext.class)
+    @SubclassMapping(target = MemberDotExpression.class, source = TypeScriptParser.MemberDotExpressionContext.class)
+    @SubclassMapping(target = MemberIndexExpression.class, source = TypeScriptParser.MemberIndexExpressionContext.class)
+    @SubclassMapping(target = MultiplicativeExpression.class, source = TypeScriptParser.MultiplicativeExpressionContext.class)
+    @SubclassMapping(target = NewExpression.class, source = TypeScriptParser.NewExpressionContext.class)
+    @SubclassMapping(target = NotExpression.class, source = TypeScriptParser.NotExpressionContext.class)
+    @SubclassMapping(target = ObjectLiteralExpression.class, source = TypeScriptParser.ObjectLiteralExpressionContext.class)
+    @SubclassMapping(target = ParenthesizedExpression.class, source = TypeScriptParser.ParenthesizedExpressionContext.class)
+    @SubclassMapping(target = PostDecreaseExpression.class, source = TypeScriptParser.PostDecreaseExpressionContext.class)
+    @SubclassMapping(target = PostIncrementExpression.class, source = TypeScriptParser.PostIncrementExpressionContext.class)
+    @SubclassMapping(target = PreDecreaseExpression.class, source = TypeScriptParser.PreDecreaseExpressionContext.class)
+    @SubclassMapping(target = PreIncrementExpression.class, source = TypeScriptParser.PreIncrementExpressionContext.class)
+    @SubclassMapping(target = RelationalExpression.class, source = TypeScriptParser.RelationalExpressionContext.class)
+    @SubclassMapping(target = SuperExpression.class, source = TypeScriptParser.SuperExpressionContext.class)
+    @SubclassMapping(target = TemplateStringExpression.class, source = TypeScriptParser.TemplateStringExpressionContext.class)
+    @SubclassMapping(target = TernaryExpression.class, source = TypeScriptParser.TernaryExpressionContext.class)
+    @SubclassMapping(target = ThisExpression.class, source = TypeScriptParser.ThisExpressionContext.class)
+    @SubclassMapping(target = TypeofExpression.class, source = TypeScriptParser.TypeofExpressionContext.class)
+    @SubclassMapping(target = UnaryMinusExpression.class, source = TypeScriptParser.UnaryMinusExpressionContext.class)
+    @SubclassMapping(target = UnaryPlusExpression.class, source = TypeScriptParser.UnaryPlusExpressionContext.class)
+    @SubclassMapping(target = VoidExpression.class, source = TypeScriptParser.VoidExpressionContext.class)
+    @SubclassMapping(target = YieldExpression.class, source = TypeScriptParser.YieldExpressionContext.class)
     SingleExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.SingleExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -503,6 +833,10 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    SuperExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.SuperExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     SwitchStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.SwitchStatementContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -511,7 +845,23 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    TemplateStringExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.TemplateStringExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     TemplateStringLiteral map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.TemplateStringLiteralContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    TernaryExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.TernaryExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ThisExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ThisExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    ThisPrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ThisPrimTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -524,6 +874,10 @@ public interface MainMapper {
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     TupleElementTypes map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.TupleElementTypesContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    TuplePrimType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.TuplePrimTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
@@ -603,6 +957,25 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    TypeofExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.TypeofExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    UnaryMinusExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.UnaryMinusExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    UnaryPlusExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.UnaryPlusExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    Union map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.UnionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    @SubclassMapping(target = Intersection.class, source = TypeScriptParser.IntersectionContext.class)
+    @SubclassMapping(target = Primary.class, source = TypeScriptParser.PrimaryContext.class)
+    @SubclassMapping(target = Union.class, source = TypeScriptParser.UnionContext.class)
     UnionOrIntersectionOrPrimaryType map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.UnionOrIntersectionOrPrimaryTypeContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
@@ -623,7 +996,19 @@ public interface MainMapper {
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    VoidExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.VoidExpressionContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    WhileStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.WhileStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
     WithStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.WithStatementContext parserContext);
+
+    @Mapping(target = "fileName", ignore = true)
+    @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")
+    YieldExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.YieldExpressionContext parserContext);
 
     @Mapping(target = "fileName", ignore = true)
     @Mapping(target = "sourceCode", source = ".", qualifiedByName = "mapSourceCode")

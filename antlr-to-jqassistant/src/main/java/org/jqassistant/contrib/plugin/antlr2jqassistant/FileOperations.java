@@ -7,6 +7,7 @@ import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Writer;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.ModelDto;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.PackagePaths;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
 
@@ -25,11 +26,11 @@ import java.util.Map;
 public class FileOperations {
     private GenerationConfig config;
 
-    void writeToFiles(Map<FormattedName, CompilationUnit> compilationUnitMap) {
+    void writeToFiles(Map<FormattedName, ModelDto> compilationUnitMap) {
         String destination = config.getDestinationFolder() + "/" + PackagePaths.SRC_JAVA;
-        for (Map.Entry<FormattedName, CompilationUnit> entry : compilationUnitMap.entrySet()) {
+        for (Map.Entry<FormattedName, ModelDto> entry : compilationUnitMap.entrySet()) {
             FormattedName name = entry.getKey();
-            CompilationUnit compilationUnit = entry.getValue();
+            CompilationUnit compilationUnit = entry.getValue().getCompilationUnit();
 
             try {
                 String packagePath = compilationUnit.getPackageDeclaration().orElseThrow().getName().toString().replace(".", "/");

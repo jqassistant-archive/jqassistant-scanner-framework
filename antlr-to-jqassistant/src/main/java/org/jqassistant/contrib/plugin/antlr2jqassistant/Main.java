@@ -1,10 +1,10 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant;
 
-import com.github.javaparser.ast.CompilationUnit;
 import org.apache.maven.model.Model;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.*;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.ModelDto;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.PackagePaths;
 import org.jqassistant.schema.plugin.v1.JqassistantPlugin;
 import org.snt.inmemantlr.GenericParser;
@@ -67,23 +67,23 @@ public class Main {
         GenericParser genericParser = antlrGenerator.getGenericParser();
 
         genericParser.writeAntlrAritfactsTo(CONFIG.getPaths().getGrammarPath() + "/gen");
-        Map<FormattedName, CompilationUnit> preparedGrammarDependencies = antlrGenerator.getPreparedGrammarDependencies();
+        Map<FormattedName, ModelDto> preparedGrammarDependencies = antlrGenerator.getPreparedGrammarDependencies();
         fileOperations.writeToFiles(preparedGrammarDependencies);
 //        fileOperations.copyFiles(CONFIG.getGrammarFiles(), CONFIG.getPaths().getGrammarPath());
 
         BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(CONFIG);
-        Map<FormattedName, CompilationUnit> baseDescriptors = baseDescriptorGenerator.generate();
+        Map<FormattedName, ModelDto> baseDescriptors = baseDescriptorGenerator.generate();
         fileOperations.writeToFiles(baseDescriptors);
 
         ApiModelGenerator antlrParserApiModelGenerator = new ApiModelGenerator(CONFIG, genericParser, baseDescriptorGenerator);
-        Map<FormattedName, CompilationUnit> apiModelCompilationUnitMap = antlrParserApiModelGenerator.generate();
+        Map<FormattedName, ModelDto> apiModelCompilationUnitMap = antlrParserApiModelGenerator.generate();
         fileOperations.writeToFiles(apiModelCompilationUnitMap);
 
         MapperGenerator mapperGenerator = new MapperGenerator(CONFIG, baseDescriptorGenerator, apiModelCompilationUnitMap);
-        Map<FormattedName, CompilationUnit> mapperCompilationUnitMap = mapperGenerator.generate();
+        Map<FormattedName, ModelDto> mapperCompilationUnitMap = mapperGenerator.generate();
         fileOperations.writeToFiles(mapperCompilationUnitMap);
 
-        Map<FormattedName, CompilationUnit> allModels = new LinkedHashMap<>();
+        Map<FormattedName, ModelDto> allModels = new LinkedHashMap<>();
         allModels.putAll(baseDescriptors);
         allModels.putAll(apiModelCompilationUnitMap);
         JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(CONFIG, allModels);

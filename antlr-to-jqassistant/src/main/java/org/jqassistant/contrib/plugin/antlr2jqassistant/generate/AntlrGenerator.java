@@ -6,6 +6,7 @@ import org.antlr.v4.tool.ast.GrammarAST;
 import org.antlr.v4.tool.ast.GrammarRootAST;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.ModelDto;
 import org.snt.inmemantlr.GenericParser;
 import org.snt.inmemantlr.listener.DefaultTreeListener;
 import org.snt.inmemantlr.tool.InmemantlrTool;
@@ -63,8 +64,8 @@ public class AntlrGenerator {
         return null;
     }
 
-    public Map<FormattedName, CompilationUnit> getPreparedGrammarDependencies() {
-        Map<FormattedName, CompilationUnit> map = new TreeMap<>();
+    public Map<FormattedName, ModelDto> getPreparedGrammarDependencies() {
+        Map<FormattedName, ModelDto> map = new TreeMap<>();
         JavaParser javaParser = new JavaParser();
 
         if (config.getGrammarDependencies().size() > 0) {
@@ -72,7 +73,7 @@ public class AntlrGenerator {
                 try {
                     CompilationUnit compilationUnit = javaParser.parse(file).getResult().orElseThrow();
                     compilationUnit.setPackageDeclaration(config.getPaths().getProjectPackage() + ".antlr4");
-                    map.put(new FormattedName(file.getName()), compilationUnit);
+                    map.put(new FormattedName(file.getName()), new ModelDto(compilationUnit));
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

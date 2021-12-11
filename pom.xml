@@ -58,9 +58,13 @@
         <asciidoctor.toplevelid>jqa-scanner-framework</asciidoctor.toplevelid>
 
         <com.buschmais.xo.version>1.2.0</com.buschmais.xo.version>
-        <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
+        <org.mapstruct.version>1.5.0-SNAPSHOT</org.mapstruct.version>
         <org.projectlombok.version>1.18.22</org.projectlombok.version>
     </properties>
+
+<!--    <modules>-->
+<!--        <module>antlr-to-jqassistant</module>-->
+<!--    </modules>-->
 
     <dependencyManagement>
         <dependencies>

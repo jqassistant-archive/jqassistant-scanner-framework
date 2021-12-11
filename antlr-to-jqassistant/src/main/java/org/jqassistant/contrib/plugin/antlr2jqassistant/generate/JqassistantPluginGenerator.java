@@ -1,8 +1,8 @@
 package org.jqassistant.contrib.plugin.antlr2jqassistant.generate;
 
-import com.github.javaparser.ast.CompilationUnit;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.ModelDto;
 import org.jqassistant.schema.plugin.v1.ClassListType;
 import org.jqassistant.schema.plugin.v1.IdClassListType;
 import org.jqassistant.schema.plugin.v1.IdClassType;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class JqassistantPluginGenerator {
 
 
-    public static JqassistantPlugin generatePlugin(GenerationConfig config, Map<FormattedName, CompilationUnit> compilationUnitMap) {
+    public static JqassistantPlugin generatePlugin(GenerationConfig config, Map<FormattedName, ModelDto> compilationUnitMap) {
         JqassistantPlugin jqassistantPlugin = new JqassistantPlugin();
         FormattedName name = new FormattedName(config.getParserName());
 
@@ -39,14 +39,14 @@ public class JqassistantPluginGenerator {
         return idClassListType;
     }
 
-    private static ClassListType generateModel(Map<FormattedName, CompilationUnit> compilationUnitMap) {
+    private static ClassListType generateModel(Map<FormattedName, ModelDto> compilationUnitMap) {
         ClassListType classListType = new ClassListType();
         List<String> clazz = classListType.getClazz();
 
         clazz.addAll(compilationUnitMap.entrySet()
                 .stream()
                 .map(stringCompilationUnitEntry ->
-                        stringCompilationUnitEntry.getValue().getPackageDeclaration().orElseThrow().getName().asString() + "." + stringCompilationUnitEntry.getKey())
+                        stringCompilationUnitEntry.getValue().getCompilationUnit().getPackageDeclaration().orElseThrow().getName().asString() + "." + stringCompilationUnitEntry.getKey())
                 .collect(Collectors.toList()));
 
         return classListType;

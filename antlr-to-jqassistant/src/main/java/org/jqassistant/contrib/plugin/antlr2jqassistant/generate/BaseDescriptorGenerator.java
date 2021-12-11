@@ -4,7 +4,6 @@ import com.buschmais.jqassistant.core.store.api.model.Descriptor;
 import com.buschmais.jqassistant.plugin.common.api.model.FileDescriptor;
 import com.buschmais.xo.api.annotation.Abstract;
 import com.buschmais.xo.neo4j.api.annotation.Label;
-import com.buschmais.xo.neo4j.api.annotation.Relation;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import lombok.Getter;
@@ -12,6 +11,7 @@ import org.jqassistant.contrib.plugin.antlr2jqassistant.TreeHelper;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.generate.base.BaseGenerator;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName;
 import org.jqassistant.contrib.plugin.antlr2jqassistant.model.GenerationConfig;
+import org.jqassistant.contrib.plugin.antlr2jqassistant.model.ModelDto;
 
 import java.util.Date;
 import java.util.Map;
@@ -32,15 +32,15 @@ public class BaseDescriptorGenerator extends BaseGenerator {
         BASE_FILE_DESCRIPTOR_NAME = new FormattedName(pluginName.getName() + "FileDescriptor");
     }
 
-    public Map<FormattedName, CompilationUnit> generate() {
+    public Map<FormattedName, ModelDto> generate() {
         System.out.println(new Date() + " Starting Base Descriptor Model Generation");
-        Map<FormattedName, CompilationUnit> interfaces = new TreeMap<>();
+        Map<FormattedName, ModelDto> interfaces = new TreeMap<>();
 
         CompilationUnit baseDescriptor = getBaseDescriptor();
-        interfaces.put(BASE_DESCRIPTOR_NAME, baseDescriptor);
+        interfaces.put(BASE_DESCRIPTOR_NAME, new ModelDto(baseDescriptor));
 
         CompilationUnit baseFileDescriptor = getBaseFileDescriptor();
-        interfaces.put(BASE_FILE_DESCRIPTOR_NAME, baseFileDescriptor);
+        interfaces.put(BASE_FILE_DESCRIPTOR_NAME, new ModelDto(baseFileDescriptor));
 
         System.out.println(new Date() + " Generation Done!");
         return interfaces;

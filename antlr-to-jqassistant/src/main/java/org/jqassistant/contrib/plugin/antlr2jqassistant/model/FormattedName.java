@@ -2,12 +2,14 @@ package org.jqassistant.contrib.plugin.antlr2jqassistant.model;
 
 import com.github.javaparser.ast.expr.SimpleName;
 import com.google.common.base.CaseFormat;
+import com.google.common.collect.ImmutableMap;
 import lombok.Data;
 import org.antlr.v4.tool.ast.GrammarAST;
 import org.antlr.v4.tool.ast.RuleAST;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.lang.model.SourceVersion;
+import java.util.Map;
 
 @Data
 public class FormattedName implements Comparable<FormattedName> {
@@ -18,6 +20,11 @@ public class FormattedName implements Comparable<FormattedName> {
 
     private final String original;
     private final String name;
+
+    static final Map<String, String> replacements = ImmutableMap.of(
+            "class", "clazz",
+            "Class", "Clazz"
+    );
 
     public FormattedName(SimpleName originalSimpleName) {
         this.original = originalSimpleName.getIdentifier();
@@ -45,9 +52,19 @@ public class FormattedName implements Comparable<FormattedName> {
 
     private String getCleanNameFor(String name) {
         String cleanName = name.replace("Context", "");
-        if (name.equals("class")) cleanName = "clazz";
-        if (name.equals("Class")) cleanName = "Clazz";
+        if (isReserved(cleanName)) {
+            if (replacements.get(cleanName) != null) {
+                cleanName = replacements.get(cleanName);
+            }
+            if (isReserved(cleanName)) {
+                System.out.println("Using reserved Keyword! " + cleanName);
+            }
+        }
         return asUpperCamel(cleanName);
+    }
+
+    public String asLowerCamelWithQuotes() {
+        return QUOTES + asLowerCamel() + QUOTES;
     }
 
     public String asUpperCamelWithQuotes() {
@@ -56,6 +73,11 @@ public class FormattedName implements Comparable<FormattedName> {
 
     public String asUpperCamel() {
         return CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, getName());
+    }
+
+
+    public String asLowerCamel() {
+        return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_CAMEL, getName());
     }
 
     public static String asUpperCamel(String text) {
