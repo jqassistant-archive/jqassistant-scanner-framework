@@ -34,12 +34,11 @@ public class TypeScriptGenScannerPluginTestIT extends AbstractPluginIT {
 
     @Test
     @TestStore(type = TestStore.Type.REMOTE)
-    public void scanModels() throws RuleException {
+    public void scanReact() throws RuleException {
         store.beginTransaction();
-        String projectPath = "C:\\workspace\\TypeScript-Node-Starter\\src\\models";
+        String projectPath = "C:\\workspace\\bulletproof-react\\src\\stores\\notifications.ts";
 
         Descriptor descriptor = getScanner().scan(new File(projectPath), projectPath, DefaultScope.NONE);
-        assertThat(descriptor).isInstanceOf(DependentDirectoryDescriptor.class);
 
         store.commitTransaction();
 

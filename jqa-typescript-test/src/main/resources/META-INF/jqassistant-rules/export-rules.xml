@@ -1,0 +1,28 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+
+    <concept id="typescript:ExportDeclaration">
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:HAS_SOURCE_ELEMENTS]->
+                (sourceElement:SourceElement)-[:HAS_SOURCE_ELEMENT]->
+                ()-[:HAS_EXPORT]->
+                (identifier:TerminalNodeStrings)
+            MATCH
+                (sourceElement)-[:HAS_INTERFACE_DECLARATION]->
+                ()-[:HAS_OBJECT_TYPE]->
+                (objectType:ObjectType)
+            MERGE
+                (type:TypeScript:Language:Type {
+                    name: identifier.text,
+                    sourceFile:  program.fileName,
+                    sourceCode:  sourceElement.sourceCode
+                })
+            MERGE
+                (program)-[:EXPORTS]->(type)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+
+</jqassistant-rules>

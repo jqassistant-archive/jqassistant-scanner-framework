@@ -1,0 +1,92 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+
+    <concept id="typescript:MultipleImportDeclaration">
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:HAS_SOURCE_ELEMENTS]->
+                ()-[:HAS_SOURCE_ELEMENT]->
+                ()-[:HAS_STATEMENT]->
+                ()-[:HAS_IMPORT_STATEMENT]->
+                (importStatement:ImportStatement)-[:HAS_FROM_BLOCK]->
+                (fromBlock:FromBlock)-[:HAS_STRING_LITERAL]->
+                (fromIdentifier:TerminalNodeStrings)
+            MATCH
+                (fromBlock)-[:HAS_MULTIPLE_IMPORT_STATEMENT]->
+                ()-[:HAS_IDENTIFIER_NAME]->
+                (identifierName:IdentifierName)-[:HAS_IDENTIFIER]->
+                (importIdentifier:TerminalNodeStrings)
+            MERGE
+                (type:TypeScript:Language:Type {
+                    name: importIdentifier.text,
+                    sourceFile: fromIdentifier.text
+                })
+            MERGE
+                (program)-[:IMPORTS {sourceCode: importStatement.sourceCode}]->(type)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:StarImportDeclaration">
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:HAS_SOURCE_ELEMENTS]->
+                ()-[:HAS_SOURCE_ELEMENT]->
+                ()-[:HAS_STATEMENT]->
+                ()-[:HAS_IMPORT_STATEMENT]->
+                (importStatement:ImportStatement)-[:HAS_FROM_BLOCK]->
+                (fromBlock:FromBlock)-[:HAS_STRING_LITERAL]->
+                (fromIdentifier:TerminalNodeStrings)
+            MATCH
+                (fromBlock)-[:HAS_IDENTIFIER_NAME]->
+                (identifierName:IdentifierName)-[:HAS_IDENTIFIER]->
+                (importIdentifier:TerminalNodeStrings)
+            MERGE
+                (type:TypeScript:Language:Type {
+                    name: importIdentifier.text,
+                    sourceFile: fromIdentifier.text
+                })
+            MERGE
+                (program)-[:IMPORTS {sourceCode: importStatement.sourceCode}]->(type)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:SingleImportDeclaration">
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:HAS_SOURCE_ELEMENTS]->
+                ()-[:HAS_SOURCE_ELEMENT]->
+                ()-[:HAS_STATEMENT]->
+                ()-[:HAS_EXPRESSION_STATEMENT]->
+                (importStatement:ExpressionStatement)-[:HAS_EXPRESSION_SEQUENCE]->
+                ()-[:HAS_SINGLE_EXPRESSION]->
+                (importStatementExpression:IdentifierExpression)-[:HAS_IDENTIFIER_NAME]->
+                ()-[:HAS_RESERVED_WORD]->
+                ()-[:HAS_KEYWORD]->
+                ()-[:HAS_IMPORT]->
+                (:TerminalNodeStrings)
+            MATCH
+                (importStatementExpression)-[:HAS_SINGLE_EXPRESSION]->
+                (singleExpression)-[:HAS_IDENTIFIER_NAME]->
+                (identifierName:IdentifierName)-[:HAS_IDENTIFIER]->
+                (importIdentifier:TerminalNodeStrings)
+            MATCH
+                (singleExpression)-[:HAS_SINGLE_EXPRESSION]->
+                (fromExpression)-[:HAS_SINGLE_EXPRESSION]->
+                (fromIdentifier:LiteralExpression)
+            MERGE
+                (type:TypeScript:Language:Type {
+                    name: importIdentifier.text,
+                    sourceFile: fromIdentifier.sourceCode
+                })
+            MERGE
+                (program)-[:IMPORTS {sourceCode: importStatement.sourceCode}]->(type)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+
+</jqassistant-rules>

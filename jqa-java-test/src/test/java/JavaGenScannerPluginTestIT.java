@@ -50,7 +50,7 @@ public class JavaGenScannerPluginTestIT extends AbstractPluginIT {
         store.commitTransaction();
 
         executeGroup("java");
-//        executeGroup("debug");
+        executeGroup("debug");
     }
 
     @Test

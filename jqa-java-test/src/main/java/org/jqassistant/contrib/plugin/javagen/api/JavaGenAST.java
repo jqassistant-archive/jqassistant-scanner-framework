@@ -23,4 +23,9 @@ public interface JavaGenAST extends Descriptor {
     String getSourceCode();
 
     void setSourceCode(String setSourceCode);
+
+    @Relation("HAS_SOURCE_POSITION")
+    String getSourcePosition();
+
+    void setSourcePosition(String setSourcePosition);
 }

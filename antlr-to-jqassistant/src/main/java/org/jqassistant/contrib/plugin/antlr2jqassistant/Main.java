@@ -14,10 +14,7 @@ import org.snt.inmemantlr.exceptions.ParsingException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static final GenerationConfig CONFIG_JAVA = GenerationConfig.builder()
@@ -46,50 +43,53 @@ public class Main {
                 new File("antlr-to-jqassistant/src/main/resources/TypeScriptParser.g4")
             ))
             .grammarDependencies(Arrays.asList(
-                new File("antlr-to-jqassistant/src/main/resources/TypeScriptLexerBase.java"),
-                new File("antlr-to-jqassistant/src/main/resources/TypeScriptParserBase.java")
+                new File("antlr-to-jqassistant/src/main/resources/java/TypeScriptLexerBase.java"),
+                new File("antlr-to-jqassistant/src/main/resources/java/TypeScriptParserBase.java")
             ))
             .build();
 
-    public static final GenerationConfig CONFIG = CONFIG_TYPESCRIPT;
+//    public static final List<GenerationConfig> CONFIGS = new ArrayList<>(List.of(CONFIG_JAVA, CONFIG_TYPESCRIPT));
+    public static final List<GenerationConfig> CONFIGS = new ArrayList<>(List.of(CONFIG_TYPESCRIPT));
 
     public static void main(String[] args) {
         try {
-            new Main();
+            for (GenerationConfig config : CONFIGS) {
+                new Main(config);
+            }
         } catch (FileNotFoundException | CompilationException | ParsingException | IllegalWorkflowException e) {
             e.printStackTrace();
         }
     }
 
-    public Main() throws FileNotFoundException, CompilationException, ParsingException, IllegalWorkflowException {
-        FileOperations fileOperations = new FileOperations(CONFIG);
-        AntlrGenerator antlrGenerator = new AntlrGenerator(CONFIG);
+    public Main(GenerationConfig config) throws FileNotFoundException, CompilationException, ParsingException, IllegalWorkflowException {
+        FileOperations fileOperations = new FileOperations(config);
+        AntlrGenerator antlrGenerator = new AntlrGenerator(config);
         GenericParser genericParser = antlrGenerator.getGenericParser();
 
-        genericParser.writeAntlrAritfactsTo(CONFIG.getPaths().getGrammarPath() + "/gen");
+        genericParser.writeAntlrAritfactsTo(config.getPaths().getGrammarPath() + "/gen");
         Map<FormattedName, ModelDto> preparedGrammarDependencies = antlrGenerator.getPreparedGrammarDependencies();
         fileOperations.writeToFiles(preparedGrammarDependencies);
-//        fileOperations.copyFiles(CONFIG.getGrammarFiles(), CONFIG.getPaths().getGrammarPath());
+        fileOperations.copyFiles(config.getGrammarFiles(), config.getPaths().getGrammarPath());
 
-        BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(CONFIG);
+        BaseDescriptorGenerator baseDescriptorGenerator = new BaseDescriptorGenerator(config);
         Map<FormattedName, ModelDto> baseDescriptors = baseDescriptorGenerator.generate();
         fileOperations.writeToFiles(baseDescriptors);
 
-        ApiModelGenerator antlrParserApiModelGenerator = new ApiModelGenerator(CONFIG, genericParser, baseDescriptorGenerator);
+        ApiModelGenerator antlrParserApiModelGenerator = new ApiModelGenerator(config, genericParser, baseDescriptorGenerator);
         Map<FormattedName, ModelDto> apiModelCompilationUnitMap = antlrParserApiModelGenerator.generate();
         fileOperations.writeToFiles(apiModelCompilationUnitMap);
 
-        MapperGenerator mapperGenerator = new MapperGenerator(CONFIG, baseDescriptorGenerator, apiModelCompilationUnitMap);
+        MapperGenerator mapperGenerator = new MapperGenerator(config, baseDescriptorGenerator, apiModelCompilationUnitMap);
         Map<FormattedName, ModelDto> mapperCompilationUnitMap = mapperGenerator.generate();
         fileOperations.writeToFiles(mapperCompilationUnitMap);
 
         Map<FormattedName, ModelDto> allModels = new LinkedHashMap<>();
         allModels.putAll(baseDescriptors);
         allModels.putAll(apiModelCompilationUnitMap);
-        JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(CONFIG, allModels);
+        JqassistantPlugin jqassistantPlugin = JqassistantPluginGenerator.generatePlugin(config, allModels);
         fileOperations.writeToFile(jqassistantPlugin);
 
-        Model mavenProject = MavenProjectGenerator.generateMavenProject(CONFIG.getPluginId());
+        Model mavenProject = MavenProjectGenerator.generateMavenProject(config.getPluginId());
         fileOperations.writeToFile(mavenProject);
     }
 

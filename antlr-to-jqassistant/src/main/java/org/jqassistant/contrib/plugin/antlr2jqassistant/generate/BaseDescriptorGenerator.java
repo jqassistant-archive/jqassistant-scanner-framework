@@ -59,6 +59,7 @@ public class BaseDescriptorGenerator extends BaseGenerator {
 
         createGetterAndSetter(interfaceDeclaration, new FormattedName("FileName"), "String");
         createGetterAndSetter(interfaceDeclaration, new FormattedName("SourceCode"), "String");
+        createGetterAndSetter(interfaceDeclaration, new FormattedName("SourcePosition"), "String");
 
         return compilationUnit;
     }

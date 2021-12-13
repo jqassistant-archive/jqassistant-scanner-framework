@@ -56,9 +56,9 @@ public class FormattedName implements Comparable<FormattedName> {
             if (replacements.get(cleanName) != null) {
                 cleanName = replacements.get(cleanName);
             }
-            if (isReserved(cleanName)) {
-                System.out.println("Using reserved Keyword! " + cleanName);
-            }
+//            if (isReserved(cleanName)) {
+//                System.out.println("Using reserved Keyword! " + cleanName);
+//            }
         }
         return asUpperCamel(cleanName);
     }

@@ -234,6 +234,8 @@
         <class>org.jqassistant.contrib.plugin.typescriptgen.impl.scanner.TypeScriptGenFileScannerPlugin</class>
     </scanner>
     <rules>
-        <resource>import-export-rules.xml</resource>
+        <resource>export-rules.xml</resource>
+        <resource>file-rules.xml</resource>
+        <resource>import-rules.xml</resource>
     </rules>
 </jqassistant-plugin>

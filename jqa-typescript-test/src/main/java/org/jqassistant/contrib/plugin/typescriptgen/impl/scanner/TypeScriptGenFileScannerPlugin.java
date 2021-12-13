@@ -24,7 +24,7 @@ public class TypeScriptGenFileScannerPlugin extends AbstractScannerPlugin<FileRe
 
     @Override
     public boolean accepts(FileResource item, String path, Scope scope) {
-        return path.toLowerCase().endsWith(".ts");
+        return path.toLowerCase().endsWith(".ts") || path.toLowerCase().endsWith(".tsx");
     }
 
     @Override

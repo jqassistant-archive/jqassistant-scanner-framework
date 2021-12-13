@@ -17,7 +17,6 @@ import com.github.javaparser.ast.stmt.ReturnStmt;
 import com.github.javaparser.ast.stmt.TryStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.TypeParameter;
-import lombok.SneakyThrows;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
@@ -54,6 +53,7 @@ public record MapperGenerator(GenerationConfig config,
         compilationUnit.addImport(config.getPaths().getApiPackage() + ".*");
         compilationUnit.addImport(config.getPaths().getModelPackage() + ".*");
         compilationUnit.addImport("org.mapstruct.*");
+        compilationUnit.addImport("org.slf4j.*");
         compilationUnit.addImport(Mappers.class);
         compilationUnit.addImport(FileResource.class);
         compilationUnit.addImport(ParserRuleContext.class);
@@ -63,46 +63,41 @@ public record MapperGenerator(GenerationConfig config,
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(mainMapper.getName());
         TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
-        addStaticInstance(classDeclaration, mainMapper);
+        addMapperStaticInstance(classDeclaration, mainMapper);
+        addLoggerStaticInstance(classDeclaration, mainMapper);
 
         NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
         mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
-        mapperConfigAnnotation.addPair("unmappedTargetPolicy", "ReportingPolicy.ERROR");
+        mapperConfigAnnotation.addPair("unmappedTargetPolicy", "ReportingPolicy.WARN"); //TODO: also possible: ReportingPolicy.ERROR
         mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
 
         MethodDeclaration mapFileName = classDeclaration
-                .addMethod("mapFileName")
+                .addMethod("mapBaseDescriptor")
                 .setDefault(true);
+        mapFileName.addAnnotation(AfterMapping.class);
         mapFileName.addAndGetParameter(FileResource.class, "item")
                 .addAnnotation(Context.class);
+        mapFileName.addAndGetParameter(ParserRuleContext.class, "parserContext");
         mapFileName.addAndGetParameter(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName(), "target")
                 .addAnnotation(MappingTarget.class);
+
         mapFileName.setBody(new BlockStmt()
-                .addStatement(StaticJavaParser.parseStatement("target.setFileName(item.getFile().getAbsolutePath());")));
-        mapFileName.addAnnotation(AfterMapping.class);
-        mapFileName.addAnnotation(SneakyThrows.class);
-
-        MethodDeclaration mapSourceCode = classDeclaration
-                .addMethod("mapSourceCode")
-                .setDefault(true)
-                .setType(String.class);
-        mapSourceCode
-                .addParameter(ParserRuleContext.class, "parserContext");
-
-        BlockStmt getSource = new BlockStmt().addStatement(new ReturnStmt("parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex()))"));
-        mapSourceCode.setBody(new BlockStmt()
                 .addStatement(new TryStmt()
-                        .setTryBlock(getSource)
+                        .setTryBlock(new BlockStmt()
+                                .addStatement(StaticJavaParser.parseStatement("target.setFileName(item.getFile().getAbsolutePath());"))
+                                .addStatement(StaticJavaParser.parseStatement("target.setSourceCode(parserContext.exception != null ? parserContext.exception.toString() : parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex())));"))
+                                .addStatement(StaticJavaParser.parseStatement("target.setSourcePosition(parserContext.getStart().getLine() + \":\" + (parserContext.getStart().getCharPositionInLine() + 1) + \" to \" + parserContext.getStop().getLine() + \":\" + (parserContext.getStop().getCharPositionInLine() + 1));"))
+                        )
                         .setCatchClauses(new NodeList<>(
                                 new CatchClause()
                                         .setParameter(new Parameter().setName("ex").setType(Exception.class))
                                         .setBody(new BlockStmt().addStatement(
-                                                new ReturnStmt(QUOTES + "mapSourceCode ERROR: " + QUOTES + " + ex.getMessage()")))))));
-//        mapSourceCode.setBody(new BlockStmt()
-//                .addStatement(StaticJavaParser.parseStatement("String code = parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex()));"))
-//                .addStatement(
-//                    new ReturnStmt("code.indexOf(\"\\n\") == -1 ? code : code.substring(0, code.indexOf(\"\\n\"))")));
-        mapSourceCode.addAndGetAnnotation(Named.class).addPair("value", "\"mapSourceCode\"");
+                                                StaticJavaParser.parseStatement("LOGGER.error(" + QUOTES + "mapBaseDescriptor ERROR: " + QUOTES + " + ex.getMessage());"))
+                                        )
+                                )
+                        )
+                )
+        );
 
         MethodDeclaration mapTerminalNode = classDeclaration
                 .addMethod("map")
@@ -128,12 +123,8 @@ public record MapperGenerator(GenerationConfig config,
                 .addAnnotation(Context.class);
         mapToken
                 .addParameter(Token.class, "symbol");
-        mapToken.addAndGetAnnotation(Mapping.class)
-                .addPair("target", "\"fileName\"")
-                .addPair("ignore", "true");
-        mapToken.addAndGetAnnotation(Mapping.class)
-                .addPair("target", "\"sourceCode\"")
-                .addPair("ignore", "true");
+        addIgnoreMappings(mapToken);
+
 
         classDeclaration
                 .addMethod("map")
@@ -156,13 +147,7 @@ public record MapperGenerator(GenerationConfig config,
                         .addAndGetParameter(ScannerContext.class, "scannerContext")
                         .addAnnotation(Context.class);
                 mapMethodDeclaration.addParameter(parserContextName, "parserContext");
-                mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
-                        .addPair("target", "\"fileName\"")
-                        .addPair("ignore", "true");
-                mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
-                        .addPair("target", "\"sourceCode\"")
-                        .addPair("source", "\".\"")
-                        .addPair("qualifiedByName", "\"mapSourceCode\"");
+                addIgnoreMappings(mapMethodDeclaration);
                 if (entry.getValue().getExplicitNameMapping().size() > 0) {
                     for (FormattedName mapping : entry.getValue().getExplicitNameMapping()) {
                         mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
@@ -175,7 +160,7 @@ public record MapperGenerator(GenerationConfig config,
                         .map(Map.Entry::getKey)
                         .toList();
                 for (FormattedName toDowncast : downcastMappings) {
-                    mapMethodDeclaration.addAndGetAnnotation(SubclassMapping.class)
+                    mapMethodDeclaration.addAndGetAnnotation(SubclassMapping.class) //TODO: requires Mapstruct 1.5. if not released, then a manually built artifact is required
                             .addPair("target", toDowncast.getName() + ".class")
                             .addPair("source", parserName + "." + toDowncast.getOriginal() + ".class");
                 }
@@ -184,6 +169,18 @@ public record MapperGenerator(GenerationConfig config,
 
         System.out.println(new Date() + " Generation Done!");
         return Collections.singletonMap(mainMapper, new ModelDto(compilationUnit));
+    }
+
+    private void addIgnoreMappings(MethodDeclaration methodDeclaration) {
+        methodDeclaration.addAndGetAnnotation(Mapping.class)
+                .addPair("target", "\"fileName\"")
+                .addPair("ignore", "true");
+        methodDeclaration.addAndGetAnnotation(Mapping.class)
+                .addPair("target", "\"sourceCode\"")
+                .addPair("ignore", "true");
+        methodDeclaration.addAndGetAnnotation(Mapping.class)
+                .addPair("target", "\"sourcePosition\"")
+                .addPair("ignore", "true");
     }
 
     private Map<FormattedName, ModelDto> generateDescriptorFactory() {
@@ -220,12 +217,22 @@ public record MapperGenerator(GenerationConfig config,
         return Collections.singletonMap(name, new ModelDto(compilationUnit));
     }
 
-    private void addStaticInstance(ClassOrInterfaceDeclaration classDeclaration, FormattedName name) {
+    private void addMapperStaticInstance(ClassOrInterfaceDeclaration classDeclaration, FormattedName name) {
         FieldDeclaration fieldDeclaration = classDeclaration
                 .addField(name.getName(), "INSTANCE")
                 .addModifier(Modifier.Keyword.PUBLIC)
-                .addModifier(Modifier.Keyword.STATIC);
+                .addModifier(Modifier.Keyword.STATIC)
+                .addModifier(Modifier.Keyword.FINAL);
         fieldDeclaration.getVariable(0).setInitializer("Mappers.getMapper(" + name + ".class)");
+    }
+
+    private void addLoggerStaticInstance(ClassOrInterfaceDeclaration classDeclaration, FormattedName name) {
+        FieldDeclaration fieldDeclaration = classDeclaration
+                .addField("Logger", "LOGGER")
+                .addModifier(Modifier.Keyword.PUBLIC)
+                .addModifier(Modifier.Keyword.STATIC)
+                .addModifier(Modifier.Keyword.FINAL);
+        fieldDeclaration.getVariable(0).setInitializer("LoggerFactory.getLogger(" + name + ".class)");
     }
 
 }
