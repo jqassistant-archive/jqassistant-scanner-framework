@@ -1,6 +1,9 @@
 <jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="typescript:ImportRules">
+        <includeConcept refId="typescript:ImportRules:*"/>
+    </group>
 
-    <concept id="typescript:MultipleImportDeclaration">
+    <concept id="typescript:ImportRules:MultipleImportDeclaration">
         <cypher><![CDATA[
             MATCH
                 (program:Program)-[:HAS_SOURCE_ELEMENTS]->
@@ -27,7 +30,7 @@
         </cypher>
     </concept>
 
-    <concept id="typescript:StarImportDeclaration">
+    <concept id="typescript:ImportRules:StarImportDeclaration">
         <cypher><![CDATA[
             MATCH
                 (program:Program)-[:HAS_SOURCE_ELEMENTS]->
@@ -53,7 +56,7 @@
         </cypher>
     </concept>
 
-    <concept id="typescript:SingleImportDeclaration">
+    <concept id="typescript:ImportRules:SingleImportDeclaration">
         <cypher><![CDATA[
             MATCH
                 (program:Program)-[:HAS_SOURCE_ELEMENTS]->
@@ -80,6 +83,31 @@
                 (type:TypeScript:Language:Type {
                     name: importIdentifier.text,
                     sourceFile: fromIdentifier.sourceCode
+                })
+            MERGE
+                (program)-[:IMPORTS {sourceCode: importStatement.sourceCode}]->(type)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:ImportRules:SingleImportDeclarationUsingCustomGrammar">
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:HAS_SOURCE_ELEMENTS]->
+                ()-[:HAS_SOURCE_ELEMENT]->
+                ()-[:HAS_STATEMENT]->
+                ()-[:HAS_IMPORT_STATEMENT]->
+                (importStatement:ImportStatement)-[:HAS_FROM_BLOCK]->
+                (fromBlock:FromBlock)-[:HAS_STRING_LITERAL]->
+                (fromIdentifier:TerminalNodeStrings)
+            MATCH
+                (fromBlock)-[:HAS_IDENTIFIER]->
+                (importIdentifier:TerminalNodeStrings)
+            MERGE
+                (type:TypeScript:Language:Type {
+                        name: importIdentifier.text,
+                        sourceFile: fromIdentifier.text
                 })
             MERGE
                 (program)-[:IMPORTS {sourceCode: importStatement.sourceCode}]->(type)

@@ -381,7 +381,7 @@ importStatement
     ;
 
 fromBlock
-    : (Multiply | multipleImportStatement) (As identifierName)? From StringLiteral eos
+    : (Identifier | Multiply | multipleImportStatement) (As identifierName)? From StringLiteral eos
     ;
 
 multipleImportStatement

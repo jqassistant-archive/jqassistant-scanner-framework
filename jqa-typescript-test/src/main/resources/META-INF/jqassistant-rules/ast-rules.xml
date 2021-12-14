@@ -6,7 +6,18 @@
         <includeConcept refId="debug:*"/>
     </group>
 
+    <concept id="typescript:AllRelationships">
+        <cypher><![CDATA[
+            MATCH
+                (:TypeScriptGenAST)-[anyRelationship]->(:TypeScriptGenAST)
+            SET anyRelationship.type = "AST"
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
     <concept id="typescript:AllChildren">
+        <requiresConcept refId="typescript:AllRelationships"/>
         <cypher><![CDATA[
             MATCH
                     (program:Program)-[*..256]->(child)
@@ -18,6 +29,7 @@
             ]]>
         </cypher>
     </concept>
+
     <concept id="debug:temp">
         <cypher><![CDATA[
             MATCH

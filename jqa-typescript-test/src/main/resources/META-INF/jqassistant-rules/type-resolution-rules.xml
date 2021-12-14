@@ -1,0 +1,103 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="typescript:TypeResolution">
+        <includeConcept refId="typescript:TypeResolution:*"/>
+    </group>
+
+    <concept id="typescript:TypeResolution:PrimaryType">
+        <cypher><![CDATA[
+            MATCH
+                (typeToResolve:Type_)-[* {type: "AST"}]->(primaryType:PrimaryType)
+            MERGE
+                (type:TypeScript:Language:Type:Primary {
+                    name: primaryType.sourceCode
+                })
+//            MERGE
+//                (type)-[:IS_REFERENCED_BY]->(typeToResolve)
+            MERGE
+                (typeToResolve)-[:RESOLVES_TO {resolvedBy: "PRIMARY_TYPE"}]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="typescript:TypeResolution:TypeIdentifier">
+        <requiresConcept refId="typescript:AllChildren"/>
+        <requiresConcept refId="typescript:TypeDeclaration:*"/>
+        <requiresConcept refId="typescript:ImportRules:*"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:TypeScriptGenAST)
+                WHERE type:TypeName OR type:FormalParameterArg
+            SET type:TypeIdentifier
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="typescript:TypeResolution:ImportSimpleName">
+        <requiresConcept refId="typescript:TypeResolution:TypeIdentifier"/>
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:CHILD_OF_PROGRAM]->
+                (typeToResolve:TypeIdentifier)
+            MATCH
+                (program:Program)-[importsOrDeclares]->(type:Type {name: typeToResolve.sourceCode})
+                WHERE importsOrDeclares:IMPORTS OR importsOrDeclares:DECLARES
+//            MERGE
+//                (type)-[:IS_REFERENCED_BY]->(typeToResolve)
+            MERGE
+                (typeToResolve)-[:RESOLVES_TO {resolvedBy: "SIMPLE_NAME"}]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+    <concept id="typescript:TypeResolution:InterfaceExtendsClause">
+        <requiresConcept refId="typescript:TypeResolution:ImportSimpleName"/>
+        <cypher><![CDATA[
+            MATCH
+                    (interface:TypeScript:Language:Type:Interface)
+                            -[:DEFINED_BY]->(declaration)
+                            -[:HAS_INTERFACE_EXTENDS_CLAUSE]->(:InterfaceExtendsClause)
+                            -[* {type: "AST"}]->(typeIdentifier:TypeIdentifier)
+                            -[:RESOLVES_TO]->(type:TypeScript:Language:Type)
+            MERGE
+                    (interface)-[:EXTENDS]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+    <concept id="typescript:TypeResolution:ClassExtendsClause">
+        <requiresConcept refId="typescript:TypeResolution:ImportSimpleName"/>
+        <cypher><![CDATA[
+            MATCH
+                    (class:TypeScript:Language:Type:Class)
+                            -[:DEFINED_BY]->(declaration)
+                            -[:HAS_CLASS_HERITAGE]->()
+                            -[:HAS_CLASS_EXTENDS_CLAUSE]->(:ClassExtendsClause)
+                            -[* {type: "AST"}]->(typeIdentifier:TypeIdentifier)
+                            -[:RESOLVES_TO]->(type:TypeScript:Language:Type)
+            MERGE
+                    (class)-[:EXTENDS]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+    <concept id="typescript:TypeResolution:ImplementsClause">
+        <requiresConcept refId="typescript:TypeResolution:ImportSimpleName"/>
+        <cypher><![CDATA[
+            MATCH
+                    (class:TypeScript:Language:Type:Class)
+                            -[:DEFINED_BY]->(declaration)
+                            -[:HAS_CLASS_HERITAGE]->()
+                            -[:HAS_IMPLEMENTS_CLAUSE]->(:ImplementsClause)
+                            -[* {type: "AST"}]->(typeIdentifier:TypeIdentifier)
+                            -[:RESOLVES_TO]->(type:TypeScript:Language:Type)
+            MERGE
+                    (class)-[:IMPLEMENTS]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+
+</jqassistant-rules>

@@ -24,6 +24,16 @@
         </cypher>
     </concept>
 
+    <concept id="java:AllRelationships">
+        <cypher><![CDATA[
+            MATCH
+                (:JavaGenAST)-[anyRelationship]->(:JavaGenAST)
+            SET anyRelationship.type = "AST"
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
     <concept id="java:PackageDeclaration">
         <requiresConcept refId="java:AllPackageChildren"/>
         <cypher><![CDATA[

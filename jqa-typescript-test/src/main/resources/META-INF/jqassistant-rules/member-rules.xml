@@ -1,0 +1,143 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="typescript:MemberRules">
+        <includeConcept refId="typescript:MemberRules:*"/>
+    </group>
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations">
+        <requiresConcept refId="typescript:TypeDeclaration:*"/>
+        <cypher><![CDATA[
+            MATCH
+                (class:Class)
+                        -[:DEFINED_BY]->()
+                        -[:HAS_CLASS_TAIL]->()
+                        -[:HAS_CLASS_ELEMENT]->()
+                        -[:HAS_PROPERTY_MEMBER_DECLARATION]->(propertyMemberDeclaration:PropertyMemberDeclaration)
+                        -[:HAS_PROPERTY_NAME]->()
+                        -[:HAS_IDENTIFIER_NAME]->()
+                        -[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            OPTIONAL MATCH
+                (propertyMemberDeclaration:PropertyMemberDeclaration)
+                        -[:HAS_PROPERTY_MEMBER_BASE]->(propertyMemberBase:PropertyMemberBase)
+            MERGE
+                (member:TypeScript:Language:Member {
+                    name: identifier.text,
+                    sourceFile:  class.sourceFile,
+                    sourceCode:  propertyMemberDeclaration.sourceCode
+                })
+            SET member.propertyMemberBase = propertyMemberBase.sourceCode
+            MERGE
+                (class)-[:DECLARES]->(member)
+            MERGE
+                (member)-[:DEFINED_BY]->(propertyMemberDeclaration)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations:Property">
+        <requiresConcept refId="typescript:MemberRules:PropertyMemberDeclarations"/>
+        <cypher><![CDATA[
+            MATCH
+                (member:TypeScript:Language:Member)-[:DEFINED_BY]->(memberDeclaration:PropertyMemberDeclaration:PropertyDeclarationExpression)
+            SET member:Property
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations:PropertyType">
+        <requiresConcept refId="typescript:TypeResolution:*"/>
+        <cypher><![CDATA[
+            MATCH
+                (property:TypeScript:Language:Member:Property)
+                        -[:DEFINED_BY]->()
+                        -[:HAS_TYPE_ANNOTATION]->()
+                        -[:HAS_TYPE]->()
+                        -[:RESOLVES_TO]->(resolvedType)
+            MERGE
+                (property)-[:OF_TYPE]->(resolvedType)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations:PropertyInitializer">
+        <requiresConcept refId="typescript:TypeResolution:*"/>
+        <cypher><![CDATA[
+            MATCH
+                (property:TypeScript:Language:Member:Property)
+                        -[:DEFINED_BY]->()
+                        -[:HAS_INITIALIZER]->()
+                        -[:HAS_SINGLE_EXPRESSION]->(singleExpression)
+            MERGE
+                (initializer:TypeScript:Language:Initializer {
+                    value: singleExpression.sourceCode
+                })
+            MERGE
+                (property)-[:HAS]->(initializer)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations:Method">
+        <requiresConcept refId="typescript:MemberRules:PropertyMemberDeclarations"/>
+        <cypher><![CDATA[
+            MATCH
+                (member:TypeScript:Language:Member)-[:DEFINED_BY]->(methodDeclaration:PropertyMemberDeclaration:MethodDeclarationExpression)
+            SET member:Method
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations:Returns">
+        <requiresConcept refId="typescript:TypeResolution:*"/>
+        <cypher><![CDATA[
+            MATCH
+                (member:TypeScript:Language:Member:Method)
+                        -[:DEFINED_BY]->()
+                        -[:HAS_CALL_SIGNATURE]->()
+                        -[:HAS_TYPE_ANNOTATION]->()
+                        -[:HAS_TYPE]->()
+                        -[:RESOLVES_TO]->(type)
+            MERGE
+                (member)-[:RETURNS]->(type)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+    <concept id="typescript:MemberRules:PropertyMemberDeclarations:Parameters">
+        <requiresConcept refId="typescript:TypeResolution:*"/>
+        <cypher><![CDATA[
+            MATCH
+                (member:TypeScript:Language:Member:Method)
+                        -[:DEFINED_BY]->(methodDeclaration)
+                        -[:HAS_CALL_SIGNATURE]->()
+                        -[:HAS_PARAMETER_LIST]->()
+                        -[:HAS_PARAMETER]->(parameterDeclaration:Parameter)
+                        -[* {type: "AST"}]->(typeIdentifier:TypeIdentifier)
+                        -[:RESOLVES_TO]->(resolvedType)
+            MATCH
+                (parameterDeclaration)-[* {type: "AST"}]->(nameIdentifier:IdentifierOrPattern)
+            MERGE
+                (parameter:TypeScript:Language:Parameter {
+                    name:      nameIdentifier.sourceCode,
+                    position:  id(parameterDeclaration)
+//                    signature: resolvedType.fqn + ' ' + identifier.text
+                })
+            MERGE
+                (member)-[:HAS]->(parameter)
+            MERGE
+                (parameter)-[:OF_TYPE]->(resolvedType)
+            MERGE
+                (parameter)-[:DEFINED_BY]->(parameterDeclaration)
+            RETURN *
+            ]]>
+        </cypher>
+    </concept>
+
+
+</jqassistant-rules>

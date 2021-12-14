@@ -25,6 +25,10 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  *         return getRuleContext(EosContext.class, 0);
  *     }
  *
+ *     public TerminalNode Identifier() {
+ *         return getToken(TypeScriptParser.Identifier, 0);
+ *     }
+ *
  *     public TerminalNode Multiply() {
  *         return getToken(TypeScriptParser.Multiply, 0);
  *     }
@@ -87,6 +91,11 @@ public interface FromBlock extends TypeScriptGenAST {
     Eos getEos();
 
     void setEos(Eos setEos);
+
+    @Relation("HAS_IDENTIFIER")
+    TerminalNodeStrings getIdentifier();
+
+    void setIdentifier(TerminalNodeStrings setIdentifier);
 
     @Relation("HAS_MULTIPLY")
     TerminalNodeStrings getMultiply();

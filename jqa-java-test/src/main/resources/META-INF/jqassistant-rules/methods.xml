@@ -66,10 +66,10 @@
                 (formalParameter:FormalParameter)-[:HAS_VARIABLE_DECLARATOR_ID]->
                 ()-[:HAS_IDENTIFIER]->
                 (identifier:TerminalNodeStrings)
-            MERGE (variable:Java:Language:Variable {
-                name:      identifier.text,
-                signature: resolvedType.fqn + ' ' + identifier.text
-            })
+//            MERGE (variable:Java:Language:Variable {
+//                name:      identifier.text,
+//                signature: resolvedType.fqn + ' ' + identifier.text
+//            })
             MERGE (parameter:Java:Language:Parameter {
                 name:      identifier.text,
                 position:  id(formalParameter),
@@ -77,14 +77,14 @@
             })
             MERGE
                 (method)-[:HAS]->(parameter)
-            MERGE
-                (method)-[:DECLARES]->(variable)
+//            MERGE
+//                (method)-[:DECLARES]->(variable)
             MERGE
                 (parameter)-[:DEFINED_BY]->(formalParameter)
             MERGE
                 (parameter)-[:OF_TYPE]->(resolvedType)
-            MERGE
-                (variable)-[:OF_TYPE]->(resolvedType)
+//            MERGE
+//                (variable)-[:OF_TYPE]->(resolvedType)
             RETURN *
             ]]></cypher>
     </concept>

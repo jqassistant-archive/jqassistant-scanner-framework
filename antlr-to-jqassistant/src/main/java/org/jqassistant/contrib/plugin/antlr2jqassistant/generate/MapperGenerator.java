@@ -124,6 +124,9 @@ public record MapperGenerator(GenerationConfig config,
         mapToken
                 .addParameter(Token.class, "symbol");
         addIgnoreMappings(mapToken);
+        mapToken.addAndGetAnnotation(Mapping.class)
+                .addPair("target", "\"sourceCode\"")
+                .addPair("source", "\"text\"");
 
 
         classDeclaration
@@ -148,6 +151,9 @@ public record MapperGenerator(GenerationConfig config,
                         .addAnnotation(Context.class);
                 mapMethodDeclaration.addParameter(parserContextName, "parserContext");
                 addIgnoreMappings(mapMethodDeclaration);
+                mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
+                        .addPair("target", "\"sourceCode\"")
+                        .addPair("ignore", "true");
                 if (entry.getValue().getExplicitNameMapping().size() > 0) {
                     for (FormattedName mapping : entry.getValue().getExplicitNameMapping()) {
                         mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
@@ -160,7 +166,7 @@ public record MapperGenerator(GenerationConfig config,
                         .map(Map.Entry::getKey)
                         .toList();
                 for (FormattedName toDowncast : downcastMappings) {
-                    mapMethodDeclaration.addAndGetAnnotation(SubclassMapping.class) //TODO: requires Mapstruct 1.5. if not released, then a manually built artifact is required
+                    mapMethodDeclaration.addAndGetAnnotation(SubclassMapping.class)
                             .addPair("target", toDowncast.getName() + ".class")
                             .addPair("source", parserName + "." + toDowncast.getOriginal() + ".class");
                 }
@@ -174,9 +180,6 @@ public record MapperGenerator(GenerationConfig config,
     private void addIgnoreMappings(MethodDeclaration methodDeclaration) {
         methodDeclaration.addAndGetAnnotation(Mapping.class)
                 .addPair("target", "\"fileName\"")
-                .addPair("ignore", "true");
-        methodDeclaration.addAndGetAnnotation(Mapping.class)
-                .addPair("target", "\"sourceCode\"")
                 .addPair("ignore", "true");
         methodDeclaration.addAndGetAnnotation(Mapping.class)
                 .addPair("target", "\"sourcePosition\"")

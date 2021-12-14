@@ -1,0 +1,28 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="typescript:TypeDeclaration">
+        <includeConcept refId="typescript:TypeDeclaration:*"/>
+    </group>
+
+    <concept id="typescript:TypeDeclaration:TypeAliasDeclaration">
+        <requiresConcept refId="typescript:AllChildren"/>
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)-[:CHILD_OF_PROGRAM]->
+                (typeAliasDeclaration:TypeAliasDeclaration)-[:HAS_IDENTIFIER]->
+                (identifier:TerminalNodeStrings)
+            MERGE
+                (type:TypeScript:Language:Type {
+                    name: identifier.text,
+                    sourceFile: typeAliasDeclaration.fileName
+                })
+            MERGE
+                (type)-[:DEFINED_BY]->(typeAliasDeclaration)
+            MERGE
+                (program)-[:DECLARES]->(type)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+
+</jqassistant-rules>

@@ -1,0 +1,51 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v1.10">
+    <group id="typescript:ClassOrInterfaceDeclaration">
+        <includeConcept refId="typescript:ClassOrInterfaceDeclaration:*"/>
+    </group>
+
+    <concept id="typescript:ClassOrInterfaceDeclaration:SimpleInterfaceDeclaration">
+        <requiresConcept refId="typescript:AllChildren"/>
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)
+                        -[:CHILD_OF_PROGRAM]->(declaration:InterfaceDeclaration)
+                        -[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE
+                (interface:TypeScript:Language:Type:Interface {
+                    name: identifier.text,
+                    sourceFile: declaration.fileName
+                })
+            MERGE
+                (interface)-[:DEFINED_BY]->(declaration)
+            MERGE
+                (program)-[:DECLARES]->(interface)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+    <concept id="typescript:ClassOrInterfaceDeclaration:SimpleClassDeclaration">
+        <requiresConcept refId="typescript:ClassOrInterfaceDeclaration:SimpleInterfaceDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (program:Program)
+                        -[:CHILD_OF_PROGRAM]->(declaration:ClassDeclaration)
+                        -[:HAS_IDENTIFIER]->(identifier:TerminalNodeStrings)
+            MERGE
+                (class:TypeScript:Language:Type:Class {
+                        name:       identifier.text,
+                        sourceFile: declaration.fileName
+                })
+            MERGE
+                (class)-[:DEFINED_BY]->(declaration)
+            MERGE
+                (program)-[:DECLARES]->(class)
+            RETURN *
+            ]]></cypher>
+    </concept>
+
+
+
+
+
+</jqassistant-rules>
