@@ -10,15 +10,14 @@ public class CustomAccessorNamingStrategy extends DefaultAccessorNamingStrategy 
 
     @Override
     public boolean isGetterMethod(ExecutableElement method) {
-//        String methodName = method.getSimpleName().toString();
-        return method.getReturnType().getKind() != TypeKind.VOID;// || methodName.startsWith("get");
+        return method.getReturnType().getKind() != TypeKind.VOID;
     }
 
     @Override
     public String getPropertyName(ExecutableElement getterOrSetterMethod) {
         String methodName = getterOrSetterMethod.getSimpleName().toString();
         return Introspector.decapitalize(
-                !methodName.equals("getter") && !methodName.equals("setter") && (methodName.startsWith("get") || methodName.startsWith("set"))
+                !methodName.equals("getter") && !methodName.equals("setter") && ((methodName.startsWith("get") || methodName.startsWith("set")))
                         ? methodName.substring(3)
                         : methodName
         );

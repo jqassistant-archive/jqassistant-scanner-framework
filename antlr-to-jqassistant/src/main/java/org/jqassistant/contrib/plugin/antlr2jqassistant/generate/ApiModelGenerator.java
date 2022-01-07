@@ -147,8 +147,6 @@ public class ApiModelGenerator extends BaseGenerator {
             generatedAnnotation.addPair("\n\tcomments", QUOTES + "REQUIRES_SPECIAL_MAPPING" + QUOTES);
         }
 
-//        createGetterAndSetter(interfaceDeclaration, new FormattedName("FileName"), "String");
-//        createGetterAndSetter(interfaceDeclaration, new FormattedName("SourceCode"), "String");
         return Collections.singletonMap(name, new ModelDto(compilationUnit, explicitNameMapping, extendsModel));
     }
 

@@ -17,6 +17,8 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Main {
+    //TODO: Config as command line arguments?
+    //TODO: Eventually as Maven Plugin paramaters?
     public static final GenerationConfig CONFIG_JAVA = GenerationConfig.builder()
             .pluginId("JavaGen")
             .paths(new PackagePaths("JavaGen", "jqa-java-test"))
@@ -48,8 +50,7 @@ public class Main {
             ))
             .build();
 
-//    public static final List<GenerationConfig> CONFIGS = new ArrayList<>(List.of(CONFIG_JAVA, CONFIG_TYPESCRIPT));
-    public static final List<GenerationConfig> CONFIGS = new ArrayList<>(List.of(CONFIG_TYPESCRIPT));
+    public static final List<GenerationConfig> CONFIGS = new ArrayList<>(List.of(CONFIG_JAVA, CONFIG_TYPESCRIPT));
 
     public static void main(String[] args) {
         try {

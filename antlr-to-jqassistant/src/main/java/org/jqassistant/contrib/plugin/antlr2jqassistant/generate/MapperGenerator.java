@@ -17,7 +17,6 @@ import com.github.javaparser.ast.stmt.ReturnStmt;
 import com.github.javaparser.ast.stmt.TryStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.TypeParameter;
-import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -39,8 +38,76 @@ public record MapperGenerator(GenerationConfig config,
     public Map<FormattedName, ModelDto> generate() {
         TreeMap<FormattedName, ModelDto> compilationUnitMap = new TreeMap<>();
         compilationUnitMap.putAll(generateDescriptorFactory());
+        compilationUnitMap.putAll(generateMapperConfig());
         compilationUnitMap.putAll(generateSingleMapperFromApiModel());
         return compilationUnitMap;
+    }
+
+    private Map<FormattedName, ModelDto> generateDescriptorFactory() {
+        CompilationUnit compilationUnit = new CompilationUnit();
+        compilationUnit.setPackageDeclaration(config.getPaths().getMapperPackage());
+        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
+
+        FormattedName name = new FormattedName("DescriptorFactory");
+        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass(name.getName());
+
+        NodeList<ClassOrInterfaceType> typeBound = new NodeList<>(new ClassOrInterfaceType().setName(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName()));
+
+        MethodDeclaration createDescriptorMethod = classDeclaration
+                .addMethod("createDescriptor", Modifier.Keyword.PUBLIC, Modifier.Keyword.STATIC)
+                .setType("T")
+                .setTypeParameters(new NodeList<>(new TypeParameter("T", typeBound)));
+
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
+
+        addScannerContext(createDescriptorMethod);
+        createDescriptorMethod
+                .addAndGetParameter("Class<T>", "entityClass")
+                .addAnnotation(TargetType.class);
+
+        createDescriptorMethod.setBody(
+                new BlockStmt()
+                        .addStatement(
+                                new ReturnStmt("scannerContext.getStore().create(entityClass)")
+                        )
+        );
+
+        return Collections.singletonMap(name, new ModelDto(compilationUnit));
+    }
+
+    private Map<FormattedName, ModelDto> generateMapperConfig() {
+        System.out.println(new Date() + " Starting Mapper Config Generation");
+
+        CompilationUnit compilationUnit = new CompilationUnit();
+        compilationUnit.setPackageDeclaration(config.getPaths().getMapperPackage());
+
+        compilationUnit.addImport("org.mapstruct.*");
+        compilationUnit.addImport(FileResource.class);
+        compilationUnit.addImport(ParserRuleContext.class);
+
+        FormattedName commonMappingConfig = new FormattedName("CommonMappingConfig");
+
+        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(commonMappingConfig.getName());
+        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
+
+        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(MapperConfig.class);
+        mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
+        mapperConfigAnnotation.addPair("unmappedTargetPolicy", "ReportingPolicy.ERROR"); //HINT: more lenient rule is also possible: ReportingPolicy.WARN
+        mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
+        mapperConfigAnnotation.addPair("mappingInheritanceStrategy", "MappingInheritanceStrategy.AUTO_INHERIT_FROM_CONFIG");
+
+        MethodDeclaration mapRoot = classDeclaration.addMethod("map").removeBody();
+        mapRoot.setType(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
+        addFileResource(mapRoot);
+        addScannerContext(mapRoot);
+        mapRoot.addParameter(ParserRuleContext.class, "parserContext");
+
+        addIgnoreMappings(mapRoot);
+        mapRoot.addAndGetAnnotation(Mapping.class)
+                .addPair("target", "\"sourceCode\"")
+                .addPair("ignore", "true");
+
+        return Collections.singletonMap(commonMappingConfig, new ModelDto(compilationUnit));
     }
 
     private Map<FormattedName, ModelDto> generateSingleMapperFromApiModel() {
@@ -63,77 +130,14 @@ public record MapperGenerator(GenerationConfig config,
 
         ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addInterface(mainMapper.getName());
         TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
+        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
+        mapperConfigAnnotation.addPair("config", "CommonMappingConfig.class");
         addMapperStaticInstance(classDeclaration, mainMapper);
         addLoggerStaticInstance(classDeclaration, mainMapper);
 
-        NormalAnnotationExpr mapperConfigAnnotation = classDeclaration.addAndGetAnnotation(Mapper.class);
-        mapperConfigAnnotation.addPair("uses", "DescriptorFactory.class");
-        mapperConfigAnnotation.addPair("unmappedTargetPolicy", "ReportingPolicy.WARN"); //TODO: also possible: ReportingPolicy.ERROR
-        mapperConfigAnnotation.addPair("nullValueCheckStrategy", "NullValueCheckStrategy.ON_IMPLICIT_CONVERSION");
+        addAfterMappingStrategyForMetadata(classDeclaration);
 
-        MethodDeclaration mapFileName = classDeclaration
-                .addMethod("mapBaseDescriptor")
-                .setDefault(true);
-        mapFileName.addAnnotation(AfterMapping.class);
-        mapFileName.addAndGetParameter(FileResource.class, "item")
-                .addAnnotation(Context.class);
-        mapFileName.addAndGetParameter(ParserRuleContext.class, "parserContext");
-        mapFileName.addAndGetParameter(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName(), "target")
-                .addAnnotation(MappingTarget.class);
-
-        mapFileName.setBody(new BlockStmt()
-                .addStatement(new TryStmt()
-                        .setTryBlock(new BlockStmt()
-                                .addStatement(StaticJavaParser.parseStatement("target.setFileName(item.getFile().getAbsolutePath());"))
-                                .addStatement(StaticJavaParser.parseStatement("target.setSourceCode(parserContext.exception != null ? parserContext.exception.toString() : parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex())));"))
-                                .addStatement(StaticJavaParser.parseStatement("target.setSourcePosition(parserContext.getStart().getLine() + \":\" + (parserContext.getStart().getCharPositionInLine() + 1) + \" to \" + parserContext.getStop().getLine() + \":\" + (parserContext.getStop().getCharPositionInLine() + 1));"))
-                        )
-                        .setCatchClauses(new NodeList<>(
-                                new CatchClause()
-                                        .setParameter(new Parameter().setName("ex").setType(Exception.class))
-                                        .setBody(new BlockStmt().addStatement(
-                                                StaticJavaParser.parseStatement("LOGGER.error(" + QUOTES + "mapBaseDescriptor ERROR: " + QUOTES + " + ex.getMessage());"))
-                                        )
-                                )
-                        )
-                )
-        );
-
-        MethodDeclaration mapTerminalNode = classDeclaration
-                .addMethod("map")
-                .setDefault(true)
-                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
-        mapTerminalNode
-                .addAndGetParameter(FileResource.class, "item")
-                .addAnnotation(Context.class);
-        mapTerminalNode
-                .addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapTerminalNode
-                .addParameter(TerminalNode.class, "terminalNode");
-        mapTerminalNode.setBody(new BlockStmt().addStatement(
-                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
-        ));
-
-        MethodDeclaration mapToken = classDeclaration
-                .addMethod("map")
-                .removeBody()
-                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
-        mapToken.addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        mapToken
-                .addParameter(Token.class, "symbol");
-        addIgnoreMappings(mapToken);
-        mapToken.addAndGetAnnotation(Mapping.class)
-                .addPair("target", "\"sourceCode\"")
-                .addPair("source", "\"text\"");
-
-
-        classDeclaration
-                .addMethod("map")
-                .removeBody()
-                .setType(String.class)
-                .addParameter(CharStream.class, "value");
+        addTerminalNodeMapping(classDeclaration);
 
         for (Map.Entry<FormattedName, ModelDto> entry : apiModelCompilationUnitMap.entrySet()) {
             FormattedName modelName = entry.getKey();
@@ -143,17 +147,10 @@ public record MapperGenerator(GenerationConfig config,
             if (!modelName.getName().equalsIgnoreCase(ApiModelGenerator.TERMINAL_NODE_CLASS)) {
                 MethodDeclaration mapMethodDeclaration = classDeclaration.addMethod("map").removeBody();
                 mapMethodDeclaration.setType(modelName.getName());
-                mapMethodDeclaration
-                        .addAndGetParameter(FileResource.class, "item")
-                        .addAnnotation(Context.class);
-                mapMethodDeclaration
-                        .addAndGetParameter(ScannerContext.class, "scannerContext")
-                        .addAnnotation(Context.class);
+                addFileResource(mapMethodDeclaration);
+                addScannerContext(mapMethodDeclaration);
                 mapMethodDeclaration.addParameter(parserContextName, "parserContext");
-                addIgnoreMappings(mapMethodDeclaration);
-                mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
-                        .addPair("target", "\"sourceCode\"")
-                        .addPair("ignore", "true");
+
                 if (entry.getValue().getExplicitNameMapping().size() > 0) {
                     for (FormattedName mapping : entry.getValue().getExplicitNameMapping()) {
                         mapMethodDeclaration.addAndGetAnnotation(Mapping.class)
@@ -177,6 +174,73 @@ public record MapperGenerator(GenerationConfig config,
         return Collections.singletonMap(mainMapper, new ModelDto(compilationUnit));
     }
 
+    private void addTerminalNodeMapping(ClassOrInterfaceDeclaration classDeclaration) {
+        MethodDeclaration mapTerminalNode = classDeclaration
+                .addMethod("map")
+                .setDefault(true)
+                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
+        addFileResource(mapTerminalNode);
+        addScannerContext(mapTerminalNode);
+        mapTerminalNode
+                .addParameter(TerminalNode.class, "terminalNode");
+        mapTerminalNode.setBody(new BlockStmt().addStatement(
+                new ReturnStmt("map(scannerContext, terminalNode == null ? null : terminalNode.getSymbol())")
+        ));
+
+        MethodDeclaration mapToken = classDeclaration
+                .addMethod("map")
+                .removeBody()
+                .setType(ApiModelGenerator.TERMINAL_NODE_CLASS);
+        addScannerContext(mapToken);
+        mapToken
+                .addParameter(Token.class, "symbol");
+        addIgnoreMappings(mapToken);
+        mapToken.addAndGetAnnotation(Mapping.class)
+                .addPair("target", "\"sourceCode\"")
+                .addPair("source", "\"text\"");
+    }
+
+    private void addAfterMappingStrategyForMetadata(ClassOrInterfaceDeclaration classDeclaration) {
+        MethodDeclaration mapFileName = classDeclaration
+                .addMethod("mapBaseDescriptor")
+                .setDefault(true);
+        mapFileName.addAnnotation(AfterMapping.class);
+        addFileResource(mapFileName);
+        mapFileName.addAndGetParameter(ParserRuleContext.class, "parserContext");
+        mapFileName.addAndGetParameter(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName(), "target")
+                .addAnnotation(MappingTarget.class);
+
+        mapFileName.setBody(new BlockStmt()
+                .addStatement(new TryStmt()
+                        .setTryBlock(new BlockStmt()
+                                .addStatement(StaticJavaParser.parseStatement("target.setFileName(item.getFile().getAbsolutePath());"))
+                                .addStatement(StaticJavaParser.parseStatement("target.setSourceCode(parserContext.exception != null ? parserContext.exception.toString() : parserContext.getStart().getInputStream().getText(new Interval(parserContext.getStart().getStartIndex(), parserContext.getStop().getStopIndex())));"))
+                                .addStatement(StaticJavaParser.parseStatement("target.setSourcePosition(parserContext.getStart().getLine() + \":\" + (parserContext.getStart().getCharPositionInLine() + 1) + \" to \" + parserContext.getStop().getLine() + \":\" + (parserContext.getStop().getCharPositionInLine() + 1));"))
+                        )
+                        .setCatchClauses(new NodeList<>(
+                                new CatchClause()
+                                        .setParameter(new Parameter().setName("ex").setType(Exception.class))
+                                        .setBody(new BlockStmt().addStatement(
+                                                StaticJavaParser.parseStatement("LOGGER.error(" + QUOTES + "mapBaseDescriptor ERROR: " + QUOTES + " + ex.getMessage());"))
+                                        )
+                                )
+                        )
+                )
+        );
+    }
+
+    private void addFileResource(MethodDeclaration mapMethodDeclaration) {
+        mapMethodDeclaration
+                .addAndGetParameter(FileResource.class, "item")
+                .addAnnotation(Context.class);
+    }
+
+    private void addScannerContext(MethodDeclaration mapMethodDeclaration) {
+        mapMethodDeclaration
+                .addAndGetParameter(ScannerContext.class, "scannerContext")
+                .addAnnotation(Context.class);
+    }
+
     private void addIgnoreMappings(MethodDeclaration methodDeclaration) {
         methodDeclaration.addAndGetAnnotation(Mapping.class)
                 .addPair("target", "\"fileName\"")
@@ -184,40 +248,6 @@ public record MapperGenerator(GenerationConfig config,
         methodDeclaration.addAndGetAnnotation(Mapping.class)
                 .addPair("target", "\"sourcePosition\"")
                 .addPair("ignore", "true");
-    }
-
-    private Map<FormattedName, ModelDto> generateDescriptorFactory() {
-        CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setPackageDeclaration(config.getPaths().getMapperPackage());
-        compilationUnit.addImport(baseDescriptorGenerator.getPackageName() + "." + baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName());
-
-        FormattedName name = new FormattedName("DescriptorFactory");
-        ClassOrInterfaceDeclaration classDeclaration = compilationUnit.addClass(name.getName());
-
-        NodeList<ClassOrInterfaceType> typeBound = new NodeList<>(new ClassOrInterfaceType().setName(baseDescriptorGenerator.BASE_DESCRIPTOR_NAME.getName()));
-
-        MethodDeclaration createDescriptorMethod = classDeclaration
-                .addMethod("createDescriptor", Modifier.Keyword.PUBLIC, Modifier.Keyword.STATIC)
-                .setType("T")
-                .setTypeParameters(new NodeList<>(new TypeParameter("T", typeBound)));
-
-        TreeHelper.addGeneratedAnnotation(classDeclaration, this.getClass().getName());
-
-        createDescriptorMethod
-                .addAndGetParameter(ScannerContext.class, "scannerContext")
-                .addAnnotation(Context.class);
-        createDescriptorMethod
-                .addAndGetParameter("Class<T>", "entityClass")
-                .addAnnotation(TargetType.class);
-
-        createDescriptorMethod.setBody(
-                new BlockStmt()
-                        .addStatement(
-                                new ReturnStmt("scannerContext.getStore().create(entityClass)")
-                        )
-        );
-
-        return Collections.singletonMap(name, new ModelDto(compilationUnit));
     }
 
     private void addMapperStaticInstance(ClassOrInterfaceDeclaration classDeclaration, FormattedName name) {
