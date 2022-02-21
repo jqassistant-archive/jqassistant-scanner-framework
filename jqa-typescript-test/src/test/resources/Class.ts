@@ -32,6 +32,8 @@ class Person implements IPerson {
     }
 }
 
+type LeglessPerson = Omit<Person, "legs">;
+
 class Employee extends Person {
     empCode: number;
     static pi: number = 3.14;

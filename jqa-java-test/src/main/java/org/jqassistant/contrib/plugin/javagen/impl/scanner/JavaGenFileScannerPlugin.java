@@ -4,7 +4,6 @@ import com.buschmais.jqassistant.core.scanner.api.Scanner;
 import com.buschmais.jqassistant.core.scanner.api.ScannerContext;
 import com.buschmais.jqassistant.core.scanner.api.ScannerPlugin.Requires;
 import com.buschmais.jqassistant.core.scanner.api.Scope;
-import com.buschmais.jqassistant.core.store.api.Store;
 import com.buschmais.jqassistant.plugin.common.api.model.FileDescriptor;
 import com.buschmais.jqassistant.plugin.common.api.scanner.AbstractScannerPlugin;
 import com.buschmais.jqassistant.plugin.common.api.scanner.filesystem.FileResource;
@@ -17,16 +16,11 @@ import org.jqassistant.contrib.plugin.javagen.api.JavaGenFileDescriptor;
 import org.jqassistant.contrib.plugin.javagen.api.model.generated.CompilationUnit;
 import org.jqassistant.contrib.plugin.javagen.api.scanner.JavaGenScope;
 import org.jqassistant.contrib.plugin.javagen.util.mapper.MainMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
 
 @Requires(FileDescriptor.class)
 public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource, JavaGenAST> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JavaGenFileScannerPlugin.class);
 
     @Override
     public boolean accepts(FileResource item, String path, Scope scope) {
@@ -35,29 +29,17 @@ public class JavaGenFileScannerPlugin extends AbstractScannerPlugin<FileResource
 
     @Override
     public JavaGenFileDescriptor scan(FileResource item, String path, Scope scope, Scanner scanner) throws IOException {
-        LOGGER.info(new Date() + " - Running JavaGenFileScannerPlugin");
-
         final ScannerContext scannerContext = scanner.getContext();
-        Store store = scannerContext.getStore();
-        JavaGenFileDescriptor fileDescriptor = store.addDescriptorType(scannerContext.getCurrentDescriptor(), JavaGenFileDescriptor.class);
+        JavaGenFileDescriptor fileDescriptor = scannerContext.getStore().addDescriptorType(scannerContext.getCurrentDescriptor(), JavaGenFileDescriptor.class);
 
-//        scannerContext.push(JavaTypeResolver.class, new JavaTypeResolver(scannerContext));
-//        scannerContext.push(JavaTypeSolver.class, new JavaTypeSolver("C:/workspace/jqassistant/jqassistant-scanner-framework/jqa-java-test/src/test/resources", "C:/workspace/jqassistant/jqassistant-scanner-framework/jqa-java-test/src/test/resources/"));
+        final Java8Lexer lexer = new Java8Lexer(CharStreams.fromStream(item.createStream()));
+        final Java8Parser parser = new Java8Parser(new CommonTokenStream(lexer));
 
-        final InputStream inputStream = item.createStream();
-        final Java8Lexer lexer = new Java8Lexer(CharStreams.fromStream(inputStream));
-        final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        final Java8Parser parser = new Java8Parser(tokenStream);
-
-        LOGGER.info(new Date() + " - getting CompilationUnitContext");
-        Java8Parser.CompilationUnitContext compilationUnitContext = parser.compilationUnit(); //TODO: find root node and how it was determined
-
-        LOGGER.info(new Date() + " - Starting Mapper for compilationUnitContext");
+        Java8Parser.CompilationUnitContext compilationUnitContext = parser.compilationUnit();
 
         CompilationUnit compilationUnit = MainMapper.INSTANCE.map(item, scannerContext, compilationUnitContext);
-        fileDescriptor.setCompilationUnit(compilationUnit);
 
-        LOGGER.info(new Date() + " - Done");
+        fileDescriptor.setCompilationUnit(compilationUnit);
         return fileDescriptor;
     }
 }
