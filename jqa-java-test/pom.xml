@@ -162,23 +162,6 @@
             <artifactId>neo4jv3</artifactId>
             <scope>test</scope>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>com.github.javaparser</groupId>-->
-<!--            <artifactId>javaparser-core</artifactId>-->
-<!--            <version>3.23.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.github.javaparser</groupId>-->
-<!--            <artifactId>javaparser-symbol-solver-core</artifactId>-->
-<!--            <version>3.23.1</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.jqassistant.contrib.plugin</groupId>-->
-<!--            <artifactId>jqassistant-javasrc-plugin</artifactId>-->
-<!--            <version>0.0.9</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>

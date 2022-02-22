@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Main {
     //TODO: Config as command line arguments?
-    //TODO: Eventually as Maven Plugin paramaters?
+    //TODO: Eventually as Maven Plugin parameters?
     public static final GenerationConfig CONFIG_JAVA = GenerationConfig.builder()
             .pluginId("JavaGen")
             .paths(new PackagePaths("JavaGen", "jqa-java-test"))

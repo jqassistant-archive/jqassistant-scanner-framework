@@ -17,6 +17,7 @@ import com.github.javaparser.ast.stmt.ReturnStmt;
 import com.github.javaparser.ast.stmt.TryStmt;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.type.TypeParameter;
+import lombok.AllArgsConstructor;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -28,12 +29,15 @@ import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName.QUOTES;
 
-public record MapperGenerator(GenerationConfig config,
-                              BaseDescriptorGenerator baseDescriptorGenerator,
-                              Map<FormattedName, ModelDto> apiModelCompilationUnitMap) {
+@AllArgsConstructor
+public final class MapperGenerator {
+    private final GenerationConfig config;
+    private final BaseDescriptorGenerator baseDescriptorGenerator;
+    private final Map<FormattedName, ModelDto> apiModelCompilationUnitMap;
 
     public Map<FormattedName, ModelDto> generate() {
         TreeMap<FormattedName, ModelDto> compilationUnitMap = new TreeMap<>();
@@ -161,7 +165,7 @@ public record MapperGenerator(GenerationConfig config,
                 List<FormattedName> downcastMappings = apiModelCompilationUnitMap.entrySet().stream()
                         .filter(e -> e.getValue().getExtendsModel() != null && e.getValue().getExtendsModel().getName().equals(modelName.getName()))
                         .map(Map.Entry::getKey)
-                        .toList();
+                        .collect(Collectors.toList());
                 for (FormattedName toDowncast : downcastMappings) {
                     mapMethodDeclaration.addAndGetAnnotation(SubclassMapping.class)
                             .addPair("target", toDowncast.getName() + ".class")

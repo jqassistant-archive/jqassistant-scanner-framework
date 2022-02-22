@@ -22,6 +22,7 @@ import org.snt.inmemantlr.memobjects.MemorySource;
 
 import java.io.File;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.jqassistant.contrib.plugin.antlr2jqassistant.model.FormattedName.QUOTES;
 
@@ -124,8 +125,7 @@ public class ApiModelGenerator extends BaseGenerator {
         List<MethodDeclaration> childContexts = clazz.getChildNodes().stream()
                 .filter(child -> child instanceof MethodDeclaration)
                 .map(MethodDeclaration.class::cast)
-                .filter(methodDeclaration -> methodDeclaration.getAnnotations().isEmpty() && methodDeclaration.getParameters().isEmpty()).toList();
-
+                .filter(methodDeclaration -> methodDeclaration.getAnnotations().isEmpty() && methodDeclaration.getParameters().isEmpty()).collect(Collectors.toList());
 
         childContexts.forEach(methodDeclaration -> {
             FormattedName childName = new FormattedName(methodDeclaration.getName());

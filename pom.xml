@@ -65,10 +65,6 @@
         <org.projectlombok.version>1.18.22</org.projectlombok.version>
     </properties>
 
-<!--    <modules>-->
-<!--        <module>antlr-to-jqassistant</module>-->
-<!--    </modules>-->
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -93,6 +89,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
 </project>
