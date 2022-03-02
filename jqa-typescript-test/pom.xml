@@ -239,7 +239,7 @@
         <profile>
             <id>skip</id>
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
                 <maven.test.skip>true</maven.test.skip>
