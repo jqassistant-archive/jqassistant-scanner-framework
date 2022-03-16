@@ -12,6 +12,7 @@
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.AbstractMemberDeclaration</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.AccessibilityModifier</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.AdditiveExpression</class>
+        <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.AliasName</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.Argument</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.ArgumentList</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.Arguments</class>
@@ -105,6 +106,7 @@
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.IfStatement</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.ImplementsClause</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.ImportAliasDeclaration</class>
+        <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.ImportAsDeclaration</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.ImportStatement</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.InExpression</class>
         <class>org.jqassistant.contrib.plugin.typescriptgen.api.model.generated.IndexMemberDeclaration</class>

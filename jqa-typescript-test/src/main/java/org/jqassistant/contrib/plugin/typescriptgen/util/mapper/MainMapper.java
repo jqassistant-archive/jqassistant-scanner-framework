@@ -53,6 +53,8 @@ public interface MainMapper {
 
     AdditiveExpression map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AdditiveExpressionContext parserContext);
 
+    AliasName map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.AliasNameContext parserContext);
+
     Argument map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArgumentContext parserContext);
 
     ArgumentList map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ArgumentListContext parserContext);
@@ -243,6 +245,8 @@ public interface MainMapper {
     ImplementsClause map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ImplementsClauseContext parserContext);
 
     ImportAliasDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ImportAliasDeclarationContext parserContext);
+
+    ImportAsDeclaration map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ImportAsDeclarationContext parserContext);
 
     ImportStatement map(@Context() FileResource item, @Context() ScannerContext scannerContext, TypeScriptParser.ImportStatementContext parserContext);
 

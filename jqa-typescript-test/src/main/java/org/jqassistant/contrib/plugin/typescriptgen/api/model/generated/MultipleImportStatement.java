@@ -17,6 +17,10 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  *         return getToken(TypeScriptParser.OpenBrace, 0);
  *     }
  *
+ *     public TerminalNode CloseBrace() {
+ *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     }
+ *
  *     public List<IdentifierNameContext> identifierName() {
  *         return getRuleContexts(IdentifierNameContext.class);
  *     }
@@ -25,8 +29,12 @@ import com.buschmais.xo.neo4j.api.annotation.Relation;
  *         return getRuleContext(IdentifierNameContext.class, i);
  *     }
  *
- *     public TerminalNode CloseBrace() {
- *         return getToken(TypeScriptParser.CloseBrace, 0);
+ *     public List<ImportAsDeclarationContext> importAsDeclaration() {
+ *         return getRuleContexts(ImportAsDeclarationContext.class);
+ *     }
+ *
+ *     public ImportAsDeclarationContext importAsDeclaration(int i) {
+ *         return getRuleContext(ImportAsDeclarationContext.class, i);
  *     }
  *
  *     public List<TerminalNode> Comma() {
@@ -74,15 +82,20 @@ public interface MultipleImportStatement extends TypeScriptGenAST {
 
     void setOpenBrace(TerminalNodeStrings setOpenBrace);
 
+    @Relation("HAS_CLOSE_BRACE")
+    TerminalNodeStrings getCloseBrace();
+
+    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+
     @Relation("HAS_IDENTIFIER_NAME")
     List<IdentifierName> getIdentifierName();
 
     void setIdentifierName(List<IdentifierName> setIdentifierName);
 
-    @Relation("HAS_CLOSE_BRACE")
-    TerminalNodeStrings getCloseBrace();
+    @Relation("HAS_IMPORT_AS_DECLARATION")
+    List<ImportAsDeclaration> getImportAsDeclaration();
 
-    void setCloseBrace(TerminalNodeStrings setCloseBrace);
+    void setImportAsDeclaration(List<ImportAsDeclaration> setImportAsDeclaration);
 
     @Relation("HAS_COMMA")
     List<TerminalNodeStrings> getComma();

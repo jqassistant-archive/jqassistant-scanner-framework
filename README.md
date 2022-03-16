@@ -14,7 +14,7 @@ There are two generated examples included: `jqa-java-test` and `jqa-typescript-t
 * Maven 3.8.4 or higher
 
 ## Optional Prerequisites
-* Neo4j Desktop
+* Neo4j Desktop with the APOC library
 * ANTLR v4 IntelliJ plug-in from the IntelliJ marketplace (see https://plugins.jetbrains.com/plugin/7358-antlr-v4).
 * Graph Database support IntelliJ plug-in from the IntelliJ marketplace (see https://plugins.jetbrains.com/plugin/8087-graph-database-support).
 * MapStruct IntelliJ plug-in from the IntelliJ marketplace (see https://plugins.jetbrains.com/plugin/10036-mapstruct-support).

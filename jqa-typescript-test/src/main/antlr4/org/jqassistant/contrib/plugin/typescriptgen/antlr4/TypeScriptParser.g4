@@ -381,11 +381,19 @@ importStatement
     ;
 
 fromBlock
-    : (Identifier | Multiply | multipleImportStatement) (As identifierName)? From StringLiteral eos
+    : (Multiply | multipleImportStatement) (As identifierName)? From StringLiteral eos
     ;
 
 multipleImportStatement
-    : (identifierName ',')? '{' identifierName (',' identifierName)* '}'
+    : ((identifierName | importAsDeclaration) ',')? '{' (identifierName | importAsDeclaration) (',' (identifierName | importAsDeclaration))* '}'
+    ;
+
+importAsDeclaration
+    : identifierName As aliasName
+    ;
+
+aliasName
+    : identifierName
     ;
 
 exportStatement
