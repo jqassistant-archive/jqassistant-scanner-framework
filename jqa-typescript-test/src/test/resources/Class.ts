@@ -28,7 +28,7 @@ class Person implements IPerson {
 
     constructor(name: string) {
         this.name = name;
-        _.get
+        _.get();
     }
 
     hypotheticalFunction(): string {
@@ -88,9 +88,9 @@ const charlotte: Monster & IAnimal = {
     eats: steve
 };
 
-// type Monk = Omit<Person, "spouse">;
+type Monk = Omit<Person, "spouse">;
 
-function beginFeast(participants: Monster[]): void {
+function beginFeast(participants: Monster[], victim?: Monk): void {
 }
 
 function run(animals: Array<IAnimal>): void {

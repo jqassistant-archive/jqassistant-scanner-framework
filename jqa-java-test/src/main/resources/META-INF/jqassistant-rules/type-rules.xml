@@ -2,6 +2,9 @@
     <group id="java:Type">
         <includeConcept refId="java:ClassDeclaration"/>
         <includeConcept refId="java:EnumDeclaration"/>
+        <includeConcept refId="java:ClassExtendsSuperclass"/>
+        <includeConcept refId="java:ImplementsInterface"/>
+        <includeConcept refId="java:TypeVisibility"/>
     </group>
 
     <concept id="java:ClassDeclaration">
@@ -54,7 +57,6 @@
             ]]></cypher>
     </concept>
 
-    <!--    TODO: THESE NEED FQN! -->
     <concept id="java:ClassExtendsSuperclass">
         <requiresConcept refId="java:TypeResolution:*"/>
         <requiresConcept refId="java:ClassDeclaration"/>
@@ -98,5 +100,32 @@
             ]]></cypher>
     </concept>
 
+    <concept id="java:TypeVisibility">
+        <requiresConcept refId="java:TypeResolution:*"/>
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <requiresConcept refId="java:EnumDeclaration"/>
+        <requiresConcept refId="java:ImplementsInterface"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:Java:Language:Type)-[:DEFINED_BY]->
+                (:JavaGenAST)-[]->
+                ()-[:HAS_VISIBILITY_MODIFIER]->
+                (visibilityModifier:VisibilityModifier)
+            SET type.visibility = visibilityModifier.sourceCode
+            RETURN *
+        ]]></cypher>
+    </concept>
+
+    <concept id="java:FileName">
+        <requiresConcept refId="java:TypeResolution:*"/>
+        <requiresConcept refId="java:ClassDeclaration"/>
+        <requiresConcept refId="java:EnumDeclaration"/>
+        <cypher><![CDATA[
+            MATCH
+                (type:Java:Language:Type)-[:DEFINED_BY]->(ast:JavaGenAST)
+            SET type.fileName = ast.fileName
+            RETURN *
+        ]]></cypher>
+    </concept>
 
 </jqassistant-rules>
